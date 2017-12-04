@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ed8fe19068ac349930bc60824d2dde, type: 3}
+  m_Name: Skill_EffectList
+  m_EditorClassIdentifier: 
+  param:
+  - id: 0
+    name: "\u30C0\u30DF\u30FC"
+    target: "\u4FBF\u738B"
+    range_min: 1
+    range_max: 1
+    cost: 999
+    message: "\u30C0\u30DF\u30FC\u3084\u3067"
+    effect1: "\u56DE\u5FA9,0"
+    effect2: none
+    effect3: none
+    effect4: none
+  - id: 1
+    name: "\u30D2\u30FC\u30EB"
+    target: "\u5473\u65B9"
+    range_min: 1
+    range_max: 1
+    cost: 2
+    message: "\u5473\u65B9\u4E00\u4EBA\u3092\u56DE\u5FA9\u3059\u308B"
+    effect1: "\u56DE\u5FA9,20"
+    effect2: none
+    effect3: none
+    effect4: none
+  - id: 2
+    name: "\u7791\u60F3"
+    target: "\u81EA\u5206"
+    range_min: 1
+    range_max: 1
+    cost: 1
+    message: "\u81EA\u5206\u306EHP\u3092\u56DE\u5FA9\u3059\u308B"
+    effect1: "\u56DE\u5FA9,20"
+    effect2: none
+    effect3: none
+    effect4: none
+  - id: 3
+    name: "\u30C1\u30E3\u30EA"
+    target: "\u6575"
+    range_min: 1
+    range_max: 1
+    cost: 0
+    message: "\u4E2D\u6771\u306E\u30C1\u30E3\u30EA\u3067\u8FFD\u6483"
+    effect1: "\u30C0\u30E1\u30FC\u30B8,5"
+    effect2: none
+    effect3: none
+    effect4: none
+  - id: 4
+    name: 
+    target: 
+    range_min: 0
+    range_max: 0
+    cost: 0
+    message: 
+    effect1: 
+    effect2: 
+    effect3: 
+    effect4: 
+  - id: 5
+    name: 
+    target: 
+    range_min: 0
+    range_max: 0
+    cost: 0
+    message: 
+    effect1: 
+    effect2: 
+    effect3: 
+    effect4: 
+  - id: 6
+    name: 
+    target: 
+    range_min: 0
+    range_max: 0
+    cost: 0
+    message: 
+    effect1: 
+    effect2: 
+    effect3: 
+    effect4: 
+  - id: 7
+    name: 
+    target: 
+    range_min: 0
+    range_max: 0
+    cost: 0
+    message: 
+    effect1: 
+    effect2: 
+    effect3: 
+    effect4: 
+  - id: 8
+    name: 
+    target: 
+    range_min: 0
+    range_max: 0
+    cost: 0
+    message: 
+    effect1: 
+    effect2: 
+    effect3: 
+    effect4: 
+  - id: 9
+    name: 
+    target: 
+    range_min: 0
+    range_max: 0
+    cost: 0
+    message: 
+    effect1: 
+    effect2: 
+    effect3: 
+    effect4: 
+  - id: 10
+    name: 
+    target: 
+    range_min: 0
+    range_max: 0
+    cost: 0
+    message: 
+    effect1: 
+    effect2: 
+    effect3: 
+    effect4: 

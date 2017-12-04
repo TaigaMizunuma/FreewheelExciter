@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8c65a9ab501524d87746c8f44e407b, type: 3}
+  m_Name: Chara_rateList
+  m_EditorClassIdentifier: 
+  param:
+  - id: 0
+    name: "\u30DE\u30EB\u30B9"
+    hp: 50
+    sp: 55
+    str: 25
+    skl: 50
+    spd: 50
+    luk: 40
+    def: 20
+    cur: 35
+    move: 2
+  - id: 1
+    name: "\u30B8\u30A7\u30A4\u30AC\u30F3"
+    hp: 10
+    sp: 35
+    str: 0
+    skl: 30
+    spd: 10
+    luk: 10
+    def: 0
+    cur: 40
+    move: 0
+  - id: 2
+    name: "\u30AB\u30A4\u30F3"
+    hp: 70
+    sp: 25
+    str: 30
+    skl: 45
+    spd: 40
+    luk: 60
+    def: 30
+    cur: 5
+    move: 1
+  - id: 3
+    name: "\u30A2\u30D9\u30EB"
+    hp: 55
+    sp: 45
+    str: 20
+    skl: 55
+    spd: 50
+    luk: 30
+    def: 15
+    cur: 15
+    move: 1
+  - id: 4
+    name: "\u30B4\u30FC\u30C9\u30F3"
+    hp: 60
+    sp: 0
+    str: 60
+    skl: 30
+    spd: 60
+    luk: 20
+    def: 30
+    cur: 0
+    move: 3
+  - id: 5
+    name: "\u30AC\u30FC\u30D0"
+    hp: 70
+    sp: 15
+    str: 45
+    skl: 45
+    spd: 30
+    luk: 20
+    def: 50
+    cur: 10
+    move: 0
+  - id: 6
+    name: "\u4E2D\u6771"
+    hp: 60
+    sp: 0
+    str: 20
+    skl: 10
+    spd: 20
+    luk: 10
+    def: 10
+    cur: 50
+    move: 0
+  - id: 7
+    name: "\u4FBF\u738B"
+    hp: 10
+    sp: 30
+    str: 5
+    skl: 25
+    spd: 15
+    luk: 50
+    def: 5
+    cur: 45
+    move: 0
+  - id: 8
+    name: "\u30AC\u30D0\u3055\u3093"
+    hp: 50
+    sp: 20
+    str: 30
+    skl: 45
+    spd: 50
+    luk: 5
+    def: 10
+    cur: 25
+    move: 0

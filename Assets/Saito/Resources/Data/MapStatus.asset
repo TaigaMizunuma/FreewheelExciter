@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21cc5428dfc910c4ca5ca5a0bfa58f8e, type: 3}
+  m_Name: MapStatus
+  m_EditorClassIdentifier: 
+  param:
+  - id: 0
+    name: "\u8A66\u9A13\u7528"
+    cost: 0
+    invasion: 0
+    evasionRate: 0
+    height: 0
+  - id: 1
+    name: "\u571F"
+    cost: 0
+    invasion: 0
+    evasionRate: 0
+    height: 0
+  - id: 2
+    name: "\u67F1"
+    cost: 0
+    invasion: 1
+    evasionRate: 0
+    height: 0
+  - id: 3
+    name: "\u8349"
+    cost: 0
+    invasion: 0
+    evasionRate: 0
+    height: 0
+  - id: 4
+    name: "\u68EE"
+    cost: -2
+    invasion: 0
+    evasionRate: 10
+    height: 0
+  - id: 5
+    name: "\u6C34"
+    cost: -3
+    invasion: 0
+    evasionRate: 10
+    height: 0
+  - id: 6
+    name: "\u571F\u56A2"
+    cost: -1
+    invasion: 0
+    evasionRate: 20
+    height: 0
+  - id: 7
+    name: "\u74E6\u792B"
+    cost: -3
+    invasion: 0
+    evasionRate: 10
+    height: 0
+  - id: 8
+    name: "\u6BD2\u30AC\u30B9"
+    cost: 0
+    invasion: 0
+    evasionRate: 0
+    height: 0
+  - id: 9
+    name: "\u968E\u6BB5"
+    cost: 0
+    invasion: 0
+    evasionRate: 0
+    height: 0
+  - id: 10
+    name: "\u74E6\u792B(\u591A)"
+    cost: -5
+    invasion: 0
+    evasionRate: 20
+    height: 0
+  - id: 11
+    name: "\u6249"
+    cost: 0
+    invasion: 0
+    evasionRate: 0
+    height: 0
+  - id: 12
+    name: "\u5B9D"
+    cost: 0
+    invasion: 0
+    evasionRate: 0
+    height: 0
+  - id: 13
+    name: "\u30DE\u30F3\u30DB\u30FC\u30EB"
+    cost: 0
+    invasion: 0
+    evasionRate: 0
+    height: 0
