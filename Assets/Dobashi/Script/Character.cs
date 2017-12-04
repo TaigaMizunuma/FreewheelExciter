@@ -81,9 +81,8 @@ public class Character : MonoBehaviour {
     public int[] _range = {0,0};            //攻撃範囲(配列の0番目が最小,1番目が最大)
 
     public GameObject _itemprefablist;      //アイテムの親オブジェクトの取得
-    public GameObject _skillprefablist;
+    public GameObject _skillprefablist;     //スキルの親オブジェクトの取得
 
-    
     //キャラリスト読み込み
     Entity_CharaList charaList;
     //キャラ成長率リスト読み込み
