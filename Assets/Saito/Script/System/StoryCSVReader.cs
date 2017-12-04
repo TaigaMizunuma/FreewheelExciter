@@ -8,49 +8,32 @@ using UnityEngine.UI;
 public class StoryCSVReader : MonoBehaviour
 {
     //次にロードするCSVの名前
-    //勝手に入ります
-    public static string nextStory;
+    static string nextStory;
 
     //章タイトル
-    public string title;
+    string s_title;
 
     //今表示してるID
     int storyID;
-    //開始部分の番号
-    [SerializeField]
-    int readStartNumber;
-    //終了部分の番号
-    [SerializeField]
-    int readEndNumber;
+
+    //章番号
+    int storyNumber;
+
+    //バトル中かストーリー画面かの判定(バトル中に他シーンに飛ばないようにするため)
+    int sceneMode;
 
     //次の始点と終点(勝手に入ります)
-    public static int nextreadStartNumber;
-    public static int nextreadEndNumber;
+    static int nextreadStartNumber;
+    static int nextreadEndNumber;
 
-    [Space(8)]
-
-    //何処からストーリーデータをロードするか
-    [SerializeField]
-    string dataLoadName;
+    //次にロードするシーンの名前
+    string nextLoadScene;
 
     //今表示しているテキスト
     string storySheetText;
 
     //今話しているキャラ
     string storyCharacterName;
-
-    //テキストの終了判定
-    int endFlag;
-
-    [Space(8)]
-
-    //表示用のテキスト
-    [SerializeField]
-    Text storyText;
-
-    //名前のテキスト
-    [SerializeField]
-    Text nameText;
 
     //キャラクターグラフィックの番号
     int LOneCharacterImageNum;
@@ -65,6 +48,33 @@ public class StoryCSVReader : MonoBehaviour
     string ROneBlackOut;
     string RTwoBlackOut;
 
+    //クリア条件
+    string clearCondition;
+
+    //テキストの終了判定
+    int endFlag;
+
+    //何処からストーリーデータをロードするか
+    [SerializeField]
+    string dataLoadName;
+
+    //開始部分の番号
+    [SerializeField]
+    int readStartNumber;
+
+    //終了部分の番号
+    [SerializeField]
+    int readEndNumber;
+
+    [Space(12)]
+
+    //表示用のテキスト
+    [SerializeField]
+    Text storyText;
+
+    //名前のテキスト
+    [SerializeField]
+    Text nameText;
 
     //キャラクターのグラフィック
     [SerializeField]
@@ -76,10 +86,15 @@ public class StoryCSVReader : MonoBehaviour
     [SerializeField]
     Image RTwoCharacterWindowImage;
 
-    //章番号
-    public static int storyNumber;
+    //名前の表示枠
+    [SerializeField]
+    GameObject nameImage;
 
-    int sceneMode;
+    //名前の表示枠の位置
+    [SerializeField]
+    Vector2 LNameDisplayVector;
+    [SerializeField]
+    Vector2 RNameDisplayVector;
 
     //CSVファイル(勝手に入ります)
     TextAsset storyCSVFile;
@@ -87,31 +102,24 @@ public class StoryCSVReader : MonoBehaviour
     //CSVデータ(勝手に入ります)
     List<string[]> storyCSVDatas = new List<string[]>();
 
-    //
     int storyCSVHeight = 0;
 
-    int i;//縦
-    int j;//横
+    int column;//縦
+    int row;//横
 
-    [Space(8)]
+    [Space(12)]
 
     //フェードアウト/インの切り替えスクリプト
     [SerializeField]
     Fade fade;
 
-    //名前の表示枠
-    [SerializeField]
-    GameObject nameImage;
-
-    [SerializeField]
-    Vector2 LNameDisplayVector;
-    [SerializeField]
-    Vector2 RNameDisplayVector;
-
+    //顔グラの登録用クラス
     CharacterImageManager c_ImgManager;
 
+    //色(いじらないで！)
     float red, green, blue, alfa;
 
+    //シーンごとの処理分けステート
     ScenePattern scenePattern;
 
     enum ScenePattern
@@ -122,8 +130,15 @@ public class StoryCSVReader : MonoBehaviour
 
     void Awake()
     {
+        //次に読み込むストーリーが確定してたら
+        if(nextStory != null)
+        {
+            dataLoadName = nextStory;
+        }
+
         c_ImgManager = GetComponent<CharacterImageManager>();
 
+        //CSVデータ読み込み
         storyCSVFile = Resources.Load("Data/" + dataLoadName) as TextAsset;
         StringReader reader = new StringReader(storyCSVFile.text);
         while (reader.Peek() > -1)
@@ -136,13 +151,15 @@ public class StoryCSVReader : MonoBehaviour
 
     void Start()
     {
-        for (i = 0; i < storyCSVDatas.Count; i++)
+        //読み込んだデータの処理
+        for (column = 0; column < storyCSVDatas.Count; column++)
         {
-            for (j = 0; j < storyCSVDatas[i].Length; j++)
+            for (row = 0; row < storyCSVDatas[column].Length; row++)
             {
                 storyNumber = int.Parse(storyCSVDatas[1][0]);
-                title = storyCSVDatas[storyID + 1][17];
+                s_title = storyCSVDatas[storyID + 1][17];
                 storyID = readStartNumber;
+                clearCondition = storyCSVDatas[storyID + 1][19];
                 storyCharacterName = storyCSVDatas[storyID + 1][2];
                 storySheetText = storyCSVDatas[storyID + 1][3];
                 storyText.text = storySheetText;
@@ -174,6 +191,14 @@ public class StoryCSVReader : MonoBehaviour
                 nextreadStartNumber = int.Parse(storyCSVDatas[storyID + 1][14]);
                 nextreadEndNumber = int.Parse(storyCSVDatas[storyID + 1][15]);
                 sceneMode = int.Parse(storyCSVDatas[storyID + 1][16]);
+
+                if(sceneMode == 0){
+                    scenePattern = ScenePattern.Message;
+                }else{
+                    scenePattern = ScenePattern.Battle;
+                }
+
+                nextLoadScene = storyCSVDatas[storyID + 1][18];
             }
         }
         red = 1f; green = 1f; blue = 1f;
@@ -185,12 +210,14 @@ public class StoryCSVReader : MonoBehaviour
         TextDisplay();
     }
 
+    /// <summary>
+    /// ストーリー全般の処理
+    /// </summary>
     void TextDisplay()
     {
-        if (endFlag == 0)
+        if (endFlag == 0 && fade.isFadeIn == false)
         {
-            if (Input.GetKeyDown(KeyCode.U))
-            {
+            if (Input.GetKeyDown(KeyCode.U)){
                 storyID += 1;
                 endFlag = int.Parse(storyCSVDatas[storyID + 1][12]);
                 storyCharacterName = storyCSVDatas[storyID + 1][2];
@@ -199,21 +226,22 @@ public class StoryCSVReader : MonoBehaviour
                 nameText.text = storyCharacterName;
                 CharacterImageDisplay();
             }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (scenePattern == ScenePattern.Message)
-                {
+            if (Input.GetKeyDown(KeyCode.O)){
+                if (scenePattern == ScenePattern.Message){
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
+                    fade.changeName = nextLoadScene;
                     fade.isFadeOut = true;
                     fade.sceneChangeSwitch = true;
                 }
-                if (scenePattern == ScenePattern.Battle)
-                {
+                if (scenePattern == ScenePattern.Battle){
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
+                    fade.changeName = nextLoadScene;
+                    fade.isFadeOut = true;
+                    fade.sceneChangeSwitch = true;
                 }
             }
         }
@@ -226,6 +254,7 @@ public class StoryCSVReader : MonoBehaviour
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
+                    fade.changeName = nextLoadScene;
                     fade.isFadeOut = true;
                     fade.sceneChangeSwitch = true;
                 }
@@ -238,9 +267,12 @@ public class StoryCSVReader : MonoBehaviour
             }
         }
     }
-    public void CharacterImageDisplay()
-    {
 
+    /// <summary>
+    /// 顔グラの登録、更新
+    /// </summary>
+    void CharacterImageDisplay()
+    {
         LOneCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][4]);
         ROneCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][5]);
         LTwoCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][6]);
@@ -259,7 +291,9 @@ public class StoryCSVReader : MonoBehaviour
         BlackOut();
     }
 
-    ///顔グラの表示設定
+    /// <summary>
+    /// 顔グラの表示の設定
+    /// </summary>
     void BlackOut()
     {
         switch (LOneBlackOut)
@@ -316,9 +350,38 @@ public class StoryCSVReader : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// バトル中のメッセージウィンドウ制御
+    /// </summary>
+    void BattleStory()
+    {
 
-    public static int GetStoryNumber()
+    }
+
+    /// <summary>
+    /// 章番号
+    /// </summary>
+    /// <returns></returns>
+    public int GetStoryNumber()
     {
         return storyNumber;
+    }
+
+    /// <summary>
+    /// 章タイトル
+    /// </summary>
+    /// <returns></returns>
+    public string GetStoryTitle()
+    {
+        return s_title;
+    }
+
+    /// <summary>
+    /// クリア条件
+    /// </summary>
+    /// <returns></returns>
+    public string GetClearCondition()
+    {
+        return clearCondition;
     }
 }

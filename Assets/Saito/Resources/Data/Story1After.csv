@@ -1,0 +1,21 @@
+﻿StoryNumber,ID,Name ,Story ,  LeftOneImage, RightOneImage ,LeftTwoImage,RightTwoImage,LeftOne ,RightOne ,  LeftTwo ,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions
+1,0,ヒュー,な、なんとかなったな,0,0,0,0,ON,OFF,OFF,OFF,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,1,ジェーコブ,…,0,0,0,0,SHADE,OFF,OFF,ON,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,2,ヒュー,あ、助かったよ　えーっと…,0,0,0,0,ON,OFF,OFF,SHADE,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,3,ヒュー,！,0,0,0,0,ON,OFF,OFF,SHADE,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,4,ジェーコブ,私はお前の味方だと、言ったつもりはないが…,0,0,0,0,SHADE,OFF,OFF,ON,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,5,ジェーコブ,この文字は…,0,0,0,0,SHADE,OFF,OFF,ON,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,6,ヒュー,…？　な、なんだ？,0,0,0,0,ON,OFF,OFF,SHADE,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,7,ジェーコブ,…お前、名は？,0,0,0,0,SHADE,OFF,OFF,ON,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,8,ヒュー,はぁ？何が目的だ…,0,0,0,0,ON,OFF,OFF,SHADE,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,9,ヒュー,わ、わかった！言うよ！ヒュー、ヒュー・エヴァンスだ！,0,0,0,0,ON,OFF,OFF,SHADE,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,10,ジェーコブ,ヒューか…私はジェーコブ…,0,0,0,0,SHADE,OFF,OFF,ON,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,11,ジェーコブ,老後の旅行だ、お前たちに力を貸そう,0,0,0,0,SHADE,OFF,OFF,ON,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,12,アイン,…何のつもりだ？ジェーコブ、名前も嘘くせえ。,0,0,0,0,SHADE,OFF,ON,SHADE,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,13,アイン,急に現れて、敵味方関わらず銃を向けるヤツ、信用できるかよ,0,0,0,0,SHADE,OFF,ON,SHADE,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,14,ジェーコブ,そういうお前も、地下の人間にしては随分高貴なお顔だ,0,0,0,0,SHADE,OFF,SHADE,ON,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,15,アイン,ぐっ…,0,0,0,0,SHADE,OFF,ON,SHADE,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,16,ヒュー,…分かった。俺たちは弱い。あんたの力が必要だ。,0,0,0,0,ON,OFF,SHADE,SHADE,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,17,ヒュー,だが、この部隊のリーダーは俺だ。,0,0,0,0,ON,OFF,SHADE,SHADE,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,18,ヒュー,俺の目的…敵対組織の撃滅と上の世界を目指すこと。これに従ってもらえないと困る,0,0,0,0,ON,OFF,SHADE,SHADE,0,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story
+1,19,ジェーコブ,助力を申し出た時点で、それは承知の上。お前に力を尽くそう,0,0,0,0,SHADE,OFF,SHADE,ON,1,Story1Before,0,30,0,赤光、白熱　Red Hoat/White Hot,Title,Story

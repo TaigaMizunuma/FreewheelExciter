@@ -762,6 +762,8 @@ MonoBehaviour:
   alfa: 0
   isFadeOut: 0
   isFadeIn: 0
+  sceneChangeSwitch: 0
+  changeName: Story
 --- !u!114 &1366246182
 MonoBehaviour:
   m_ObjectHideFlags: 0

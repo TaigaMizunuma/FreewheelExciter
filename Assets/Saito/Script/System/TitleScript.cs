@@ -48,6 +48,7 @@ public class TitleScript : MonoBehaviour {
         //今はないのでテストシーンに飛ばしている
         sceneChange.sceneName = "Story";
         fade.isFadeOut = true;
+        fade.sceneChangeSwitch = true;
     }
 
     //NewGame選択時
@@ -56,6 +57,7 @@ public class TitleScript : MonoBehaviour {
     {
         sceneChange.sceneName = "Story";
         fade.isFadeOut = true;
+        fade.sceneChangeSwitch = true;
     }
 
     //クレジット画面に飛ぶ
@@ -64,6 +66,7 @@ public class TitleScript : MonoBehaviour {
         //本来はクレジットに飛ぶ
         sceneChange.sceneName = "Story";
         fade.isFadeOut = true;
+        fade.sceneChangeSwitch = true;
     }
 
     //ゲーム終了

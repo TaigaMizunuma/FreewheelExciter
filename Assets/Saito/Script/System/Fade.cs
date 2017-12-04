@@ -31,6 +31,10 @@ public class Fade : MonoBehaviour {
     [HideInInspector]
     public bool sceneChangeSwitch;
 
+    //ストーリーからシーンチェンジにシーン名を引き渡す
+    //ストーリーリーダーがないシーンもあるのでここに書きました
+    public string changeName;
+
     //シーンチェンジのスクリプト
     SceneChange sceneChange;
 
@@ -77,6 +81,7 @@ public class Fade : MonoBehaviour {
 
     void SceneFadeOut()
     {
+        sceneChange.sceneName = changeName;
         fadeImage.GetComponent<Image>().color = new Color(1, 1, 1, alfa);
         if(fadeImage.enabled == false)
         {
