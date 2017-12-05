@@ -2131,11 +2131,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1478663483207676, guid: 4bfd972ca43596249b249a03cacb72f1,
     type: 2}
   m_PrefabInternal: {fileID: 538737355}
---- !u!224 &46954213 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224379586172910360, guid: 4bfd972ca43596249b249a03cacb72f1,
-    type: 2}
-  m_PrefabInternal: {fileID: 538737355}
 --- !u!1 &51393786
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,6 +2287,7 @@ MonoBehaviour:
   _range: 0000000000000000
   _itemprefablist: {fileID: 0}
   _skillprefablist: {fileID: 0}
+  _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
 --- !u!114 &53552071
@@ -3667,6 +3663,7 @@ MonoBehaviour:
   _range: 0000000000000000
   _itemprefablist: {fileID: 0}
   _skillprefablist: {fileID: 0}
+  _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
 --- !u!114 &119770658
@@ -19614,6 +19611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemprefablist: []
+<<<<<<< HEAD
 --- !u!1001 &572655957
 Prefab:
   m_ObjectHideFlags: 0
@@ -19723,6 +19721,8 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 391be8752b688c8479431a5e81f5410e, type: 2}
   m_IsPrefabParent: 0
+=======
+>>>>>>> e4d75c519d5dbe2b7df16acce7bb51e0f68c0995
 --- !u!1 &574916217
 GameObject:
   m_ObjectHideFlags: 0
@@ -20524,6 +20524,7 @@ GameObject:
   - component: {fileID: 590529226}
   - component: {fileID: 590529225}
   - component: {fileID: 590529230}
+  - component: {fileID: 590529231}
   m_Layer: 0
   m_Name: player1
   m_TagString: Player
@@ -20598,6 +20599,7 @@ MonoBehaviour:
   _range: 0000000000000000
   _itemprefablist: {fileID: 0}
   _skillprefablist: {fileID: 0}
+  _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
 --- !u!114 &590529226
@@ -20682,6 +20684,18 @@ MonoBehaviour:
   _Leakage: 0
   _Rigidarm: 0
   _Georges: 0
+--- !u!114 &590529231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 590529223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f75b441dc2ac54499f84f72e43f9815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirstCost: 3
 --- !u!1 &593363806
 GameObject:
   m_ObjectHideFlags: 0
@@ -28634,6 +28648,7 @@ MonoBehaviour:
   _range: 0000000000000000
   _itemprefablist: {fileID: 0}
   _skillprefablist: {fileID: 0}
+  _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
 --- !u!114 &803775641
@@ -56428,7 +56443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalAxis: AxisX
   m_VerticalAxis: AxisY
-  m_SubmitButton: Submit
+  m_SubmitButton: O
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 2
@@ -79371,6 +79386,7 @@ GameObject:
   - component: {fileID: 2032905171}
   - component: {fileID: 2032905170}
   - component: {fileID: 2032905169}
+  - component: {fileID: 2032905175}
   m_Layer: 0
   m_Name: player2
   m_TagString: Player
@@ -79468,6 +79484,7 @@ MonoBehaviour:
   _range: 0000000000000000
   _itemprefablist: {fileID: 0}
   _skillprefablist: {fileID: 0}
+  _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
 --- !u!114 &2032905171
@@ -79529,6 +79546,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &2032905175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2032905167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f75b441dc2ac54499f84f72e43f9815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirstCost: 3
 --- !u!1 &2036952513
 GameObject:
   m_ObjectHideFlags: 0
@@ -80218,6 +80247,7 @@ GameObject:
   - component: {fileID: 2069330240}
   - component: {fileID: 2069330239}
   - component: {fileID: 2069330238}
+  - component: {fileID: 2069330244}
   m_Layer: 0
   m_Name: player3
   m_TagString: Player
@@ -80315,6 +80345,7 @@ MonoBehaviour:
   _range: 0000000000000000
   _itemprefablist: {fileID: 0}
   _skillprefablist: {fileID: 0}
+  _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
 --- !u!114 &2069330240
@@ -80376,6 +80407,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &2069330244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2069330236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f75b441dc2ac54499f84f72e43f9815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirstCost: 3
 --- !u!1 &2070891967
 GameObject:
   m_ObjectHideFlags: 0
