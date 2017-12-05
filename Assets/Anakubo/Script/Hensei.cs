@@ -13,6 +13,7 @@ public class Hensei : MonoBehaviour {
     // 選んでいるユニットの番号
     private int unit_num = 0;
     // カーソルの位置
+    public GameObject cursor_;
     private int pos_num_x = 0;
     private int pos_num_y = 0;
     // 出撃可能人数
@@ -22,7 +23,7 @@ public class Hensei : MonoBehaviour {
     
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
         units_ = new List<GameObject>();
         Transform obj = unit_parent.GetComponentInChildren<Transform>();
         if (obj.childCount > 0)
@@ -63,9 +64,9 @@ public class Hensei : MonoBehaviour {
             }
             else
             {
-                Vector3 pos = GetComponent<RectTransform>().anchoredPosition;
+                Vector3 pos = cursor_.GetComponent<RectTransform>().anchoredPosition;
                 pos.y -= 90.0f;
-                GetComponent<RectTransform>().anchoredPosition = pos;
+                cursor_.GetComponent<RectTransform>().anchoredPosition = pos;
                 pos_num_y++;
             }
             unit_num += 2;
@@ -81,9 +82,9 @@ public class Hensei : MonoBehaviour {
             }
             else
             {
-                Vector3 pos = GetComponent<RectTransform>().anchoredPosition;
+                Vector3 pos = cursor_.GetComponent<RectTransform>().anchoredPosition;
                 pos.y += 90.0f;
-                GetComponent<RectTransform>().anchoredPosition = pos;
+                cursor_.GetComponent<RectTransform>().anchoredPosition = pos;
                 pos_num_y--;
             }
             unit_num -= 2;
@@ -91,22 +92,22 @@ public class Hensei : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.RightArrow) && pos_num_x == 0)
         {
-            Vector3 pos = GetComponent<RectTransform>().anchoredPosition;
+            Vector3 pos = cursor_.GetComponent<RectTransform>().anchoredPosition;
             pos.x += 175.0f;
-            GetComponent<RectTransform>().anchoredPosition = pos;
+            cursor_.GetComponent<RectTransform>().anchoredPosition = pos;
             pos_num_x++;
             unit_num++;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && pos_num_x == 1)
         {
-            Vector3 pos = GetComponent<RectTransform>().anchoredPosition;
+            Vector3 pos = cursor_.GetComponent<RectTransform>().anchoredPosition;
             pos.x -= 175.0f;
-            GetComponent<RectTransform>().anchoredPosition = pos;
+            cursor_.GetComponent<RectTransform>().anchoredPosition = pos;
             pos_num_x--;
             unit_num--;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             if (sortie_[unit_num])
             {
@@ -115,7 +116,7 @@ public class Hensei : MonoBehaviour {
                 sortie_num++;
                 Destroy(models[unit_num]);
                 models[unit_num] = null;
-                GetComponent<PosSort>().SetFirstPos();
+                cursor_.GetComponent<PosSort>().SetFirstPos();
             }
             else if(sortie_num>0)
             {
@@ -123,8 +124,16 @@ public class Hensei : MonoBehaviour {
                 sortie_[unit_num] = true;
                 sortie_num--;
                 models[unit_num] = Instantiate(unit_parent.GetComponent<UnitList>().GetPlayerModel(unit_num));
-                GetComponent<PosSort>().SetFirstPos();
+                cursor_.GetComponent<PosSort>().SetFirstPos();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            transform.parent.GetComponent<ReadyManager>().ModeChange(0);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            transform.parent.GetComponent<ReadyManager>().ModeChange(6);
         }
     }
 
