@@ -148,5 +148,4 @@ public class SettingsTexts : MonoBehaviour
     {
         sevalue = BGMScrollbar.value;
     }
-
 }
