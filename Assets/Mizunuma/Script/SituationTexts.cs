@@ -22,6 +22,11 @@ public class SituationTexts : MonoBehaviour
     public EventSystem eventSystem;
     private int UIcount = 0;
     private int TurnCount = 1;
+    /// <summary>
+    /// セーブデータ:時間
+    /// </summary>
+    private float SaveGameTime;
+    private Text PlayTimeText;
 
     void Start()
     {
@@ -36,6 +41,7 @@ public class SituationTexts : MonoBehaviour
         /*プレイヤー数*/
         PlayerCounterText = GameObject.Find("PlayerNumber_04").GetComponent<Text>();
         TurnText_05 = GameObject.Find("TurnText_05").GetComponent<Text>();
+        PlayTimeText = GameObject.Find("PlayTimeText").GetComponent<Text>();
 
         TurnCount = 1;
     }
@@ -43,6 +49,13 @@ public class SituationTexts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SaveGameTime += Time.deltaTime;
+        PlayTimeText.text = ("プレイ時間:" + string.Format("{1:00}:{2:00}",
+            Mathf.Floor(SaveGameTime / 3600f),
+            Mathf.Floor(SaveGameTime / 60f),
+            Mathf.Floor(SaveGameTime % 60f),
+            SaveGameTime % 1 * 99));
+
         SituationTextUpdate();
         switch (UIcount)
         {
@@ -92,7 +105,8 @@ public class SituationTexts : MonoBehaviour
     {
         /*章番号*/
         /*ストーリー番号 章タイトルを記入*/
-        StoryStringText.text = "第1章" + " " + "旅立ち";
+        StoryStringText.text = "第" + FindObjectOfType<StoryCSVReader>().GetStoryNumber() + 
+                               "章" + FindObjectOfType<StoryCSVReader>().GetStoryTitle();
 
         /*テキスト書き換え 敵の数関係取得*/
         EnemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
@@ -101,6 +115,8 @@ public class SituationTexts : MonoBehaviour
         PlayerCounterText.text = "自軍" + PlayerObjects.Length + "体";
 
         TurnText_05.text = "ターン数: " + TurnCount;
+
+        
 
     }
     public void SituationCount()

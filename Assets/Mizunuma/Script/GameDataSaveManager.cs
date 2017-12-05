@@ -24,14 +24,18 @@ public class GameDataSaveManager : MonoBehaviour
     /// セーブデータ:勝利条件
     /// </summary>
     private Text SaveDataConditionsText;
+    /// <summary>
+    /// セーブデータ:写真
+    /// </summary>
+    private Image SaveDataPicture;
 
     // Use this for initialization
     void Start()
     {
         SavaDataGetTexts();
-        SaveDataConditionsText.text = "第2章 旅支度";
-        SaveDataTimeText.text = "00:04";
-        SaveDataTurnText.text = "現在のターン数:07";
+        SaveDataConditionsText.text = "第" + "2" + "章" + " 旅支度";
+        SaveDataTimeText.text = "プレイ時間:"+ "08:00";
+        SaveDataTurnText.text = "累計ターン数:" + "18";
         SaveDataNameText.text = "ヒュー";
         //Game_turn = SaveData.GetInt("turn");
 
@@ -40,18 +44,9 @@ public class GameDataSaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-         //-= Time.deltaTime;
-        
-        //GetComponent<Text>().text =
-        //    (string.Format("{1:00}:{2:00}",
-        //    Mathf.Floor(starttimer / 3600f),
-        //    Mathf.Floor(starttimer / 60f),
-        //    Mathf.Floor(starttimer % 60f),
-        //    starttimer % 1 * 99));
         //if (Input.GetKeyDown(KeyCode.P))
         //{
-            
+
         //    //SaveData.SetInt("turn", Game_turn);
         //    //SaveData.Save();
         //}
@@ -69,7 +64,7 @@ public class GameDataSaveManager : MonoBehaviour
 
     public void GetSaveButton()
     {
-        SaveData.GetString("");
+        Debug.Log("セーブしました");
     } 
 }
 
