@@ -57,11 +57,9 @@ public class Skill : MonoBehaviour {
         {
             case "Elite":
                 //経験値1.5倍
-                _chara._exp_rate = 1.5f;
                 break;
             case "RangePlus":
                 //最大射程+1
-                _chara._range[1] += 1;
                 break;
             case "LeaderJr":
                 //周囲3マスの味方の命中と回避+5%

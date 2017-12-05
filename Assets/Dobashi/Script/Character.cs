@@ -65,7 +65,6 @@ public class Character : MonoBehaviour {
     public int _moverate;       //移動力成長率
 
     public int _exp;                     //経験値
-    public float _exp_rate = 1.0f;       //経験値倍率
 
     public int[] _addstatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };                 //定数増加量配列
     public int[] _addonetimestatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };          //戦闘時ステータス増加量配列
@@ -82,6 +81,7 @@ public class Character : MonoBehaviour {
 
     public GameObject _itemprefablist;      //アイテムの親オブジェクトの取得
     public GameObject _skillprefablist;     //スキルの親オブジェクトの取得
+    private SkillChecker _skillchecker;     //スキルチェッカースクリプト
 
     //キャラリスト読み込み
     Entity_CharaList charaList;
@@ -132,6 +132,7 @@ public class Character : MonoBehaviour {
         _itemprefablist = GameObject.Find( transform.name + "/ItemList");
         //自分の子にあるスキルリストを取得
         _skillprefablist = GameObject.Find(transform.name + "/SkillList");
+        _skillchecker = GetComponent<SkillChecker>();
 
         //キャラの初期化
         if (!_reset)
@@ -352,22 +353,22 @@ public class Character : MonoBehaviour {
         _totaldef = _def + classList.param[_classid].def + _addstatuslist[5] + _addonetimestatuslist[5];
         _totalcur = _cur + classList.param[_classid].cur + _addstatuslist[6] + _addonetimestatuslist[6];
         _totalmove = _move + classList.param[_classid].move + _addstatuslist[7] + _addonetimestatuslist[7];
+  
+        //攻撃回数(基本は1)
+        _attack_count = _equipment.GetComponent<Weapon>()._attackcount + _addonetimestatuslist[11];
 
-        //攻撃力計算
-        //装備が銃だったら技を参照にする。
-        if(_equipment.GetComponent<Weapon>()._type == "gun")
+        //重さ無視
+        if (_skillchecker._Rigidarm)
         {
-            _total_attack = _totalskl + _equipment.GetComponent<Weapon>()._atk + _addonetimestatuslist[0];
+            //攻撃速度(力)
+            _attack_speed = _totalstr;
         }
         else
         {
-            _total_attack = _totalstr + _equipment.GetComponent<Weapon>()._atk + _addonetimestatuslist[0];
+            //攻撃速度(力 − 武器の重さ)
+            _attack_speed = -_equipment.GetComponent<Weapon>()._weight + _totalstr;
         }
         
-        //攻撃回数(基本は1)
-        _attack_count = _equipment.GetComponent<Weapon>()._attackcount + _addonetimestatuslist[11];
-        //攻撃速度(力 − 武器の重さ)
-        _attack_speed = -_equipment.GetComponent<Weapon>()._weight + _totalstr;
         //命中率(武器の命中率 + 技 + 運/2)
         _hit = _equipment.GetComponent<Weapon>()._hit + _totalskl + (_totalluk / 2) + _addonetimestatuslist[8];
         //回避率(速さ + 運)
@@ -378,8 +379,25 @@ public class Character : MonoBehaviour {
         _range[0] = _equipment.GetComponent<Weapon>()._min + _addonetimestatuslist[12];
         _range[1] = _equipment.GetComponent<Weapon>()._max + _addonetimestatuslist[13];
 
+        //攻撃力計算
+        //装備が銃だったら技を参照にする。
+        if (_equipment.GetComponent<Weapon>()._type == "gun")
+        {
+            //射程プラス1
+            if (_skillchecker._Awesomearm)
+            {
+                _range[1] += 1;
+            }
+            _total_attack = _totalskl + _equipment.GetComponent<Weapon>()._atk + _addonetimestatuslist[0];
+        }
+        else
+        {
+            _total_attack = _totalstr + _equipment.GetComponent<Weapon>()._atk + _addonetimestatuslist[0];
+        }
+
+
         //麻痺の場合移動力半減
-        if(_NowState == State.Paralysis)
+        if (_NowState == State.Paralysis)
         {
             _totalmove = _totalmove / 2;
         }
@@ -453,10 +471,13 @@ public class Character : MonoBehaviour {
     /// <param name="_getexp">入手経験値</param>
     public void GetExp(int _getexp)
     {
+        var rate = 1.0f;
+        //Eliteの場合経験値1.5倍
+        if (_skillchecker._Elite) rate = 1.5f;
         if (transform.tag != "Enemy")
         {
-            FindObjectOfType<ExpGage>().SetExpGage(_exp, _exp + (int)(_getexp * _exp_rate));
-            _exp += (int)(_getexp * _exp_rate);
+            FindObjectOfType<ExpGage>().SetExpGage(_exp, _exp + (int)(_getexp * rate));
+            _exp += (int)(_getexp * rate);
         }
         
     }
