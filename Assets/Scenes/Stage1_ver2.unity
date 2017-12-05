@@ -20524,6 +20524,7 @@ GameObject:
   - component: {fileID: 590529226}
   - component: {fileID: 590529225}
   - component: {fileID: 590529230}
+  - component: {fileID: 590529231}
   m_Layer: 0
   m_Name: player1
   m_TagString: Player
@@ -20682,6 +20683,18 @@ MonoBehaviour:
   _Leakage: 0
   _Rigidarm: 0
   _Georges: 0
+--- !u!114 &590529231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 590529223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f75b441dc2ac54499f84f72e43f9815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirstCost: 3
 --- !u!1 &593363806
 GameObject:
   m_ObjectHideFlags: 0
@@ -56354,7 +56367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalAxis: AxisX
   m_VerticalAxis: AxisY
-  m_SubmitButton: Submit
+  m_SubmitButton: O
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 2
@@ -79296,6 +79309,7 @@ GameObject:
   - component: {fileID: 2032905171}
   - component: {fileID: 2032905170}
   - component: {fileID: 2032905169}
+  - component: {fileID: 2032905175}
   m_Layer: 0
   m_Name: player2
   m_TagString: Player
@@ -79454,6 +79468,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &2032905175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2032905167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f75b441dc2ac54499f84f72e43f9815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirstCost: 3
 --- !u!1 &2036952513
 GameObject:
   m_ObjectHideFlags: 0
@@ -80143,6 +80169,7 @@ GameObject:
   - component: {fileID: 2069330240}
   - component: {fileID: 2069330239}
   - component: {fileID: 2069330238}
+  - component: {fileID: 2069330244}
   m_Layer: 0
   m_Name: player3
   m_TagString: Player
@@ -80301,6 +80328,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &2069330244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2069330236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f75b441dc2ac54499f84f72e43f9815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirstCost: 3
 --- !u!1 &2070891967
 GameObject:
   m_ObjectHideFlags: 0

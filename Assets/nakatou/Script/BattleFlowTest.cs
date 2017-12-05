@@ -76,6 +76,8 @@ public class BattleFlowTest : MonoBehaviour
 
     public GameObject Shousai;
 
+    bool GameEnd = false;
+
     //memo
     /*myList.Add(newObj1);    //GameObject型 newObj1をmyListに加える
       GameObject newObj2 = myList[0]; //Listへのアクセス
@@ -118,6 +120,7 @@ public class BattleFlowTest : MonoBehaviour
         if(!GameObject.FindGameObjectWithTag("Enemy"))
         {
             _TurnText.text = "GameClear!!";
+            GameEnd = true;
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
                 SceneManager.LoadScene("Story");
@@ -126,11 +129,13 @@ public class BattleFlowTest : MonoBehaviour
         else if(!GameObject.FindGameObjectWithTag("Player"))
         {
             _TurnText.text = "GameOver...";
+            GameEnd = true;
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
                 SceneManager.LoadScene("GameOver");
             }));
         }
+        if (GameEnd) return;
 
         //遷移
         switch(state_)
@@ -701,6 +706,7 @@ public class BattleFlowTest : MonoBehaviour
         m_audio.PlaySe("TurnStart");
 
         FindObjectOfType<StatusUI>().setactive(false);
+        FindObjectOfType<ExpGage>().Enabled(false);
 
         //演出上の遅延
         StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () => 
