@@ -474,6 +474,18 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114220040017376646, guid: 9341071031dd9534d82416f07611e2c4,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 57b3e1f3958e72a49bf7c0f22ee1c6c4,
+        type: 3}
+    - target: {fileID: 114789691669858940, guid: 9341071031dd9534d82416f07611e2c4,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 57b3e1f3958e72a49bf7c0f22ee1c6c4,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9341071031dd9534d82416f07611e2c4, type: 2}
   m_IsPrefabParent: 0
@@ -598,6 +610,7 @@ MonoBehaviour:
   isFadeOut: 0
   isFadeIn: 1
   sceneChangeSwitch: 0
+  changeName: 
 --- !u!4 &2136263767
 Transform:
   m_ObjectHideFlags: 0
