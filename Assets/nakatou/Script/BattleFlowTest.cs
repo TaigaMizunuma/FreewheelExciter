@@ -97,7 +97,7 @@ public class BattleFlowTest : MonoBehaviour
         rayBox = FindObjectOfType<RayBox>().gameObject;
         rayBox.GetComponent<RayBox>().move_ = false;
         m_audio = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
-        Shousai = GameObject.Find("Shosai");
+        Shousai = Instantiate(Resources.Load("Shosai"), GameObject.Find("Canvas").transform) as GameObject;
         Shousai.SetActive(false);
         
         _TurnText.text = "第１章 \n PlayerTurn";
