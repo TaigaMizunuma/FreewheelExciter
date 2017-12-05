@@ -74,6 +74,8 @@ public class BattleFlowTest : MonoBehaviour
     public GameObject PlayerRedGage;
     public GameObject EnemyRedGage;
 
+    public GameObject Shousai;
+
     //memo
     /*myList.Add(newObj1);    //GameObject型 newObj1をmyListに加える
       GameObject newObj2 = myList[0]; //Listへのアクセス
@@ -93,6 +95,8 @@ public class BattleFlowTest : MonoBehaviour
         rayBox = FindObjectOfType<RayBox>().gameObject;
         rayBox.GetComponent<RayBox>().move_ = false;
         m_audio = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
+        Shousai = GameObject.Find("Shosai");
+        Shousai.SetActive(false);
         
         _TurnText.text = "第１章 \n PlayerTurn";
 
@@ -116,7 +120,7 @@ public class BattleFlowTest : MonoBehaviour
             _TurnText.text = "GameClear!!";
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene("Story");
             }));
         }
         else if(!GameObject.FindGameObjectWithTag("Player"))
@@ -124,7 +128,7 @@ public class BattleFlowTest : MonoBehaviour
             _TurnText.text = "GameOver...";
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene("GameOver");
             }));
         }
 
@@ -134,12 +138,37 @@ public class BattleFlowTest : MonoBehaviour
             //キャラ選択
             case State_.simulation_mode:
 
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("O"))//○ボタン予定
+                if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("O")) && !Shousai.activeInHierarchy)//○ボタン予定
                 {
                     StartCoroutine(DelayMethod.DelayMethodCall(0.1f, () =>
                      {
                          ChooseChara();
                      }));
+                }
+
+                if (Input.GetKeyDown(KeyCode.Alpha9))
+                {
+                    Ray serch = new Ray(rayBox.transform.position, -rayBox.transform.up);
+                    RaycastHit hiton = new RaycastHit();
+                    //カーソルの下になんかいて
+                    if (Physics.Raycast(serch, out hiton, 1000.0f))
+                    {
+                        if (hiton.transform.tag == "Player")
+                        {
+                            Shousai.SetActive(!Shousai.activeInHierarchy);
+                            FindObjectOfType<RayBox>().move_ = false;
+                            FindObjectOfType<MenuManager>().GetMainControlFlag(true);
+                            if (Shousai.activeInHierarchy)
+                            {
+                                FindObjectOfType<Shosai>()._chara = hiton.transform.gameObject;
+                            }
+                            else
+                            {
+                                FindObjectOfType<RayBox>().move_ = true;
+                                FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+                            }
+                        }
+                    }
                 }
                 break;
 
@@ -241,15 +270,18 @@ public class BattleFlowTest : MonoBehaviour
                     {
                         if (obj.GetComponent<CommandSkill>())
                         {
-                            GameObject ui = Instantiate(
-                                Resources.Load("WeaponUI"),
-                                GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
-                            ui.transform.localPosition = new Vector3(0, count * -100, 0);
-                            ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<CommandSkill>()._name;
-                            ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                            weapons.Add(obj);
-                            weaponUIs.Add(ui);
-                            count++;
+                            if (obj.GetComponent<CommandSkill>()._activ)
+                            {
+                                GameObject ui = Instantiate(
+                                    Resources.Load("WeaponUI"),
+                                    GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
+                                ui.transform.localPosition = new Vector3(0, count * -100, 0);
+                                ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<CommandSkill>()._name;
+                                ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
+                                weapons.Add(obj);
+                                weaponUIs.Add(ui);
+                                count++;
+                            }
                         }
                     }
                     count = 0;
