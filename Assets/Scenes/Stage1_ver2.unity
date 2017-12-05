@@ -2182,6 +2182,7 @@ GameObject:
   - component: {fileID: 53552071}
   - component: {fileID: 53552070}
   - component: {fileID: 53552068}
+  - component: {fileID: 53552069}
   m_Layer: 0
   m_Name: enemy (2)
   m_TagString: Enemy
@@ -2219,6 +2220,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c29508c897f6b54f9a166127e04fda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &53552069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53552066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Stealth: 0
+  _Desert: 0
+  _Revenge: 0
+  _Onemore: 0
+  _Charisma: 0
+  _LeaderJr: 0
+  _Oldsoldier: 0
+  _Elite: 0
+  _Awesomearm: 0
+  _Leakage: 0
+  _Rigidarm: 0
+  _Georges: 0
 --- !u!114 &53552070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3533,6 +3557,7 @@ GameObject:
   - component: {fileID: 119770658}
   - component: {fileID: 119770657}
   - component: {fileID: 119770655}
+  - component: {fileID: 119770656}
   m_Layer: 0
   m_Name: enemy (1)
   m_TagString: Enemy
@@ -3570,6 +3595,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c29508c897f6b54f9a166127e04fda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &119770656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 119770653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Stealth: 0
+  _Desert: 0
+  _Revenge: 0
+  _Onemore: 0
+  _Charisma: 0
+  _LeaderJr: 0
+  _Oldsoldier: 0
+  _Elite: 0
+  _Awesomearm: 0
+  _Leakage: 0
+  _Rigidarm: 0
+  _Georges: 0
 --- !u!114 &119770657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28476,6 +28524,7 @@ GameObject:
   - component: {fileID: 803775641}
   - component: {fileID: 803775640}
   - component: {fileID: 803775638}
+  - component: {fileID: 803775639}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Enemy
@@ -28513,6 +28562,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815a1de6ca2c52442aa098ef79dea233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &803775639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 803775636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Stealth: 0
+  _Desert: 0
+  _Revenge: 0
+  _Onemore: 0
+  _Charisma: 0
+  _LeaderJr: 0
+  _Oldsoldier: 0
+  _Elite: 0
+  _Awesomearm: 0
+  _Leakage: 0
+  _Rigidarm: 0
+  _Georges: 0
 --- !u!114 &803775640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79223,6 +79295,7 @@ GameObject:
   - component: {fileID: 2032905172}
   - component: {fileID: 2032905171}
   - component: {fileID: 2032905170}
+  - component: {fileID: 2032905169}
   m_Layer: 0
   m_Name: player2
   m_TagString: Player
@@ -79248,6 +79321,29 @@ Transform:
   m_Father: {fileID: 131293664}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2032905169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2032905167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Stealth: 0
+  _Desert: 0
+  _Revenge: 0
+  _Onemore: 0
+  _Charisma: 0
+  _LeaderJr: 0
+  _Oldsoldier: 0
+  _Elite: 0
+  _Awesomearm: 0
+  _Leakage: 0
+  _Rigidarm: 0
+  _Georges: 0
 --- !u!114 &2032905170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80046,6 +80142,7 @@ GameObject:
   - component: {fileID: 2069330241}
   - component: {fileID: 2069330240}
   - component: {fileID: 2069330239}
+  - component: {fileID: 2069330238}
   m_Layer: 0
   m_Name: player3
   m_TagString: Player
@@ -80071,6 +80168,29 @@ Transform:
   m_Father: {fileID: 131293664}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2069330238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2069330236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Stealth: 0
+  _Desert: 0
+  _Revenge: 0
+  _Onemore: 0
+  _Charisma: 0
+  _LeaderJr: 0
+  _Oldsoldier: 0
+  _Elite: 0
+  _Awesomearm: 0
+  _Leakage: 0
+  _Rigidarm: 0
+  _Georges: 0
 --- !u!114 &2069330239
 MonoBehaviour:
   m_ObjectHideFlags: 0
