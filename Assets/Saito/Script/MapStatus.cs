@@ -9,31 +9,26 @@ public class MapStatus : MonoBehaviour
     //ID番号、ここに該当する数値を入れると残りの内容が反映される
     //Excel依存なので数値を変えたい場合はExcelを変えてください
     [SerializeField]
-    private int mapID;
+    int mapID;
     //地形の名前
     [SerializeField]
-    private string mapName;
-    /// <summary>
-    ///地形のコスト 
-    /// </summary>
-    public int mapCost;
-    /// <summary>
-    /// 入れるかどうか(柱などの景観マス)
-    /// </summary>
-    public int mapInvasion;
-    /// <summary>
-    /// 回避率の数値
-    /// </summary>
-    public int mapEvasionRate;
-
-    /// <summary>
-    /// 高低差
-    /// </summary>
-    public float mapHeight;
+    string mapName;
+    //地形のコスト 
+    [SerializeField]
+    int mapCost;
+    //入れるかどうか(柱などの景観マス)
+    [SerializeField]
+    int mapInvasion;
+    //回避率の数値
+    [SerializeField]
+    int mapEvasionRate;
+    //高低差
+    [SerializeField]
+    float mapHeight;
 
     //キャラクターのオブジェクト
     [SerializeField]
-    private GameObject characterObj;
+    GameObject characterObj;
 
     Character s_character;
 
@@ -76,6 +71,7 @@ public class MapStatus : MonoBehaviour
                 if (map_rayHit.transform.gameObject.tag == "Player" || map_rayHit.transform.gameObject.tag == "Enemy")
                 {
                     characterObj = map_rayHit.transform.gameObject;
+
                 }
             }
         }
@@ -97,5 +93,12 @@ public class MapStatus : MonoBehaviour
             }
 
         }
+    }
+
+
+
+    public int GetMapEvasionRate()
+    {
+        return mapEvasionRate;
     }
 }
