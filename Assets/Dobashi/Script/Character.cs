@@ -81,7 +81,7 @@ public class Character : MonoBehaviour {
 
     public GameObject _itemprefablist;      //アイテムの親オブジェクトの取得
     public GameObject _skillprefablist;     //スキルの親オブジェクトの取得
-    private SkillChecker _skillchecker;     //スキルチェッカースクリプト
+    public SkillChecker _skillchecker;     //スキルチェッカースクリプト
 
     //キャラリスト読み込み
     Entity_CharaList charaList;

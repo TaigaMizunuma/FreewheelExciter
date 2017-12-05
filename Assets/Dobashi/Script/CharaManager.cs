@@ -56,4 +56,12 @@ public class CharaManager : MonoBehaviour {
         Destroy(_item);
         Destroy(_item2);
     }
+
+    /// <summary>
+    /// アイテムを捨てる
+    /// </summary>
+    public void DiscardItem(GameObject _chara)
+    {
+
+    }
 }

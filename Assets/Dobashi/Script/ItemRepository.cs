@@ -40,7 +40,7 @@ public class ItemRepository : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        AddItem("便王","くさいぞ",10,20,"Item","none");
+        AddItem("きずぐすり","HPを10回復",10,10,"Item","none");
 
     }
 	

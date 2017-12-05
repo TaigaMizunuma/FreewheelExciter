@@ -13,47 +13,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   param:
   - id: 0
-    name: "\u30EC\u30F3\u30B8\u30E3\u30FC"
-    hp: 3
-    sp: 2
+    name: "\u30AC\u30F3\u30CA\u30FC"
+    hp: 0
+    sp: 0
     str: 0
-    skl: 3
-    spd: 2
-    luk: 3
-    def: -1
+    skl: 0
+    spd: 0
+    luk: 0
+    def: 0
     cur: 0
-    move: 1
+    move: 0
     plain: 1
     forest: 1
     river: 3
     mountain: 2
     desert: 1
   - id: 1
-    name: "\u30ED\u30FC\u30C9"
-    hp: 6
-    sp: 6
-    str: 2
-    skl: 7
-    spd: 5
-    luk: 5
-    def: 1
-    cur: 0
-    move: 2
+    name: "\u30B9\u30CA\u30A4\u30D1\u30FC"
+    hp: 4
+    sp: 0
+    str: 0
+    skl: 5
+    spd: 2
+    luk: 0
+    def: 2
+    cur: 2
+    move: 0
     plain: 1
     forest: 1
     river: 3
     mountain: 2
     desert: 1
   - id: 2
-    name: "\u30AC\u30F3\u30CA\u30FC"
-    hp: 1
-    sp: 4
+    name: "\u30ED\u30FC\u30B0"
+    hp: 2
+    sp: 0
     str: 0
-    skl: 5
-    spd: 1
+    skl: 2
+    spd: 5
     luk: 0
-    def: -2
-    cur: 0
+    def: 0
+    cur: 2
     move: 1
     plain: 1
     forest: 1
@@ -61,15 +61,15 @@ MonoBehaviour:
     mountain: 3
     desert: 2
   - id: 3
-    name: "\u30B9\u30CA\u30A4\u30D1\u30FC"
-    hp: 3
-    sp: 7
-    str: 0
-    skl: 8
-    spd: 3
-    luk: 2
+    name: "\u30A2\u30B5\u30B7\u30F3"
+    hp: 4
+    sp: 0
+    str: 5
+    skl: 2
+    spd: 0
+    luk: 0
     def: 0
-    cur: 0
+    cur: 2
     move: 1
     plain: 1
     forest: 1
@@ -77,14 +77,14 @@ MonoBehaviour:
     mountain: 3
     desert: 2
   - id: 4
-    name: "\u30BD\u30EB\u30B8\u30E3\u30FC"
-    hp: 6
+    name: "\u30D5\u30A1\u30A4\u30BF\u30FC"
+    hp: 0
     sp: 0
-    str: 4
-    skl: 1
-    spd: -2
+    str: 0
+    skl: 0
+    spd: 0
     luk: 0
-    def: 3
+    def: 0
     cur: 0
     move: 0
     plain: 1
@@ -93,71 +93,87 @@ MonoBehaviour:
     mountain: 3
     desert: 2
   - id: 5
-    name: "\u6226\u8ECA"
-    hp: 10
+    name: "\u30DE\u30FC\u30B7\u30E3\u30EB"
+    hp: 4
     sp: 0
-    str: 0
-    skl: 0
-    spd: 0
+    str: 5
+    skl: 2
+    spd: 5
     luk: 0
-    def: 8
+    def: 2
     cur: 0
-    move: -3
+    move: 1
     plain: 1
     forest: 2
     river: 2
     mountain: 2
     desert: 3
   - id: 6
-    name: "\u30C1\u30E3\u30EA"
+    name: "\u30BD\u30EB\u30B8\u30E3\u30FC"
     hp: 0
     sp: 0
-    str: 3
-    skl: -2
-    spd: 4
-    luk: -5
+    str: 0
+    skl: 0
+    spd: 0
+    luk: 0
     def: 0
     cur: 0
-    move: 2
+    move: 0
     plain: 1
     forest: 2
     river: 99
     mountain: 3
     desert: 99
   - id: 7
-    name: "\u30D0\u30A4\u30AF"
-    hp: 0
+    name: "\u30B8\u30A7\u30CD\u30E9\u30EB"
+    hp: 4
     sp: 0
-    str: 5
-    skl: 0
-    spd: 8
-    luk: -8
-    def: 1
-    cur: 0
-    move: 4
+    str: 4
+    skl: 4
+    spd: 3
+    luk: 0
+    def: 4
+    cur: 2
+    move: 1
     plain: 1
     forest: 2
     river: 99
     mountain: 3
     desert: 99
   - id: 8
-    name: "\u76D7\u8CCA"
+    name: "\u30DE\u30FC\u30BB\u30CA\u30EA\u30FC"
     hp: 0
     sp: 0
-    str: -1
-    skl: 2
-    spd: 2
-    luk: 2
-    def: -1
+    str: 0
+    skl: 0
+    spd: 0
+    luk: 0
+    def: 0
     cur: 0
-    move: 1
+    move: 0
     plain: 1
     forest: 2
     river: 99
     mountain: 3
     desert: 2
-  - id: 0
-    name: 
+  - id: 9
+    name: "\u30A6\u30A9\u30FC\u30EA\u30A2"
+    hp: 6
+    sp: 0
+    str: 5
+    skl: 3
+    spd: 3
+    luk: 0
+    def: 3
+    cur: 0
+    move: 1
+    plain: 0
+    forest: 0
+    river: 0
+    mountain: 0
+    desert: 0
+  - id: 10
+    name: "\u30E9\u30A4\u30C0\u30FC"
     hp: 0
     sp: 0
     str: 0
@@ -172,8 +188,24 @@ MonoBehaviour:
     river: 0
     mountain: 0
     desert: 0
-  - id: 0
-    name: 
+  - id: 11
+    name: "\u30E2\u30FC\u30BF\u30FC\u30D8\u30C3\u30C9"
+    hp: 3
+    sp: 0
+    str: 3
+    skl: 3
+    spd: 3
+    luk: 0
+    def: 3
+    cur: 0
+    move: 1
+    plain: 0
+    forest: 0
+    river: 0
+    mountain: 0
+    desert: 0
+  - id: 12
+    name: "\u30D1\u30A4\u30ED\u30C3\u30C8"
     hp: 0
     sp: 0
     str: 0
@@ -188,8 +220,8 @@ MonoBehaviour:
     river: 0
     mountain: 0
     desert: 0
-  - id: 0
-    name: 
+  - id: 13
+    name: "\u30AD\u30E3\u30D7\u30C6\u30F3"
     hp: 0
     sp: 0
     str: 0
@@ -204,8 +236,8 @@ MonoBehaviour:
     river: 0
     mountain: 0
     desert: 0
-  - id: 0
-    name: 
+  - id: 14
+    name: "\u30EC\u30F3\u30B8\u30E3\u30FC"
     hp: 0
     sp: 0
     str: 0
@@ -220,49 +252,17 @@ MonoBehaviour:
     river: 0
     mountain: 0
     desert: 0
-  - id: 0
-    name: 
-    hp: 0
+  - id: 15
+    name: "\u30ED\u30FC\u30C9"
+    hp: 3
     sp: 0
-    str: 0
-    skl: 0
-    spd: 0
+    str: 3
+    skl: 3
+    spd: 3
     luk: 0
-    def: 0
-    cur: 0
-    move: 0
-    plain: 0
-    forest: 0
-    river: 0
-    mountain: 0
-    desert: 0
-  - id: 0
-    name: 
-    hp: 0
-    sp: 0
-    str: 0
-    skl: 0
-    spd: 0
-    luk: 0
-    def: 0
-    cur: 0
-    move: 0
-    plain: 0
-    forest: 0
-    river: 0
-    mountain: 0
-    desert: 0
-  - id: 0
-    name: 
-    hp: 0
-    sp: 0
-    str: 0
-    skl: 0
-    spd: 0
-    luk: 0
-    def: 0
-    cur: 0
-    move: 0
+    def: 3
+    cur: 5
+    move: 1
     plain: 0
     forest: 0
     river: 0

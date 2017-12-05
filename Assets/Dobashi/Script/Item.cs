@@ -105,8 +105,17 @@ public class Item : MonoBehaviour {
     void UseItem(GameObject chara)
     {
         var i = chara.GetComponent<Character>();
-        //HP回復
-        i._totalhp += _recovery;
+        if (i._skillchecker._Oldsoldier)
+        {
+            //HP回復2倍
+            i._totalhp += _recovery * 2;
+        }
+        else
+        {
+            //HP回復
+            i._totalhp += _recovery;
+        }
+        
         switch (_effect)
         {
             case Effect_Type.staterecovery:

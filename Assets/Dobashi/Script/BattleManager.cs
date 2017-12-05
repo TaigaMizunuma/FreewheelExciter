@@ -2,25 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*public enum Skill_Effect_State
-{
-    //スキル効果
-    None,               //無し
-    Elite,              //エリート
-    DrainBullet,        //ドレインバレット
-    RangePlus,          //凄腕
-    LeaderJr,           //指揮官Jr.
-    Stealth,            //すり抜け
-    Fortress,           //フォートレス
-    Prediction,         //未来予知
-    Berserk,            //バーサク
-    Counter,            //カウンター
-    Revenge,            //リベンジ
-    Acrobatics,         //軽業
-    FightingSpirit,     //気合
-    FirstAid            //応急処置
-
-}*/
 
 public class BattleManager : MonoBehaviour {
 
@@ -79,6 +60,10 @@ public class BattleManager : MonoBehaviour {
         {
             _obj = _thisobj;
             _chara = _thisobj.GetComponent<Character>();
+            if (_chara._skillchecker._Revenge)
+            {
+                _revenge = 20;
+            }
             _stock = _chara.GetStock();
 
         }

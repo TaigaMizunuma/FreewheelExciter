@@ -7,11 +7,11 @@ public enum Passive_Skill_List
     Default,        //数値上昇のみ
     Stealth,        //すり抜け移動
     Desert,         //遠隔攻撃に対して回避＋15％　バトルマネージャー内
-    Revenge,        //反撃次必殺率+20％　バトルマネージャー内
+    Revenge,        //反撃次必殺率+20％　バトルマネージャー内 済
     Onemore,        //行動後に余っていた分移動する　
     Charisma,       //3マス以内の味方の必殺＋10％
     LeaderJr,       //3マス以内の味方の回避、命中＋5％
-    Oldsoldier,     //回復効果2倍　アイテム内
+    Oldsoldier,     //回復効果2倍　アイテム内　済
     Elite,          //経験値1.5倍　済
     Awesomearm,     //銃装備時最大射程＋１　済
     Leakage,        //攻撃した敵の燃料半減
