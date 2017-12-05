@@ -146,7 +146,7 @@ public class BattleFlowTest : MonoBehaviour
                      }));
                 }
 
-                if (Input.GetKeyDown(KeyCode.Alpha9))
+                if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetButtonDown("R1"))
                 {
                     Ray serch = new Ray(rayBox.transform.position, -rayBox.transform.up);
                     RaycastHit hiton = new RaycastHit();
