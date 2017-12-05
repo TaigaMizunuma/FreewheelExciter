@@ -28,6 +28,7 @@ public class Move_System : MonoBehaviour
     private bool attack_mode = false;
     // 攻撃範囲のマス
     GameObject[] atk_range;
+    List<GameObject> _range = new List<GameObject>();
 
     public GameObject rayBox;// 10/27 追加
 
@@ -124,7 +125,7 @@ public class Move_System : MonoBehaviour
                 if (n.GetComponent<Square_Info>().GetChara().tag == "Enemy") continue;
             }
             Square_Info n_si_ = n.GetComponent<Square_Info>();
-            if (cost_ - n_si_.GetCost() >= 0 && n_si_.CanSetCost(cost_, near)) 
+            if (cost_ - n_si_.GetCost() >= 0 && n_si_.CanSetCost(cost_, near))
             {
                 n_si_.Decision();
                 Retrieval(n, cost_);
@@ -186,14 +187,18 @@ public class Move_System : MonoBehaviour
         goal_pos.y = transform.position.y;
     }
 
-    public void AttackReady()// public に変更 & 中身を編集（10/27）
+    public void AttackReady()
     {
         var count = 0;
-        atk_range = now_pos.GetComponent<Square_Info>().GetNear();
-        foreach(GameObject atk in atk_range)
+        //atk_range = now_pos.GetComponent<Square_Info>().GetNear();
+        GetComponent<PlayerAttack>().Retrieval();
+        _range = GetComponent<PlayerAttack>().GetAttackRange();
+        
+        Debug.Log(_range.Count);
+        foreach(GameObject atk in _range)
         {
             atk.GetComponent<Square_Info>().AttackRange();
-
+            
             //攻撃範囲に何かいる時攻撃選択
             if(atk.GetComponent<Square_Info>().GetChara())
             {
@@ -217,9 +222,12 @@ public class Move_System : MonoBehaviour
         }
         
         //攻撃範囲内に何もいないとき攻撃キャンセル
-        if (count == atk_range.Length)
+        if (count == _range.Count)
         {
-            Invoke("AttackRelease", 0.5f);
+            StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
+            {
+                AttackRelease();
+            }));
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();
             FindObjectOfType<BattleFlowTest>().state_ = State_.action_mode;
             count = 0;
@@ -229,10 +237,11 @@ public class Move_System : MonoBehaviour
 
     public void AttackRelease()
     {
-        foreach(GameObject atk in atk_range)
+        foreach(GameObject atk in _range)
         {
             atk.GetComponent<Square_Info>().DecisionEnd();
         }
+        _range.Clear();
         attack_mode = false;
     }
 
