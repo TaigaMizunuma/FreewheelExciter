@@ -112,5 +112,10 @@ public class SituationTexts : MonoBehaviour
     {
         TurnCount++;
     }
+
+    public int GetTurn()
+    {
+        return TurnCount;
+    }
 }
 

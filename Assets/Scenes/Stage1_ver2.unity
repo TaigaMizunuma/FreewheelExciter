@@ -7820,7 +7820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _name: "\u30B5\u30D6\u30DE\u30B7\u30F3\u30AC\u30F3"
+  _name: "\u77ED\u5263"
   _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
   _stock: 40
   _type: Knife
@@ -33392,9 +33392,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _name: "\u540D\u524D"
+  _name: "\u304D\u305A\u3050\u3059\u308A"
   _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
-  _recovery: 0
+  _recovery: 10
   _stock: 10
   _type: Item
   _effect: 0
@@ -56449,9 +56449,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _name: "\u540D\u524D"
+  _name: "\u304D\u305A\u3050\u3059\u308A"
   _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
-  _recovery: 0
+  _recovery: 10
   _stock: 10
   _type: Item
   _effect: 0
@@ -57932,9 +57932,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _name: "\u540D\u524D"
+  _name: "\u304D\u305A\u3050\u3059\u308A"
   _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
-  _recovery: 0
+  _recovery: 10
   _stock: 10
   _type: Item
   _effect: 0
@@ -65103,7 +65103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _name: "\u30A2\u30B5\u30EB\u30C8\u30E9\u30A4\u30D5\u30EB"
+  _name: "\u30CA\u30A4\u30D5"
   _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
   _stock: 40
   _type: Knife
@@ -67624,7 +67624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _name: "\u30B5\u30D6\u30DE\u30B7\u30F3\u30AC\u30F3"
+  _name: "\u30CA\u30A4\u30D5"
   _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
   _stock: 40
   _type: Knife
@@ -67680,7 +67680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _name: "\u30B5\u30D6\u30DE\u30B7\u30F3\u30AC\u30F3"
+  _name: "\u30CA\u30A4\u30D5"
   _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
   _stock: 40
   _type: Knife
