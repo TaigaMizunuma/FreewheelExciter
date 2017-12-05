@@ -50,7 +50,7 @@ public class SituationTexts : MonoBehaviour
     void Update()
     {
         SaveGameTime += Time.deltaTime;
-        PlayTimeText.text = ("プレイ時間:" + string.Format("{1:00}:{2:00}",
+        PlayTimeText.text = ("TIME"+string.Format("{1:00}:{2:00}",
             Mathf.Floor(SaveGameTime / 3600f),
             Mathf.Floor(SaveGameTime / 60f),
             Mathf.Floor(SaveGameTime % 60f),
