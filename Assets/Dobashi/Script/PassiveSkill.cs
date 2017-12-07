@@ -46,61 +46,52 @@ public class PassiveSkill : MonoBehaviour {
         gameObject.GetComponent<Transform>().name = _name;
     }
 
-    public void Effect(GameObject chara)
+    public string Effect()
     {
         if (_activ)
         {
             switch (_skill_list)
             {
+                case Passive_Skill_List.Default:
+                    return "none";
                 case Passive_Skill_List.Stealth:
                     //すり抜け
-
-                    break;
+                    return "Stealth";
                 case Passive_Skill_List.Desert:
                     //遠隔攻撃回避＋15％
-
-                    break;
+                    return "Desert";
                 case Passive_Skill_List.Revenge:
                     //反撃時必殺＋20％
-
-                    break;
+                    return "Revenge";
                 case Passive_Skill_List.Onemore:
                     //行動後残った行動力分移動
-
-                    break;
+                    return "Onemore";
                 case Passive_Skill_List.Charisma:
                     //3マス以内の味方の必殺＋10％
-
-                    break;
+                    return "Charisma";
                 case Passive_Skill_List.LeaderJr:
                     //3マス以内の味方の回避、命中＋5％
-
-                    break;
+                    return "LeaderJr";
                 case Passive_Skill_List.Oldsoldier:
                     //回復効果2倍
-
-                    break;
+                    return "Oldsoldier";
                 case Passive_Skill_List.Elite:
                     //経験値1.5倍
-
-                    break;
+                    return "Elite";
                 case Passive_Skill_List.Awesomearm:
                     //銃装備時最大射程＋1
-
-                    break;
+                    return "Awesomearm";
                 case Passive_Skill_List.Leakage:
                     //攻撃した敵の燃料半減
-
-                    break;
+                    return "Leakage";
                 case Passive_Skill_List.Rigidarm:
                     //装備の重さ無視
-
-                    break;
+                    return "Rigidarm";
                 case Passive_Skill_List.Georges:
                     //地形効果や射程による命中の減少なし
-
-                    break;
+                    return "Georges";
             }
-        }    
+        }
+        return "none";    
     }
 }

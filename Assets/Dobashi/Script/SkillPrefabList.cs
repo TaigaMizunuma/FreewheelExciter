@@ -105,11 +105,7 @@ public class SkillPrefabList : MonoBehaviour {
     public void SkillEffect(GameObject chara,GameObject skill)
     {
         
-        if (skill.GetComponent<RandomSkill>())
-        {
-
-        }
-        else if (skill.GetComponent<CommandSkill>())
+        if (skill.GetComponent<CommandSkill>())
         {
             var i = skill.GetComponent<CommandSkill>();
             i.Effect(chara);
@@ -118,7 +114,7 @@ public class SkillPrefabList : MonoBehaviour {
 
 
     /// <summary>
-    /// 指定のタイプのスキルを返す
+    /// 指定のタイプのスキル一覧を返す
     /// </summary>
     /// <param name="type">スキルタイプ</param>
     public List<GameObject> SearchSkill(string type)
