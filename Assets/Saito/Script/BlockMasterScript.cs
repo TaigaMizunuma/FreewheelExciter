@@ -18,6 +18,8 @@ public class BlockMasterScript : MonoBehaviour {
     /// </summary>
     public bool masterMapStatus;
 
+
+
     /// <summary>
     /// デバッグ用
     /// falseにするとブロックを黒くする機能がオフになります

@@ -22,7 +22,7 @@ public class MapImporterScript : MonoBehaviour
 
     void Awake()
     {
-        MapCSVFile = Resources.Load("MapFile/" + MapCSV) as TextAsset;
+        MapCSVFile = Resources.Load("Data/" + MapCSV) as TextAsset;
         StringReader reader = new StringReader(MapCSVFile.text);
 
         while(reader.Peek() > -1)
