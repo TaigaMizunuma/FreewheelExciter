@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BlockMasterScript : MonoBehaviour {
 
+
+
     /// <summary>
     /// 床の色付けスイッチ(全体)
     /// これがfalseだとMapHiLightのs_mapHilightがtrueでも光らないので注意
@@ -18,14 +20,17 @@ public class BlockMasterScript : MonoBehaviour {
     /// </summary>
     public bool masterMapStatus;
 
-
-
     /// <summary>
     /// デバッグ用
     /// falseにするとブロックを黒くする機能がオフになります
     /// </summary>
     [Tooltip("デバッグ用です")]
     public bool HideObjectOnOff;
+
+    [SerializeField]
+    int playerCount;
+
+
 
 	void Start () {
         masterMapHighLightSwitch = true;

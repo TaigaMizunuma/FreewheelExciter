@@ -137,12 +137,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blocks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1636576043488578, guid: 5eccc6397892d5840aa22c53cced131a, type: 2}
+  - {fileID: 1589559684014922, guid: 763af2158d2149140a3ab9102bf9b72c, type: 2}
+  - {fileID: 1217682868989760, guid: 0d12bef14e349114da2ec58fcd1638cb, type: 2}
+  - {fileID: 1715998807305832, guid: 0d60869a46117724baa34b4ca52a716c, type: 2}
+  - {fileID: 1181664974247630, guid: e9ac14487bcf935418bdaad518e85d38, type: 2}
+  - {fileID: 1615109619210426, guid: 34a7abd225dd00741bfa67229cd1a481, type: 2}
   MapCSV: TestMap
 --- !u!114 &381315519
 MonoBehaviour:

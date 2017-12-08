@@ -60,7 +60,7 @@ public class MapStatus : MonoBehaviour
 
     void CharacterGetRay()
     {
-        if (blcMaster.masterMapStatus == true && characterObj == null)
+        if (/*blcMaster.masterMapStatus ==*/ true && characterObj == null)
         {
             Ray map_ray = new Ray(transform.position, new Vector3(0, 1, 0));
             RaycastHit map_rayHit;
