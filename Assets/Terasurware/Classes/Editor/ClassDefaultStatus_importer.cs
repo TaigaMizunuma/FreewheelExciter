@@ -10,7 +10,7 @@ using NPOI.SS.UserModel;
 public class ClassDefaultStatus_importer : AssetPostprocessor
 {
     private static readonly string filePath = "Assets/Resources/Data/ClassDefaultStatus.xlsx";
-    private static readonly string[] sheetNames = { "Sheet1", };
+    private static readonly string[] sheetNames = { "ClassDefaultStatus", };
     
     static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
     {
@@ -33,10 +33,10 @@ public class ClassDefaultStatus_importer : AssetPostprocessor
                     var exportPath = "Assets/Resources/Data/" + sheetName + ".asset";
                     
                     // check scriptable object
-                    var data = (Entity_Sheet1)AssetDatabase.LoadAssetAtPath(exportPath, typeof(Entity_Sheet1));
+                    var data = (Entity_ClassDefaultStatus)AssetDatabase.LoadAssetAtPath(exportPath, typeof(Entity_ClassDefaultStatus));
                     if (data == null)
                     {
-                        data = ScriptableObject.CreateInstance<Entity_Sheet1>();
+                        data = ScriptableObject.CreateInstance<Entity_ClassDefaultStatus>();
                         AssetDatabase.CreateAsset((ScriptableObject)data, exportPath);
                         data.hideFlags = HideFlags.NotEditable;
                     }
@@ -56,7 +56,7 @@ public class ClassDefaultStatus_importer : AssetPostprocessor
                         IRow row = sheet.GetRow(i);
                         ICell cell = null;
                         
-                        var p = new Entity_Sheet1.Param();
+                        var p = new Entity_ClassDefaultStatus.Param();
 			
 					cell = row.GetCell(0); p.id = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(1); p.name = (cell == null ? "" : cell.StringCellValue);
@@ -68,6 +68,14 @@ public class ClassDefaultStatus_importer : AssetPostprocessor
 					cell = row.GetCell(7); p.def = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(8); p.cur = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(9); p.move = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(10); p.hp_r = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(11); p.str_r = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(12); p.skl_r = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(13); p.spd_r = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(14); p.luk_r = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(15); p.def_r = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(16); p.cur_r = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(17); p.move_r = (int)(cell == null ? 0 : cell.NumericCellValue);
 
                         data.param.Add(p);
                     }

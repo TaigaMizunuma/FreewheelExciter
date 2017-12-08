@@ -119,7 +119,7 @@ public class Character : MonoBehaviour {
     //クラスリスト読み込み
     Entity_ClassList classList;
     //クラス基本値リスト読み込み
-    Entity_Sheet1 class_def_list;
+    Entity_ClassDefaultStatus class_def_list;
 
     //現在のHP状態
     public HP_State _HpState;
@@ -158,7 +158,7 @@ public class Character : MonoBehaviour {
         //クラスリスト読み込み
         classList = Resources.Load("Data/ClassList") as Entity_ClassList;
         //クラス基本値リスト読み込み
-        class_def_list = Resources.Load("Data/ClassDefaultStatus") as Entity_Sheet1;
+        class_def_list = Resources.Load("Data/ClassDefaultStatus") as Entity_ClassDefaultStatus;
         //自分の子にあるアイテムリストを取得
         _itemprefablist = GameObject.Find( transform.name + "/ItemList");
         //自分の子にあるスキルリストを取得
@@ -277,8 +277,8 @@ public class Character : MonoBehaviour {
     /// </summary>
     public void Initialize()
     {
-        
-        if(transform.tag == "Player" || true)
+
+        if (transform.tag == "Player")
         {
             for (var i = 0; i < charaList.param.Count; i++)
             {
@@ -315,20 +315,38 @@ public class Character : MonoBehaviour {
         {
             for (var j = 0; j < class_def_list.param.Count; j++)
             {
-                if (class_def_list.param[j].name == _name)
+                if (class_def_list.param[j].name == _joblist.ToString())
                 {
-
+                    _hp = class_def_list.param[j].hp;
+                    _hprate = class_def_list.param[j].hp_r;
+                    _str = class_def_list.param[j].str;
+                    _strrate = class_def_list.param[j].str_r;
+                    _skl = class_def_list.param[j].skl;
+                    _sklrate = class_def_list.param[j].skl_r;
+                    _spd = class_def_list.param[j].spd;
+                    _spdrate = class_def_list.param[j].spd_r;
+                    _luk = class_def_list.param[j].luk;
+                    _lukrate = class_def_list.param[j].luk_r;
+                    _def = class_def_list.param[j].def;
+                    _defrate = class_def_list.param[j].def_r;
+                    _cur = class_def_list.param[j].cur;
+                    _currate = class_def_list.param[j].cur_r;
+                    _move = class_def_list.param[j].move;
+                    _moverate = class_def_list.param[j].move_r;
+                    var lv = _level;
+                    for (var k = 0;k < lv;k++)
+                    {
+                        LevelUp();
+                        _level--;
+                    }
                 }
             }
-            
-            var i = (Joblist)Enum.Parse(typeof(Joblist), charaList.param[_id].job);
-            _hp = class_def_list.param[_id].hp;
         }
         //ClassChange(_class);
         TotalStatus();
         FullRecoveryHP();
-    }
 
+    }
 
     /// <summary>
     /// 装備変更

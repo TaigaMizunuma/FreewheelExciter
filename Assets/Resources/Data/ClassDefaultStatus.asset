@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aabe29d224e03fb42b1f904f6538fddd, type: 3}
+  m_Script: {fileID: 11500000, guid: 98f017590f2ae0048ac066b8004bbf79, type: 3}
   m_Name: ClassDefaultStatus
   m_EditorClassIdentifier: 
-  sheets: []
+  param: []
