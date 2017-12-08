@@ -273,11 +273,12 @@ public class Character : MonoBehaviour {
 
     /// <summary>
     /// 初期化
-    /// Excelから読み込む
+    /// Excelから初期値を読み込む
     /// </summary>
     public void Initialize()
     {
 
+        //プレイヤー初期化
         if (transform.tag == "Player")
         {
             for (var i = 0; i < charaList.param.Count; i++)
@@ -311,10 +312,13 @@ public class Character : MonoBehaviour {
                 }
             }
         }
+        //エネミー初期化
         else
         {
+            //クラス(ジョブ)検索
             for (var j = 0; j < class_def_list.param.Count; j++)
             {
+                //一致したクラスの初期値を代入
                 if (class_def_list.param[j].name == _joblist.ToString())
                 {
                     _hp = class_def_list.param[j].hp;
@@ -334,7 +338,9 @@ public class Character : MonoBehaviour {
                     _move = class_def_list.param[j].move;
                     _moverate = class_def_list.param[j].move_r;
                     var lv = _level;
-                    for (var k = 0;k < lv;k++)
+                    _totalLevel += 1;
+                    //初期Level分レベルアップ
+                    for (var k = 1;k < lv;k++)
                     {
                         LevelUp();
                         _level--;
