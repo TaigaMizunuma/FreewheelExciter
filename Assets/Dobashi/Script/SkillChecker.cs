@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkillChecker : MonoBehaviour {
 
-    public GameObject _skillprefablist;     //スキルの親オブジェクトの取得
+    private GameObject _skillprefablist;     //スキルの親オブジェクトの取得
 
     //////////////////////パッシブスキル一覧///////////////////////////
     public bool _Stealth = false;        //すり抜け移動

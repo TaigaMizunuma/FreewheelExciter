@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   param:
   - id: 0
-    name: "\u30DE\u30EB\u30B9"
+    name: "\u30D2\u30E5\u30FC"
     job: "\u30EC\u30F3\u30B8\u30E3\u30FC"
     lv: 1
     hp: 17
@@ -30,7 +30,7 @@ MonoBehaviour:
     skill3: 
     skill4: 
   - id: 1
-    name: "\u30B8\u30A7\u30A4\u30AC\u30F3"
+    name: "\u30B8\u30A7\u30FC\u30B3\u30D6"
     job: "\u30B9\u30CA\u30A4\u30D1\u30FC"
     lv: 1
     hp: 26
@@ -64,7 +64,7 @@ MonoBehaviour:
     skill3: 
     skill4: 
   - id: 3
-    name: "\u30A2\u30D9\u30EB"
+    name: "\u30AD\u30FC\u30B9"
     job: "\u30AC\u30F3\u30CA\u30FC"
     lv: 1
     hp: 18
@@ -81,7 +81,7 @@ MonoBehaviour:
     skill3: 
     skill4: 
   - id: 4
-    name: "\u30B4\u30FC\u30C9\u30F3"
+    name: "\u30B1\u30F3"
     job: "\u30D5\u30A1\u30A4\u30BF\u30FC"
     lv: 1
     hp: 18
@@ -98,7 +98,7 @@ MonoBehaviour:
     skill3: 
     skill4: 
   - id: 5
-    name: "\u30AC\u30FC\u30D0"
+    name: "\u30B2\u30A4\u30EA\u30FC"
     job: "\u30BD\u30EB\u30B8\u30E3\u30FC"
     lv: 3
     hp: 22

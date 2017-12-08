@@ -2226,6 +2226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -2238,6 +2239,22 @@ MonoBehaviour:
   _Leakage: 0
   _Rigidarm: 0
   _Georges: 0
+  _D_Ballet: 0
+  _Cancel: 0
+  _SandR: 0
+  _Smash: 0
+  _Destruction: 0
+  _Counter: 0
+  _D_Aggressor: 0
+  _Fortress: 0
+  _Genocide: 0
+  _Weapon_Destruction: 0
+  _Running_W: 0
+  _Raid: 0
+  _Shotdown: 0
+  _Saving: 0
+  _NewType: 0
+  _Praying: 0
 --- !u!114 &53552070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2252,8 +2269,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
-  _name: "\u30AB\u30A4\u30F3"
-  _class: 
+  _name: "\u30A2\u30A4\u30F3"
+  _class: "\u30EC\u30F3\u30B8\u30E3\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
   _level: 0
@@ -3602,6 +3619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -3614,6 +3632,22 @@ MonoBehaviour:
   _Leakage: 0
   _Rigidarm: 0
   _Georges: 0
+  _D_Ballet: 0
+  _Cancel: 0
+  _SandR: 0
+  _Smash: 0
+  _Destruction: 0
+  _Counter: 0
+  _D_Aggressor: 0
+  _Fortress: 0
+  _Genocide: 0
+  _Weapon_Destruction: 0
+  _Running_W: 0
+  _Raid: 0
+  _Shotdown: 0
+  _Saving: 0
+  _NewType: 0
+  _Praying: 0
 --- !u!114 &119770657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3628,8 +3662,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
-  _name: "\u30AB\u30A4\u30F3"
-  _class: 
+  _name: "\u30A2\u30A4\u30F3"
+  _class: "\u30EC\u30F3\u30B8\u30E3\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
   _level: 0
@@ -20452,7 +20486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
-  _name: "\u30DE\u30EB\u30B9"
+  _name: "\u30D2\u30E5\u30FC"
   _class: "\u30EC\u30F3\u30B8\u30E3\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
@@ -20560,6 +20594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -20572,6 +20607,22 @@ MonoBehaviour:
   _Leakage: 0
   _Rigidarm: 0
   _Georges: 0
+  _D_Ballet: 0
+  _Cancel: 0
+  _SandR: 0
+  _Smash: 0
+  _Destruction: 0
+  _Counter: 0
+  _D_Aggressor: 0
+  _Fortress: 0
+  _Genocide: 0
+  _Weapon_Destruction: 0
+  _Running_W: 0
+  _Raid: 0
+  _Shotdown: 0
+  _Saving: 0
+  _NewType: 0
+  _Praying: 0
 --- !u!114 &590529231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28475,6 +28526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -28487,6 +28539,22 @@ MonoBehaviour:
   _Leakage: 0
   _Rigidarm: 0
   _Georges: 0
+  _D_Ballet: 0
+  _Cancel: 0
+  _SandR: 0
+  _Smash: 0
+  _Destruction: 0
+  _Counter: 0
+  _D_Aggressor: 0
+  _Fortress: 0
+  _Genocide: 0
+  _Weapon_Destruction: 0
+  _Running_W: 0
+  _Raid: 0
+  _Shotdown: 0
+  _Saving: 0
+  _NewType: 0
+  _Praying: 0
 --- !u!114 &803775640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28501,8 +28569,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
-  _name: "\u30AB\u30A4\u30F3"
-  _class: 
+  _name: "\u30A2\u30A4\u30F3"
+  _class: "\u30EC\u30F3\u30B8\u30E3\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
   _level: 0
@@ -79311,6 +79379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -79323,6 +79392,22 @@ MonoBehaviour:
   _Leakage: 0
   _Rigidarm: 0
   _Georges: 0
+  _D_Ballet: 0
+  _Cancel: 0
+  _SandR: 0
+  _Smash: 0
+  _Destruction: 0
+  _Counter: 0
+  _D_Aggressor: 0
+  _Fortress: 0
+  _Genocide: 0
+  _Weapon_Destruction: 0
+  _Running_W: 0
+  _Raid: 0
+  _Shotdown: 0
+  _Saving: 0
+  _NewType: 0
+  _Praying: 0
 --- !u!114 &2032905170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79337,7 +79422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
-  _name: "\u30DE\u30EB\u30B9"
+  _name: "\u30D2\u30E5\u30FC"
   _class: "\u30EC\u30F3\u30B8\u30E3\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
@@ -80172,6 +80257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -80184,6 +80270,22 @@ MonoBehaviour:
   _Leakage: 0
   _Rigidarm: 0
   _Georges: 0
+  _D_Ballet: 0
+  _Cancel: 0
+  _SandR: 0
+  _Smash: 0
+  _Destruction: 0
+  _Counter: 0
+  _D_Aggressor: 0
+  _Fortress: 0
+  _Genocide: 0
+  _Weapon_Destruction: 0
+  _Running_W: 0
+  _Raid: 0
+  _Shotdown: 0
+  _Saving: 0
+  _NewType: 0
+  _Praying: 0
 --- !u!114 &2069330239
 MonoBehaviour:
   m_ObjectHideFlags: 0

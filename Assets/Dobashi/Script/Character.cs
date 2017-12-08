@@ -4,6 +4,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+
+public enum Joblist
+{
+    Gunner,
+    Sniper,
+    Rogue,
+    Assassin,
+    Fighter,
+    Marshall,
+    Soldier,
+    General,
+    Mercenary,
+    Warrior,
+    Rider,
+    Motorhead,
+    Pilot,
+    Captain,
+    Ranger,
+    Load,
+    Thief,
+    Android,
+    Hacker,
+    Singer,
+    Valkyrie,
+    Paladin,
+    Desperado,
+    EarthDragon
+}
+
 public class Character : MonoBehaviour {
 
     private int _id;                            //Characterリストのナンバー
@@ -13,7 +42,7 @@ public class Character : MonoBehaviour {
     public Image _faceimage;    //フォアグラ
 
     public string _name;        //名前
-    public string _class;       //職業
+    //public string _class;       //職業
     public Vector3 _position;   //座標
     public bool _hero = false;  //主人公かどうか
     private bool _reset = false;
@@ -89,13 +118,15 @@ public class Character : MonoBehaviour {
     Entity_Chara_rateList chara_rateList;
     //クラスリスト読み込み
     Entity_ClassList classList;
-    //武器リスト読み込み
-    Entity_WeaponList weaponList;
+    //クラス基本値リスト読み込み
+    Entity_Sheet1 class_def_list;
 
     //現在のHP状態
     public HP_State _HpState;
     //現在の状態異常
     public State _NowState;
+    //クラスリスト
+    public Joblist _joblist;
 
     //Hpの状態管理
     public enum HP_State
@@ -126,53 +157,16 @@ public class Character : MonoBehaviour {
         chara_rateList = Resources.Load("Data/Chara_rateList") as Entity_Chara_rateList;
         //クラスリスト読み込み
         classList = Resources.Load("Data/ClassList") as Entity_ClassList;
-        //武器リストを読み込み
-        weaponList = Resources.Load("Data/WeaponList") as Entity_WeaponList;
+        //クラス基本値リスト読み込み
+        class_def_list = Resources.Load("Data/ClassDefaultStatus") as Entity_Sheet1;
         //自分の子にあるアイテムリストを取得
         _itemprefablist = GameObject.Find( transform.name + "/ItemList");
         //自分の子にあるスキルリストを取得
         _skillprefablist = GameObject.Find(transform.name + "/SkillList");
         _skillchecker = GetComponent<SkillChecker>();
 
-        //キャラの初期化
-        if (!_reset)
-        {
-            for (var i = 0; i < charaList.param.Count; i++)
-            {
-                if (charaList.param[i].name == _name)
-                {
-                    //idの上書き
-                    _id = i;
-                    //各能力値と成長率の読み込み
-                    _level = charaList.param[_id].lv;
-                    _totalLevel = _level;
-                    _hp = charaList.param[_id].hp;
-                    _hprate = chara_rateList.param[_id].hp;
-                    _str = charaList.param[_id].str;
-                    _strrate = chara_rateList.param[_id].str;
-                    _skl = charaList.param[_id].skl;
-                    _sklrate = chara_rateList.param[_id].skl;
-                    _spd = charaList.param[_id].spd;
-                    _spdrate = chara_rateList.param[_id].spd;
-                    _luk = charaList.param[_id].luk;
-                    _lukrate = chara_rateList.param[_id].luk;
-                    _def = charaList.param[_id].def;
-                    _defrate = chara_rateList.param[_id].def;
-                    _cur = charaList.param[_id].cur;
-                    _currate = chara_rateList.param[_id].cur;
-                    _move = charaList.param[_id].move;
-                    _moverate = chara_rateList.param[_id].move;
-                    //クラス(職業)の読み込み
-                    _class = charaList.param[_id].job;
-
-                }
-            }
-
-            _reset = true;
-        }
-        ClassChange(_class);
-        TotalStatus();
-        FullRecoveryHP();
+        Initialize();
+        
     }
 	// Update is called once per frame
 	void Update () {
@@ -275,6 +269,64 @@ public class Character : MonoBehaviour {
     public void BattleEnd()
     {
         _addonetimestatuslist = new int[14] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    }
+
+    /// <summary>
+    /// 初期化
+    /// Excelから読み込む
+    /// </summary>
+    public void Initialize()
+    {
+        
+        if(transform.tag == "Player" || true)
+        {
+            for (var i = 0; i < charaList.param.Count; i++)
+            {
+                if (charaList.param[i].name == _name)
+                {
+                    //idの上書き
+                    _id = i;
+                    //各能力値と成長率の読み込み
+                    _level = charaList.param[_id].lv;
+                    _totalLevel = _level;
+                    _hp = charaList.param[_id].hp;
+                    _hprate = chara_rateList.param[_id].hp;
+                    _str = charaList.param[_id].str;
+                    _strrate = chara_rateList.param[_id].str;
+                    _skl = charaList.param[_id].skl;
+                    _sklrate = chara_rateList.param[_id].skl;
+                    _spd = charaList.param[_id].spd;
+                    _spdrate = chara_rateList.param[_id].spd;
+                    _luk = charaList.param[_id].luk;
+                    _lukrate = chara_rateList.param[_id].luk;
+                    _def = charaList.param[_id].def;
+                    _defrate = chara_rateList.param[_id].def;
+                    _cur = charaList.param[_id].cur;
+                    _currate = chara_rateList.param[_id].cur;
+                    _move = charaList.param[_id].move;
+                    _moverate = chara_rateList.param[_id].move;
+                    //クラス(職業)の読み込み
+                    //_joblist = (Joblist)Enum.Parse(typeof(Joblist), charaList.param[_id].job); 
+
+                }
+            }
+        }
+        else
+        {
+            for (var j = 0; j < class_def_list.param.Count; j++)
+            {
+                if (class_def_list.param[j].name == _name)
+                {
+
+                }
+            }
+            
+            var i = (Joblist)Enum.Parse(typeof(Joblist), charaList.param[_id].job);
+            _hp = class_def_list.param[_id].hp;
+        }
+        //ClassChange(_class);
+        TotalStatus();
+        FullRecoveryHP();
     }
 
 
@@ -421,20 +473,21 @@ public class Character : MonoBehaviour {
     /// クラスチェンジ
     /// </summary>
     /// <param name="_classname">チェンジ先のクラス名</param>
-    public void ClassChange(string _classname)
+    public void ClassChange(Joblist _classname)
     {
-        //クラスを名前で検索
-        for (var i = 0; i < classList.param.Count; i++)
-        {
-            if (classList.param[i].name == _classname)
-            {
-                //クラスID上書き
-                _classid = classList.param[i].id;
-                //レベルの初期化
-                _level = 1;
-               
-            }
-        }
+        _joblist = _classname;
+        //レベルの初期化
+        _level = 1;
+        ////クラスを名前で検索
+        //for (var i = 0; i < classList.param.Count; i++)
+        //{
+        //    if (classList.param[i].name == _joblist.ToString())
+        //    {
+        //        ////クラスID上書き
+        //        //_classid = classList.param[i].id;
+                    
+        //    }
+        //}
     }
 
     /// <summary>

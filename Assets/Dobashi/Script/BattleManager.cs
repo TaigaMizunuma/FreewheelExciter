@@ -147,12 +147,6 @@ public class BattleManager : MonoBehaviour {
             _chara.GetExp(exp);
         }
 
-        //戦闘時発動系スキルの検索
-        public void Skill_Check()
-        {
-            
-        }
-
     }
 
     // Use this for initialization
@@ -305,7 +299,7 @@ public class BattleManager : MonoBehaviour {
                         _defside._chara._totalhp -= _atkside._atk;
                         Debug.Log(_atkside._chara._name + ":必殺!" + _atkside._atk);
                         //吸収判定
-                        if (_atkside._drain && Random.Range(0, 101) < _atkside._chara._totalskl)
+                        if (_atkside._chara.GetComponent<SkillChecker>()._D_Ballet && (Random.Range(0, 101) < _atkside._chara._totalskl))
                         {
                             _atkside._chara._totalhp += (_atkside._atk) / 2;
                         }
@@ -317,7 +311,7 @@ public class BattleManager : MonoBehaviour {
                         _defside._chara._totalhp -= _atkside._atk;
                         Debug.Log(_atkside._chara._name + ":命中!" + _atkside._atk);
                         //吸収判定
-                        if (_atkside._drain && Random.Range(0, 101) < _atkside._chara._totalskl)
+                        if (_atkside._chara.GetComponent<SkillChecker>()._D_Ballet && (Random.Range(0, 101) < _atkside._chara._totalskl))
                         {
                             _atkside._chara._totalhp += _atkside._atk / 2;
                         }
@@ -368,8 +362,10 @@ public class BattleManager : MonoBehaviour {
         //それぞれの取得経験値
         var atk_exp = 0;
         var def_exp = 0;
-        //カウンター時
-        if (_def._counter)
+        //反撃封じ発動確認
+        var _Cancel = false;
+        //カウンター時。反撃封じは無効
+        if (_def._chara.GetComponent<SkillChecker>()._Counter && (Random.Range(0, 101) < _def._chara._totalspd))
         {
             for (var i = 0; i < _def._chara._attack_count; i++)
             {
@@ -398,13 +394,21 @@ public class BattleManager : MonoBehaviour {
                 if (_battleend) break;
             }
 
-            for (var i = 0; i < _def._chara._attack_count; i++)
-            {
-                //迎撃側の攻撃
-                def_exp += BattleSystem(_def, _attacker, _def._revenge,def_stock);
-                def_stock++;
-                if (_battleend) break;
+            //反撃封じ判定
+            if (_attacker._chara.GetComponent<SkillChecker>()._Cancel && (Random.Range(0, 101) < _attacker._chara._totalskl)){
             }
+            else
+            {
+                _Cancel = true;
+                for (var i = 0; i < _def._chara._attack_count; i++)
+                {
+                    //迎撃側の攻撃
+                    def_exp += BattleSystem(_def, _attacker, _def._revenge, def_stock);
+                    def_stock++;
+                    if (_battleend) break;
+                }
+            }
+            
         }
         
             
@@ -420,7 +424,8 @@ public class BattleManager : MonoBehaviour {
                 if (_battleend) break;
             }                   
         }
-        else if ((_attacker._chara._attack_speed+3 < _def._chara._attack_speed) && (_attacker._chara._totalskl+3 < _def._chara._totalskl) && _battleend == false)
+        //反撃無効時は追撃もしない
+        else if ((_attacker._chara._attack_speed+3 < _def._chara._attack_speed) && (_attacker._chara._totalskl+3 < _def._chara._totalskl) && _battleend == false && !_Cancel)
         {
             for (var i = 0; i < _def._chara._attack_count; i++)
             {

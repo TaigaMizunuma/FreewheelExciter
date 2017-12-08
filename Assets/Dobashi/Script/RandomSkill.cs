@@ -4,12 +4,12 @@ using UnityEngine;
 
 public enum Random_Skill_List
 {
-    D_Ballet,               //与ダメージの半分を吸収：技％
-    Cancel,                 //反撃無効化：技％
+    D_Ballet,               //与ダメージの半分を吸収：技％ バトルマネージャー内：済
+    Cancel,                 //反撃無効化：技％：待ち伏せには無効　バトルマネージャー内：済
     SandR,                  //防御無視攻撃：LV％
     Smash,                  //攻撃力に力を加算：力％
     Destruction,            //一撃必殺：必殺時50％
-    Counter,                //攻撃されたとき先制攻撃：速さ％
+    Counter,                //攻撃されたとき先制攻撃：速さ％　バトルマネージャー内：済
     D_Aggressor,            //受けたダメージをそのまま返す：力％
     Fortress,               //無敵：Lv％
     Genocide,               //持っている武器すべてで攻撃:力/2%

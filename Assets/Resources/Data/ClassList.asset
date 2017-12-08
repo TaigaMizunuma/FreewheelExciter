@@ -268,8 +268,8 @@ MonoBehaviour:
     river: 0
     mountain: 0
     desert: 0
-  - id: 0
-    name: 
+  - id: 16
+    name: none
     hp: 0
     sp: 0
     str: 0
@@ -284,8 +284,8 @@ MonoBehaviour:
     river: 0
     mountain: 0
     desert: 0
-  - id: 0
-    name: 
+  - id: 17
+    name: none
     hp: 0
     sp: 0
     str: 0
