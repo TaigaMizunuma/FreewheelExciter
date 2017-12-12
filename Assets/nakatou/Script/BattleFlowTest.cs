@@ -246,6 +246,7 @@ public class BattleFlowTest : MonoBehaviour
                     foreach (var obj in weaponUIs)
                     { 
                         obj.SetActive(false);
+                        Destroy(obj, 1.0f);
                     }
                     
                     _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
@@ -318,6 +319,7 @@ public class BattleFlowTest : MonoBehaviour
                     foreach (var obj in weaponUIs)
                     {
                         obj.SetActive(false);
+                        Destroy(obj, 1.0f);
                     }
 
                     _nowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>().SkillEffect(_nowChooseChar,weapons[count]);
@@ -392,6 +394,7 @@ public class BattleFlowTest : MonoBehaviour
                     foreach (var obj in weaponUIs)
                     {
                         obj.SetActive(false);
+                        Destroy(obj, 1.0f);
                     }
                     
                     _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().UseItem(_nowChooseChar,weapons[count]);
@@ -479,8 +482,9 @@ public class BattleFlowTest : MonoBehaviour
                             FindObjectOfType<RayBox>().move_ = false;
 
                             //とりあえずのエフェクト表示&SE
-                            Instantiate(Resources.Load("Eff_Hit_6"), hit.transform.position, Quaternion.identity);
+                            var effect = Instantiate(Resources.Load("Eff_Hit_6"), hit.transform.position, Quaternion.identity);
                             m_audio.PlaySe("GunShot");
+                            Destroy(effect, 1.0f);
                            
                             int e_nowhp = hit.transform.GetComponent<Character>()._totalhp;
                             int p_nowhp = _nowChooseChar.GetComponent<Character>()._totalhp;
@@ -546,8 +550,10 @@ public class BattleFlowTest : MonoBehaviour
                 {
                     Debug.Log("敵の反撃！");
                     //とりあえずの反撃エフェクト表示&SE
-                    Instantiate(Resources.Load("Eff_Hit_6"), _nowAttackChara.transform.position, Quaternion.identity);
+                    var effect = Instantiate(Resources.Load("Eff_Hit_6"), _nowAttackChara.transform.position, Quaternion.identity);
                     m_audio.PlaySe("GunShot");
+                    Destroy(effect, 1.0f);
+
                     DamegeUIInit(_nowAttackChara, p_dm);
 
                     FindObjectOfType<StatusUI>().setPlayerDamage(p_dm);
@@ -659,8 +665,10 @@ public class BattleFlowTest : MonoBehaviour
     public void EnemyAttackEnd(GameObject enemy, GameObject target, int damage)
     {
         Debug.Log("自キャラの反撃！");
-        Instantiate(Resources.Load("Eff_Hit_6"), enemy.transform.position, Quaternion.identity);
+        var effect = Instantiate(Resources.Load("Eff_Hit_6"), enemy.transform.position, Quaternion.identity);
         m_audio.PlaySe("GunShot");
+        Destroy(effect, 1.0f);
+
         DamegeUIInit(enemy, damage);
 
         FindObjectOfType<StatusUI>().setUnitStatus(

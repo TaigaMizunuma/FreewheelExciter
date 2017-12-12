@@ -72,7 +72,7 @@ public class Move_System : MonoBehaviour
                         }
                     }
                 }
-                else if(hit.transform == FindObjectOfType<BattleFlowTest>()._nowChooseChar)
+                else if(hit.transform.gameObject == FindObjectOfType<BattleFlowTest>()._nowChooseChar)
                 {
                     FindObjectOfType<RayBox>().move_ = false;
                     GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");

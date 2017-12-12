@@ -56,8 +56,9 @@ public class CharaStatus : MonoBehaviour
         FindObjectOfType<BattleFlowTest>().state_ = State_.enemy_attack_mode;
 
         Debug.Log("敵の攻撃！");
-        Instantiate(Resources.Load("Eff_Hit_6"), target.transform.position, Quaternion.identity);
+        var effect = Instantiate(Resources.Load("Eff_Hit_6"), target.transform.position, Quaternion.identity);
         FindObjectOfType<AudioManager>().PlaySe("GunShot");
+        Destroy(effect, 1.0f);
 
         int nowhp = GetComponent<Character>()._totalhp;
         int p_nowhp = target.GetComponent<Character>()._totalhp;
