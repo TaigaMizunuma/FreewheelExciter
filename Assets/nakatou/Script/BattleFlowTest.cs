@@ -78,11 +78,6 @@ public class BattleFlowTest : MonoBehaviour
 
     bool GameEnd = false;
 
-    //memo
-    /*myList.Add(newObj1);    //GameObject型 newObj1をmyListに加える
-      GameObject newObj2 = myList[0]; //Listへのアクセス
-      myList.RemoveAt(0); //Listの0番目の要素を消す
-      myList.Clear(); //Listすべての要素を削除*/
 
     void Awake()
     {

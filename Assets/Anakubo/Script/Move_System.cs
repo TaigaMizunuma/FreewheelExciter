@@ -53,13 +53,13 @@ public class Move_System : MonoBehaviour
         {
             if (FindObjectOfType<BattleFlowTest>().state_ != State_.move_mode ||
                 FindObjectOfType<BattleFlowTest>()._nowChooseChar != gameObject) return;// 10/31 追加
-            FindObjectOfType<RayBox>().move_ = false;
 
             Ray ray = new Ray(rayBox.transform.position, -rayBox.transform.up);// 10/27 追加
             RaycastHit hit = new RaycastHit();
             if (Physics.Raycast(ray, out hit, 1000.0f))
             {
-                if (hit.transform.tag == "Floor")
+                FindObjectOfType<RayBox>().move_ = false;
+                if (hit.transform.tag == "Floor" && hit.transform.GetComponent<Square_Info>().move_cost < 100)
                 {
                     Square_Info a = hit.transform.GetComponent<Square_Info>();
                     if (a.IsDecision())
@@ -72,8 +72,9 @@ public class Move_System : MonoBehaviour
                         }
                     }
                 }
-                else if(hit.transform.tag == "Player")
+                else if(hit.transform == FindObjectOfType<BattleFlowTest>()._nowChooseChar)
                 {
+                    FindObjectOfType<RayBox>().move_ = false;
                     GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");
                     foreach (GameObject g in obj)
                     {
