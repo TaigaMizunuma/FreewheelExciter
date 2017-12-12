@@ -9,9 +9,12 @@ public class PlayerAttack : MonoBehaviour
     GameObject Now_pos;
     List<GameObject> attack_range = new List<GameObject>();
     List<GameObject> judged_range = new List<GameObject>();
-    public bool range_line = false;
 
-    List<GameObject> InAttackRange_Enemy = new List<GameObject>();
+    public bool range_line = false;//キャラクターの攻撃範囲が直線かそうじゃないか
+
+    List<GameObject> InAttackRange_Enemy = new List<GameObject>();//攻撃範囲内のエネミー
+
+    List<GameObject> InRange_Player = new List<GameObject>();//指定範囲内のプレイヤー取得
 
     // Use this for initialization
     void Start()
@@ -30,10 +33,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    RangeSearch();
-        //}
+        
     }
 
     public void AttackReady()
@@ -102,6 +102,7 @@ public class PlayerAttack : MonoBehaviour
         return InAttackRange_Enemy;
     }
 
+
     public void RangeSearch()
     {
         Character c = gameObject.GetComponent<Character>();
@@ -112,6 +113,25 @@ public class PlayerAttack : MonoBehaviour
         RetrievalRelease();
 
         AttackReady();
+    }
+
+    /// <summary>
+    /// スキル用、周囲のマスを調べてプレイヤーがいたら返す
+    /// </summary>
+    /// <param name="cost">調べるマスの範囲</param>
+    /// <returns></returns>
+    public List<GameObject> RangeSerch2(int cost)
+    {
+        MinCost = 1;
+        MaxCost = cost;
+
+        InRange_Player.Clear();
+
+        Retrieval();
+        RetrievalRelease();
+        AttackRelease();
+       
+        return InRange_Player;
     }
 
     public void Retrieval()
@@ -131,7 +151,15 @@ public class PlayerAttack : MonoBehaviour
             if (nears_[i] == null) continue;
             if (nears_[i].GetComponent<Square_Info>().GetChara() != null)
             {
-                if (nears_[i].GetComponent<Square_Info>().GetChara().tag == "Player") continue;
+                if (nears_[i].GetComponent<Square_Info>().GetChara().tag == "Player")
+                {
+                    if (!InRange_Player.Contains(nears_[i].GetComponent<Square_Info>().GetChara()) && 
+                        gameObject != nears_[i].GetComponent<Square_Info>().GetChara())
+                    {
+                        InRange_Player.Add(nears_[i].GetComponent<Square_Info>().GetChara());
+                    }                 
+                    continue;
+                } 
             }
             Square_Info n_si_ = nears_[i].GetComponent<Square_Info>();
             if (1 <= MaxCost)
@@ -162,7 +190,15 @@ public class PlayerAttack : MonoBehaviour
         {
             if (n.GetComponent<Square_Info>().GetChara() != null)
             {
-                if (n.GetComponent<Square_Info>().GetChara().tag == "Player") continue;
+                if (n.GetComponent<Square_Info>().GetChara().tag == "Player")
+                {
+                    if (!InRange_Player.Contains(n.gameObject.GetComponent<Square_Info>().GetChara()) &&
+                        gameObject != n.GetComponent<Square_Info>().GetChara())
+                    {
+                        InRange_Player.Add(n.GetComponent<Square_Info>().GetChara());
+                    }
+                    continue;
+                }
             }
             Square_Info n_si_ = n.GetComponent<Square_Info>();
 
@@ -185,7 +221,15 @@ public class PlayerAttack : MonoBehaviour
         GameObject near_ = si_.GetNear()[num];
         if (near_.GetComponent<Square_Info>().GetChara() != null)
         {
-            if (near_.GetComponent<Square_Info>().GetChara().tag == "Player") return;
+            if (near_.GetComponent<Square_Info>().GetChara().tag == "Player")
+            {
+                if (!InRange_Player.Contains(near_.gameObject.GetComponent<Square_Info>().GetChara()) &&
+                    gameObject != near_.GetComponent<Square_Info>().GetChara())
+                {
+                    InRange_Player.Add(near_.GetComponent<Square_Info>().GetChara());
+                }
+                return;
+            }
         }
         Square_Info n_si_ = near_.GetComponent<Square_Info>();
 
@@ -242,4 +286,5 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
+   
 }

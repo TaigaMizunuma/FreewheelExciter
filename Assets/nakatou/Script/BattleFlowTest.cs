@@ -112,7 +112,7 @@ public class BattleFlowTest : MonoBehaviour
     void Update()
     {
         //仮 勝敗判定
-        if(!GameObject.FindGameObjectWithTag("Enemy"))
+        if (!GameObject.FindGameObjectWithTag("Enemy"))
         {
             _TurnText.text = "GameClear!!";
             GameEnd = true;
