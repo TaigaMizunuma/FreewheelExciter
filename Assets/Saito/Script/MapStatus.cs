@@ -34,8 +34,6 @@ public class MapStatus : MonoBehaviour
 
     BlockMasterScript blcMaster;
 
-    float[,] blockPos;
-
     void Start()
     {
         blcMaster = GameObject.Find("BlockMaster").GetComponent<BlockMasterScript>();
@@ -57,7 +55,7 @@ public class MapStatus : MonoBehaviour
         {
             s_character = characterObj.GetComponent<Character>();
         }
-        //MapStatusBuff();
+        MapStatusBuff();
     }
 
     void CharacterGetRay()
@@ -84,32 +82,21 @@ public class MapStatus : MonoBehaviour
     /// </summary>
     public void MapStatusBuff()
     {
-        //    if (blcMaster.masterMapStatus == true && s_character != null)
-        //    {
-        //        if (mapID == 8)
-        //        {
-        //            //毒ガスマスの処理(毒状態の付与)
-        //            s_character._NowState = Character.State.Poison;
-        //            characterObj = null;
-        //            blcMaster.masterMapStatus = false;
-        //        }
+        if (blcMaster.masterMapStatus == true && s_character != null)
+        {
+            if (mapID == 8)
+            {
+                //毒ガスマスの処理(毒状態の付与)
+                s_character._NowState = Character.State.Poison;
+                characterObj = null;
+                blcMaster.masterMapStatus = false;
+            }
 
-        //    }
+        }
     }
 
-    /// <summary>
-    /// マップのコスト情報
-    /// </summary>
-    /// <returns></returns>
-    public int GetMapCost()
-    {
-        return mapCost;
-    }
 
-    /// <summary>
-    /// マップの回避率バフ情報
-    /// </summary>
-    /// <returns></returns>
+
     public int GetMapEvasionRate()
     {
         return mapEvasionRate;
