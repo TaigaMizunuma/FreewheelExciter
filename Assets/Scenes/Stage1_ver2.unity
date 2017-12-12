@@ -2226,7 +2226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -2270,10 +2269,9 @@ MonoBehaviour:
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
   _name: "\u30A2\u30A4\u30F3"
-  _class: "\u30EC\u30F3\u30B8\u30E3\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
-  _level: 0
+  _level: 3
   _totalLevel: 0
   _totalMaxhp: 0
   _totalhp: 0
@@ -2307,6 +2305,7 @@ MonoBehaviour:
   _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
+  _joblist: 0
 --- !u!114 &53552071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3619,7 +3618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -3663,10 +3661,9 @@ MonoBehaviour:
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
   _name: "\u30A2\u30A4\u30F3"
-  _class: "\u30EC\u30F3\u30B8\u30E3\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
-  _level: 0
+  _level: 3
   _totalLevel: 0
   _totalMaxhp: 0
   _totalhp: 0
@@ -3700,6 +3697,7 @@ MonoBehaviour:
   _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
+  _joblist: 0
 --- !u!114 &119770658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20487,7 +20485,6 @@ MonoBehaviour:
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
   _name: "\u30D2\u30E5\u30FC"
-  _class: "\u30EC\u30F3\u30B8\u30E3\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
   _level: 0
@@ -20524,6 +20521,7 @@ MonoBehaviour:
   _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
+  _joblist: 0
 --- !u!114 &590529226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20594,7 +20592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -20634,7 +20631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f75b441dc2ac54499f84f72e43f9815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstCost: 3
+  range_line: 0
 --- !u!1 &593363806
 GameObject:
   m_ObjectHideFlags: 0
@@ -28526,7 +28523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -28570,10 +28566,9 @@ MonoBehaviour:
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
   _name: "\u30A2\u30A4\u30F3"
-  _class: "\u30EC\u30F3\u30B8\u30E3\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
-  _level: 0
+  _level: 3
   _totalLevel: 0
   _totalMaxhp: 0
   _totalhp: 0
@@ -28607,6 +28602,7 @@ MonoBehaviour:
   _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
+  _joblist: 0
 --- !u!114 &803775641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43125,6 +43121,7 @@ MonoBehaviour:
   masterMapHighLightSwitch: 1
   masterMapStatus: 0
   HideObjectOnOff: 0
+  playerCount: 0
 --- !u!1 &1156563265
 GameObject:
   m_ObjectHideFlags: 0
@@ -79379,7 +79376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -79423,7 +79419,6 @@ MonoBehaviour:
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
   _name: "\u30D2\u30E5\u30FC"
-  _class: "\u30EC\u30F3\u30B8\u30E3\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
   _level: 0
@@ -79460,6 +79455,7 @@ MonoBehaviour:
   _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
+  _joblist: 0
 --- !u!114 &2032905171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79530,7 +79526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f75b441dc2ac54499f84f72e43f9815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstCost: 3
+  range_line: 0
 --- !u!1 &2036952513
 GameObject:
   m_ObjectHideFlags: 0
@@ -80257,7 +80253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 418c1cfcbf2de0047bc0a3e883d6cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillprefablist: {fileID: 0}
   _Stealth: 0
   _Desert: 0
   _Revenge: 0
@@ -80301,7 +80296,6 @@ MonoBehaviour:
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
   _name: "\u4E2D\u6771"
-  _class: "\u30EC\u30F3\u30B8\u30E3\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
   _level: 0
@@ -80338,6 +80332,7 @@ MonoBehaviour:
   _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
+  _joblist: 0
 --- !u!114 &2069330240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80408,7 +80403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f75b441dc2ac54499f84f72e43f9815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstCost: 3
+  range_line: 0
 --- !u!1 &2070891967
 GameObject:
   m_ObjectHideFlags: 0

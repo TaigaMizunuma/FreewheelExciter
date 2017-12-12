@@ -293,26 +293,101 @@ public class BattleManager : MonoBehaviour {
                     //必殺判定
                     if (Random.Range(0, 100) <= _atkside._critical + _addcri)
                     {
-                        //必殺発動
-                        //力を2倍にして攻撃力を再計算
-                        _defside.set_atk(_atkside._chara._totaldef,2);
-                        _defside._chara._totalhp -= _atkside._atk;
+                        //防御無視判定
+                        if (_atkside._chara.GetComponent<SkillChecker>()._SandR && (Random.Range(0, 101) < _atkside._chara._totalLevel))
+                        {
+                            //攻撃力に力を加算
+                            if (_atkside._chara.GetComponent<SkillChecker>()._Smash && (Random.Range(0, 101) < _atkside._chara._totalstr))
+                            {
+                                //必殺発動+防御無視+撃殺
+                                //力を2倍+敵の防御0+攻撃力に力を加算して攻撃力を再計算
+                                Debug.Log(_atkside._chara._name + ":防御無視+撃殺!");
+                                _atkside.set_atk(0-_atkside._chara._totalstr, 2);
+                            }
+                            else
+                            {
+                                //必殺発動+防御無視
+                                //力を2倍+敵の防御0にして攻撃力を再計算
+                                Debug.Log(_atkside._chara._name + ":防御無視!");
+                                _atkside.set_atk(0, 2);
+                            }
+
+                            _defside._chara._totalhp -= _atkside._atk;
+                        }
+                        else
+                        {
+                            //攻撃力に力を加算
+                            if (_atkside._chara.GetComponent<SkillChecker>()._Smash && (Random.Range(0, 101) < _atkside._chara._totalstr))
+                            {
+                                //必殺発動+撃殺
+                                //力を2倍+攻撃力に力を加算して攻撃力を再計算
+                                Debug.Log(_atkside._chara._name + ":撃殺!");
+                                _atkside.set_atk(_defside._chara._totaldef - _atkside._chara._totalstr, 2);
+                            }
+                            else
+                            {                               
+                                //力を2倍にして攻撃力を再計算
+                                _atkside.set_atk(_defside._chara._totaldef, 2);
+                            }
+
+                            _defside._chara._totalhp -= _atkside._atk;
+                        }
                         Debug.Log(_atkside._chara._name + ":必殺!" + _atkside._atk);
                         //吸収判定
                         if (_atkside._chara.GetComponent<SkillChecker>()._D_Ballet && (Random.Range(0, 101) < _atkside._chara._totalskl))
                         {
+                            Debug.Log(_atkside._chara._name + ":ダメージ吸収!");
                             _atkside._chara._totalhp += (_atkside._atk) / 2;
                         }
-                        _defside.set_atk(_atkside._chara._totaldef, 1);
+                        _atkside.set_atk(_defside._chara._totaldef, 1);
                     }
                     else
                     {
-                        //通常
-                        _defside._chara._totalhp -= _atkside._atk;
+
+                        //防御無視判定
+                        if (_atkside._chara.GetComponent<SkillChecker>()._SandR && (Random.Range(0, 101) < _atkside._chara._totalLevel))
+                        {
+                            //攻撃力に力を加算
+                            if (_atkside._chara.GetComponent<SkillChecker>()._Smash && (Random.Range(0, 101) < _atkside._chara._totalstr))
+                            {
+                                //防御無視+撃殺
+                                //力を2倍+敵の防御0+攻撃力に力を加算して攻撃力を再計算
+                                Debug.Log(_atkside._chara._name + ":防御無視+撃殺!");
+                                _atkside.set_atk(0 - _atkside._chara._totalstr, 1);
+                            }
+                            else
+                            {
+                                //防御無視
+                                //力を2倍+敵の防御0にして攻撃力を再計算
+                                Debug.Log(_atkside._chara._name + ":防御無視!");
+                                _atkside.set_atk(0, 1);
+                            }
+
+                            _defside._chara._totalhp -= _atkside._atk;
+                        }
+                        else
+                        {
+                            //攻撃力に力を加算
+                            if (_atkside._chara.GetComponent<SkillChecker>()._Smash && (Random.Range(0, 101) < _atkside._chara._totalstr))
+                            {
+                                //撃殺
+                                //攻撃力に力を加算して攻撃力を再計算
+                                Debug.Log(_atkside._chara._name + ":撃殺!");
+                                _atkside.set_atk(_defside._chara._totaldef - _atkside._chara._totalstr, 1);
+                            }
+                            else
+                            {
+                                //通常攻撃
+                                _atkside.set_atk(_defside._chara._totaldef, 1);
+                            }
+
+                            _defside._chara._totalhp -= _atkside._atk;
+                        }
                         Debug.Log(_atkside._chara._name + ":命中!" + _atkside._atk);
                         //吸収判定
                         if (_atkside._chara.GetComponent<SkillChecker>()._D_Ballet && (Random.Range(0, 101) < _atkside._chara._totalskl))
                         {
+                            Debug.Log(_atkside._chara._name + ":ダメージ吸収!");
                             _atkside._chara._totalhp += _atkside._atk / 2;
                         }
                     }
@@ -322,6 +397,7 @@ public class BattleManager : MonoBehaviour {
                         //根性判定
                         if (_defside._fightingspirit && Random.Range(0, 101) < _defside._chara._totalluk)
                         {
+                            Debug.Log(_defside._chara._name + ":根性!");
                             _defside._chara._totalhp = 1;
                         }
                         else
@@ -367,6 +443,7 @@ public class BattleManager : MonoBehaviour {
         //カウンター時。反撃封じは無効
         if (_def._chara.GetComponent<SkillChecker>()._Counter && (Random.Range(0, 101) < _def._chara._totalspd))
         {
+            Debug.Log("待ち伏せ!");
             for (var i = 0; i < _def._chara._attack_count; i++)
             {
                 //迎撃側の攻撃
@@ -396,10 +473,11 @@ public class BattleManager : MonoBehaviour {
 
             //反撃封じ判定
             if (_attacker._chara.GetComponent<SkillChecker>()._Cancel && (Random.Range(0, 101) < _attacker._chara._totalskl)){
+                _Cancel = true;
+                Debug.Log("反撃封じ!");
             }
             else
-            {
-                _Cancel = true;
+            {                
                 for (var i = 0; i < _def._chara._attack_count; i++)
                 {
                     //迎撃側の攻撃
@@ -425,7 +503,8 @@ public class BattleManager : MonoBehaviour {
             }                   
         }
         //反撃無効時は追撃もしない
-        else if ((_attacker._chara._attack_speed+3 < _def._chara._attack_speed) && (_attacker._chara._totalskl+3 < _def._chara._totalskl) && _battleend == false && !_Cancel)
+        else if ((_attacker._chara._attack_speed+3 < _def._chara._attack_speed) &&
+            (_attacker._chara._totalskl+3 < _def._chara._totalskl) && _battleend == false && !_Cancel)
         {
             for (var i = 0; i < _def._chara._attack_count; i++)
             {
