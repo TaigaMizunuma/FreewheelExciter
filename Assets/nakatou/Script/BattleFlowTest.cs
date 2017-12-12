@@ -233,11 +233,13 @@ public class BattleFlowTest : MonoBehaviour
                     {
                         if (count == 0) return;
                         count--;
+                        _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
                     }
                     if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
                     {
                         if (count == weaponUIs.Count - 1) return;
                         count++;
+                        _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
                     }
                     if(Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
                     {
@@ -254,9 +256,10 @@ public class BattleFlowTest : MonoBehaviour
                     _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
                     choose = false;
                     once = false;
+                    count = 0;
                     weapons.Clear();
                     weaponUIs.Clear();
-                    _nowChooseChar.GetComponent<Move_System>().AttackReady();
+                    _nowChooseChar.GetComponent<PlayerAttack>().RangeSearch();
                 }
 
                 break;
@@ -415,7 +418,37 @@ public class BattleFlowTest : MonoBehaviour
 
             //攻撃対象の選択
             case State_.player_attack_mode:
-                
+                //仮実装 カーソルが敵に自動で照準
+                if (!attacking)
+                {
+                    var range_enemy = _nowChooseChar.GetComponent<PlayerAttack>().GetInAttackRangeEnemy();
+                    if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1 || Input.GetKeyDown(KeyCode.UpArrow))
+                    {
+                        if (count == 0)
+                        {
+                            count = range_enemy.Count - 1;
+                        }
+                        else
+                        {
+                            count--;
+                        }
+                    }
+                    if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1 || Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        if (count == range_enemy.Count - 1)
+                        {
+                            count = 0;
+                        }
+                        else
+                        {
+                            count++;
+                        }
+                    }
+                    var pos = range_enemy[count].transform.position;
+                    pos.y = rayBox.transform.position.y;
+                    rayBox.transform.position = pos;
+                }
+
                 Ray ray = new Ray(rayBox.transform.position, -rayBox.transform.up);
                 RaycastHit hit = new RaycastHit();
                 //カーソルの下になんかいて
@@ -445,6 +478,8 @@ public class BattleFlowTest : MonoBehaviour
                         if (hit.transform.tag == "Enemy")
                         {
                             attacking = true;
+                            count = 0;
+
                             Debug.Log("自キャラの攻撃！");
                             FindObjectOfType<RayBox>().move_ = false;
 
@@ -488,7 +523,7 @@ public class BattleFlowTest : MonoBehaviour
                                 hit.collider.GetComponent<Character>()._totalMaxhp);
 
                             //選択キャラの攻撃可能状態を解除
-                            _nowChooseChar.GetComponent<Move_System>().AttackRelease();
+                            _nowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
 
                             //演出上の間をおいてから敵の反撃へ
                             StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () => 

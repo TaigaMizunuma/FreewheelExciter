@@ -10,6 +10,9 @@ public class PlayerAttack : MonoBehaviour
     List<GameObject> attack_range = new List<GameObject>();
     List<GameObject> judged_range = new List<GameObject>();
     public bool range_line = false;
+
+    List<GameObject> InAttackRange_Enemy = new List<GameObject>();
+
     // Use this for initialization
     void Start()
     {
@@ -27,10 +30,62 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    RangeSearch();
+        //}
+    }
+
+    public void AttackReady()
+    {
+        var count = 0;
+
+        foreach (GameObject atk in attack_range)
         {
-            RangeSearch();   
+            atk.GetComponent<Square_Info>().AttackRange();
+
+            //攻撃範囲に何かいる時攻撃選択
+            if (atk.GetComponent<Square_Info>().GetChara())
+            {
+                if (atk.GetComponent<Square_Info>().GetChara().tag == "Enemy")
+                {
+                    Debug.Log("エネミーが攻撃範囲内");
+                    InAttackRange_Enemy.Add(atk.GetComponent<Square_Info>().GetChara());
+                    FindObjectOfType<BattleFlowTest>().state_ = State_.player_attack_mode;
+                }
+                else
+                {
+                    count++;
+
+                }
+            }
+            else
+            {
+                count++;
+            }
         }
+
+        //攻撃範囲内に何もいないとき攻撃キャンセル
+        if (count == attack_range.Count)
+        {
+            Debug.Log("攻撃範囲内には何もいない");
+            StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
+            {
+                AttackRelease();
+            }));
+            FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+            FindObjectOfType<BattleFlowTest>().state_ = State_.action_mode;
+            count = 0;
+        }
+    }
+
+    public void AttackRelease()
+    {
+        foreach (GameObject atk in attack_range)
+        {
+            atk.GetComponent<Square_Info>().DecisionEnd();
+        }
+        InAttackRange_Enemy.Clear();
     }
 
     public List<GameObject> GetAttackRange()
@@ -38,10 +93,25 @@ public class PlayerAttack : MonoBehaviour
         return attack_range;
     }
 
+    /// <summary>
+    ///ゲッター 攻撃範囲に入ってるエネミー
+    /// </summary>
+    /// <returns>攻撃範囲に入ってるエネミーのリスト</returns>
+    public List<GameObject> GetInAttackRangeEnemy()
+    {
+        return InAttackRange_Enemy;
+    }
+
     public void RangeSearch()
     {
+        Character c = gameObject.GetComponent<Character>();
+        MinCost = c._range[0];
+        MaxCost = c._range[1];
+
         Retrieval();
         RetrievalRelease();
+
+        AttackReady();
     }
 
     public void Retrieval()
@@ -67,7 +137,10 @@ public class PlayerAttack : MonoBehaviour
             if (1 <= MaxCost)
             {
                 n_si_.AttackRange();
-                attack_range.Add(n_si_.gameObject);
+                if (!attack_range.Contains(n_si_.gameObject))
+                {
+                    attack_range.Add(n_si_.gameObject);
+                }
             }
             if (1 < MaxCost)
             {
@@ -96,7 +169,10 @@ public class PlayerAttack : MonoBehaviour
             if (cost_ <= MaxCost)
             {
                 n_si_.AttackRange();
-                attack_range.Add(n_si_.gameObject);
+                if (!attack_range.Contains(n_si_.gameObject))
+                {
+                    attack_range.Add(n_si_.gameObject);
+                }
             }
             if (cost_ < MaxCost) Retrieval(n, cost_ + 1);
         }
@@ -116,7 +192,10 @@ public class PlayerAttack : MonoBehaviour
         if (cost_ <= MaxCost)
         {
             n_si_.AttackRange();
-            attack_range.Add(n_si_.gameObject);
+            if (!attack_range.Contains(n_si_.gameObject))
+            {
+                attack_range.Add(n_si_.gameObject);
+            }
         }
         if (cost_ < MaxCost) Retrieval(near_, cost_ + 1,num);
     }
@@ -136,7 +215,7 @@ public class PlayerAttack : MonoBehaviour
             if (1 < MinCost)
             {
                 n_si_.DecisionEnd();
-                if (n_si_.GetRange()) attack_range.Remove(n_si_.gameObject);
+                if (!n_si_.GetRange()) attack_range.Remove(n_si_.gameObject);
                 RetrievalRelease(n, 2);
             }
         }
@@ -158,7 +237,7 @@ public class PlayerAttack : MonoBehaviour
             if (cost_ < MinCost)
             {
                 n_si_.DecisionEnd();
-                if (n_si_.GetRange()) attack_range.Remove(n_si_.gameObject);
+                if (!n_si_.GetRange()) attack_range.Remove(n_si_.gameObject);
                 RetrievalRelease(n, cost_ + 1);
             }
         }
