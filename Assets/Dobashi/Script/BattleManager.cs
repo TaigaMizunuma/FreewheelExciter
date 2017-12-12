@@ -29,6 +29,7 @@ public class BattleManager : MonoBehaviour {
         public int _getexp;
         public List<string> _skilleffect;
         public int _stock;
+        public int _exavo;
 
         public bool _drain;                 //吸収
         public bool _fortress;              //無敵
@@ -50,6 +51,7 @@ public class BattleManager : MonoBehaviour {
             _revenge = 0;
             _fightingspirit = false;
             _getexp = 5;
+            
         }
 
         /// <summary>
@@ -66,6 +68,19 @@ public class BattleManager : MonoBehaviour {
             }
             _stock = _chara.GetStock();
 
+            _exavo = 0;
+            if (_obj.transform.tag == "Player")
+            {
+                var i = _obj.GetComponent<PlayerAttack>().RangeSerch2(3);
+                foreach (GameObject j in i)
+                {
+                    if (j.GetComponent<SkillChecker>()._LeaderJr)
+                    {
+                        _exavo = 5;
+                    }
+                }
+            }
+            
         }
 
         /// <summary>
@@ -88,7 +103,21 @@ public class BattleManager : MonoBehaviour {
         /// <param name="_target_avoidance">敵の回避率</param>
         public void set_hit(float _target_avoidance)
         {
-             _Totalhit =_chara._hit - _target_avoidance;
+            var ex = 0;
+
+            if (_obj.transform.tag == "Player")
+            {
+                var i = _obj.GetComponent<PlayerAttack>().RangeSerch2(3);
+                foreach (GameObject j in i)
+                {
+                    if (j.GetComponent<SkillChecker>()._LeaderJr)
+                    {
+                        ex = 5;
+                    }
+                }
+            }
+            
+             _Totalhit =ex + _chara._hit - _target_avoidance;
             //命中判定 50以上だった場合少し確立を上げる
             if (_Totalhit >= 50)
             {
@@ -208,16 +237,12 @@ public class BattleManager : MonoBehaviour {
         _def.set_atk(_attacker._chara._totaldef,1);
 
         //命中率セット
-        _attacker.set_hit(_def._chara._avoidance);
-        _def.set_hit(_attacker._chara._avoidance);
+        _attacker.set_hit(_def._chara._avoidance + _def._exavo);
+        _def.set_hit(_attacker._chara._avoidance + _attacker._exavo);
 
         //必殺率セット
         _attacker.set_critical(_def._chara._totalluk);
         _def.set_critical(_attacker._chara._totalluk);
-
-        //スキルチェック
-        //_attacker.Skill_Check();
-        //_def.Skill_Check();
 
         //戦闘処理開始
         Battle(_attacker,_def);
@@ -433,7 +458,6 @@ public class BattleManager : MonoBehaviour {
                         return _atkside.addexpdraw(_defside._chara._totalLevel,_atkside._atk);
                     }
                 }
-
             }
             else
             {
@@ -461,37 +485,68 @@ public class BattleManager : MonoBehaviour {
         var def_exp = 0;
         //反撃封じ発動確認
         var _Cancel = false;
+        //攻撃回数増加用変数
+        var _count_plus = 1;
         //カウンター時。反撃封じは無効
         if (_def._chara.GetComponent<SkillChecker>()._Counter && (Random.Range(0, 101) < _def._chara._totalspd))
         {
             Debug.Log("待ち伏せ!");
-            for (var i = 0; i < _def._chara._attack_count; i++)
+            //攻撃回数2倍
+            if(_def._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _def._chara._totalstr))
+            {
+                Debug.Log("攻撃回数2倍!");
+                _count_plus = 2;
+            }
+            for (var i = 0; i < _def._chara._attack_count * _count_plus; i++)
             {
                 //迎撃側の攻撃
                 def_exp += BattleSystem(_def,_attacker,_def._revenge,def_stock);
-                if(!_def._chara.GetComponent<SkillChecker>()._Saving && (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
+                if(!_def._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
                 if (_battleend) break;
 
             }
-            
-            for (var i = 0; i < _attacker._chara._attack_count; i++)
+            _count_plus = 1;
+
+
+            //攻撃回数2倍
+            if (_attacker._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _attacker._chara._totalstr))
+            {
+                Debug.Log("攻撃回数2倍!");
+                _count_plus = 2;
+            }
+            for (var i = 0; i < _attacker._chara._attack_count * _count_plus; i++)
             {
                 //攻撃側の攻撃
                 atk_exp += BattleSystem(_attacker, _def, 0,atk_stock);
-                if (!_attacker._chara.GetComponent<SkillChecker>()._Saving && (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
+                if (!_attacker._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
                 if (_battleend) break;
             }
+            _count_plus = 1;
         }
         else
         {
-            for (var i = 0; i < _attacker._chara._attack_count; i++)
+            //攻撃回数2倍
+            if (_attacker._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _attacker._chara._totalstr))
+            {
+                Debug.Log("攻撃回数2倍!");
+                _count_plus = 2;
+            }
+            for (var i = 0; i < _attacker._chara._attack_count * _count_plus; i++)
             {
                 //攻撃側の攻撃
                 atk_exp+= BattleSystem(_attacker, _def, 0,atk_stock);
-                if (!_attacker._chara.GetComponent<SkillChecker>()._Saving && (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
+                if (!_attacker._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
                 if (_battleend) break;
             }
+            _count_plus = 1;
 
+
+            //攻撃回数2倍
+            if (_def._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _def._chara._totalstr))
+            {
+                Debug.Log("攻撃回数2倍!");
+                _count_plus = 2;
+            }
             //反撃封じ判定
             if (_attacker._chara.GetComponent<SkillChecker>()._Cancel && (Random.Range(0, 101) < _attacker._chara._totalskl)){
                 _Cancel = true;
@@ -499,14 +554,15 @@ public class BattleManager : MonoBehaviour {
             }
             else
             {                
-                for (var i = 0; i < _def._chara._attack_count; i++)
+                for (var i = 0; i < _def._chara._attack_count * _count_plus; i++)
                 {
                     //迎撃側の攻撃
                     def_exp += BattleSystem(_def, _attacker, _def._revenge, def_stock);
-                    if (!_def._chara.GetComponent<SkillChecker>()._Saving && (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
+                    if (!_def._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
                     if (_battleend) break;
                 }
             }
+            _count_plus = 1;
             
         }
         
@@ -515,25 +571,39 @@ public class BattleManager : MonoBehaviour {
         //追撃判定
         if ((_attacker._chara._attack_speed > _def._chara._attack_speed + 3) && (_attacker._chara._totalskl > _def._chara._totalskl + 3) && _battleend == false)
         {
-            for (var i = 0; i < _attacker._chara._attack_count; i++)
+            //攻撃回数2倍
+            if (_attacker._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _attacker._chara._totalstr))
+            {
+                Debug.Log("攻撃回数2倍!");
+                _count_plus = 2;
+            }
+            for (var i = 0; i < _attacker._chara._attack_count * _count_plus; i++)
             {
                 //攻撃側の追撃
                 atk_exp+= BattleSystem(_attacker, _def, 0,atk_stock);
-                if (!_attacker._chara.GetComponent<SkillChecker>()._Saving && (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
+                if (!_attacker._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
                 if (_battleend) break;
-            }                   
+            }
+            _count_plus = 1;
         }
         //反撃無効時は追撃もしない
         else if ((_attacker._chara._attack_speed+3 < _def._chara._attack_speed) &&
             (_attacker._chara._totalskl+3 < _def._chara._totalskl) && _battleend == false && !_Cancel)
         {
-            for (var i = 0; i < _def._chara._attack_count; i++)
+            //攻撃回数2倍
+            if (_def._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _def._chara._totalstr))
+            {
+                Debug.Log("攻撃回数2倍!");
+                _count_plus = 2;
+            }
+            for (var i = 0; i < _def._chara._attack_count * _count_plus; i++)
             {
                 //迎撃側の追撃
                 def_exp += BattleSystem(_def, _attacker, _def._revenge,def_stock);
-                if (!_def._chara.GetComponent<SkillChecker>()._Saving && (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
+                if (!_def._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
                 if (_battleend) break;
             }
+            _count_plus = 1;
         }
         //経験値加算
         _attacker.addexp(atk_exp);

@@ -14,7 +14,7 @@ public enum Passive_Skill_List
     Oldsoldier,     //回復効果2倍　                      アイテム内済
     Elite,          //経験値1.5倍　                      済
     Awesomearm,     //銃装備時最大射程＋１　             済
-    Leakage,        //攻撃した敵の燃料半減
+    Leakage,        //攻撃した敵の燃料半減               不要
     Rigidarm,       //武器の重さ無視　                   済
     Georges         //地形効果や射程で命中率が下がらない
 }
