@@ -139,7 +139,7 @@ public class StoryCSVReader : MonoBehaviour
         c_ImgManager = GetComponent<CharacterImageManager>();
 
         //CSVデータ読み込み
-        storyCSVFile = Resources.Load("Data/" + dataLoadName) as TextAsset;
+        storyCSVFile = Resources.Load("StoryData/" + dataLoadName) as TextAsset;
         StringReader reader = new StringReader(storyCSVFile.text);
         while (reader.Peek() > -1)
         {
