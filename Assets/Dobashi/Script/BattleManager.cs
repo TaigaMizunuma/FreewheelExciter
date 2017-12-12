@@ -112,7 +112,28 @@ public class BattleManager : MonoBehaviour {
         /// <param name="target_luk">敵の運</param>
         public void set_critical(int _target_luk)
         {
-            _critical = _chara._critical - _target_luk;
+            int ex = 0;
+            if (_obj.transform.tag == "Player")
+            {
+                var bn = _obj.GetComponent<Move_System>().GetNowPos();
+                var i = bn.GetComponent<Square_Info>().GetNear();                
+                for (var j = 0; j < i.Length; j++)
+                {
+                    var k = i[j].GetComponent<Square_Info>();
+                    if (k.GetChara())
+                    {
+                        if (k.GetChara().GetComponent<SkillChecker>())
+                        {
+                            if (k.GetChara().GetComponent<SkillChecker>()._Charisma)
+                            {
+                                ex = 10;
+                            }
+                        }
+                    }
+                }
+            }            
+            _critical = ex + _chara._critical - _target_luk;
+
         }
 
         /// <summary>

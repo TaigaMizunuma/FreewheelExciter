@@ -457,7 +457,7 @@ public class Character : MonoBehaviour {
 
         //攻撃力計算
         //装備が銃だったら技を参照にする。
-        if (_equipment.GetComponent<Weapon>()._type == "gun")
+        if (_equipment.GetComponent<Weapon>()._weapontype == Weapon_Type.gun || _equipment.GetComponent<Weapon>()._weapontype == Weapon_Type.rifle)
         {
             //射程プラス1
             if (_skillchecker._Awesomearm)

@@ -8,16 +8,16 @@ public enum Random_Skill_List
     Cancel,                 //反撃無効化：技％：待ち伏せには無効　      バトルマネージャー内：済
     SandR,                  //防御無視攻撃：LV％                        バトルマネージャー内：済
     Smash,                  //攻撃力に力を加算：力％　                  バトルマネージャー内：済
-    Destruction,            //一撃必殺：必殺時50％
+    Destruction,            //一撃必殺：必殺時50％                      不要
     Counter,                //攻撃されたとき先制攻撃：速さ％　          バトルマネージャー内：済
-    D_Aggressor,            //受けたダメージをそのまま返す：力％
+    D_Aggressor,            //受けたダメージをそのまま返す：力％        不要
     Fortress,               //無敵：Lv％　                              バトルマネージャー内：済
-    Genocide,               //持っている武器すべてで攻撃:力/2%
-    Weapon_Destruction,     //敵の装備を破壊：Lv%
-    Running_W,              //移動量*2を力に加算：移動力％
+    Genocide,               //持っている武器すべてで攻撃:力/2%        　不要
+    Weapon_Destruction,     //敵の装備を破壊：Lv%                       不要
+    Running_W,              //移動量*2を力に加算：移動力％              不要
     Raid,                   //2回攻撃する:力％
-    Shotdown,               //行動後、ステータス半分で再行動：Lv％
-    Saving,                 //武器の耐久が減らない：技*2%
+    Shotdown,               //行動後、ステータス半分で再行動：Lv％      不要
+    Saving,                 //武器の耐久が減らない：技*2%   
     NewType,                //3ターン全攻撃を回避:呪力％
     Praying                 //くいしばり:運*2%                          バトルマネージャー内：済
 }
