@@ -33,11 +33,6 @@ public class RandomSkill : MonoBehaviour {
     void Start () {
         SetName();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void SetName()
     {

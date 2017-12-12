@@ -12,11 +12,6 @@ public class ItemPrefabList : MonoBehaviour {
         ItemAddList();
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
 
     void ItemAddList()
     {

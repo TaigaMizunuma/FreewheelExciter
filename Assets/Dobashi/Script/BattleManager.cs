@@ -199,16 +199,6 @@ public class BattleManager : MonoBehaviour {
 
     }
 
-    // Use this for initialization
-    void Start () {
-        //_skill_effect_state = Skill_Effect_State.None;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
-
     /// <summary>
     /// 戦闘準備
     /// お互いの与ダメージと
@@ -565,46 +555,49 @@ public class BattleManager : MonoBehaviour {
             _count_plus = 1;
             
         }
-        
-            
 
-        //追撃判定
-        if ((_attacker._chara._attack_speed > _def._chara._attack_speed + 3) && (_attacker._chara._totalskl > _def._chara._totalskl + 3) && _battleend == false)
+        //安定スキル発動時は追撃しない
+        if (!_attacker._chara._stability && !_def._chara._stability)
         {
-            //攻撃回数2倍
-            if (_attacker._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _attacker._chara._totalstr))
+            //追撃判定
+            if ((_attacker._chara._attack_speed > _def._chara._attack_speed + 3) && (_attacker._chara._totalskl > _def._chara._totalskl + 3) && _battleend == false)
             {
-                Debug.Log("攻撃回数2倍!");
-                _count_plus = 2;
+                //攻撃回数2倍
+                if (_attacker._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _attacker._chara._totalstr))
+                {
+                    Debug.Log("攻撃回数2倍!");
+                    _count_plus = 2;
+                }
+                for (var i = 0; i < _attacker._chara._attack_count * _count_plus; i++)
+                {
+                    //攻撃側の追撃
+                    atk_exp += BattleSystem(_attacker, _def, 0, atk_stock);
+                    if (!_attacker._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
+                    if (_battleend) break;
+                }
+                _count_plus = 1;
             }
-            for (var i = 0; i < _attacker._chara._attack_count * _count_plus; i++)
+            //反撃無効時は追撃もしない
+            else if ((_attacker._chara._attack_speed + 3 < _def._chara._attack_speed) &&
+                (_attacker._chara._totalskl + 3 < _def._chara._totalskl) && _battleend == false && !_Cancel)
             {
-                //攻撃側の追撃
-                atk_exp+= BattleSystem(_attacker, _def, 0,atk_stock);
-                if (!_attacker._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
-                if (_battleend) break;
+                //攻撃回数2倍
+                if (_def._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _def._chara._totalstr))
+                {
+                    Debug.Log("攻撃回数2倍!");
+                    _count_plus = 2;
+                }
+                for (var i = 0; i < _def._chara._attack_count * _count_plus; i++)
+                {
+                    //迎撃側の追撃
+                    def_exp += BattleSystem(_def, _attacker, _def._revenge, def_stock);
+                    if (!_def._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
+                    if (_battleend) break;
+                }
+                _count_plus = 1;
             }
-            _count_plus = 1;
         }
-        //反撃無効時は追撃もしない
-        else if ((_attacker._chara._attack_speed+3 < _def._chara._attack_speed) &&
-            (_attacker._chara._totalskl+3 < _def._chara._totalskl) && _battleend == false && !_Cancel)
-        {
-            //攻撃回数2倍
-            if (_def._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _def._chara._totalstr))
-            {
-                Debug.Log("攻撃回数2倍!");
-                _count_plus = 2;
-            }
-            for (var i = 0; i < _def._chara._attack_count * _count_plus; i++)
-            {
-                //迎撃側の追撃
-                def_exp += BattleSystem(_def, _attacker, _def._revenge,def_stock);
-                if (!_def._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
-                if (_battleend) break;
-            }
-            _count_plus = 1;
-        }
+        
         //経験値加算
         _attacker.addexp(atk_exp);
         _def.addexp(def_exp);

@@ -49,10 +49,6 @@ public class Weapon : MonoBehaviour {
         SetName();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
     /// <summary>
     /// 各種変数の代入
     /// </summary>

@@ -6,7 +6,8 @@ public enum Command_Skill_List
 {
     Doubleattack,        //2連撃
     Berserk,             //次の攻撃時必殺＋15%命中-15%
-    Destruction          //次の攻撃時攻撃+10守備-10
+    Destruction,         //次の攻撃時攻撃+10守備-10
+    Stability            //お互いに追撃不可
 }
 
 public class CommandSkill : MonoBehaviour {
@@ -22,11 +23,6 @@ public class CommandSkill : MonoBehaviour {
         SetName();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     void SetName()
     {
         gameObject.GetComponent<Transform>().name = _name;
@@ -50,6 +46,10 @@ public class CommandSkill : MonoBehaviour {
                 Debug.Log("次の攻撃時力+10、守備-10");
                 _chara.GetComponent<Character>()._totalhp -= 10;
                 _chara.GetComponent<Character>().OneButtleStatus(0, 10, -10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                break;
+            case Command_Skill_List.Stability:
+                Debug.Log("次の攻撃時お互いに追撃不可");
+                _chara.GetComponent<Character>()._stability = true;
                 break;
 
         }

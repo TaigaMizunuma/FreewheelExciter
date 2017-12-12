@@ -13,11 +13,6 @@ public class SkillPrefabList : MonoBehaviour {
     void Start () {
         SkillAddList();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void SkillAddList()
     {

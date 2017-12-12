@@ -108,6 +108,8 @@ public class Character : MonoBehaviour {
 
     public int[] _range = {0,0};            //攻撃範囲(配列の0番目が最小,1番目が最大)
 
+    public bool _stability = false;         //追撃できないかどうか
+
     public GameObject _itemprefablist;      //アイテムの親オブジェクトの取得
     public GameObject _skillprefablist;     //スキルの親オブジェクトの取得
     public SkillChecker _skillchecker;      //スキルチェッカースクリプト
@@ -268,7 +270,9 @@ public class Character : MonoBehaviour {
     /// </summary>
     public void BattleEnd()
     {
+        _stability = false;
         _addonetimestatuslist = new int[14] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
     }
 
     /// <summary>

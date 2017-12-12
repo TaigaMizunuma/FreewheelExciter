@@ -10,7 +10,7 @@ public enum Passive_Skill_List
     Revenge,        //反撃次必殺率+20％　                バトルマネージャー内 済
     Onemore,        //行動後に余っていた分移動する　
     Charisma,       //3マス以内の味方の必殺＋10％        バトルマネージャー内 済
-    LeaderJr,       //3マス以内の味方の回避、命中＋5％
+    LeaderJr,       //3マス以内の味方の回避、命中＋5％   バトルマネージャー内 済
     Oldsoldier,     //回復効果2倍　                      アイテム内済
     Elite,          //経験値1.5倍　                      済
     Awesomearm,     //銃装備時最大射程＋１　             済
@@ -36,10 +36,6 @@ public class PassiveSkill : MonoBehaviour {
 	void Start () {
         SetName();
     }
-	
-	// Update is called once per frame
-	void Update () {
-	}
 
     void SetName()
     {
