@@ -15,9 +15,9 @@ public enum Random_Skill_List
     Genocide,               //持っている武器すべてで攻撃:力/2%        　不要
     Weapon_Destruction,     //敵の装備を破壊：Lv%                       不要
     Running_W,              //移動量*2を力に加算：移動力％              不要
-    Raid,                   //2回攻撃する:力％
+    Raid,                   //2倍攻撃する:力％                          バトルマネージャー内：済
     Shotdown,               //行動後、ステータス半分で再行動：Lv％      不要
-    Saving,                 //武器の耐久が減らない：技*2%   
+    Saving,                 //武器の耐久が減らない：技*2%               バトルマネージャー内：済
     NewType,                //3ターン全攻撃を回避:呪力％
     Praying                 //くいしばり:運*2%                          バトルマネージャー内：済
 }

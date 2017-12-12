@@ -9,7 +9,7 @@ public enum Passive_Skill_List
     Desert,         //遠隔攻撃に対して回避＋15％　       バトルマネージャー内
     Revenge,        //反撃次必殺率+20％　                バトルマネージャー内 済
     Onemore,        //行動後に余っていた分移動する　
-    Charisma,       //3マス以内の味方の必殺＋10％
+    Charisma,       //3マス以内の味方の必殺＋10％        バトルマネージャー内 済
     LeaderJr,       //3マス以内の味方の回避、命中＋5％
     Oldsoldier,     //回復効果2倍　                      アイテム内済
     Elite,          //経験値1.5倍　                      済
