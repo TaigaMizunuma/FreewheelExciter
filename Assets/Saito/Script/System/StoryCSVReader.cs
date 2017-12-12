@@ -358,6 +358,12 @@ public class StoryCSVReader : MonoBehaviour
 
     }
 
+
+    public int GetStoryID()
+    {
+        return storyID;
+    }
+
     /// <summary>
     /// 章番号
     /// </summary>
