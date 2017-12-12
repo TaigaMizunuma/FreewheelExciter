@@ -104,8 +104,8 @@ public class Move_System : MonoBehaviour
             Square_Info n_si_ = n.GetComponent<Square_Info>();
             if (cost - n_si_.GetCost() >= 0 && n_si_.CanSetCost(cost, now_pos)) 
             {
-                n_si_.Decision();
-                
+                if (n.GetComponent<Square_Info>().GetChara() == null) n_si_.Decision();
+
                 Retrieval(n, cost);  
             }
         }
@@ -127,7 +127,7 @@ public class Move_System : MonoBehaviour
             Square_Info n_si_ = n.GetComponent<Square_Info>();
             if (cost_ - n_si_.GetCost() >= 0 && n_si_.CanSetCost(cost_, near))
             {
-                n_si_.Decision();
+                if (n.GetComponent<Square_Info>().GetChara() == null) n_si_.Decision();
                 Retrieval(n, cost_);
             }
         }

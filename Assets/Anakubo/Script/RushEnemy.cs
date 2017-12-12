@@ -30,6 +30,19 @@ public class RushEnemy : MonoBehaviour {
                 target_ = p_pos;
             }
         }
+        GameObject target_pos = null;
+        foreach (GameObject t in target_.GetComponent<Square_Info>().GetNear())
+        {
+            if (t.GetComponent<Square_Info>().GetChara() != null) continue;
+            if (target_pos == null) target_pos = t;
+            else if (t.GetComponent<Square_Info>().GetChara() == null)
+            {
+                if (target_pos.GetComponent<Square_Info>().GetMaxCost() < t.GetComponent<Square_Info>().GetMaxCost())
+                {
+                    target_pos = t;
+                }
+            }
+        }
         players_ = null;
         return target_;
     }

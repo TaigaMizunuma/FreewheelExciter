@@ -76,7 +76,7 @@ public class EnemyBase : MonoBehaviour {
         Search();
         DisplayEnd();
         cost_remainder = false;
-        
+        Debug.Log(target_square.name);
     }
 
     void Retrieval()
@@ -94,7 +94,7 @@ public class EnemyBase : MonoBehaviour {
             Square_Info n_si_ = n.GetComponent<Square_Info>();
             if (cost - n_si_.GetCost() >= 0 && n_si_.CanSetCost(cost, now_pos) && first_cost >= n_si_.GetCost())
             {
-                n_si_.Decision();
+                if (n.GetComponent<Square_Info>().GetChara() == null) n_si_.Decision();
 
                 Retrieval(n, cost);
             }
@@ -116,7 +116,7 @@ public class EnemyBase : MonoBehaviour {
             Square_Info n_si_ = n.GetComponent<Square_Info>();
             if (cost_ - n_si_.GetCost() >= 0 && n_si_.CanSetCost(cost_, near)&&first_cost>= n_si_.GetCost())
             {
-                n_si_.Decision();
+                if (n.GetComponent<Square_Info>().GetChara() == null) n_si_.Decision();
                 Retrieval(n, cost_);
             }
         }
@@ -140,6 +140,7 @@ public class EnemyBase : MonoBehaviour {
                 target_square = null;
                 foreach (GameObject g in g_near)
                 {
+                    if (g.GetComponent<Square_Info>().GetChara() != null) continue;
                     if (target_square == null) target_square = g;
                     else if (target_square.GetComponent<Square_Info>().GetMaxCost() < g.GetComponent<Square_Info>().GetMaxCost())
                     {
@@ -324,7 +325,8 @@ public class EnemyBase : MonoBehaviour {
             target_square = null;
             foreach (GameObject g in g_near)
             {
-                if(target_square == null) target_square = g;
+                if (g.GetComponent<Square_Info>().GetChara() != null) continue;
+                if (target_square == null) target_square = g;
                 else if (target_square.GetComponent<Square_Info>().GetMaxCost() < g.GetComponent<Square_Info>().GetMaxCost())
                 {
                     target_square = g;
@@ -336,6 +338,7 @@ public class EnemyBase : MonoBehaviour {
 
     void RushAI()
     {
+        if (player_in_range) return;
         RushEnemy re_ = GetComponent<RushEnemy>();
         if (re_ != null && !player_in_range) target_square = re_.SetTarget();
         LowHPSnipeEnemy lhs_ = GetComponent<LowHPSnipeEnemy>();

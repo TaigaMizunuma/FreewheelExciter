@@ -64,6 +64,18 @@ public class Square_Info : MonoBehaviour {
 
     public bool CanSetCost(int c,GameObject b)
     {
+        if (before_point != null)
+        {
+            if (b.GetComponent<Square_Info>().GetChara() == null && before_point.GetComponent<Square_Info>().GetChara() != null)
+            {
+                if (c == max_cost)
+                {
+                    max_cost = c;
+                    before_point = b;
+                    return true;
+                }
+            }
+        }
         if (c > max_cost)
         {
             max_cost = c;

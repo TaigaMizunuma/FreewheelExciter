@@ -32,7 +32,20 @@ public class LowHPSnipeEnemy : MonoBehaviour {
             }
         }
         target_ = target_player.GetComponent<Move_System>().GetNowPos();
+        GameObject target_pos = null;
+        foreach(GameObject t in target_.GetComponent<Square_Info>().GetNear())
+        {
+            if (t.GetComponent<Square_Info>().GetChara() != null) continue;
+            if (target_pos == null) target_pos = t;
+            else if (t.GetComponent<Square_Info>().GetChara() == null)
+            {
+                if (target_pos.GetComponent<Square_Info>().GetMaxCost() < t.GetComponent<Square_Info>().GetMaxCost())
+                {
+                    target_pos = t;
+                }
+            }
+        }
         players_ = null;
-        return target_;
+        return target_pos;
     }
 }
