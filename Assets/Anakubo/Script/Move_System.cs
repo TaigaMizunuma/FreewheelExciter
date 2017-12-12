@@ -58,9 +58,9 @@ public class Move_System : MonoBehaviour
             RaycastHit hit = new RaycastHit();
             if (Physics.Raycast(ray, out hit, 1000.0f))
             {
-                FindObjectOfType<RayBox>().move_ = false;
                 if (hit.transform.tag == "Floor" && hit.transform.GetComponent<Square_Info>().move_cost < 100)
                 {
+                    FindObjectOfType<RayBox>().move_ = false;
                     Square_Info a = hit.transform.GetComponent<Square_Info>();
                     if (a.IsDecision())
                     {
