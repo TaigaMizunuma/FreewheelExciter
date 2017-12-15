@@ -591,7 +591,7 @@ public class Character : MonoBehaviour {
         bool _loop = true;
         _level++;
         _totalLevel++;
-        _exp -= 100;       
+        _exp = 0;       
         //各能力が上昇するかの抽選
         if (UnityEngine.Random.Range(0, 100) <= _hprate)
         {
