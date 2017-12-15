@@ -47,7 +47,7 @@ public class Hensei : MonoBehaviour {
             {
                 sortie_[i] = true;
                 sortie_num--;
-                models[i] = Instantiate(unit_parent.GetComponent<UnitList>().GetPlayerModel(i));
+                //models[i] = Instantiate(unit_parent.GetComponent<UnitList>().GetPlayerModel(i));
             }
             else
             {
@@ -122,7 +122,7 @@ public class Hensei : MonoBehaviour {
                 units_[unit_num].GetComponent<Text>().color = new Color(0.2f, 0.2f, 0.2f, 1);
                 sortie_[unit_num] = true;
                 sortie_num--;
-                models[unit_num] = Instantiate(unit_parent.GetComponent<UnitList>().GetPlayerModel(unit_num));
+                //models[unit_num] = Instantiate(unit_parent.GetComponent<UnitList>().GetPlayerModel(unit_num));
                 cursor_.GetComponent<PosSort>().SetFirstPos();
             }
         }
@@ -132,7 +132,7 @@ public class Hensei : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            parent_canvas.GetComponent<ReadyManager>().SetUnit(units_[unit_num]);
+            parent_canvas.GetComponent<ReadyManager>().SetUnit(unit_parent.GetComponent<UnitList>().players_[unit_num]);
             transform.parent.GetComponent<ReadyManager>().ModeChange(6);
         }
     }

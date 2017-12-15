@@ -10,7 +10,8 @@ public enum Effect_Type
     staterecovery,      //状態異常回復
     healplus,           //回復量増加
     regeneration,       //リジェネ
-    classchange         //クラスチェンジ
+    classchange,        //クラスチェンジ
+    bullet              //弾
 }
 
 public class Item : MonoBehaviour {
@@ -131,6 +132,10 @@ public class Item : MonoBehaviour {
             case Effect_Type.classchange:
                 //クラスチェンジ
                 
+                break;
+            case Effect_Type.bullet:
+                //弾
+
                 break;
         }
     }

@@ -22,9 +22,11 @@ public class Weapon : MonoBehaviour {
     //武器名
     public string _name;
     //武器の説明
-    public string _message;
+    public string _message;   
     //残りの数(耐久)
     public int _stock;
+    //残り回数上限
+    public int _maxstock;
     //武器タイプ
     public string _type;
     //攻撃力
@@ -56,6 +58,7 @@ public class Weapon : MonoBehaviour {
     /// <param name="name">名前</param>
     /// <param name="message">説明</param>
     /// <param name="stock">残りの使用回数</param>
+    /// <param name="maxstock">耐久最大値</param>
     /// <param name="type">タイプ</param>
     /// <param name="atk">攻撃力</param>
     /// <param name="weight">重さ</param>
@@ -65,12 +68,13 @@ public class Weapon : MonoBehaviour {
     /// <param name="rangemin">最小射程</param>
     /// <param name="rangemax">最大射程</param>
     /// <param name="weapontype">武器種</param>
-    public void SetStatus(int id,string name, string message, int stock, string type, int atk, int weight, int hit, int critical, int count, int rangemin, int rangemax,string weapontype)
+    public void SetStatus(int id,string name, string message, int stock, int maxstock, string type, int atk, int weight, int hit, int critical, int count, int rangemin, int rangemax,string weapontype)
     {
         _id = id;
         _name = name;
         _message = message;
         _stock = stock;
+        _maxstock = maxstock;
         _type = type;
         _atk = atk;
         _weight = weight;

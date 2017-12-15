@@ -44,7 +44,7 @@ public class RepositoryManager : MonoBehaviour {
         else if (obj.GetComponent<Weapon>())
         {
             var i = obj.GetComponent<Weapon>();
-            _weaponrepository.AddItem(i._name,i._message,i._stock,i._type,i._atk,i._weight,i._hit,i._critical,i._attackcount,i._min,i._max,i._weapontype.ToString());
+            _weaponrepository.AddItem(i._name,i._message,i._stock,i._maxstock,i._type,i._atk,i._weight,i._hit,i._critical,i._attackcount,i._min,i._max,i._weapontype.ToString());
             Destroy(i);
         }
     }
@@ -90,7 +90,7 @@ public class RepositoryManager : MonoBehaviour {
         else if (i.GetComponent<Weapon>())
         {
             var itemscript = i.GetComponent<Weapon>();
-            _weaponrepository.AddItem(itemscript._name,itemscript._message,itemscript._stock,
+            _weaponrepository.AddItem(itemscript._name,itemscript._message,itemscript._stock,itemscript._maxstock,
                 itemscript._type,itemscript._atk,itemscript._weight,itemscript._hit,
                 itemscript._critical,itemscript._attackcount,itemscript._min,itemscript._max,itemscript._weapontype.ToString());
         }

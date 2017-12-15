@@ -20,6 +20,8 @@ public class WeaponRepository : MonoBehaviour {
         public string _message;
         //残りの数(耐久)
         public int _stock;
+        //耐久最大値
+        public int _maxstock;
         //武器タイプ
         public string _type;
         //攻撃力
@@ -38,12 +40,13 @@ public class WeaponRepository : MonoBehaviour {
         //武器種
         public string _weapontype;
 
-        public void SetData(int id, string name, string message, int stock, string type,int atk,int weight,int hit,int critical,int count,int rangemin,int rangemax,string weapontype)
+        public void SetData(int id, string name, string message, int stock, int maxstock,string type,int atk,int weight,int hit,int critical,int count,int rangemin,int rangemax,string weapontype)
         {
             _id = id;
             _name = name;
             _message = message;
             _stock = stock;
+            _maxstock = maxstock;
             _type = type;
             _atk = atk;
             _weight = weight;
@@ -73,6 +76,7 @@ public class WeaponRepository : MonoBehaviour {
     /// <param name="name">なまえ</param>
     /// <param name="message">メッセージ</param>
     /// <param name="stock">残り使用回数</param>
+    /// <param name="maxstock">耐久最大値</param>
     /// <param name="type">タイプ</param>
     /// <param name="atk">攻撃力</param>
     /// <param name="weight">重さ</param>
@@ -82,10 +86,10 @@ public class WeaponRepository : MonoBehaviour {
     /// <param name="rangemin">最小射程</param>
     /// <param name="rangemax">最大射程</param>
     /// <param name="weapontype">武器種</param>
-    public void AddItem(string name, string message, int stock, string type, int atk, int weight, int hit, int critical, int count, int rangemin, int rangemax,string weapontype)
+    public void AddItem(string name, string message, int stock, int maxstock,string type, int atk, int weight, int hit, int critical, int count, int rangemin, int rangemax,string weapontype)
     {
         var i = new WeaponData();
-        i.SetData(_repositoryid, name, message, stock, type,atk,weight,hit,critical,count,rangemin,rangemax,weapontype);
+        i.SetData(_repositoryid, name, message, stock, maxstock,type,atk,weight,hit,critical,count,rangemin,rangemax,weapontype);
         _weaponrepository.Add(i);
         _repositoryid++;
     }
@@ -99,7 +103,7 @@ public class WeaponRepository : MonoBehaviour {
     {
         var i = _weaponrepository[_no];
         var j = Instantiate(_weaponprehub);
-        j.GetComponent<Weapon>().SetStatus(_no, i._name, i._message, i._stock, i._type,i._atk,i._weight,i._hit,i._critical,i._attackcount,i._min,i._max,i._weapontype);
+        j.GetComponent<Weapon>().SetStatus(_no, i._name, i._message, i._stock, i._maxstock,i._type,i._atk,i._weight,i._hit,i._critical,i._attackcount,i._min,i._max,i._weapontype);
         //武器のの削除
         _weaponrepository.RemoveAt(_no);
         return j;
