@@ -20,6 +20,8 @@ public class Hensei : MonoBehaviour {
     public int sortie_num = 6;
     // 生成したキャラモデルを格納
     private GameObject[] models;
+    // 親のcanvasを取得
+    private GameObject parent_canvas;
     
     /////////////////////////////////////
     
@@ -68,11 +70,9 @@ public class Hensei : MonoBehaviour {
             }
             else
             {
-                Vector3 pos = cursor_.GetComponent<RectTransform>().anchoredPosition;
-                pos.y -= 90.0f;
-                cursor_.GetComponent<RectTransform>().anchoredPosition = pos;
                 pos_num_y++;
             }
+            cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num += 2;
         }
         // 上キーで１つ上に 上から２番目のときに押すとカーソルは動かずに表示されているユニットがずれる
@@ -86,28 +86,22 @@ public class Hensei : MonoBehaviour {
             }
             else
             {
-                Vector3 pos = cursor_.GetComponent<RectTransform>().anchoredPosition;
-                pos.y += 90.0f;
-                cursor_.GetComponent<RectTransform>().anchoredPosition = pos;
                 pos_num_y--;
             }
+            cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num -= 2;
         }
 
         if(Input.GetKeyDown(KeyCode.RightArrow) && pos_num_x == 0)
         {
-            Vector3 pos = cursor_.GetComponent<RectTransform>().anchoredPosition;
-            pos.x += 175.0f;
-            cursor_.GetComponent<RectTransform>().anchoredPosition = pos;
             pos_num_x++;
+            cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num++;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && pos_num_x == 1)
         {
-            Vector3 pos = cursor_.GetComponent<RectTransform>().anchoredPosition;
-            pos.x -= 175.0f;
-            cursor_.GetComponent<RectTransform>().anchoredPosition = pos;
             pos_num_x--;
+            cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num--;
         }
 
@@ -149,5 +143,19 @@ public class Hensei : MonoBehaviour {
             if (sortie_[i] == true) u_.Add(unit_parent.GetComponent<UnitList>().GetPlayerModel(i));
         }
         return u_;
+    }
+
+    // Canvasから見たAnchoredPositionを算出する
+    Vector2 CanvasAnchoredPosition(GameObject obj)
+    {
+        Vector2 c_pos = new Vector2();
+        GameObject o_ = obj;
+        while (o_ != parent_canvas)
+        {
+            c_pos += o_.GetComponent<RectTransform>().anchoredPosition;
+            o_ = o_.transform.parent.gameObject;
+        }
+
+        return c_pos;
     }
 }
