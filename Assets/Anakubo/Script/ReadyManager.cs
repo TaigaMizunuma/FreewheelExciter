@@ -8,6 +8,8 @@ public class ReadyManager : MonoBehaviour {
 
     public GameObject[] menu_item;
 
+    private GameObject select_unit;
+
 	// Use this for initialization
 	void Start () {
         ModeChange(0);
@@ -32,5 +34,15 @@ public class ReadyManager : MonoBehaviour {
                 menu_item[i].SetActive(false);
             }
         }
+    }
+
+    public void SetUnit(GameObject u)
+    {
+        select_unit = u;
+    }
+
+    public GameObject GetUnit()
+    {
+        return select_unit;
     }
 }

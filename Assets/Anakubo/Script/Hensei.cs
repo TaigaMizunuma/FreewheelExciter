@@ -55,7 +55,8 @@ public class Hensei : MonoBehaviour {
                 units_[i].GetComponent<Text>().color = new Color(0.7f, 0.7f, 0.7f, 1);
             }
         }
-	}
+        parent_canvas = transform.parent.gameObject;
+    }
 
     // Update is called once per frame
     void Update() {
@@ -131,6 +132,7 @@ public class Hensei : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
+            parent_canvas.GetComponent<ReadyManager>().SetUnit(units_[unit_num]);
             transform.parent.GetComponent<ReadyManager>().ModeChange(6);
         }
     }
