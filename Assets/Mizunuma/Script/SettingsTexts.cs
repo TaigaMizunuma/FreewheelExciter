@@ -22,6 +22,8 @@ public class SettingsTexts : MonoBehaviour
 
     private bool BGMFlag = false;
     private bool SEFlag = false;
+    private float BGMNumber = 0;
+    private float SENumber = 0;
 
     void Start ()
     {
@@ -30,6 +32,9 @@ public class SettingsTexts : MonoBehaviour
         Setting01 = GameObject.Find("TextSetting01").GetComponent<Text>();
         BGMScrollbar03Handle = GameObject.Find("BGMScrollbar03Handle").GetComponent<Image>();
         SEScrollbar04Handle = GameObject.Find("SEScrollbar04Handle").GetComponent<Image>();
+
+        BGMScrollbar.value = SaveData.GetFloat("BGMSetting");
+        SEScrollbar.value = SaveData.GetFloat("SESetting");
     }
 	void Update ()
     {
@@ -71,6 +76,8 @@ public class SettingsTexts : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 eventSystem.sendNavigationEvents = true;
+                BGMNumber = BGMScrollbar.value;
+                SaveData.SetFloat("BGMSetting", BGMNumber);
                 BGMFlag = false;
             }
         }
@@ -91,6 +98,8 @@ public class SettingsTexts : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 eventSystem.sendNavigationEvents = true;
+                SENumber = SEScrollbar.value;
+                SaveData.SetFloat("SESetting", SENumber);
                 SEFlag = false;
             }
         }
