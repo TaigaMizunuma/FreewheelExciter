@@ -407,7 +407,7 @@ public class SaveData
                         var sDict = JsonUtility.FromJson<Serialization<string, string>>(sr.ReadToEnd());
                         sDict.OnAfterDeserialize();
                         saveDictionary = sDict.ToDictionary();
-                        Debug.Log("ロードしました");
+                        //Debug.Log("ロードしました");
                     }
                 }
             }

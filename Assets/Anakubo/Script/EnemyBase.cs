@@ -76,7 +76,6 @@ public class EnemyBase : MonoBehaviour {
         Search();
         DisplayEnd();
         cost_remainder = false;
-        Debug.Log(target_square.name);
     }
 
     void Retrieval()
