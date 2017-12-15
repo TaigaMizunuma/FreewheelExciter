@@ -29,12 +29,13 @@ public class SettingsTexts : MonoBehaviour
 
     void Start ()
     {
+        
         BGMScrollbar = GameObject.Find("BGMScrollbar03").GetComponent<Scrollbar>();
         SEScrollbar = GameObject.Find("SEScrollbar04").GetComponent<Scrollbar>();
         Setting01 = GameObject.Find("TextSetting01").GetComponent<Text>();
         BGMScrollbar03Handle = GameObject.Find("BGMScrollbar03Handle").GetComponent<Image>();
         SEScrollbar04Handle = GameObject.Find("SEScrollbar04Handle").GetComponent<Image>();
-        if (SaveData.HasKey("BGMSetting") == true && SaveData.HasKey("SESetting") == true)
+        if (SaveData.HasKey("BGMSetting") == true)
         {
             /*データ存在時*/
             BGMScrollbar.value = SaveData.GetFloat("BGMSetting");
@@ -42,7 +43,7 @@ public class SettingsTexts : MonoBehaviour
         }
         else
         {
-            Debug.Log("ない");
+            /*データ非読込時*/
         }
     }
 	void Update ()
