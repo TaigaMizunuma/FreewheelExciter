@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private int MinCost = 1;//最小攻撃範囲
-    private int MaxCost = 1;//最大攻撃範囲
+    private int MinCost = 1;
+    private int MaxCost = 1;
     GameObject Now_pos;
-    List<GameObject> attack_range = new List<GameObject>();//攻撃範囲のマス取得
-    //List<GameObject> judged_range = new List<GameObject>();???
+    List<GameObject> attack_range = new List<GameObject>();
+    List<GameObject> judged_range = new List<GameObject>();
 
     public bool range_line = false;//キャラクターの攻撃範囲が直線かそうじゃないか
 
@@ -38,7 +39,6 @@ public class PlayerAttack : MonoBehaviour
     public void AttackReady()
     {
         var count = 0;
-        InAttackRange_Enemy.Clear();
 
         foreach (GameObject atk in attack_range)
         {
@@ -56,6 +56,7 @@ public class PlayerAttack : MonoBehaviour
                 else
                 {
                     count++;
+
                 }
             }
             else
@@ -101,9 +102,7 @@ public class PlayerAttack : MonoBehaviour
         return InAttackRange_Enemy;
     }
 
-    /// <summary>
-    /// プレイヤーの攻撃時、攻撃範囲を調べる
-    /// </summary>
+
     public void RangeSearch()
     {
         Character c = gameObject.GetComponent<Character>();
@@ -117,7 +116,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// スキル用 周囲のマスを調べてプレイヤーがいたら返す
+    /// スキル用、周囲のマスを調べてプレイヤーがいたら返す
     /// </summary>
     /// <param name="cost">調べるマスの範囲</param>
     /// <returns></returns>
@@ -133,35 +132,6 @@ public class PlayerAttack : MonoBehaviour
         AttackRelease();
        
         return InRange_Player;
-    }
-
-    /// <summary>
-    /// スキル用 指定範囲内のマスを調べてエネミーを返す
-    /// </summary>
-    /// <param name="cost">マス範囲指定</param>
-    /// <returns></returns>
-    public List<GameObject> RangeSerch3(int cost)
-    {
-        MinCost = 1;
-        MaxCost = cost;
-
-        InAttackRange_Enemy.Clear();
-
-        Retrieval();
-        RetrievalRelease();
-        foreach(GameObject obj in attack_range)
-        {
-            if (obj.GetComponent<Square_Info>().GetChara() && obj.GetComponent<Square_Info>().GetChara().tag == "Enemy")
-            {
-                InAttackRange_Enemy.Add(obj.GetComponent<Square_Info>().GetChara());
-            }
-        }
-        foreach (GameObject atkmas in attack_range)
-        {
-            atkmas.GetComponent<Square_Info>().DecisionEnd();
-        }
-
-        return InAttackRange_Enemy;
     }
 
     public void Retrieval()

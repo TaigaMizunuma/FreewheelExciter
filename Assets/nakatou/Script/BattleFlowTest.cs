@@ -153,11 +153,10 @@ public class BattleFlowTest : MonoBehaviour
                     //カーソルの下になんかいて
                     if (Physics.Raycast(serch, out hiton, 1000.0f))
                     {
-                        if (hiton.transform.tag == "Player" || hiton.transform.tag == "Enemy")
+                        if (hiton.transform.tag == "Player")
                         {
                             Shousai.SetActive(!Shousai.activeInHierarchy);
                             FindObjectOfType<RayBox>().move_ = false;
-                            GameObject.Find("MapCursor").GetComponent<Image>().enabled = false;
                             FindObjectOfType<MenuManager>().GetMainControlFlag(true);
                             if (Shousai.activeInHierarchy)
                             {
@@ -166,7 +165,6 @@ public class BattleFlowTest : MonoBehaviour
                             else
                             {
                                 FindObjectOfType<RayBox>().move_ = true;
-                                GameObject.Find("MapCursor").GetComponent<Image>().enabled = true;
                                 FindObjectOfType<MenuManager>().GetMainControlFlag(false);
                             }
                         }
