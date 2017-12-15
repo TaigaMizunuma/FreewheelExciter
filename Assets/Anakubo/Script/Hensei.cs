@@ -21,6 +21,10 @@ public class Hensei : MonoBehaviour {
     // 生成したキャラモデルを格納
     private GameObject[] models;
     
+    /////////////////////////////////////
+    
+    ////////////////////////////////////
+
 
 	// Use this for initialization
 	void Start () {

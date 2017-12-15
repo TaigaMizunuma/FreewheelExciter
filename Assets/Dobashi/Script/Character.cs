@@ -331,7 +331,7 @@ public class Character : MonoBehaviour {
                     _move = charaList.param[_id].move;
                     _moverate = chara_rateList.param[_id].move;
                     //クラス(職業)の読み込み
-                    //_joblist = (Joblist)Enum.Parse(typeof(Joblist), charaList.param[_id].job); 
+                    //_joblist = (Joblist)Enum.Parse(typeof(Joblist), charaList.param[_id].job);
 
                 }
             }
@@ -362,6 +362,7 @@ public class Character : MonoBehaviour {
                     _move = class_def_list.param[j].move;
                     _moverate = class_def_list.param[j].move_r;
                     var lv = _level;
+                    if (lv <= 0) lv = 1;
                     _totalLevel += 1;
                     //初期Level分レベルアップ
                     for (var k = 1;k < lv;k++)
@@ -588,6 +589,7 @@ public class Character : MonoBehaviour {
     /// </summary>
     void LevelUp()
     {
+        List<string> lvup = new List<string>(); 
         bool _loop = true;
         _level++;
         _totalLevel++;
@@ -595,49 +597,49 @@ public class Character : MonoBehaviour {
         //各能力が上昇するかの抽選
         if (UnityEngine.Random.Range(0, 100) <= _hprate)
         {
-            Debug.Log("HP + 1");
+            lvup.Add("HP + 1");
             _hp++;
             _loop = false;
         }
         if (UnityEngine.Random.Range(0, 100) <= _strrate)
         {
-            Debug.Log("力 + 1");
+            lvup.Add("力 + 1");
             _str++;
             _loop = false;
         }
         if (UnityEngine.Random.Range(0, 100) <= _sklrate)
         {
-            Debug.Log("技 + 1");
+            lvup.Add("技 + 1");
             _skl++;
             _loop = false;
         }
         if (UnityEngine.Random.Range(0, 100) <= _spdrate)
         {
-            Debug.Log("速さ + 1");
+            lvup.Add("速 + 1");
             _spd++;
             _loop = false;
         }
         if (UnityEngine.Random.Range(0, 100) <= _lukrate)
         {
-            Debug.Log("幸運 + 1");
+            lvup.Add("運 + 1");
             _luk++;
             _loop = false;
         }
         if (UnityEngine.Random.Range(0, 100) <= _defrate)
         {
-            Debug.Log("守備 + 1");
+            lvup.Add("守 + 1");
             _def++;
             _loop = false;
         }
         if (UnityEngine.Random.Range(0, 100) <= _currate)
         {
-            Debug.Log("呪力 + 1");
+            lvup.Add("呪 + 1");
             _cur++;
             _loop = false;
         }
         if (UnityEngine.Random.Range(0, 100) <= _moverate)
         {
-            Debug.Log("移動力 + 1");
+            lvup.Add("移動 + 1");
             _move++;
             _loop = false;
         }
@@ -647,47 +649,51 @@ public class Character : MonoBehaviour {
         {
             if (UnityEngine.Random.Range(0, 100) <= _hprate)
             {
-                Debug.Log("HP + 1");
+                lvup.Add("HP + 1");
                 _hp++;
             }
             if (UnityEngine.Random.Range(0, 100) <= _strrate)
             {
-                Debug.Log("力 + 1");
+                lvup.Add("力 + 1");
                 _str++;
             }
             if (UnityEngine.Random.Range(0, 100) <= _sklrate)
             {
-                Debug.Log("技 + 1");
+                lvup.Add("技 + 1");
                 _skl++;
             }
             if (UnityEngine.Random.Range(0, 100) <= _spdrate)
             {
-                Debug.Log("速さ + 1");
+                lvup.Add("速 + 1");
                 _spd++;
             }
             if (UnityEngine.Random.Range(0, 100) <= _lukrate)
             {
-                Debug.Log("幸運 + 1");
+                lvup.Add("運 + 1");
                 _luk++;
             }
             if (UnityEngine.Random.Range(0, 100) <= _defrate)
             {
-                Debug.Log("守備 + 1");
+                lvup.Add("守 + 1");
                 _def++;
             }
             if (UnityEngine.Random.Range(0, 100) <= _currate)
             {
-                Debug.Log("呪力 + 1");
+                lvup.Add("呪 + 1");
                 _cur++;
             }
             if (UnityEngine.Random.Range(0, 100) <= _moverate)
             {
-                Debug.Log("移動力 + 1");
+                lvup.Add("移動 + 1");
                 _move++;
             }
         }
 
         _skillprefablist.GetComponent<SkillPrefabList>().CheckSkillLevel(_totalLevel);
-
+        if (transform.tag == "Player")
+        {
+            FindObjectOfType<BattleFlowTest>().LevelUpUI_Init(gameObject, lvup);
+        }
+        
     }
 }

@@ -10,6 +10,7 @@ public class UnitList : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+
         unit_.GetComponent<Text>().text = players_[0].name;
         for (int i = 1; i < players_.Length; i++)
         {
