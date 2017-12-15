@@ -11496,6 +11496,46 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114098214929626096, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[0]
+      value: 
+      objectReference: {fileID: 590529223}
+    - target: {fileID: 114098214929626096, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[1]
+      value: 
+      objectReference: {fileID: 2032905167}
+    - target: {fileID: 114098214929626096, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[2]
+      value: 
+      objectReference: {fileID: 2069330236}
+    - target: {fileID: 114098214929626096, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[3]
+      value: 
+      objectReference: {fileID: 803775636}
+    - target: {fileID: 114098214929626096, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[4]
+      value: 
+      objectReference: {fileID: 119770653}
+    - target: {fileID: 114098214929626096, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[5]
+      value: 
+      objectReference: {fileID: 53552066}
+    - target: {fileID: 114510141961973744, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 114510141961973744, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f75a52e7524462347bdedfa0f8da22d7, type: 2}
   m_IsPrefabParent: 0
@@ -79656,7 +79696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
-  _name: "\u30D2\u30E5\u30FC"
+  _name: "\u30B8\u30A7\u30FC\u30B3\u30D6"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
   _level: 0
