@@ -41,4 +41,9 @@ public class DamegeUI : MonoBehaviour
     {
         GetComponent<Text>().text = value.ToString();
     }
+
+    public void setDamegeTxt(string value)
+    {
+        GetComponent<Text>().text = value;
+    }
 }

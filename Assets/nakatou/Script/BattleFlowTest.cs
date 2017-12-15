@@ -515,7 +515,7 @@ public class BattleFlowTest : MonoBehaviour
                             e_dm = e_nowhp - hit.transform.GetComponent<Character>()._totalhp;//敵ダメージ算出(仮)
                             p_dm = p_nowhp - _nowChooseChar.GetComponent<Character>()._totalhp;//プレイヤダメージ算出
 
-                            DamegeUIInit(hit.transform.gameObject, e_dm);
+                            DamegeUI_Init(hit.transform.gameObject, e_dm);
                             FindObjectOfType<StatusUI>().setEnemyDamage(e_dm);
 
                             //攻撃キャラを一時的に保存
@@ -562,7 +562,7 @@ public class BattleFlowTest : MonoBehaviour
                     //キャラの向き変更
                     _nowCounterChara.transform.LookAt(_nowAttackChara.transform);
 
-                    DamegeUIInit(_nowAttackChara, p_dm);
+                    DamegeUI_Init(_nowAttackChara, p_dm);
 
                     FindObjectOfType<StatusUI>().setPlayerDamage(p_dm);
 
@@ -680,7 +680,7 @@ public class BattleFlowTest : MonoBehaviour
         //キャラの向き変更
         target.transform.LookAt(enemy.transform);
 
-        DamegeUIInit(enemy, damage);
+        DamegeUI_Init(enemy, damage);
 
         FindObjectOfType<StatusUI>().setUnitStatus(
                                 enemy.GetComponent<Character>()._name,
@@ -701,7 +701,7 @@ public class BattleFlowTest : MonoBehaviour
     /// </summary>
     /// <param name="target">頭にだすキャラ</param>
     /// <param name="damage">ダメージ</param>
-    public void DamegeUIInit(GameObject target, int damage)
+    public void DamegeUI_Init(GameObject target, int damage)
     {
         //ダメージUI表示
         GameObject text = Instantiate(
@@ -718,6 +718,58 @@ public class BattleFlowTest : MonoBehaviour
         );
         text.transform.localPosition = retPosition;
         text.GetComponent<DamegeUI>().setDamegeTxt(damage);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="upvalue"></param>
+    public void LevelUpUI_Init(GameObject target, List<string> upvalue)
+    {
+        var i = 2;
+        StartCoroutine(DelayMethod.DelayMethodCall(i, () =>
+        {
+            //UI表示
+            GameObject text = Instantiate(
+                 Resources.Load("DamageTxt"),
+                 GameObject.Find("Canvas1").transform.Find("Frame")) as GameObject;
+            //ワールド座標をスクリーン座標に変換
+            var p = RectTransformUtility.WorldToScreenPoint(Camera.main, target.transform.position);
+            var retPosition = Vector2.zero;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                GameObject.Find("Canvas1").GetComponent<RectTransform>(),
+                p,
+                Camera.main,
+                out retPosition
+            );
+            text.transform.localPosition = retPosition;
+            text.GetComponent<DamegeUI>().setDamegeTxt("LevelUp!");
+        }));
+
+        i++;
+      
+        foreach (var value in upvalue)
+        {
+            StartCoroutine(DelayMethod.DelayMethodCall(i, () =>
+            {
+                GameObject text2 = Instantiate(
+                Resources.Load("DamageTxt"),
+                GameObject.Find("Canvas1").transform.Find("Frame")) as GameObject;
+                //ワールド座標をスクリーン座標に変換
+                var p2 = RectTransformUtility.WorldToScreenPoint(Camera.main, target.transform.position);
+                var retPosition2 = Vector2.zero;
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                    GameObject.Find("Canvas1").GetComponent<RectTransform>(),
+                    p2,
+                    Camera.main,
+                    out retPosition2
+                );
+                text2.transform.localPosition = retPosition2;
+                text2.GetComponent<DamegeUI>().setDamegeTxt(value);
+            }));
+            i++;
+        }
     }
 
     /// <summary>

@@ -78,7 +78,7 @@ public class CharaStatus : MonoBehaviour
         int dm = nowhp - GetComponent<Character>()._totalhp;
         int p_dm = p_nowhp - target.GetComponent<Character>()._totalhp;
 
-        FindObjectOfType<BattleFlowTest>().DamegeUIInit(target, p_dm);
+        FindObjectOfType<BattleFlowTest>().DamegeUI_Init(target, p_dm);
         FindObjectOfType<StatusUI>().setPlayerDamage(p_dm);
 
         FindObjectOfType<StatusUI>().setUnitStatus(
