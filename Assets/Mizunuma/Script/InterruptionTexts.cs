@@ -74,6 +74,7 @@ public class InterruptionTexts : MonoBehaviour
     public void YesButtonPushed()
     {
         Debug.Log("セーブしました");
+
     }
     public void NoButtonPushed()
     {

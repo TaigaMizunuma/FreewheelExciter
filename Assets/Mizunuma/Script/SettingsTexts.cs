@@ -24,17 +24,27 @@ public class SettingsTexts : MonoBehaviour
     private bool SEFlag = false;
     private float BGMNumber = 0;
     private float SENumber = 0;
+    //初期値 = 0 保存した値があった時のみ読み込む
+    private int SaveCount = 0;
 
     void Start ()
     {
+        
         BGMScrollbar = GameObject.Find("BGMScrollbar03").GetComponent<Scrollbar>();
         SEScrollbar = GameObject.Find("SEScrollbar04").GetComponent<Scrollbar>();
         Setting01 = GameObject.Find("TextSetting01").GetComponent<Text>();
         BGMScrollbar03Handle = GameObject.Find("BGMScrollbar03Handle").GetComponent<Image>();
         SEScrollbar04Handle = GameObject.Find("SEScrollbar04Handle").GetComponent<Image>();
-
-        BGMScrollbar.value = SaveData.GetFloat("BGMSetting");
-        SEScrollbar.value = SaveData.GetFloat("SESetting");
+        if (SaveData.HasKey("BGMSetting") == true)
+        {
+            /*データ存在時*/
+            BGMScrollbar.value = SaveData.GetFloat("BGMSetting");
+            SEScrollbar.value = SaveData.GetFloat("SESetting");
+        }
+        else
+        {
+            /*データ非読込時*/
+        }
     }
 	void Update ()
     {
@@ -56,6 +66,8 @@ public class SettingsTexts : MonoBehaviour
                 FindObjectOfType<MenuManager>().GetMainControlFlag(false);
                 eventSystem.SetSelectedGameObject(SituationButton);
                 UIcount = 0;
+                SaveData.SetFloat("SESetting", SENumber);
+                SaveData.SetFloat("BGMSetting", BGMNumber);
                 break;
         }
 
@@ -77,7 +89,6 @@ public class SettingsTexts : MonoBehaviour
             {
                 eventSystem.sendNavigationEvents = true;
                 BGMNumber = BGMScrollbar.value;
-                SaveData.SetFloat("BGMSetting", BGMNumber);
                 BGMFlag = false;
             }
         }
@@ -99,7 +110,7 @@ public class SettingsTexts : MonoBehaviour
             {
                 eventSystem.sendNavigationEvents = true;
                 SENumber = SEScrollbar.value;
-                SaveData.SetFloat("SESetting", SENumber);
+                
                 SEFlag = false;
             }
         }

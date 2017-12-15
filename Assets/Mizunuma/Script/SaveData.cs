@@ -101,7 +101,15 @@ public class SaveData
     {
         Savedatabase.SetString(key, value);
     }
-
+    /// <summary>
+    /// 指定されたキーが一致している場合はtrue 一致していない場合はfalseを返します。
+    /// </summary>
+    /// <param name="key">キー</param>
+    /// <exception cref="System.ArgumentException"></exception>
+    public static bool HasKey(string key)
+    {
+       return Savedatabase.HasKey(key);
+    }
     /// <summary>
     /// 指定されたキーに関連付けられているString型の値を取得します。
     /// 値がない場合、_defaultの値を返します。省略した場合、空の文字列を返します。
@@ -323,6 +331,17 @@ public class SaveData
         {
             keyCheck(key);
             saveDictionary[key] = value.ToString();
+        }
+        public bool HasKey(string key)
+        {
+            if (!saveDictionary.ContainsKey(key))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public int GetInt(string key, int _default)
