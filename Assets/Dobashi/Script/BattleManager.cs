@@ -76,17 +76,10 @@ public class BattleManager : MonoBehaviour {
                 {
                     if (j.GetComponent<SkillChecker>()._LeaderJr)
                     {
-                        _exavo += 5;
+                        _exavo = 5;
                     }
                 }
-
-                var i2 = _obj.GetComponent<PlayerAttack>().RangeSerch3(1);
-                if(i2.Count <= 0 && _obj.GetComponent<SkillChecker>()._Desert)
-                {
-                    _exavo += 15;
-                } 
             }
-            
             
         }
 
@@ -495,11 +488,12 @@ public class BattleManager : MonoBehaviour {
                 _count_plus = 2;
             }
             for (var i = 0; i < _def._chara._attack_count * _count_plus; i++)
-            {                
+            {
                 //迎撃側の攻撃
                 def_exp += BattleSystem(_def,_attacker,_def._revenge,def_stock);
                 if(!_def._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
                 if (_battleend) break;
+
             }
             _count_plus = 1;
 
