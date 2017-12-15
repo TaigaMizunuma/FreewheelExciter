@@ -130,10 +130,18 @@ public class BattleFlowTest : MonoBehaviour
                 SceneManager.LoadScene("GameOver");
             }));
         }
-        if (GameEnd) return;
+        if (GameEnd) return;//ゲーム終了
+
+        //カメラ追従
+        if (state_ == State_.enemy_turn || state_ == State_.enemy_move_mode ||
+            state_ == State_.enemy_attack_mode || state_ == State_.enemy_counter_mode)
+        {
+            if (!_randamEnemy) return;
+            FindObjectOfType<RayBox>().SetCameraPosition(_randamEnemy);
+        }
 
         //遷移
-        switch(state_)
+        switch (state_)
         {
             //キャラ選択
             case State_.simulation_mode:
@@ -174,7 +182,7 @@ public class BattleFlowTest : MonoBehaviour
                 }
                 break;
 
-              //キャラがいないマスならメニュー開く(使わない)
+              //キャラがいないマスならメニュー開く
             case State_.menu_mode:
 
                 break;
@@ -262,6 +270,7 @@ public class BattleFlowTest : MonoBehaviour
 
                 break;
 
+                //スキル選択
             case State_.skill_mode:
                 if (!once)
                 {
@@ -407,7 +416,6 @@ public class BattleFlowTest : MonoBehaviour
                     TurnEnd();
                     state_ = State_.stay_mode;
                 }
-                //仕様未定
                 break;
 
                 //待機選択
@@ -550,6 +558,7 @@ public class BattleFlowTest : MonoBehaviour
                 
                 break;
 
+                //エネミーの反撃
             case State_.enemy_counter_mode:
                 if (attacking)
                 {
@@ -596,7 +605,6 @@ public class BattleFlowTest : MonoBehaviour
                 {
                     //敵の行動を開始
                     _randamEnemy.GetComponent<EnemyBase>().SetNextGoal(_randamEnemy.GetComponent<EnemyBase>().target_square);
-                    FindObjectOfType<RayBox>().SetCameraPosition(_randamEnemy);
                     state_ = State_.enemy_move_mode;
                 }
                 break;
