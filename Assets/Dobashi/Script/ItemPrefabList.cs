@@ -40,6 +40,6 @@ public class ItemPrefabList : MonoBehaviour {
     /// <param name="_Item">使うアイテムオブジェクト</param>
     public void UseItem(GameObject _chara,GameObject _Item)
     {
-        _Item.GetComponent<Item>().StockDecrement(_chara);   
+        _Item.GetComponent<Item>().StockDecrement(_chara);
     }
 }

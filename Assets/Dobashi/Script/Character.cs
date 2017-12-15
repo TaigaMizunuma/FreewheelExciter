@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-
+//クラスリスト
 public enum Joblist
 {
     Gunner,
@@ -31,6 +31,25 @@ public enum Joblist
     Paladin,
     Desperado,
     EarthDragon
+}
+
+public struct Buff
+{
+    public int str;
+    public int skl;
+    public int spd;
+    public int luk;
+    public int def;
+    public int cur;
+    public int move;
+    public int attack_count;           //攻撃回数(勇者系などの複数回攻撃武器で使用)
+    public int attack_speed;           //攻撃速度
+    public float hit;                  //命中率
+    public float avoidance;            //回避率(地形補正抜き)
+    public float critical;             //必殺率
+    public int min;                    //最小
+    public int max;                    //最大
+    public int turn;                   //持続ターン数
 }
 
 public class Character : MonoBehaviour {
@@ -93,10 +112,11 @@ public class Character : MonoBehaviour {
     public int _totalmove;      //最終的なMOVE
     public int _moverate;       //移動力成長率
 
-    public int _exp;                     //経験値
+    public int _exp;            //経験値
 
     public int[] _addstatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };                 //定数増加量配列
     public int[] _addonetimestatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };          //戦闘時ステータス増加量配列
+    public int[] _addturnstatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0};           //ターン制限付きステータス増加配列
 
 
     public int _total_attack = 0;           //最終的な攻撃力(装備が銃なら技を参照する)
@@ -424,7 +444,7 @@ public class Character : MonoBehaviour {
     {
         _addstatuslist = AddStatus();
 
-        _totalMaxhp = _hp + classList.param[_classid].hp;     
+        _totalMaxhp = _hp + classList.param[_classid].hp;
 
         _totalstr = _str + classList.param[_classid].str + _addstatuslist[1] + _addonetimestatuslist[1];
         _totalskl = _skl + classList.param[_classid].skl + _addstatuslist[2] + _addonetimestatuslist[2];
