@@ -186,6 +186,7 @@ public class Move_System : MonoBehaviour
         goal_pos = route_[num + 1].transform.position;
         start_pos.y = transform.position.y;
         goal_pos.y = transform.position.y;
+        transform.LookAt(goal_pos);
     }
 
     public void AttackReady()

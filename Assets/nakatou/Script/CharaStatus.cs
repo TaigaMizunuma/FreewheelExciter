@@ -60,6 +60,9 @@ public class CharaStatus : MonoBehaviour
         FindObjectOfType<AudioManager>().PlaySe("GunShot");
         Destroy(effect, 1.0f);
 
+        //キャラの向き変更
+        transform.LookAt(target.transform);
+
         int nowhp = GetComponent<Character>()._totalhp;
         int p_nowhp = target.GetComponent<Character>()._totalhp;
         //とりあえずHPゲージ表示

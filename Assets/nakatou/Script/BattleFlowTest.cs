@@ -241,6 +241,7 @@ public class BattleFlowTest : MonoBehaviour
                     if(Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
                     {
                         choose = true;
+                        _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
                     }
                 }
                 else
@@ -251,7 +252,6 @@ public class BattleFlowTest : MonoBehaviour
                         Destroy(obj, 1.0f);
                     }
                     
-                    _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
                     choose = false;
                     once = false;
                     count = 0;
@@ -479,6 +479,11 @@ public class BattleFlowTest : MonoBehaviour
                         {
                             attacking = true;
                             count = 0;
+                            //選択キャラの攻撃可能状態を解除
+                            _nowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
+
+                            //キャラの向き変更
+                            _nowChooseChar.transform.LookAt(hit.transform);
 
                             Debug.Log("自キャラの攻撃！");
                             FindObjectOfType<RayBox>().move_ = false;
@@ -523,8 +528,6 @@ public class BattleFlowTest : MonoBehaviour
                                 hit.collider.GetComponent<Character>()._totalhp,
                                 hit.collider.GetComponent<Character>()._totalMaxhp);
 
-                            //選択キャラの攻撃可能状態を解除
-                            _nowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
 
                             //演出上の間をおいてから敵の反撃へ
                             StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () => 
@@ -555,6 +558,9 @@ public class BattleFlowTest : MonoBehaviour
                     var effect = Instantiate(Resources.Load("Eff_Hit_6"), _nowAttackChara.transform.position, Quaternion.identity);
                     m_audio.PlaySe("GunShot");
                     Destroy(effect, 1.0f);
+
+                    //キャラの向き変更
+                    _nowCounterChara.transform.LookAt(_nowAttackChara.transform);
 
                     DamegeUIInit(_nowAttackChara, p_dm);
 
@@ -671,6 +677,9 @@ public class BattleFlowTest : MonoBehaviour
         m_audio.PlaySe("GunShot");
         Destroy(effect, 1.0f);
 
+        //キャラの向き変更
+        target.transform.LookAt(enemy.transform);
+
         DamegeUIInit(enemy, damage);
 
         FindObjectOfType<StatusUI>().setUnitStatus(
@@ -697,7 +706,7 @@ public class BattleFlowTest : MonoBehaviour
         //ダメージUI表示
         GameObject text = Instantiate(
             Resources.Load("DamageTxt"),
-            GameObject.Find("Canvas1").transform.Find("frame")) as GameObject;
+            GameObject.Find("Canvas1").transform.Find("Frame")) as GameObject;
         //ワールド座標をスクリーン座標に変換
         var p = RectTransformUtility.WorldToScreenPoint(Camera.main, target.transform.position);
         var retPosition = Vector2.zero;
