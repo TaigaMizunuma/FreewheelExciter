@@ -791,9 +791,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 0
-  fadeTime: 2
+  fadeTime: 1
   fadeImage: {fileID: 1213188519}
-  alfa: 0
+  alfa: 100
   isFadeOut: 0
   isFadeIn: 0
   sceneChangeSwitch: 0

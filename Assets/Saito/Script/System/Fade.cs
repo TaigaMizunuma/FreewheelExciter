@@ -112,7 +112,7 @@ public class Fade : MonoBehaviour {
         fadeSpeed = Time.deltaTime / (fadeTime);
     }
     /// <summary>
-    /// フェードインを実行するフラグ
+    /// フェードインを実行するフラグ　黒→白
     /// </summary>
     /// <param name="flag"></param>
     public void SetInFade(bool flag)
@@ -120,7 +120,7 @@ public class Fade : MonoBehaviour {
         isFadeIn = flag;
     }
     /// <summary>
-    /// フェードアウトを実行するフラグ
+    /// フェードアウトを実行するフラグ　白→黒
     /// </summary>
     public void SetOutFade(bool flag)
     {
@@ -128,7 +128,7 @@ public class Fade : MonoBehaviour {
     }
 
     /// <summary>
-    /// シナリオを読む全部読むためのフラグ
+    /// シナリオを読む全部読むためのフラグ ONにしない限りScene移動しない
     /// </summary>
     public void SetSceneChangeSwitch(bool flag)
     {

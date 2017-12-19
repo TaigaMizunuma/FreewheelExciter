@@ -128,7 +128,9 @@ public class BattleFlowTest : MonoBehaviour
             GameEnd = true;
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
-                SceneManager.LoadScene("Story");
+                FindObjectOfType<Fade>().SetOutFade(true);
+                FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+                FindObjectOfType<Fade>().SetScene("Title");
             }));
         }
         else if(!GameObject.FindGameObjectWithTag("Player"))
@@ -137,7 +139,10 @@ public class BattleFlowTest : MonoBehaviour
             GameEnd = true;
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
-                SceneManager.LoadScene("GameOver");
+                
+                FindObjectOfType<Fade>().SetOutFade(true);
+                FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+                FindObjectOfType<Fade>().SetScene("GameOver");
             }));
         }
         if (GameEnd) return;//ゲーム終了

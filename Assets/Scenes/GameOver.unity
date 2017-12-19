@@ -470,13 +470,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 0
-  fadeTime: 2
+  fadeTime: 1
   fadeImage: {fileID: 526234932}
-  alfa: 0
+  alfa: 100
   isFadeOut: 0
   isFadeIn: 0
   sceneChangeSwitch: 0
-  changeName: Title
 --- !u!1 &1068345172
 GameObject:
   m_ObjectHideFlags: 0

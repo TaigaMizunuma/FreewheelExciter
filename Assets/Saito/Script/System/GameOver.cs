@@ -20,9 +20,9 @@ public class GameOver : MonoBehaviour {
         gameOverTime++;
         if (Input.anyKeyDown || gameOverTime > 300) 
         {
-            sceneChange.sceneName = "Title";
-            fade.isFadeOut = true;
-            fade.sceneChangeSwitch = true;
+            FindObjectOfType<Fade>().SetOutFade(true);
+            FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+            FindObjectOfType<Fade>().SetScene("Title");
         }
     }
 }
