@@ -1,32 +1,32 @@
 ﻿StoryNumber,ID,Name ,Story ,  LeftOneImage, RightOneImage ,LeftTwoImage,RightTwoImage,LeftOne ,RightOne ,  LeftTwo ,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions
-1,0,ヒュー ,訓練…退屈だ　俺は人を撃ち殺す暗殺者のはずだ…,0,0,0,0,ON,OFF,OFF,OFF,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,0,ヒュー,訓練…退屈だ　俺は人を撃ち殺す暗殺者のはずだ…,0,0,0,0,ON,OFF,OFF,OFF,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,1,アイン,ヒュー！見ろ、本部から手紙が来てる！,0,0,0,0,SHADE,OFF,OFF,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,2,ヒュー,本部？,0,0,0,0,ON,OFF,OFF,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,3, ヒュー ,差出人　レナード・エヴァンス…  今更、偉大なる組織長様が俺に何の用だよ  俺はヤツの顔すら覚えていないというのに ,0,0,0,0,ON,OFF,OFF,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,4,アイン ,まあまあ、親父さんが直接手紙をよこすんだ。 見てみる価値はありそうだぜ ,0,0,0,0,SHADE,OFF,OFF,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,3,ヒュー,差出人　レナード・エヴァンス…  今更、偉大なる組織長様が俺に何の用だよ  俺はヤツの顔すら覚えていないというのに ,0,0,0,0,ON,OFF,OFF,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,4,アイン,まあまあ、親父さんが直接手紙をよこすんだ。 見てみる価値はありそうだぜ ,0,0,0,0,SHADE,OFF,OFF,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,5,ヒュー,なになに…,0,0,0,0,ON,OFF,OFF,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,6,アイン  ,・・・,0,0,0,0,SHADE,OFF,OFF,OFF,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,6,アイン,・・・,0,0,0,0,SHADE,OFF,OFF,OFF,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,7,,親愛なる息子 ,0,0,0,0,ON,OFF,OFF,OFF,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,8,,久しぶりの連絡がこのような形になること、お前の胸中を思えば悲嘆に暮れる ,0,0,0,0,ON,OFF,OFF,OFF,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,9,,強くなったか、ヒューよ。 その強さを試すため、お前に命令を与える,0,0,0,0,ON,OFF,OFF,OFF,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,10,,敵対組織を撃滅し、上の世界ハイランドを目指せ そこで私は待っている,0,0,0,0,ON,OFF,OFF,OFF,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,11,,レナード・エヴァンス ,0,0,0,0,ON,OFF,OFF,OFF,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,12,アイン ,…命令かよ。勝手な話だな,0,0,0,0,SHADE,OFF,OFF,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,13, ヒュー,…アイン、俺はこの言葉に乗ろうと思う,0,0,0,0,ON,OFF,OFF,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,12,アイン,…命令かよ。勝手な話だな,0,0,0,0,SHADE,OFF,OFF,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,13,ヒュー,…アイン、俺はこの言葉に乗ろうと思う,0,0,0,0,ON,OFF,OFF,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,14,アイン,はぁ？… 良く考えろ、俺たちに実戦に出る力なんてあるか？,0,0,0,0,SHADE,OFF,OFF,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,15, ヒュー,そうかもしれないが、俺たちが だーいじな訓練をサボったことがあったか？,0,0,0,0,ON,OFF,OFF,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,15,ヒュー,そうかもしれないが、俺たちが だーいじな訓練をサボったことがあったか？,0,0,0,0,ON,OFF,OFF,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,16,ヒュー,それにこのまま生きていてもしょうがない 空虚と霞で茶碗をつつく日常に、俺の弾丸で終止符をうちたいわけだ ,0,0,0,0,ON,OFF,OFF,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,17,アイン ,気持ちはわかるけどな… ,0,0,0,0,SHADE,OFF,OFF,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,18,キース  ,面白そうな話だ。 別の組織を潰せば金も名声も手に入る。,0,0,0,0,SHADE,OFF,OFF,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,19,キース ,ハイランドにしょうもない暮らしがあるはずもない,0,0,0,0,SHADE,OFF,ON,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,17,アイン,気持ちはわかるけどな… ,0,0,0,0,SHADE,OFF,OFF,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,18,キース,面白そうな話だ。 別の組織を潰せば金も名声も手に入る。,0,0,0,0,SHADE,OFF,OFF,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,19,キース,ハイランドにしょうもない暮らしがあるはずもない,0,0,0,0,SHADE,OFF,ON,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,20,ケン,そうだ こんなところにいては俺の拳が腐ってしまう。,0,0,0,0,SHADE,OFF,SHADE,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,21,ケン,それに組織長直々の命令だ。 成功すれば何かあるに違いない…,0,0,0,0,SHADE,ON,SHADE,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,22,ヒュー ,…これは好機だ。 俺たちがなんて呼ばれてるか知ってるか？貴族のお嬢様さ,0,0,0,0,ON,SHADE,SHADE,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,23,ヒュー ,敵を倒し、組織長に認められればヤツらはなんて言うだろうな？ ,0,0,0,0,ON,SHADE,SHADE,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,24,ヒュー ,みんな、俺についてきてくれるか,0,0,0,0,ON,SHADE,SHADE,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,25,キース , 乗った！,0,0,0,0,SHADE,SHADE,ON,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,26, ケン,俺も！,0,0,0,0,SHADE,ON,SHADE,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,27,アイン ,貴族か…バカなヤツらだ。 …チキショウ、乗ってやる！,0,0,0,0,SHADE,SHADE,SHADE,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,22,ヒュー,…これは好機だ。 俺たちがなんて呼ばれてるか知ってるか？貴族のお嬢様さ,0,0,0,0,ON,SHADE,SHADE,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,23,ヒュー,敵を倒し、組織長に認められればヤツらはなんて言うだろうな？ ,0,0,0,0,ON,SHADE,SHADE,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,24,ヒュー,みんな、俺についてきてくれるか,0,0,0,0,ON,SHADE,SHADE,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,25,キース, 乗った！,0,0,0,0,SHADE,SHADE,ON,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,26,ケン,俺も！,0,0,0,0,SHADE,ON,SHADE,SHADE,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,27,アイン,貴族か…バカなヤツらだ。 …チキショウ、乗ってやる！,0,0,0,0,SHADE,SHADE,SHADE,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
 1,28,ゲイリー,金にならん誓いとやらは終わったか？,0,0,0,0,OFF,OFF,OFF,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,29,ゲイリー ,俺はレナードに雇われたゲイリー。 …まあ、お前らお嬢様方の召使いってとこだ,0,0,0,0,OFF,OFF,OFF,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
-1,30,アイン ,…はあ。何が何でも行けってことか… ,0,0,0,0,ON,OFF,OFF,OFF,1,Battle1,0,1,0,赤光、白熱,Stage1_ver2,Story
+1,29,ゲイリー,俺はレナードに雇われたゲイリー。 …まあ、お前らお嬢様方の召使いってとこだ,0,0,0,0,OFF,OFF,OFF,ON,0,Battle1,0,30,0,赤光、白熱,Stage1_ver2,Story
+1,30,アイン,…はあ。何が何でも行けってことか… ,0,0,0,0,ON,OFF,OFF,OFF,1,Battle1,0,1,0,赤光、白熱,Stage1_ver2,Story
