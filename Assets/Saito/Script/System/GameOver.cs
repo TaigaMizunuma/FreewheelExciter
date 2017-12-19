@@ -6,15 +6,23 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour {
 
     SceneChange sceneChange;
+    private int gameOverTime;
+    
+    Fade fade;
 
-	void Start () {
-        sceneChange = this.GetComponent<SceneChange>();	
-	}
+    void Start () {
+        sceneChange = this.GetComponent<SceneChange>();
+        fade = GetComponent<Fade>();
+    }
 	
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space))
+        //どっかキー押されるか5秒経過でタイトルに戻る
+        gameOverTime++;
+        if (Input.anyKeyDown || gameOverTime > 300) 
         {
-            sceneChange.Change();
+            sceneChange.sceneName = "Title";
+            fade.isFadeOut = true;
+            fade.sceneChangeSwitch = true;
         }
-	}
+    }
 }
