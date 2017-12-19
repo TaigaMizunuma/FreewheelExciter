@@ -114,4 +114,13 @@ public class Fade : MonoBehaviour {
     {
         fadeSpeed = Time.deltaTime / (fadeTime);
     }
+
+    public void SetInFade(bool flag)
+    {
+        isFadeIn = flag;
+    }
+    public void SetOutFade(bool flag)
+    {
+        isFadeOut = flag;
+    }
 }

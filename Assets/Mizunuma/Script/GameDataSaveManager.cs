@@ -34,6 +34,11 @@ public class GameDataSaveManager : MonoBehaviour
     private Image SaveDataPicture;
     private Image SaveDataPicture1;
     /// <summary>
+    /// セーブデータ:NoData
+    /// </summary>
+    private Text SaveDataNoText;
+    private Text SaveDataNoText1;
+    /// <summary>
     /// 章番号
     /// </summary>
     private int[] SaveSlotNumber = { 1, 2};
@@ -49,36 +54,22 @@ public class GameDataSaveManager : MonoBehaviour
     /// <summary>
     /// 章累計ターン数
     /// </summary>
-    private int[] SaveSlotTurnString = {1,1};
-    //デバッグ用
-    private int m_Debagint;
-    private int m_Debagint2;
-    private int m_Debagint3;
-    private Text SaveRuikeiString;
+    private int[] SaveSlotTurnString = {18,42};
+
+    /// <summary>
+    /// ボタン
+    /// </summary>
+    private GameObject DummyButton;
+    public EventSystem eventSystem;
     // Use this for initialization
     void Start()
     {
-        //デバッグ
         SavaDataGetTexts();
-        m_Debagint2 += SaveData.GetInt("Debag_int");
-        SaveRuikeiString.text = "" + m_Debagint2;
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            m_Debagint2++;
-            SaveRuikeiString.text = "" + m_Debagint2;
-            SaveData.SetInt("Debag_int", m_Debagint2);
-        }
     }
     /// <summary>
     /// TextGetComponent
@@ -90,16 +81,20 @@ public class GameDataSaveManager : MonoBehaviour
         SaveDataTimeText = GameObject.Find("SaveDataTimeText").GetComponent<Text>();
         SaveDataTurnText = GameObject.Find("SaveDataTurnText").GetComponent<Text>();
         SaveDataNameText = GameObject.Find("SaveDataNameText").GetComponent<Text>();
+        SaveDataNoText = GameObject.Find("NoDataText").GetComponent<Text>();
         /////スロット2
         SaveDataConditionsText1 = GameObject.Find("SaveDataConditionsText2").GetComponent<Text>();
         SaveDataTimeText1 = GameObject.Find("SaveDataTimeText2").GetComponent<Text>();
         SaveDataTurnText1 = GameObject.Find("SaveDataTurnText2").GetComponent<Text>();
         SaveDataNameText1 = GameObject.Find("SaveDataNameText2").GetComponent<Text>();
-        SaveRuikeiString = GameObject.Find("SaveRuikeiString").GetComponent<Text>();
+        SaveDataNoText1 = GameObject.Find("NoDataText2").GetComponent<Text>();
+        DummyButton = GameObject.Find("DummyButton");
+
     }
 
     public void GetSaveButton1()
     {
+        SaveDataNoText.enabled = false;
         for (int i = 0; i < 2; i++)
         {
             Debug.Log("セーブしました");
@@ -116,18 +111,21 @@ public class GameDataSaveManager : MonoBehaviour
         /*02プレイ時間*/
         SaveRenderTimes = SaveData.GetFloat("" + SaveSlotTimes[0]);
         SaveDataTimeText.text = ("プレイ時間 " + string.Format("{1:00}:{2:00}",
-                                             Mathf.Floor(SaveRenderTimes / 3600f),
+        Mathf.Floor(SaveRenderTimes / 3600f),
                                              Mathf.Floor(SaveRenderTimes / 60f),
                                              Mathf.Floor(SaveRenderTimes % 60f),
                                              SaveRenderTimes % 1 * 99));
         /*03累計ターン数*/
-        SaveDataTurnText.text = "累計ターン数 " + SaveData.GetInt("" +SaveSlotTurnString[0]);
+        SaveDataTurnText.text = "累計ターン数 " + SaveData.GetInt("" + SaveSlotTurnString[0]);
         /*04キャラクターの名前*/
         SaveDataNameText.text = "ヒュー";
+        eventSystem.SetSelectedGameObject(DummyButton);
         Debug.Log("スロット1 セーブしました");
+
     }
     public void GetSaveButton2()
     {
+        SaveDataNoText1.enabled = false;
         /*01タイトル*/
         SaveDataConditionsText1.text = "第" + SaveData.GetInt("" + SaveSlotNumber[1]) +
                                       "章 " + SaveData.GetString("" + SaveSlotPurpose[1]);
@@ -143,6 +141,7 @@ public class GameDataSaveManager : MonoBehaviour
         SaveDataTurnText1.text = "累計ターン数 " + SaveData.GetInt("" + SaveSlotTurnString[1]);
         /*04キャラクターの名前*/
         SaveDataNameText1.text = "ヒュー";
+        eventSystem.SetSelectedGameObject(DummyButton);
         Debug.Log("スロット2 セーブしました");
     }
 }

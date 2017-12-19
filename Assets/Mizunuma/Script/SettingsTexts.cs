@@ -40,10 +40,6 @@ public class SettingsTexts : MonoBehaviour
             BGMScrollbar.value = SaveData.GetFloat("BGMSetting");
             SEScrollbar.value = SaveData.GetFloat("SESetting");
         }
-        else
-        { 
-            /*データ非存在時*/
-        }
     }
 	void Update ()
     {
@@ -167,4 +163,6 @@ public class SettingsTexts : MonoBehaviour
     {
         sevalue = BGMScrollbar.value;
     }
+
+
 }
