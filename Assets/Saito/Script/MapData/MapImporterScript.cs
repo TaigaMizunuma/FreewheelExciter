@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class MapImporterScript : MonoBehaviour
 {
-
     //ブロックのプレハブをここに
     public GameObject[] blocks;
 
@@ -16,8 +15,12 @@ public class MapImporterScript : MonoBehaviour
     TextAsset MapCSVFile;
     List<string[]> MapCSVDatas = new List<string[]>();
     int mapCSVHeight = 0;
+    int mapCSVWidth = 0;
 
-    int[] playerposition;
+    string[,] mapBlockPos;
+
+    int i;
+    int j;
 
     int mapPosX = 0;
     int mapPosZ = 0;
@@ -26,10 +29,10 @@ public class MapImporterScript : MonoBehaviour
 
     void Awake()
     {
-        MapCSVFile = Resources.Load("Data/" + MapCSV) as TextAsset;
+        MapCSVFile = Resources.Load("MapData/" + MapCSV) as TextAsset;
         StringReader reader = new StringReader(MapCSVFile.text);
 
-        while(reader.Peek() > -1)
+        while (reader.Peek() > -1)
         {
             string line = reader.ReadLine();
             MapCSVDatas.Add(line.Split(','));
@@ -39,9 +42,11 @@ public class MapImporterScript : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < MapCSVDatas.Count; i++){
-            for (int j = 0; j < MapCSVDatas[i].Length; j++)
+        for (i = 0; i < MapCSVDatas.Count; i++)
+        {
+            for (j = 0; j < MapCSVDatas[i].Length; j++)
             {
+                
                 mapPosX = j;
                 mapPosZ = -i;
                 switch (MapCSVDatas[i][j])
@@ -86,7 +91,6 @@ public class MapImporterScript : MonoBehaviour
                         mapInstance.name = "block" + mapBlockCount;
                         break;
                 }
-                
             }
         }
     }

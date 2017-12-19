@@ -34,7 +34,9 @@ public class MapStatus : MonoBehaviour
 
     BlockMasterScript blcMaster;
 
-    float[,] blockPos;
+    int b_i;
+    int b_j;
+
 
     void Start()
     {
@@ -95,6 +97,11 @@ public class MapStatus : MonoBehaviour
         //        }
 
         //    }
+    }
+
+    public string GetMapName()
+    {
+        return mapName;
     }
 
     /// <summary>

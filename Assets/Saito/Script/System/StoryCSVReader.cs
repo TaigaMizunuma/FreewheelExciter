@@ -166,9 +166,8 @@ public class StoryCSVReader : MonoBehaviour
                 if (storySheetText != null)
                 {
                     nameText.text = storyCharacterName;
-                }
-                else
-                {
+                }else{
+                    nameImage.SetActive(false);
                     nameText.text = "";
                 }
                 LOneCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][4]);
@@ -223,7 +222,14 @@ public class StoryCSVReader : MonoBehaviour
                 storyCharacterName = storyCSVDatas[storyID + 1][2];
                 storySheetText = storyCSVDatas[storyID + 1][3];
                 storyText.text = storySheetText;
-                nameText.text = storyCharacterName;
+                if(storyCharacterName != "")
+                {
+                    nameText.text = storyCharacterName;
+                    nameImage.SetActive(true);
+                }else{
+                    nameText.text = "";
+                    nameImage.SetActive(false);
+                }
                 CharacterImageDisplay();
             }
             if (Input.GetKeyDown(KeyCode.O)){
