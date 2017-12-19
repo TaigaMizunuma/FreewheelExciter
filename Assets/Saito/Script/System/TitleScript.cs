@@ -11,7 +11,10 @@ public class TitleScript : MonoBehaviour {
 
     //タイトルのボタン
     [SerializeField]
-    GameObject[] Titlebutton;
+    Image[] titleButtonImage;
+
+    [SerializeField]
+    Text[] titleButtonText;
 
     //フェードスクリプト
     SceneChange sceneChange;
@@ -21,9 +24,17 @@ public class TitleScript : MonoBehaviour {
     {
         sceneChange = GetComponent<SceneChange>();
         fade = GetComponent<Fade>();
-	}
-	
-	void Update () {
+        for (int i = 0; i < titleButtonImage.Length; i++)
+        {
+            titleButtonImage[i].color = new Color(0, 0, 0, 0);
+        }
+        for (int j = 0; j < titleButtonText.Length; j++)
+        {
+            titleButtonText[j].enabled = false;
+        }
+    }
+
+    void Update () {
         TitleButtonPush();
 	}
 
@@ -33,9 +44,13 @@ public class TitleScript : MonoBehaviour {
         if (Input.anyKeyDown)
         {
             anyKeyText.enabled = false;
-            for (int i = 0; i < Titlebutton.Length; i++)
+            for (int i = 0; i < titleButtonImage.Length; i++)
             {
-                Titlebutton[i].SetActive(true);
+                titleButtonImage[i].color = new Color(1,1,1,1);
+            }
+            for (int j = 0; j < titleButtonText.Length; j++)
+            {
+                titleButtonText[j].enabled = true;
             }
         }
     }
