@@ -12,19 +12,18 @@ public class MapImporterScript : MonoBehaviour
     //CSVのファイル名をここに
     public string MapCSV;
 
+    //読み込んだCSVデータ
     TextAsset MapCSVFile;
     List<string[]> MapCSVDatas = new List<string[]>();
     int mapCSVHeight = 0;
-    int mapCSVWidth = 0;
 
     string[,] mapBlockPos;
 
-    int i;
-    int j;
-
+    //ブロックの位置
     int mapPosX = 0;
     int mapPosZ = 0;
 
+    //名前用
     int mapBlockCount;
 
     void Awake()
@@ -42,9 +41,9 @@ public class MapImporterScript : MonoBehaviour
 
     void Start()
     {
-        for (i = 0; i < MapCSVDatas.Count; i++)
+        for (int i = 0; i < MapCSVDatas.Count; i++)
         {
-            for (j = 0; j < MapCSVDatas[i].Length; j++)
+            for (int j = 0; j < MapCSVDatas[i].Length; j++)
             {
                 
                 mapPosX = j;
@@ -90,6 +89,51 @@ public class MapImporterScript : MonoBehaviour
                         mapInstance = (GameObject)Instantiate(blocks[5], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
                         mapInstance.name = "block" + mapBlockCount;
                         break;
+                    //瓦礫
+                    case "7":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(blocks[6], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //毒ガス
+                    case "8":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(blocks[7], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //床・階段
+                    case "9":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(blocks[8], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //柱系
+                    case "A":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(blocks[9], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //扉
+                    case "B":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(blocks[10], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //宝
+                    case "C":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(blocks[11], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //マンホール
+                    case "D":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(blocks[12], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+
+
+
                 }
             }
         }

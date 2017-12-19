@@ -27,9 +27,15 @@ public class EnemyImporter : MonoBehaviour {
     float e_initPosZ;
     [SerializeField]
     float e_initPosY;
+    
+    //回転、向きを変えられる
+    [Tooltip("向きを変えられます")]
+    [SerializeField]
+    float e_initRotY;
 
     void Awake()
     {
+        //エネミー初期配置CSVデータ読み込み
         c_enemyFile = Resources.Load("MapEnemyData/" + c_enemyCSVName) as TextAsset;
 
         StringReader reader = new StringReader(c_enemyFile.text);
@@ -49,6 +55,7 @@ public class EnemyImporter : MonoBehaviour {
         {
             for (int e_j = 0; e_j < c_enemyDatas[e_i].Length; e_j++)
             {
+                //エネミー位置
                 e_initPosX = e_j;
                 e_initPosZ = -e_i;
 
@@ -59,8 +66,50 @@ public class EnemyImporter : MonoBehaviour {
                         break;
                     //ガンナー
                     case "1":
-                        var charaInstance = (GameObject)Instantiate(enemyObj[0], new Vector3(e_initPosX, e_initPosY, e_initPosZ),  new Quaternion(0,180,0,0));
+                        var charaInstance = (GameObject)Instantiate(enemyObj[0], new Vector3(e_initPosX, e_initPosY, e_initPosZ), new Quaternion(0, e_initRotY, 0, 0));
                         break;
+                    //ファイター
+                    case "2":
+                        charaInstance = (GameObject)Instantiate(enemyObj[1], new Vector3(e_initPosX, e_initPosY, e_initPosZ), new Quaternion(0, e_initRotY, 0, 0));
+                        break;
+                    //ソルジャー
+                    case "3":
+                        charaInstance = (GameObject)Instantiate(enemyObj[2], new Vector3(e_initPosX, e_initPosY, e_initPosZ), new Quaternion(0, e_initRotY, 0, 0));
+                        break;
+                    //マーセナリー
+                    case "4":
+                        charaInstance = (GameObject)Instantiate(enemyObj[3], new Vector3(e_initPosX, e_initPosY, e_initPosZ), new Quaternion(0, e_initRotY, 0, 0));
+                        break;
+                    //ライダー
+                    case "5":
+                        charaInstance = (GameObject)Instantiate(enemyObj[4], new Vector3(e_initPosX, e_initPosY, e_initPosZ), new Quaternion(0, e_initRotY, 0, 0));
+                        break;
+                    //パイロット
+                    case "6":
+                        charaInstance = (GameObject)Instantiate(enemyObj[5], new Vector3(e_initPosX, e_initPosY, e_initPosZ), new Quaternion(0, e_initRotY, 0, 0));
+                        break;
+                    //スナイパー
+                    case "7":
+                        charaInstance = (GameObject)Instantiate(enemyObj[6], new Vector3(e_initPosX, e_initPosY, e_initPosZ), new Quaternion(0, e_initRotY, 0, 0));
+                        break;
+                    //マーシャル
+                    case "8":
+                        charaInstance = (GameObject)Instantiate(enemyObj[7], new Vector3(e_initPosX, e_initPosY, e_initPosZ), new Quaternion(0, e_initRotY, 0, 0));
+                        break;
+                    //ジェネラル
+                    case "9":
+                        charaInstance = (GameObject)Instantiate(enemyObj[8], new Vector3(e_initPosX, e_initPosY, e_initPosZ), new Quaternion(0, e_initRotY, 0, 0));
+                        break;
+                    //ウォーリア
+                    case "A":
+                        charaInstance = (GameObject)Instantiate(enemyObj[9], new Vector3(e_initPosX, e_initPosY, e_initPosZ), new Quaternion(0, e_initRotY, 0, 0));
+                        break;
+                    //ボス(暫定)
+                    //ボスのプレハブができてから動かします
+                    case "B":
+                        charaInstance = (GameObject)Instantiate(enemyObj[10], new Vector3(e_initPosX, e_initPosY, e_initPosZ), new Quaternion(0, e_initRotY, 0, 0));
+                        break;
+
                 }
             }
         }
