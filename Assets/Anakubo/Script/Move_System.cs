@@ -184,63 +184,63 @@ public class Move_System : MonoBehaviour
         transform.LookAt(goal_pos);
     }
 
-    public void AttackReady()
-    {
-        var count = 0;
-        //atk_range = now_pos.GetComponent<Square_Info>().GetNear();
-        GetComponent<PlayerAttack>().Retrieval();
-        _range = GetComponent<PlayerAttack>().GetAttackRange();
+    //public void AttackReady()
+    //{
+    //    var count = 0;
+    //    //atk_range = now_pos.GetComponent<Square_Info>().GetNear();
+    //    GetComponent<PlayerAttack>().Retrieval();
+    //    _range = GetComponent<PlayerAttack>().GetAttackRange();
         
-        Debug.Log(_range.Count);
-        foreach(GameObject atk in _range)
-        {
-            atk.GetComponent<Square_Info>().AttackRange();
+        
+    //    foreach(GameObject atk in _range)
+    //    {
+    //        atk.GetComponent<Square_Info>().AttackRange();
             
-            //攻撃範囲に何かいる時攻撃選択
-            if(atk.GetComponent<Square_Info>().GetChara())
-            {
-                if(atk.GetComponent<Square_Info>().GetChara().tag == "Enemy")
-                {
-                    Debug.Log("エネミーが攻撃範囲内");
-                    FindObjectOfType<RayBox>().move_ = true;
-                    FindObjectOfType<BattleFlowTest>().state_ = State_.player_attack_mode;
-                }
-                else
-                {
-                    count++;
+    //        //攻撃範囲に何かいる時攻撃選択
+    //        if(atk.GetComponent<Square_Info>().GetChara())
+    //        {
+    //            if(atk.GetComponent<Square_Info>().GetChara().tag == "Enemy")
+    //            {
+    //                Debug.Log("エネミーが攻撃範囲内");
+    //                FindObjectOfType<RayBox>().move_ = true;
+    //                FindObjectOfType<BattleFlowTest>().state_ = State_.player_attack_mode;
+    //            }
+    //            else
+    //            {
+    //                count++;
 
-                }
-            }
-            else
-            {
-                Debug.Log("攻撃範囲内には何もいない");
-                count++;
-            }
-        }
+    //            }
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("攻撃範囲内には何もいない");
+    //            count++;
+    //        }
+    //    }
         
-        //攻撃範囲内に何もいないとき攻撃キャンセル
-        if (count == _range.Count)
-        {
-            StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
-            {
-                AttackRelease();
-            }));
-            FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-            FindObjectOfType<BattleFlowTest>().state_ = State_.action_mode;
-            count = 0;
-        }
-        attack_mode = true;
-    }
+    //    //攻撃範囲内に何もいないとき攻撃キャンセル
+    //    if (count == _range.Count)
+    //    {
+    //        StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
+    //        {
+    //            AttackRelease();
+    //        }));
+    //        FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+    //        FindObjectOfType<BattleFlowTest>().state_ = State_.action_mode;
+    //        count = 0;
+    //    }
+    //    attack_mode = true;
+    //}
 
-    public void AttackRelease()
-    {
-        foreach(GameObject atk in _range)
-        {
-            atk.GetComponent<Square_Info>().DecisionEnd();
-        }
-        _range.Clear();
-        attack_mode = false;
-    }
+    //public void AttackRelease()
+    //{
+    //    foreach(GameObject atk in _range)
+    //    {
+    //        atk.GetComponent<Square_Info>().DecisionEnd();
+    //    }
+    //    _range.Clear();
+    //    attack_mode = false;
+    //}
 
     public GameObject GetNowPos()
     {

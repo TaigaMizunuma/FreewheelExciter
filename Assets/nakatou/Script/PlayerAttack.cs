@@ -7,11 +7,13 @@ public class PlayerAttack : MonoBehaviour
     private int MaxCost = 1;//最大攻撃範囲
     GameObject Now_pos;
     List<GameObject> attack_range = new List<GameObject>();//攻撃範囲のマス取得
-    //List<GameObject> judged_range = new List<GameObject>();???
 
     public bool range_line = false;//キャラクターの攻撃範囲が直線かそうじゃないか
 
+
     List<GameObject> InAttackRange_Enemy = new List<GameObject>();//攻撃範囲内のエネミー
+
+    List<GameObject> InRange_Enemy = new List<GameObject>();//指定範囲内のエネミー
 
     List<GameObject> InRange_Player = new List<GameObject>();//指定範囲内のプレイヤー取得
 
@@ -130,7 +132,7 @@ public class PlayerAttack : MonoBehaviour
 
         Retrieval();
         RetrievalRelease();
-        AttackRelease();
+        //AttackRelease();
        
         return InRange_Player;
     }
@@ -144,8 +146,8 @@ public class PlayerAttack : MonoBehaviour
     {
         MinCost = 1;
         MaxCost = cost;
-
-        InAttackRange_Enemy.Clear();
+       
+        InRange_Enemy.Clear();
 
         Retrieval();
         RetrievalRelease();
@@ -153,7 +155,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (obj.GetComponent<Square_Info>().GetChara() && obj.GetComponent<Square_Info>().GetChara().tag == "Enemy")
             {
-                InAttackRange_Enemy.Add(obj.GetComponent<Square_Info>().GetChara());
+                InRange_Enemy.Add(obj.GetComponent<Square_Info>().GetChara());
             }
         }
         foreach (GameObject atkmas in attack_range)
@@ -161,7 +163,7 @@ public class PlayerAttack : MonoBehaviour
             atkmas.GetComponent<Square_Info>().DecisionEnd();
         }
 
-        return InAttackRange_Enemy;
+        return InRange_Enemy;
     }
 
     public void Retrieval()

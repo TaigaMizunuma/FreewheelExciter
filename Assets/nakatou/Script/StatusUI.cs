@@ -51,36 +51,6 @@ public class StatusUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 戦闘時のUI表示
-    /// </summary>
-    /// <param name="player_name">プレーヤの名前</param>
-    /// <param name="player_hp">プレーヤのHP</param>
-    /// <param name="player_maxhp">プレーヤの最大HP</param>
-    /// <param name="player_atk">プレーヤの攻撃</param>
-    /// <param name="player_accuracy">プレーヤの命中</param>
-    /// <param name="player_deadly">プレーヤの必殺</param>
-    /// <param name="enemy_name">敵の名前</param>
-    /// <param name="enemyr_hp">敵のHP</param>
-    /// <param name="enemy_maxhp">敵の最大HP</param>
-    /// <param name="enemy_atk">敵の攻撃</param>
-    /// <param name="enemy_accuracy">敵の命中</param>
-    /// <param name="enemy_deadly">敵の必殺</param>
-    public void setBattleStatus(
-        string player_name, int player_hp, int player_maxhp, int player_atk, float player_hit, float player_critical,
-        string enemy_name, int enemy_hp, int enemy_maxhp, int enemy_atk, float enemy_hit, float enemy_critical)
-    {
-        unitName.text = player_name + " | " + enemy_name;
-        hpGage.transform.gameObject.SetActive(false);
-        HP.enabled = true;
-        HP.text = "\n" +
-            player_hp.ToString() + "/" + player_maxhp.ToString() +" | " + 
-            enemy_hp + "/" + enemy_maxhp + "\n" +
-            player_atk + "  |  " + enemy_atk + "\n" +
-            player_hit + "%  |  " + enemy_hit + "% \n" +
-            player_critical + "%  |  " + enemy_critical + "%";
-    }
-
-    /// <summary>
     /// 戦闘時のUI表示　改良版
     /// </summary>
     /// <param name="attack">攻撃側</param>
@@ -109,21 +79,23 @@ public class StatusUI : MonoBehaviour
         List<string> chara1status = new List<string>();
         List<string> chara2status = new List<string>();
 
+        int[] bs = FindObjectOfType<BattleManager>().GetBattleState(attack, defense);
+
         chara1status.Add(status1._name);
-        chara1status.Add("HP:" + status1._totalhp + "/" + status1._totalMaxhp);
-        chara1status.Add("攻撃力:" + status1._total_attack);
-        chara1status.Add("攻撃回数:" + status1._attack_count);
-        chara1status.Add("命中率:" + status1._hit);
-        chara1status.Add("回避率:" + status1._avoidance);
-        chara1status.Add("必殺率:" + status1._critical);
+        chara1status.Add("HP:" + bs[0] + "/" + status1._totalMaxhp);
+        chara1status.Add("攻撃力:" + bs[1]);
+        //chara1status.Add("攻撃回数:" + status1._attack_count);
+        chara1status.Add("命中率:" + bs[2]);
+        //chara1status.Add("回避率:" + status1._avoidance);
+        chara1status.Add("必殺率:" + bs[3]);
 
         chara2status.Add(status2._name);
-        chara2status.Add("HP:" + status2._totalhp + "/" + status2._totalMaxhp);
-        chara2status.Add("攻撃力:" + status2._total_attack);
-        chara2status.Add("攻撃回数:" + status2._attack_count);
-        chara2status.Add("命中率:" + status2._hit);
-        chara2status.Add("回避率:" + status2._avoidance);
-        chara2status.Add("必殺率:" + status2._critical);
+        chara2status.Add("HP:" + bs[4] + "/" + status2._totalMaxhp);
+        chara2status.Add("攻撃力:" + bs[5]);
+        //chara2status.Add("攻撃回数:" + status2._attack_count);
+        chara2status.Add("命中率:" + bs[6]);
+        //chara2status.Add("回避率:" + status2._avoidance);
+        chara2status.Add("必殺率:" + bs[7]);
 
         atkText.text = "";
         defText.text = "";
@@ -157,7 +129,6 @@ public class StatusUI : MonoBehaviour
     /// <param name="p_hp">プレーヤHP</param>
     public void setPlayerHpGage(int p_maxhp, int p_hp)
     {
-        //player_hpGage.gameObject.SetActive(true);
         player_hpGage.maxValue = p_maxhp;
         player_hpGage.value = p_hp;
     }
@@ -169,15 +140,23 @@ public class StatusUI : MonoBehaviour
     /// <param name="e_hp">敵HP</param>
     public void setEnemyHpGage(int e_maxhp, int e_hp)
     {
-        //enemy_hpGage.gameObject.SetActive(true);
         enemy_hpGage.maxValue = e_maxhp;
         enemy_hpGage.value = e_hp;
     }
 
+    /// <summary>
+    /// プレイヤーのHPゲージにダメージを反映
+    /// </summary>
+    /// <param name="damage"></param>
     public void setPlayerDamage(int damage)
     {
         player_hpGage.value -= damage;
     }
+
+    /// <summary>
+    /// エネミーのHPゲージにダメージを反映
+    /// </summary>
+    /// <param name="damage"></param>
     public void setEnemyDamage(int damage)
     {
         enemy_hpGage.value -= damage;

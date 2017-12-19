@@ -82,8 +82,6 @@ public class BattleFlowTest : MonoBehaviour
     Vector3 MoveStartPos;//キャンセル用
     GameObject battleui;//戦闘時UI;
 
-    State_ nowstate;
-
 
     void Awake()
     {
@@ -93,7 +91,7 @@ public class BattleFlowTest : MonoBehaviour
     void Start()
     {
         /*メニュー制御不可*/
-        FindObjectOfType<MenuManager>().GetMainControlFlag(true);
+        FindObjectOfType<MenuManager>().SetMainControlFlag(true);
         FindObjectOfType<SubMenuRenderer>().GetSubControlFlag(true);
         rayBox = FindObjectOfType<RayBox>().gameObject;
         rayBox.GetComponent<RayBox>().move_ = false;
@@ -115,7 +113,7 @@ public class BattleFlowTest : MonoBehaviour
         {
             Turn_TextReset();
             /*メニュー制御可*/
-            FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+            FindObjectOfType<MenuManager>().SetMainControlFlag(false);
             FindObjectOfType<SubMenuRenderer>().GetSubControlFlag(false);
             rayBox.GetComponent<RayBox>().move_ = true;
         }));
@@ -155,7 +153,7 @@ public class BattleFlowTest : MonoBehaviour
         if (state_ != State_.simulation_mode)
         {
             if (state_ == State_.menu_mode) return;
-            FindObjectOfType<MenuManager>().GetMainControlFlag(true);
+            FindObjectOfType<MenuManager>().SetMainControlFlag(true);
         }
 
         //遷移
@@ -295,7 +293,7 @@ public class BattleFlowTest : MonoBehaviour
                     Shousai.SetActive(!Shousai.activeInHierarchy);
                     FindObjectOfType<RayBox>().move_ = false;
                     GameObject.Find("MapCursor").GetComponent<Image>().enabled = false;
-                    FindObjectOfType<MenuManager>().GetMainControlFlag(true);
+                    FindObjectOfType<MenuManager>().SetMainControlFlag(true);
                     if (Shousai.activeInHierarchy)
                     {
                         FindObjectOfType<Shosai>()._chara = hiton.transform.gameObject;
@@ -304,7 +302,7 @@ public class BattleFlowTest : MonoBehaviour
                     {
                         FindObjectOfType<RayBox>().move_ = true;
                         GameObject.Find("MapCursor").GetComponent<Image>().enabled = true;
-                        FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+                        FindObjectOfType<MenuManager>().SetMainControlFlag(false);
                     }
                 }
             }
@@ -322,7 +320,7 @@ public class BattleFlowTest : MonoBehaviour
                 g.GetComponent<Square_Info>().DecisionEnd();
             }
             FindObjectOfType<RayBox>().SetMovePlayer(null);
-            FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+            FindObjectOfType<MenuManager>().SetMainControlFlag(false);
             state_ = State_.simulation_mode;
         }
     }
@@ -344,7 +342,7 @@ public class BattleFlowTest : MonoBehaviour
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();
             FindObjectOfType<RayBox>().move_ = true;
 
-            FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+            FindObjectOfType<MenuManager>().SetMainControlFlag(false);
 
             _nowChooseChar = null;
             state_ = State_.simulation_mode;
@@ -638,6 +636,7 @@ public class BattleFlowTest : MonoBehaviour
         if (!attacking)
         {
             var range_enemy = _nowChooseChar.GetComponent<PlayerAttack>().GetInAttackRangeEnemy();
+
             if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1 || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (count == 0)
@@ -660,6 +659,7 @@ public class BattleFlowTest : MonoBehaviour
                     count++;
                 }
             }
+            
             var pos = range_enemy[count].transform.position;
             pos.y = rayBox.transform.position.y;
             rayBox.transform.position = pos;
@@ -770,7 +770,7 @@ public class BattleFlowTest : MonoBehaviour
     {
         if (attacking)
         {
-            if (_nowCounterChara)
+            if (_nowCounterChara && _nowCounterChara.tag != "Dead")
             {
                 Debug.Log("敵の反撃！");
                 //とりあえずの反撃エフェクト表示&SE
@@ -952,7 +952,7 @@ public class BattleFlowTest : MonoBehaviour
         StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () => 
         {
             Turn_TextReset();
-            FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+            FindObjectOfType<MenuManager>().SetMainControlFlag(false);
             FindObjectOfType<RayBox>().move_ = true;
             state_ = State_.simulation_mode;
         }));
