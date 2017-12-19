@@ -7,7 +7,7 @@ using System;
 //クラスリスト
 public enum Joblist
 {
-    Gunner,
+    Gunner = 0,
     Sniper,
     Rogue,
     Assassin,
@@ -33,7 +33,21 @@ public enum Joblist
     EarthDragon
 }
 
+public struct Buff
+{
+    public int[] _datalist;
 
+    public void SetData(int[] data)
+    {
+        _datalist = data;
+    }
+    public bool AddTurn()
+    {
+        _datalist[13] -= 1;
+        if (_datalist[13] <= 0) return true;
+        return false;
+    }
+}
 
 public class Character : MonoBehaviour {
 
@@ -99,7 +113,7 @@ public class Character : MonoBehaviour {
 
     public int[] _addstatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };                 //定数増加量配列
     public int[] _addonetimestatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };          //戦闘時ステータス増加量配列
-    public int[] _addbufflist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };          //ターン制限付きバフステータス増加量配列
+    public int[] _addbufflist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };                   //ターン制限付きバフステータス増加量配列
     public List<Buff> _bufflist = new List<Buff>();
 
 
@@ -149,22 +163,6 @@ public class Character : MonoBehaviour {
         Default = 0,    //特になし
         Paralysis = 1,  //麻痺
         Poison = 2      //毒
-    }
-
-    public struct Buff
-    {
-        public int[] _datalist;
-
-        public void SetData(int[] data)
-        {
-            _datalist = data;
-        }
-        public bool AddTurn()
-        {
-            _datalist[13] -= 1;
-            if (_datalist[13] <= 0) return true;
-            return false;
-        }
     }
 
 
@@ -295,10 +293,31 @@ public class Character : MonoBehaviour {
 
     }
 
-    //public List<int> GetSaveData()
-    //{
+    /// <summary>
+    /// id,lv,合計lv,hp,totalhp,str,skl,spd,luk,def,cur,move,exp
+    /// </summary>
+    /// <returns></returns>
+    public List<int> GetStatus()
+    {
+        List<int> i = new List<int>();
+        i.Add(_id);
+        i.Add((int)_joblist);
+        i.Add(_level);
+        i.Add(_totalLevel);
+        i.Add(_hp);
+        i.Add(_totalhp);
+        i.Add(_str);
+        i.Add(_skl);
+        i.Add(_spd);
+        i.Add(_luk);
+        i.Add(_def);
+        i.Add(_cur);
+        i.Add(_move);
+        i.Add(_exp);
+        i.Add((int)_NowState);
 
-    //}
+        return i;
+    }
 
     /// <summary>
     /// 初期化
