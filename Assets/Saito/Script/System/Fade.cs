@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Fade : MonoBehaviour {
 
@@ -31,16 +32,12 @@ public class Fade : MonoBehaviour {
     [HideInInspector]
     public bool sceneChangeSwitch;
 
-    //ストーリーからシーンチェンジにシーン名を引き渡す
-    //ストーリーリーダーがないシーンもあるのでここに書きました
     public string changeName;
 
-    //シーンチェンジのスクリプト
-    SceneChange sceneChange;
 
-	void Start ()
+
+    void Start ()
     {
-        sceneChange = GetComponent<SceneChange>();
 
         isFadeIn = true;
         isFadeOut = false;
@@ -81,7 +78,6 @@ public class Fade : MonoBehaviour {
 
     void SceneFadeOut()
     {
-        sceneChange.sceneName = changeName;
         fadeImage.GetComponent<Image>().color = new Color(1, 1, 1, alfa);
         if(fadeImage.enabled == false)
         {
@@ -92,9 +88,10 @@ public class Fade : MonoBehaviour {
         if (alfa >= 1)
         {
             isFadeOut = false;
+
             if (sceneChangeSwitch == true)
             {
-                sceneChange.Change();
+                SceneManager.LoadScene(changeName);
             }
         }
     }
@@ -114,13 +111,27 @@ public class Fade : MonoBehaviour {
     {
         fadeSpeed = Time.deltaTime / (fadeTime);
     }
-
+    /// <summary>
+    /// フェードインを実行するフラグ
+    /// </summary>
+    /// <param name="flag"></param>
     public void SetInFade(bool flag)
     {
         isFadeIn = flag;
     }
+    /// <summary>
+    /// フェードアウトを実行するフラグ
+    /// </summary>
     public void SetOutFade(bool flag)
     {
         isFadeOut = flag;
+    }
+
+    /// <summary>
+    /// シナリオを読む全部読むためのフラグ
+    /// </summary>
+    public void SetSceneChangeSwitch(bool flag)
+    {
+        sceneChangeSwitch = flag;
     }
 }
