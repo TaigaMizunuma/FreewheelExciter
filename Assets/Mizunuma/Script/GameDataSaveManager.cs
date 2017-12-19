@@ -64,6 +64,7 @@ public class GameDataSaveManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        FindObjectOfType<Fade>().SetInFade(true);
         SavaDataGetTexts();
     }
 
@@ -120,6 +121,7 @@ public class GameDataSaveManager : MonoBehaviour
         /*04キャラクターの名前*/
         SaveDataNameText.text = "ヒュー";
         eventSystem.SetSelectedGameObject(DummyButton);
+        Invoke("SetFadeOut", 1.5f);
         Debug.Log("スロット1 セーブしました");
 
     }
@@ -142,7 +144,16 @@ public class GameDataSaveManager : MonoBehaviour
         /*04キャラクターの名前*/
         SaveDataNameText1.text = "ヒュー";
         eventSystem.SetSelectedGameObject(DummyButton);
+        Invoke("SetFadeOut", 1.5f);
         Debug.Log("スロット2 セーブしました");
+    }
+
+    public void SetFadeOut()
+    {
+        FindObjectOfType<Fade>().SetOutFade(true);
+        FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+        FindObjectOfType<Fade>().SetScene("Title");
+
     }
 }
 

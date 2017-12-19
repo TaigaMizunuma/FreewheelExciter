@@ -135,13 +135,13 @@ public class MenuManager : MonoBehaviour
         MenuCount = 0;
     }
 
-    public void GetMainControlFlag(bool Flag)
+    public void SetMainControlFlag(bool flag)
     {
         /*trueなら制御 falseなら制御解除*/
-        MenuControlFlag = Flag;
+        MenuControlFlag = flag;
     }
 
-    public void GetEventSystem(bool flag)
+    public void SetEventSystem(bool flag)
     {
         /*イベントシステムロック*/
         eventSystem.sendNavigationEvents = flag;

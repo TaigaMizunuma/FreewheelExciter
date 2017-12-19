@@ -33,7 +33,7 @@ public class InterruptionTexts : MonoBehaviour
             /*ケース1を飛ばしてケース3が実行されるため、ケース2を挟んだ*/
             /*ケース1 メニューボタンロックし、UI表示カウントアップ*/
             case 1:
-                FindObjectOfType<MenuManager>().GetMainControlFlag(true);
+                FindObjectOfType<MenuManager>().SetMainControlFlag(true);
                 InterruptionTrue();
                 eventSystem.SetSelectedGameObject(YesButton);
                 UIcount++;
@@ -43,7 +43,7 @@ public class InterruptionTexts : MonoBehaviour
             /*ケース2 UI非表示 メニューボタンロック解除 メニュー戻れないようにする解除*/
             case 3:
                 InterruptionFalse();
-                FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+                FindObjectOfType<MenuManager>().SetMainControlFlag(false);
                 eventSystem.SetSelectedGameObject(MenuButton);
                 UIcount = 0;
                 break;

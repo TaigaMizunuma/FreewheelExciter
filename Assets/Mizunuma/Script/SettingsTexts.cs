@@ -49,7 +49,7 @@ public class SettingsTexts : MonoBehaviour
             /*ケース1 メニューボタンロックし、UI表示カウントアップ*/
             case 1:
                 SettingsTrue();
-                FindObjectOfType<MenuManager>().GetMainControlFlag(true);
+                FindObjectOfType<MenuManager>().SetMainControlFlag(true);
                 eventSystem.SetSelectedGameObject(BGMButton);
                 UIcount++;
                 break;
@@ -58,7 +58,7 @@ public class SettingsTexts : MonoBehaviour
             /*ケース2 UI非表示 メニューボタンロック解除 メニュー戻れないようにする解除*/
             case 3:
                 SettingsFalse();
-                FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+                FindObjectOfType<MenuManager>().SetMainControlFlag(false);
                 eventSystem.SetSelectedGameObject(SituationButton);
                 UIcount = 0;
                 SaveData.SetFloat("SESetting", SENumber);

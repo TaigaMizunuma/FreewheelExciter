@@ -736,7 +736,6 @@ GameObject:
   - component: {fileID: 1366246179}
   - component: {fileID: 1366246180}
   - component: {fileID: 1366246181}
-  - component: {fileID: 1366246182}
   m_Layer: 0
   m_Name: TitleManager
   m_TagString: Untagged
@@ -768,6 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b6388afcd9d5d4e9fbc0d36235382b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventSystem: {fileID: 429742212}
   anyKeyText: {fileID: 2127573535}
   titleButtonImage:
   - {fileID: 1935350746}
@@ -797,19 +797,6 @@ MonoBehaviour:
   isFadeOut: 0
   isFadeIn: 0
   sceneChangeSwitch: 0
-  changeName: Story
---- !u!114 &1366246182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1366246178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf5b253172f3c943aa6e5288c194311, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: 
 --- !u!1 &1405523049
 GameObject:
   m_ObjectHideFlags: 0

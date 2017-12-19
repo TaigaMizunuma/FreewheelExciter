@@ -32,7 +32,7 @@ public class Fade : MonoBehaviour {
     [HideInInspector]
     public bool sceneChangeSwitch;
 
-    public string changeName;
+    private string changeName;
 
 
 
@@ -133,5 +133,22 @@ public class Fade : MonoBehaviour {
     public void SetSceneChangeSwitch(bool flag)
     {
         sceneChangeSwitch = flag;
+    }
+
+    /// <summary>
+    /// シーン名セットします
+    /// </summary>
+    /// <param name="name"></param>
+    public void SetScene(string name)
+    {
+        changeName = name;
+    }
+    /// <summary>
+    /// 現在のシーンを取得します
+    /// </summary>
+    /// <returns></returns>
+    public string GetScene()
+    {
+        return changeName;
     }
 }

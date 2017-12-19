@@ -197,7 +197,7 @@ public class StoryCSVReader : MonoBehaviour
                     scenePattern = ScenePattern.Battle;
                 }
 
-                nextLoadScene = storyCSVDatas[storyID + 1][18];
+                FindObjectOfType<Fade>().SetScene(storyCSVDatas[storyID + 1][18]);
             }
         }
         red = 1f; green = 1f; blue = 1f;
@@ -237,17 +237,17 @@ public class StoryCSVReader : MonoBehaviour
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
-                    fade.changeName = nextLoadScene;
-                    fade.isFadeOut = true;
-                    fade.sceneChangeSwitch = true;
+                    nextLoadScene = FindObjectOfType<Fade>().GetScene();
+                    FindObjectOfType<Fade>().SetOutFade(true);
+                    FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
                 }
                 if (scenePattern == ScenePattern.Battle){
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
-                    fade.changeName = nextLoadScene;
-                    fade.isFadeOut = true;
-                    fade.sceneChangeSwitch = true;
+                    nextLoadScene = FindObjectOfType<Fade>().GetScene();
+                    FindObjectOfType<Fade>().SetOutFade(true);
+                    FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
                 }
             }
         }
@@ -260,9 +260,9 @@ public class StoryCSVReader : MonoBehaviour
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
-                    fade.changeName = nextLoadScene;
-                    fade.isFadeOut = true;
-                    fade.sceneChangeSwitch = true;
+                    nextLoadScene = FindObjectOfType<Fade>().GetScene();
+                    FindObjectOfType<Fade>().SetOutFade(true);
+                    FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
                 }
                 if(scenePattern == ScenePattern.Battle)
                 {

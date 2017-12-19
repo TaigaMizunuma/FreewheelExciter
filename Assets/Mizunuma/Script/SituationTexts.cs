@@ -63,14 +63,14 @@ public class SituationTexts : MonoBehaviour
             /*ケース1 メニューボタンロックし、UI表示カウントアップ*/
             case 1:
 
-                FindObjectOfType<MenuManager>().GetMainControlFlag(true);
+                FindObjectOfType<MenuManager>().SetMainControlFlag(true);
                 SituationTrue();
                 eventSystem.SetSelectedGameObject(ReturnButton);
                 break;
             /*ケース2 UI非表示 メニューボタンロック解除 メニュー戻れないようにする解除*/
             case 2:
                 SituationFalse();
-                FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+                FindObjectOfType<MenuManager>().SetMainControlFlag(false);
                 eventSystem.SetSelectedGameObject(MenuButton);
                 UIcount = 0;
                 break;

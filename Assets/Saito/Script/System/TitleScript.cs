@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TitleScript : MonoBehaviour {
+
+    public EventSystem eventSystem;
 
     //なんか押してねってテキスト
     [SerializeField]
@@ -32,6 +35,7 @@ public class TitleScript : MonoBehaviour {
         {
             titleButtonText[j].enabled = false;
         }
+        eventSystem.sendNavigationEvents = false;
     }
 
     void Update () {
@@ -43,7 +47,10 @@ public class TitleScript : MonoBehaviour {
     {
         if (Input.anyKeyDown)
         {
+            
+
             anyKeyText.enabled = false;
+            eventSystem.sendNavigationEvents = true;
             for (int i = 0; i < titleButtonImage.Length; i++)
             {
                 titleButtonImage[i].color = new Color(1,1,1,1);
@@ -61,27 +68,27 @@ public class TitleScript : MonoBehaviour {
     {
         //ここでセーブデータから呼ぶ
         //今はないのでテストシーンに飛ばしている
-        sceneChange.sceneName = "Story";
-        fade.isFadeOut = true;
-        fade.sceneChangeSwitch = true;
+        FindObjectOfType<Fade>().SetScene("SaveData");
+        FindObjectOfType<Fade>().SetOutFade(true);
+        FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
     }
 
     //NewGame選択時
     //強制で特定シーンに飛ぶ(会話シーン)
     public void NewGame()
     {
-        sceneChange.sceneName = "Story";
-        fade.isFadeOut = true;
-        fade.sceneChangeSwitch = true;
+        FindObjectOfType<Fade>().SetScene("Story");
+        FindObjectOfType<Fade>().SetOutFade(true);
+        FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
     }
 
     //クレジット画面に飛ぶ
     public void GameCredit()
     {
         //本来はクレジットに飛ぶ
-        sceneChange.sceneName = "Story";
-        fade.isFadeOut = true;
-        fade.sceneChangeSwitch = true;
+        FindObjectOfType<Fade>().SetScene("Title");
+        FindObjectOfType<Fade>().SetOutFade(true);
+        FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
     }
 
     //ゲーム終了
