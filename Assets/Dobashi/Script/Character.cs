@@ -295,10 +295,10 @@ public class Character : MonoBehaviour {
 
     }
 
-    public List<int> GetSaveData()
-    {
+    //public List<int> GetSaveData()
+    //{
 
-    }
+    //}
 
     /// <summary>
     /// 初期化
