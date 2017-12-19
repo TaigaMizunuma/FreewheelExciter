@@ -33,24 +33,7 @@ public enum Joblist
     EarthDragon
 }
 
-public struct Buff
-{
-    public int str;
-    public int skl;
-    public int spd;
-    public int luk;
-    public int def;
-    public int cur;
-    public int move;
-    public int attack_count;           //攻撃回数(勇者系などの複数回攻撃武器で使用)
-    public int attack_speed;           //攻撃速度
-    public float hit;                  //命中率
-    public float avoidance;            //回避率(地形補正抜き)
-    public float critical;             //必殺率
-    public int min;                    //最小
-    public int max;                    //最大
-    public int turn;                   //持続ターン数
-}
+
 
 public class Character : MonoBehaviour {
 
@@ -116,7 +99,8 @@ public class Character : MonoBehaviour {
 
     public int[] _addstatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };                 //定数増加量配列
     public int[] _addonetimestatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };          //戦闘時ステータス増加量配列
-    public int[] _addturnstatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0};           //ターン制限付きステータス増加配列
+    public int[] _addbufflist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };          //ターン制限付きバフステータス増加量配列
+    public List<Buff> _bufflist = new List<Buff>();
 
 
     public int _total_attack = 0;           //最終的な攻撃力(装備が銃なら技を参照する)
@@ -165,6 +149,22 @@ public class Character : MonoBehaviour {
         Default = 0,    //特になし
         Paralysis = 1,  //麻痺
         Poison = 2      //毒
+    }
+
+    public struct Buff
+    {
+        public int[] _datalist;
+
+        public void SetData(int[] data)
+        {
+            _datalist = data;
+        }
+        public bool AddTurn()
+        {
+            _datalist[13] -= 1;
+            if (_datalist[13] <= 0) return true;
+            return false;
+        }
     }
 
 
@@ -418,7 +418,7 @@ public class Character : MonoBehaviour {
     /// <summary>
     /// パッシブスキルの合計を計算
     /// </summary>
-    public int[] AddStatus()
+    public int[] AddPassiveStatus()
     {
         int[] _list = new int[14];
         var _skillList = _skillprefablist.GetComponent<SkillPrefabList>();
@@ -437,26 +437,45 @@ public class Character : MonoBehaviour {
     }
 
     /// <summary>
+    /// バフスキルの合計を計算
+    /// </summary>
+    /// <returns></returns>
+    public int[] AddBuffStatus()
+    {
+        int[] _list = new int[14];
+        for (var i = 0;i < _bufflist.Count;i++)
+        {
+            for (var j = 0; j < _bufflist[i]._datalist.Length;j++)
+            {
+                _list[j] += _bufflist[i]._datalist[j];
+            }
+            
+        }
+        return _list;
+    }
+
+    /// <summary>
     ///ステータス計算
     ///各補正値と基本ステータスを足す。
     ///攻撃速度、命中、回避、必殺率の計算も行う
     /// </summary>
     void TotalStatus()
     {
-        _addstatuslist = AddStatus();
+        _addstatuslist = AddPassiveStatus();
+        _addbufflist = AddBuffStatus();
 
         _totalMaxhp = _hp + classList.param[_classid].hp;
 
-        _totalstr = _str + classList.param[_classid].str + _addstatuslist[1] + _addonetimestatuslist[1];
-        _totalskl = _skl + classList.param[_classid].skl + _addstatuslist[2] + _addonetimestatuslist[2];
-        _totalspd = _spd + classList.param[_classid].spd + _addstatuslist[3] + _addonetimestatuslist[3];
-        _totalluk = _luk + classList.param[_classid].luk + _addstatuslist[4] + _addonetimestatuslist[4];
-        _totaldef = _def + classList.param[_classid].def + _addstatuslist[5] + _addonetimestatuslist[5];
-        _totalcur = _cur + classList.param[_classid].cur + _addstatuslist[6] + _addonetimestatuslist[6];
-        _totalmove = _move + classList.param[_classid].move + _addstatuslist[7] + _addonetimestatuslist[7];
+        _totalstr = _str + classList.param[_classid].str + _addstatuslist[1] + _addbufflist[0] + _addonetimestatuslist[1];
+        _totalskl = _skl + classList.param[_classid].skl + _addstatuslist[2] + _addbufflist[1] + _addonetimestatuslist[2];
+        _totalspd = _spd + classList.param[_classid].spd + _addstatuslist[3] + _addbufflist[2] + _addonetimestatuslist[3];
+        _totalluk = _luk + classList.param[_classid].luk + _addstatuslist[4] + _addbufflist[3] + _addonetimestatuslist[4];
+        _totaldef = _def + classList.param[_classid].def + _addstatuslist[5] + _addbufflist[4] + _addonetimestatuslist[5];
+        _totalcur = _cur + classList.param[_classid].cur + _addstatuslist[6] + _addbufflist[5] + _addonetimestatuslist[6];
+        _totalmove = _move + classList.param[_classid].move + _addstatuslist[7] + _addbufflist[6] + _addonetimestatuslist[7];
   
         //攻撃回数(基本は1)
-        _attack_count = _equipment.GetComponent<Weapon>()._attackcount + _addonetimestatuslist[11];
+        _attack_count = _equipment.GetComponent<Weapon>()._attackcount + _addbufflist[10] + _addonetimestatuslist[11];
 
         //重さ無視
         if (_skillchecker._Rigidarm)
@@ -471,14 +490,14 @@ public class Character : MonoBehaviour {
         }
         
         //命中率(武器の命中率 + 技 + 運/2)
-        _hit = _equipment.GetComponent<Weapon>()._hit + _totalskl + (_totalluk / 2) + _addonetimestatuslist[8];
+        _hit = _equipment.GetComponent<Weapon>()._hit + _totalskl + (_totalluk / 2) + _addbufflist[7] + _addonetimestatuslist[8];
         //回避率(速さ + 運)
-        _avoidance = _totalspd + _totalluk + _addonetimestatuslist[9];
+        _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9];
         //必殺率(武器の必殺率 + 技/2)
-        _critical = _equipment.GetComponent<Weapon>()._critical + (_totalskl / 2) + _addonetimestatuslist[10];
+        _critical = _equipment.GetComponent<Weapon>()._critical + (_totalskl / 2) + _addbufflist[9] + _addonetimestatuslist[10];
         //攻撃範囲のセット
-        _range[0] = _equipment.GetComponent<Weapon>()._min + _addonetimestatuslist[12];
-        _range[1] = _equipment.GetComponent<Weapon>()._max + _addonetimestatuslist[13];
+        _range[0] = _equipment.GetComponent<Weapon>()._min + _addbufflist[11] + _addonetimestatuslist[12];
+        _range[1] = _equipment.GetComponent<Weapon>()._max + _addbufflist[12] + _addonetimestatuslist[13];
 
         //攻撃力計算
         //装備が銃だったら技を参照にする。
@@ -548,10 +567,59 @@ public class Character : MonoBehaviour {
     }
 
     /// <summary>
+    /// バフスキル追加
+    /// </summary>
+    /// <param name="str">力</param>
+    /// <param name="skl">技</param>
+    /// <param name="spd">速</param>
+    /// <param name="luk">運</param>
+    /// <param name="def">守</param>
+    /// <param name="cur">呪</param>
+    /// <param name="move">移動</param>
+    /// <param name="hit">命中</param>
+    /// <param name="avo">回避</param>
+    /// <param name="cri">必殺</param>
+    /// <param name="count">攻撃回数</param>
+    /// <param name="min">最小</param>
+    /// <param name="max">最大</param>
+    /// <param name="turn">持続ターン</param>
+    public void AddBuff(int str, int skl, int spd, int luk, int def, int cur, int move, int hit, int avo, int cri, int count, int min, int max,int turn)
+    {
+        int[] i = new int[14];
+        i[0] = str;
+        i[1] = skl;
+        i[2] = spd;
+        i[3] = luk;
+        i[4] = def;
+        i[5] = cur;
+        i[6] = move;
+        i[7] = hit;
+        i[8] = avo;
+        i[9] = cri;
+        i[10] = count;
+        i[11] = min;
+        i[12] = max;
+        i[13] = turn;
+        var b = new Buff();
+        b.SetData(i);
+        _bufflist.Add(b);
+    }
+
+    /// <summary>
     /// ターン終了時の処理
     /// </summary>
     public void end()
     {
+        //ターン制限付きのスキルのターンを1経過させる
+        for(int i = 0; i < _bufflist.Count;i++)
+        {
+            //ターン0のバフは削除
+            if (_bufflist[i].AddTurn())
+            {
+                _bufflist.RemoveAt(i);
+            }
+        }
+        //毒の場合最大Hpの20％ダメージ
         if (_NowState == State.Poison)
         {
             _totalhp -= _totalMaxhp / 5;

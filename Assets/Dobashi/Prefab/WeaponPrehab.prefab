@@ -55,6 +55,7 @@ MonoBehaviour:
   _name: "\u6B66\u5668\u306E\u540D\u524D"
   _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
   _stock: 40
+  _maxstock: 40
   _type: Knife
   _atk: 1
   _weight: 1
