@@ -329,7 +329,7 @@ Prefab:
     - target: {fileID: 114081385912259802, guid: 9a5d5addf3a0f154e8b28228fd30697e,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a5d5addf3a0f154e8b28228fd30697e, type: 2}
@@ -609,7 +609,6 @@ MonoBehaviour:
   isFadeOut: 0
   isFadeIn: 0
   sceneChangeSwitch: 0
-  changeName: Title
 --- !u!4 &2071441657
 Transform:
   m_ObjectHideFlags: 0
