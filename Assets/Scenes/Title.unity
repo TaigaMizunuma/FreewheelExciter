@@ -125,7 +125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &19463080
 RectTransform:
   m_ObjectHideFlags: 0
@@ -769,16 +769,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anyKeyText: {fileID: 2127573535}
-  titleButtonImage:
-  - {fileID: 1935350746}
-  - {fileID: 19463082}
-  - {fileID: 1731009906}
-  - {fileID: 1791610595}
-  titleButtonText:
-  - {fileID: 1476797864}
-  - {fileID: 1608764671}
-  - {fileID: 202040879}
-  - {fileID: 1405523051}
+  Titlebutton:
+  - {fileID: 1935350743}
+  - {fileID: 19463079}
+  - {fileID: 1731009903}
+  - {fileID: 1791610592}
 --- !u!114 &1366246181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1049,7 +1044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1731009904
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1160,7 +1155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1791610593
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1350,7 +1345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1935350744
 RectTransform:
   m_ObjectHideFlags: 0
