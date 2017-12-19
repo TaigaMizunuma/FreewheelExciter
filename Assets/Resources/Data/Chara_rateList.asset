@@ -90,7 +90,7 @@ MonoBehaviour:
     cur: 5
     move: 5
   - id: 7
-    name: "\u4E2D\u6771"
+    name: "\u30B5\u30A4\u30E2\u30F3"
     hp: 70
     sp: 0
     str: 30
@@ -112,13 +112,68 @@ MonoBehaviour:
     cur: 5
     move: 1
   - id: 9
-    name: "\u30AC\u30D0\u3055\u3093"
-    hp: 50
+    name: "\u30F4\u30A3\u30C3\u30AF"
+    hp: 80
     sp: 0
-    str: 30
+    str: 55
+    skl: 25
+    spd: 40
+    luk: 35
+    def: 30
+    cur: 5
+    move: 2
+  - id: 10
+    name: "\u30D5\u30A3\u30FC\u30CA"
+    hp: 45
+    sp: 0
+    str: 15
     skl: 45
-    spd: 50
-    luk: 5
-    def: 10
-    cur: 25
+    spd: 75
+    luk: 75
+    def: 15
+    cur: 50
+    move: 15
+  - id: 11
+    name: "\u30EC\u30A2"
+    hp: 55
+    sp: 0
+    str: 20
+    skl: 55
+    spd: 40
+    luk: 45
+    def: 15
+    cur: 15
+    move: 1
+  - id: 0
+    name: 
+    hp: 0
+    sp: 0
+    str: 0
+    skl: 0
+    spd: 0
+    luk: 0
+    def: 0
+    cur: 0
+    move: 0
+  - id: 0
+    name: 
+    hp: 0
+    sp: 0
+    str: 0
+    skl: 0
+    spd: 0
+    luk: 0
+    def: 0
+    cur: 0
+    move: 0
+  - id: 0
+    name: 
+    hp: 0
+    sp: 0
+    str: 0
+    skl: 0
+    spd: 0
+    luk: 0
+    def: 0
+    cur: 0
     move: 0
