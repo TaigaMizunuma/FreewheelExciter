@@ -166,12 +166,7 @@ public class Move_System : MonoBehaviour
             {
                 moving_ = false;
                 route_.Clear();
-                RaycastHit hit;
-                if (Physics.SphereCast(transform.position - new Vector3(0, -0.5f, 0), 0.2f, Vector3.down, out hit, 5.0f))
-                {
-                    now_pos = hit.transform.gameObject;
-                    now_pos.GetComponent<Square_Info>().SetChara(gameObject);
-                }
+                SetNowPos();
                 cost = first_cost;
                 move_list_num = 0;
                 FindObjectOfType<BattleFlowTest>().moveEnd();// 10/31 追加
@@ -267,5 +262,15 @@ public class Move_System : MonoBehaviour
             r_.Reverse();
         }
         GameObject.FindGameObjectWithTag("lRend").GetComponent<RouteLine>().LineRend(r_);
+    }
+
+    public void SetNowPos()
+    {
+        RaycastHit hit;
+        if (Physics.SphereCast(transform.position - new Vector3(0, -0.5f, 0), 0.2f, Vector3.down, out hit, 5.0f))
+        {
+            now_pos = hit.transform.gameObject;
+            now_pos.GetComponent<Square_Info>().SetChara(gameObject);
+        }
     }
 }

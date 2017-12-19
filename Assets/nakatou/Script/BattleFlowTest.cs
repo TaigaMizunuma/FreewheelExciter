@@ -64,19 +64,23 @@ public class BattleFlowTest : MonoBehaviour
     int e_dm;
     int p_dm;
 
-    //仮
+    //武器、スキル、アイテム選択時のUI用
     bool once = false;
     bool choose = false;
     int count = 0;
     List<GameObject> weaponUIs = new List<GameObject>();
     List<GameObject> weapons = new List<GameObject>();
 
+    //hpui用
     public GameObject PlayerRedGage;
     public GameObject EnemyRedGage;
 
-    public GameObject Shousai;
+    public GameObject Shousai;//詳細ステータス
 
-    bool GameEnd = false;
+    bool GameEnd = false;//仮
+
+    Vector3 MoveStartPos;//キャンセル用
+    GameObject battleui;//戦闘時UI;
 
 
     void Awake()
@@ -98,6 +102,12 @@ public class BattleFlowTest : MonoBehaviour
         _TurnText.text = "第１章 \n PlayerTurn";
 
         m_audio.PlayBgm("battle1");
+
+        // ボタンが押された時の処理を登録
+        //GameObject.Find("Menu5_Attack").GetComponent<Button>().onClick.AddListener(() => attackBt());
+        //GameObject.Find("Menu6_Skill").GetComponent<Button>().onClick.AddListener(() => SkillBt());
+        //GameObject.Find("Menu7_Item").GetComponent<Button>().onClick.AddListener(() => ItemBt());
+        //GameObject.Find("Menu8_Return").GetComponent<Button>().onClick.AddListener(() => TurnEnd());
 
         StartCoroutine(DelayMethod.DelayMethodCall(1.0f, () =>
         {
@@ -133,10 +143,9 @@ public class BattleFlowTest : MonoBehaviour
         if (GameEnd) return;//ゲーム終了
 
         //カメラ追従
-        if (state_ == State_.enemy_turn || state_ == State_.enemy_move_mode ||
-            state_ == State_.enemy_attack_mode || state_ == State_.enemy_counter_mode)
+        if (state_ == State_.enemy_move_mode ||state_ == State_.enemy_attack_mode)
         {
-            if (!_randamEnemy) return;
+            if (!_randamEnemy) setRandamEnemy(GameObject.FindGameObjectWithTag("Enemy"));
             FindObjectOfType<RayBox>().SetCameraPosition(_randamEnemy);
         }
 
@@ -154,6 +163,7 @@ public class BattleFlowTest : MonoBehaviour
                      }));
                 }
 
+                //ステータス表示
                 if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetButtonDown("R1"))
                 {
                     Ray serch = new Ray(rayBox.transform.position, -rayBox.transform.up);
@@ -190,11 +200,41 @@ public class BattleFlowTest : MonoBehaviour
                 //移動中
             case State_.move_mode:
                 //アニメ再生とか入れる予定
+
+                //キャンセル
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");
+                    foreach (GameObject g in obj)
+                    {
+                        g.GetComponent<Square_Info>().DecisionEnd();
+                    }
+                    FindObjectOfType<RayBox>().SetMovePlayer(null);
+                    state_ = State_.simulation_mode;
+                }
                 break;
 
                 //移動後の行動選択
             case State_.action_mode:
-                //現状何もなし
+
+                //キャンセル
+                if (Input.GetKeyDown(KeyCode.X))
+                {
+                    _nowChooseChar.GetComponent<Move_System>().GetNowPos().GetComponent<Square_Info>().ResetChara();
+                    _nowChooseChar.transform.position = MoveStartPos;
+                    _nowChooseChar.GetComponent<Move_System>().SetNowPos();
+                    
+                    FindObjectOfType<RayBox>().SetMovePlayer(null);
+                 
+
+                    FindObjectOfType<RayBox>().SetCameraPosition(_nowChooseChar);
+
+                    FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+                    FindObjectOfType<RayBox>().move_ = true;
+                    
+                    _nowChooseChar = null;
+                    state_ = State_.simulation_mode;
+                }
                 break;
 
             //武器選択
@@ -250,6 +290,24 @@ public class BattleFlowTest : MonoBehaviour
                     {
                         choose = true;
                         _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
+                    }
+
+                    //キャンセル
+                    if(Input.GetKeyDown(KeyCode.X))
+                    {
+                        foreach (var obj in weaponUIs)
+                        {
+                            obj.SetActive(false);
+                            Destroy(obj, 1.0f);
+                        }
+
+                        choose = false;
+                        once = false;
+                        count = 0;
+                        weapons.Clear();
+                        weaponUIs.Clear();
+                        state_ = State_.action_mode;
+                        FindObjectOfType<SubMenuRenderer>().SubMenuStart();
                     }
                 }
                 else
@@ -323,6 +381,24 @@ public class BattleFlowTest : MonoBehaviour
                     if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
                     {
                         choose = true;
+                    }
+
+                    //キャンセル
+                    if (Input.GetKeyDown(KeyCode.X))
+                    {
+                        foreach (var obj in weaponUIs)
+                        {
+                            obj.SetActive(false);
+                            Destroy(obj, 1.0f);
+                        }
+
+                        choose = false;
+                        once = false;
+                        count = 0;
+                        weapons.Clear();
+                        weaponUIs.Clear();
+                        state_ = State_.action_mode;
+                        FindObjectOfType<SubMenuRenderer>().SubMenuStart();
                     }
                 }
                 else
@@ -399,6 +475,24 @@ public class BattleFlowTest : MonoBehaviour
                     {
                         choose = true;
                     }
+
+                    //キャンセル
+                    if (Input.GetKeyDown(KeyCode.X))
+                    {
+                        foreach (var obj in weaponUIs)
+                        {
+                            obj.SetActive(false);
+                            Destroy(obj, 1.0f);
+                        }
+
+                        choose = false;
+                        once = false;
+                        count = 0;
+                        weapons.Clear();
+                        weaponUIs.Clear();
+                        state_ = State_.action_mode;
+                        FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+                    }
                 }
                 else
                 {
@@ -455,6 +549,19 @@ public class BattleFlowTest : MonoBehaviour
                     var pos = range_enemy[count].transform.position;
                     pos.y = rayBox.transform.position.y;
                     rayBox.transform.position = pos;
+
+                    //キャンセル
+                    if (Input.GetKeyDown(KeyCode.X))
+                    {
+                        count = 0;
+                        //選択キャラの攻撃可能状態を解除
+                        _nowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
+
+                        Destroy(battleui);//戦闘時UI削除
+
+                        state_ = State_.action_mode;
+                        FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+                    }
                 }
 
                 Ray ray = new Ray(rayBox.transform.position, -rayBox.transform.up);
@@ -462,21 +569,9 @@ public class BattleFlowTest : MonoBehaviour
                 //カーソルの下になんかいて
                 if (Physics.Raycast(ray, out hit, 1000.0f))
                 {
-                    if(hit.transform.tag == "Enemy")
+                    if (hit.transform.tag == "Enemy")
                     {
-                        FindObjectOfType<StatusUI>().setBattleStatus(
-                            _nowChooseChar.GetComponent<Character>()._name,
-                            _nowChooseChar.GetComponent<Character>()._totalhp,
-                            _nowChooseChar.GetComponent<Character>()._totalMaxhp,
-                            _nowChooseChar.GetComponent<Character>()._total_attack,
-                            _nowChooseChar.GetComponent<Character>()._hit,
-                            _nowChooseChar.GetComponent<Character>()._critical,
-                            hit.transform.GetComponent<Character>()._name,
-                            hit.transform.GetComponent<Character>()._totalhp,
-                            hit.transform.GetComponent<Character>()._totalMaxhp,
-                            hit.transform.GetComponent<Character>()._total_attack,
-                            hit.transform.GetComponent<Character>()._hit,
-                            hit.transform.GetComponent<Character>()._critical);
+                        battleui = FindObjectOfType<StatusUI>().SetBattleStatus(_nowChooseChar, hit.transform.gameObject);
                     }
 
                     //スペース(仮)が押されて && まだ攻撃してないなら
@@ -555,44 +650,51 @@ public class BattleFlowTest : MonoBehaviour
                         }
                     }
                 }
-                
+
                 break;
 
                 //エネミーの反撃
             case State_.enemy_counter_mode:
                 if (attacking)
                 {
-                    Debug.Log("敵の反撃！");
-                    //とりあえずの反撃エフェクト表示&SE
-                    var effect = Instantiate(Resources.Load("Eff_Hit_6"), _nowAttackChara.transform.position, Quaternion.identity);
-                    m_audio.PlaySe("GunShot");
-                    Destroy(effect, 1.0f);
+                    if (_nowCounterChara)
+                    {
+                        Debug.Log("敵の反撃！");
+                        //とりあえずの反撃エフェクト表示&SE
+                        var effect = Instantiate(Resources.Load("Eff_Hit_6"), _nowAttackChara.transform.position, Quaternion.identity);
+                        m_audio.PlaySe("GunShot");
+                        Destroy(effect, 1.0f);
 
-                    //キャラの向き変更
-                    _nowCounterChara.transform.LookAt(_nowAttackChara.transform);
+                        //キャラの向き変更
+                        _nowCounterChara.transform.LookAt(_nowAttackChara.transform);
 
-                    DamegeUI_Init(_nowAttackChara, p_dm);
+                        DamegeUI_Init(_nowAttackChara, p_dm);
 
-                    FindObjectOfType<StatusUI>().setPlayerDamage(p_dm);
+                        FindObjectOfType<StatusUI>().setPlayerDamage(p_dm);
 
-                    //結果をUIに渡す
-                    FindObjectOfType<StatusUI>().setUnitStatus(
-                        _nowAttackChara.GetComponent<Character>()._name,
-                        _nowAttackChara.GetComponent<Character>()._totalhp,
-                        _nowAttackChara.GetComponent<Character>()._totalMaxhp);
+                        //結果をUIに渡す
+                        FindObjectOfType<StatusUI>().setUnitStatus(
+                            _nowAttackChara.GetComponent<Character>()._name,
+                            _nowAttackChara.GetComponent<Character>()._totalhp,
+                            _nowAttackChara.GetComponent<Character>()._totalMaxhp);
+
+                    }
 
                     //演出上の遅延
                     StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () =>
                     {
+                        Destroy(battleui);
                         TurnEnd();
                     }));
                    attacking = false;
-                }              
+                }
+
                 break;
             
                 //敵ターン
             case State_.enemy_turn:
                 FindObjectOfType<StatusUI>().setactive(false);
+
                 //行動予定エネミーのHPが０なら
                 if (_randamEnemy == null)
                 {
@@ -652,6 +754,7 @@ public class BattleFlowTest : MonoBehaviour
 
                 _nowChooseChar = hit.transform.gameObject;
                 _nowChooseChar.GetComponent<Move_System>().Retrieval();
+                MoveStartPos = _nowChooseChar.transform.position;
 
                 state_ = State_.move_mode;
             }
@@ -729,7 +832,7 @@ public class BattleFlowTest : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// レベルアップしたときに上昇値を表示
     /// </summary>
     /// <param name="target"></param>
     /// <param name="upvalue"></param>
@@ -835,7 +938,9 @@ public class BattleFlowTest : MonoBehaviour
     }
 
 
-    //特技ボタン用
+    /// <summary>
+    /// 特技ボタン
+    /// </summary>
     public void SkillBt()
     {
         if (state_ == State_.action_mode)
@@ -851,6 +956,9 @@ public class BattleFlowTest : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// アイテムボタン
+    /// </summary>
     public void ItemBt()
     {
         if (state_ == State_.action_mode)
@@ -866,7 +974,10 @@ public class BattleFlowTest : MonoBehaviour
         }
     }
 
-    //攻撃ボタン用
+
+    /// <summary>
+    /// 攻撃ボタン
+    /// </summary>
     public void attackBt()
     {
         if(state_ == State_.action_mode)
@@ -908,7 +1019,7 @@ public class BattleFlowTest : MonoBehaviour
     }
 
     /// <summary>
-    /// 仮
+    /// 仮 行動するエネミーを決定
     /// </summary>
     /// <param name="obj"></param>
     public void setRandamEnemy(GameObject obj)

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 /// <summary>
 /// UIにステータスを表示させるためのクラス
@@ -77,6 +78,65 @@ public class StatusUI : MonoBehaviour
             player_atk + "  |  " + enemy_atk + "\n" +
             player_hit + "%  |  " + enemy_hit + "% \n" +
             player_critical + "%  |  " + enemy_critical + "%";
+    }
+
+    /// <summary>
+    /// 戦闘時のUI表示　改良版
+    /// </summary>
+    /// <param name="attack">攻撃側</param>
+    /// <param name="defense">反撃側</param>
+    public GameObject SetBattleStatus(GameObject attack, GameObject defense)
+    {
+        GameObject ui;
+        if(!GameObject.Find("BattleStatusUI"))
+        {
+            //ステータス表示UI生成
+            var obj= Resources.Load("BattleStatusUI");
+            ui = Instantiate(obj, GameObject.Find("Canvas1").transform.FindChild("Frame")) as GameObject;
+            ui.name = "BattleStatusUI";
+        }
+        else
+        {
+            ui = GameObject.Find("BattleStatusUI");
+        }
+        
+        var atkText = GameObject.Find("AtkStatus").GetComponent<Text>();//攻撃側のステータス表示テキスト
+        var defText = GameObject.Find("DefStatus").GetComponent<Text>();//反撃側のステータス表示テキスト
+
+        var status1 = attack.GetComponent<Character>();
+        var status2 = defense.GetComponent<Character>();
+
+        List<string> chara1status = new List<string>();
+        List<string> chara2status = new List<string>();
+
+        chara1status.Add(status1._name);
+        chara1status.Add("HP:" + status1._totalhp + "/" + status1._totalMaxhp);
+        chara1status.Add("攻撃力:" + status1._total_attack);
+        chara1status.Add("攻撃回数:" + status1._attack_count);
+        chara1status.Add("命中率:" + status1._hit);
+        chara1status.Add("回避率:" + status1._avoidance);
+        chara1status.Add("必殺率:" + status1._critical);
+
+        chara2status.Add(status2._name);
+        chara2status.Add("HP:" + status2._totalhp + "/" + status2._totalMaxhp);
+        chara2status.Add("攻撃力:" + status2._total_attack);
+        chara2status.Add("攻撃回数:" + status2._attack_count);
+        chara2status.Add("命中率:" + status2._hit);
+        chara2status.Add("回避率:" + status2._avoidance);
+        chara2status.Add("必殺率:" + status2._critical);
+
+        atkText.text = "";
+        defText.text = "";
+        foreach(var st in chara1status)
+        {
+            atkText.text += st + "\n";
+        }
+
+        foreach (var st in chara2status)
+        {
+            defText.text += st + "\n";
+        }
+        return ui as GameObject;
     }
 
     /// <summary>

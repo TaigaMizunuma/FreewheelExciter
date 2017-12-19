@@ -134,10 +134,18 @@ public class RayBox : MonoBehaviour
                    hit.collider.GetComponent<Character>()._name,
                    hit.collider.GetComponent<Character>()._totalhp,
                    hit.collider.GetComponent<Character>()._totalMaxhp);
+                if (move_player != null)
+                {
+                    GameObject.FindGameObjectWithTag("lRend").GetComponent<RouteLine>().LineDelete();
+                }
             }
         }
     }
 
+    /// <summary>
+    /// ラインを描画するキャラを登録(nullならライン消去)
+    /// </summary>
+    /// <param name="p"></param>
     public void SetMovePlayer(GameObject p)
     {
         move_player = p;
