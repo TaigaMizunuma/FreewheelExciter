@@ -44,7 +44,7 @@ public class Character : MonoBehaviour {
     public Image _faceimage;    //フォアグラ
 
     public string _name;        //名前
-    //public string _class;       //職業
+    //public string _class;     //職業
     public Vector3 _position;   //座標
     public bool _hero = false;  //主人公かどうか
     private bool _reset = false;
@@ -292,6 +292,11 @@ public class Character : MonoBehaviour {
     {
         _stability = false;
         _addonetimestatuslist = new int[14] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+    }
+
+    public List<int> GetSaveData()
+    {
 
     }
 
