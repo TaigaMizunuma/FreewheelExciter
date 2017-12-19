@@ -82,6 +82,8 @@ public class BattleFlowTest : MonoBehaviour
     Vector3 MoveStartPos;//キャンセル用
     GameObject battleui;//戦闘時UI;
 
+    State_ nowstate;
+
 
     void Awake()
     {
@@ -149,566 +151,79 @@ public class BattleFlowTest : MonoBehaviour
             FindObjectOfType<RayBox>().SetCameraPosition(_randamEnemy);
         }
 
+        //メニューフラグ制御
+        if (state_ != State_.simulation_mode)
+        {
+            if (state_ == State_.menu_mode) return;
+            FindObjectOfType<MenuManager>().GetMainControlFlag(true);
+        }
+
         //遷移
         switch (state_)
         {
             //キャラ選択
             case State_.simulation_mode:
-
-                if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("O")) && !Shousai.activeInHierarchy)//○ボタン予定
-                {
-                    StartCoroutine(DelayMethod.DelayMethodCall(0.1f, () =>
-                     {
-                         ChooseChara();
-                     }));
-                }
-
-                //ステータス表示
-                if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetButtonDown("R1"))
-                {
-                    Ray serch = new Ray(rayBox.transform.position, -rayBox.transform.up);
-                    RaycastHit hiton = new RaycastHit();
-                    //カーソルの下になんかいて
-                    if (Physics.Raycast(serch, out hiton, 1000.0f))
-                    {
-                        if (hiton.transform.tag == "Player" || hiton.transform.tag == "Enemy")
-                        {
-                            Shousai.SetActive(!Shousai.activeInHierarchy);
-                            FindObjectOfType<RayBox>().move_ = false;
-                            GameObject.Find("MapCursor").GetComponent<Image>().enabled = false;
-                            FindObjectOfType<MenuManager>().GetMainControlFlag(true);
-                            if (Shousai.activeInHierarchy)
-                            {
-                                FindObjectOfType<Shosai>()._chara = hiton.transform.gameObject;
-                            }
-                            else
-                            {
-                                FindObjectOfType<RayBox>().move_ = true;
-                                GameObject.Find("MapCursor").GetComponent<Image>().enabled = true;
-                                FindObjectOfType<MenuManager>().GetMainControlFlag(false);
-                            }
-                        }
-                    }
-                }
+                SimulationMode();
                 break;
 
-              //キャラがいないマスならメニュー開く
+              //メインメニューを開いた状態
             case State_.menu_mode:
-
+                //今のところ何もなし
                 break;
 
                 //移動中
             case State_.move_mode:
                 //アニメ再生とか入れる予定
+                MoveMode();
 
-                //キャンセル
-                if (Input.GetKeyDown(KeyCode.X))
-                {
-                    GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");
-                    foreach (GameObject g in obj)
-                    {
-                        g.GetComponent<Square_Info>().DecisionEnd();
-                    }
-                    FindObjectOfType<RayBox>().SetMovePlayer(null);
-                    state_ = State_.simulation_mode;
-                }
                 break;
 
                 //移動後の行動選択
             case State_.action_mode:
-
-                //キャンセル
-                if (Input.GetKeyDown(KeyCode.X))
-                {
-                    _nowChooseChar.GetComponent<Move_System>().GetNowPos().GetComponent<Square_Info>().ResetChara();
-                    _nowChooseChar.transform.position = MoveStartPos;
-                    _nowChooseChar.GetComponent<Move_System>().SetNowPos();
-                    
-                    FindObjectOfType<RayBox>().SetMovePlayer(null);
-                 
-
-                    FindObjectOfType<RayBox>().SetCameraPosition(_nowChooseChar);
-
-                    FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-                    FindObjectOfType<RayBox>().move_ = true;
-                    
-                    _nowChooseChar = null;
-                    state_ = State_.simulation_mode;
-                }
+                ActionMode();
+                
                 break;
 
             //武器選択
             case State_.weapon_mode:
-                if (!once)
-                {
-                    var items = _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist;
-                    count = 0;
-                    if (items == null)
-                    {
-                        once = true;
-                        choose = true;
-                    }
-                    foreach (var obj in items)
-                    {
-                        if (obj.GetComponent<Weapon>())
-                        {
-                            GameObject ui = Instantiate(
-                                Resources.Load("WeaponUI"),
-                                GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
-                            ui.transform.localPosition = new Vector3(0, count * -100, 0);
-                            ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Weapon>()._name;
-                            ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                            weapons.Add(obj);
-                            weaponUIs.Add(ui);
-                            count++;
-                        }
-                    }
-                    count = 0;
-                    once = true;
-                }
-                if(!choose)
-                {
-                    foreach(var obj in weaponUIs)
-                    {
-                        obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                    }
-                    weaponUIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-
-                    if(Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
-                    {
-                        if (count == 0) return;
-                        count--;
-                        _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
-                    }
-                    if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
-                    {
-                        if (count == weaponUIs.Count - 1) return;
-                        count++;
-                        _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
-                    }
-                    if(Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
-                    {
-                        choose = true;
-                        _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
-                    }
-
-                    //キャンセル
-                    if(Input.GetKeyDown(KeyCode.X))
-                    {
-                        foreach (var obj in weaponUIs)
-                        {
-                            obj.SetActive(false);
-                            Destroy(obj, 1.0f);
-                        }
-
-                        choose = false;
-                        once = false;
-                        count = 0;
-                        weapons.Clear();
-                        weaponUIs.Clear();
-                        state_ = State_.action_mode;
-                        FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-                    }
-                }
-                else
-                {
-                    foreach (var obj in weaponUIs)
-                    { 
-                        obj.SetActive(false);
-                        Destroy(obj, 1.0f);
-                    }
-                    
-                    choose = false;
-                    once = false;
-                    count = 0;
-                    weapons.Clear();
-                    weaponUIs.Clear();
-                    _nowChooseChar.GetComponent<PlayerAttack>().RangeSearch();
-                }
+                WeaponMode();
 
                 break;
 
                 //スキル選択
             case State_.skill_mode:
-                if (!once)
-                {
-                    var skill = _nowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>()._skillprefablist;
-                    count = 0;
-                    if (skill == null)
-                    {
-                        once = true;
-                        choose = true;
-                    }
-                    foreach (var obj in skill)
-                    {
-                        if (obj.GetComponent<CommandSkill>())
-                        {
-                            if (obj.GetComponent<CommandSkill>()._activ)
-                            {
-                                GameObject ui = Instantiate(
-                                    Resources.Load("WeaponUI"),
-                                    GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
-                                ui.transform.localPosition = new Vector3(0, count * -100, 0);
-                                ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<CommandSkill>()._name;
-                                ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                                weapons.Add(obj);
-                                weaponUIs.Add(ui);
-                                count++;
-                            }
-                        }
-                    }
-                    count = 0;
-                    once = true;
-                }
-                if (!choose)
-                {
-                    foreach (var obj in weaponUIs)
-                    {
-                        obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                    }
-                    weaponUIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                SkillMode();
 
-                    if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
-                    {
-                        if (count == 0) return;
-                        count--;
-                    }
-                    if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
-                    {
-                        if (count == weaponUIs.Count - 1) return;
-                        count++;
-                    }
-                    if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
-                    {
-                        choose = true;
-                    }
-
-                    //キャンセル
-                    if (Input.GetKeyDown(KeyCode.X))
-                    {
-                        foreach (var obj in weaponUIs)
-                        {
-                            obj.SetActive(false);
-                            Destroy(obj, 1.0f);
-                        }
-
-                        choose = false;
-                        once = false;
-                        count = 0;
-                        weapons.Clear();
-                        weaponUIs.Clear();
-                        state_ = State_.action_mode;
-                        FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-                    }
-                }
-                else
-                {
-                    foreach (var obj in weaponUIs)
-                    {
-                        obj.SetActive(false);
-                        Destroy(obj, 1.0f);
-                    }
-
-                    _nowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>().SkillEffect(_nowChooseChar,weapons[count]);
-                    choose = false;
-                    once = false;
-                    weapons.Clear();
-                    weaponUIs.Clear();
-                    TurnEnd();
-                    state_ = State_.stay_mode;
-                }
                 break;
 
                 //道具選択
             case State_.item_mode:
-                if (!once)
-                {
-                    var items = _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist;
-                    count = 0;
-                    foreach (var obj in items)
-                    {
-                        if (obj.GetComponent<Item>())
-                        {
-                            GameObject ui = Instantiate(
-                                Resources.Load("WeaponUI"),
-                                GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
-                            ui.transform.localPosition = new Vector3(0, count * -100, 0);
-                            ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Item>()._name;
-                            ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                            weapons.Add(obj);
-                            weaponUIs.Add(ui);
-                            count++;
-                        }
-                    }
-                    if (count == 0)
-                    {
-                        Debug.Log("使えるアイテムを持っていません");
-                        FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-                        choose = false;
-                        once = false;
-                        weapons.Clear();
-                        weaponUIs.Clear();
-                        state_ = State_.action_mode;
-                    }
-                    count = 0;
-                    once = true;
-                }
-                if (!choose)
-                {
-                    foreach (var obj in weaponUIs)
-                    {
-                        obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                        weaponUIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-                    }
-
-                    if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
-                    {
-                        if (count == 0) return;
-                        count--;
-                    }
-                    if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
-                    {
-                        if (count == weaponUIs.Count - 1) return;
-                        count++;
-                    }
-                    if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
-                    {
-                        choose = true;
-                    }
-
-                    //キャンセル
-                    if (Input.GetKeyDown(KeyCode.X))
-                    {
-                        foreach (var obj in weaponUIs)
-                        {
-                            obj.SetActive(false);
-                            Destroy(obj, 1.0f);
-                        }
-
-                        choose = false;
-                        once = false;
-                        count = 0;
-                        weapons.Clear();
-                        weaponUIs.Clear();
-                        state_ = State_.action_mode;
-                        FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-                    }
-                }
-                else
-                {
-                    foreach (var obj in weaponUIs)
-                    {
-                        obj.SetActive(false);
-                        Destroy(obj, 1.0f);
-                    }
-                    
-                    _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().UseItem(_nowChooseChar,weapons[count]);
-                    choose = false;
-                    once = false;
-                    weapons.Clear();
-                    weaponUIs.Clear();
-                    TurnEnd();
-                    state_ = State_.stay_mode;
-                }
+                ItemMode();
+                
                 break;
 
                 //待機選択
             case State_.stay_mode:
-                //ターン終了
+                //ターン終了　何もしない
 
                 break;
 
             //攻撃対象の選択
             case State_.player_attack_mode:
-                //仮実装 カーソルが敵に自動で照準
-                if (!attacking)
-                {
-                    var range_enemy = _nowChooseChar.GetComponent<PlayerAttack>().GetInAttackRangeEnemy();
-                    if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1 || Input.GetKeyDown(KeyCode.UpArrow))
-                    {
-                        if (count == 0)
-                        {
-                            count = range_enemy.Count - 1;
-                        }
-                        else
-                        {
-                            count--;
-                        }
-                    }
-                    if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1 || Input.GetKeyDown(KeyCode.DownArrow))
-                    {
-                        if (count == range_enemy.Count - 1)
-                        {
-                            count = 0;
-                        }
-                        else
-                        {
-                            count++;
-                        }
-                    }
-                    var pos = range_enemy[count].transform.position;
-                    pos.y = rayBox.transform.position.y;
-                    rayBox.transform.position = pos;
-
-                    //キャンセル
-                    if (Input.GetKeyDown(KeyCode.X))
-                    {
-                        count = 0;
-                        //選択キャラの攻撃可能状態を解除
-                        _nowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
-
-                        Destroy(battleui);//戦闘時UI削除
-
-                        state_ = State_.action_mode;
-                        FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-                    }
-                }
-
-                Ray ray = new Ray(rayBox.transform.position, -rayBox.transform.up);
-                RaycastHit hit = new RaycastHit();
-                //カーソルの下になんかいて
-                if (Physics.Raycast(ray, out hit, 1000.0f))
-                {
-                    if (hit.transform.tag == "Enemy")
-                    {
-                        battleui = FindObjectOfType<StatusUI>().SetBattleStatus(_nowChooseChar, hit.transform.gameObject);
-                    }
-
-                    //スペース(仮)が押されて && まだ攻撃してないなら
-                    if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("O")) && !attacking)
-                    {
-                        //カーソルがエネミーをさしていたら
-                        if (hit.transform.tag == "Enemy")
-                        {
-                            attacking = true;
-                            count = 0;
-                            //選択キャラの攻撃可能状態を解除
-                            _nowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
-
-                            //キャラの向き変更
-                            _nowChooseChar.transform.LookAt(hit.transform);
-
-                            Debug.Log("自キャラの攻撃！");
-                            FindObjectOfType<RayBox>().move_ = false;
-
-                            //とりあえずのエフェクト表示&SE
-                            var effect = Instantiate(Resources.Load("Eff_Hit_6"), hit.transform.position, Quaternion.identity);
-                            m_audio.PlaySe("GunShot");
-                            Destroy(effect, 1.0f);
-                           
-                            int e_nowhp = hit.transform.GetComponent<Character>()._totalhp;
-                            int p_nowhp = _nowChooseChar.GetComponent<Character>()._totalhp;
-
-                            //とりあえずゲージ表示
-                            FindObjectOfType<StatusUI>().setactive(true);
-
-                            FindObjectOfType<StatusUI>().setPlayerHpGage(
-                                _nowChooseChar.GetComponent<Character>()._totalMaxhp, p_nowhp);
-                            FindObjectOfType<StatusUI>().setEnemyHpGage(
-                                hit.transform.GetComponent<Character>()._totalMaxhp, e_nowhp);
-                            
-                            PlayerRedGage.GetComponent<DamageGage>().setdamageGage(
-                                _nowChooseChar.GetComponent<Character>()._totalMaxhp, p_nowhp);
-                            EnemyRedGage.GetComponent<DamageGage>().setdamageGage(
-                                hit.transform.GetComponent<Character>()._totalMaxhp, e_nowhp);
-
-                            //戦闘結果計算
-                            FindObjectOfType<BattleManager>().BattleSetup(_nowChooseChar, hit.transform.gameObject);
-
-                            e_dm = e_nowhp - hit.transform.GetComponent<Character>()._totalhp;//敵ダメージ算出(仮)
-                            p_dm = p_nowhp - _nowChooseChar.GetComponent<Character>()._totalhp;//プレイヤダメージ算出
-
-                            DamegeUI_Init(hit.transform.gameObject, e_dm);
-                            FindObjectOfType<StatusUI>().setEnemyDamage(e_dm);
-
-                            //攻撃キャラを一時的に保存
-                            _nowCounterChara = hit.collider.gameObject;
-                            _nowAttackChara = _nowChooseChar;
-
-                            //結果をUIに渡す
-                            FindObjectOfType<StatusUI>().setUnitStatus(
-                                hit.collider.GetComponent<Character>()._name,
-                                hit.collider.GetComponent<Character>()._totalhp,
-                                hit.collider.GetComponent<Character>()._totalMaxhp);
-
-
-                            //演出上の間をおいてから敵の反撃へ
-                            StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () => 
-                            {
-                                state_ = State_.enemy_counter_mode;
-                            }));
-                        }
-                        //プレイヤー
-                        else if(hit.transform.tag == "Player")
-                        {
-                            //何もしない
-                        }
-                        //カーソルがエネミー以外のとこにあると
-                        else
-                        {
-                            Debug.Log("そのマスには何もいません");
-                        }
-                    }
-                }
+                PlayerAttackMode();           
 
                 break;
 
                 //エネミーの反撃
             case State_.enemy_counter_mode:
-                if (attacking)
-                {
-                    if (_nowCounterChara)
-                    {
-                        Debug.Log("敵の反撃！");
-                        //とりあえずの反撃エフェクト表示&SE
-                        var effect = Instantiate(Resources.Load("Eff_Hit_6"), _nowAttackChara.transform.position, Quaternion.identity);
-                        m_audio.PlaySe("GunShot");
-                        Destroy(effect, 1.0f);
-
-                        //キャラの向き変更
-                        _nowCounterChara.transform.LookAt(_nowAttackChara.transform);
-
-                        DamegeUI_Init(_nowAttackChara, p_dm);
-
-                        FindObjectOfType<StatusUI>().setPlayerDamage(p_dm);
-
-                        //結果をUIに渡す
-                        FindObjectOfType<StatusUI>().setUnitStatus(
-                            _nowAttackChara.GetComponent<Character>()._name,
-                            _nowAttackChara.GetComponent<Character>()._totalhp,
-                            _nowAttackChara.GetComponent<Character>()._totalMaxhp);
-
-                    }
-
-                    //演出上の遅延
-                    StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () =>
-                    {
-                        Destroy(battleui);
-                        TurnEnd();
-                    }));
-                   attacking = false;
-                }
+                EnemyCounterMode();
 
                 break;
             
                 //敵ターン
             case State_.enemy_turn:
-                FindObjectOfType<StatusUI>().setactive(false);
+                EnemyTurnMode();
 
-                //行動予定エネミーのHPが０なら
-                if (_randamEnemy == null)
-                {
-                    //別のエネミーに
-                    _randamEnemy = GameObject.FindGameObjectWithTag("Enemy");
-                }
-
-                //敵が一体でもいれば
-                if (_randamEnemy)
-                {
-                    //敵の行動を開始
-                    _randamEnemy.GetComponent<EnemyBase>().SetNextGoal(_randamEnemy.GetComponent<EnemyBase>().target_square);
-                    state_ = State_.enemy_move_mode;
-                }
                 break;
 
                 //敵の移動
@@ -733,79 +248,592 @@ public class BattleFlowTest : MonoBehaviour
         }
     }
 
-
     /// <summary>
-    /// 行動キャラ選択
+    /// キャラ選択モード
     /// </summary>
-    public void ChooseChara()
+    void SimulationMode()
     {
-        m_audio.PlaySe("choose");//se
-
-        Ray ray = new Ray(FindObjectOfType<RayBox>().transform.gameObject.transform.position, -transform.up);
-        RaycastHit hit = new RaycastHit();
-        //カーソルの場所になにがあるか
-        if (Physics.Raycast(ray, out hit, 1000.0f))
+        //行動キャラ選択
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("O")) && !Shousai.activeInHierarchy)//○ボタン予定
         {
-            //プレイヤーだったとき移動開始
-            if (hit.collider.tag == "Player")
+            m_audio.PlaySe("choose");//se
+
+            Ray ray = new Ray(FindObjectOfType<RayBox>().transform.gameObject.transform.position, -transform.up);
+            RaycastHit hit = new RaycastHit();
+            //カーソルの場所になにがあるか
+            if (Physics.Raycast(ray, out hit, 1000.0f))
             {
-                //カーソル固定
-                FindObjectOfType<RayBox>().move_ = false;
+                //プレイヤーだったとき移動開始
+                if (hit.collider.tag == "Player")
+                {
+                    //カーソル固定
+                    FindObjectOfType<RayBox>().move_ = false;
+                    _nowChooseChar = hit.transform.gameObject;
+                    MoveStartPos = _nowChooseChar.transform.position;
 
-                _nowChooseChar = hit.transform.gameObject;
-                _nowChooseChar.GetComponent<Move_System>().Retrieval();
-                MoveStartPos = _nowChooseChar.transform.position;
+                    //プログラム上の問題で遅延
+                    StartCoroutine(DelayMethod.DelayMethodCall(0.1f, () =>
+                    {                     
+                        _nowChooseChar.GetComponent<Move_System>().Retrieval();
 
-                state_ = State_.move_mode;
+                        state_ = State_.move_mode;
+                    }));
+                }
             }
-            //何もいなかった時メニュー表示
-            //else if (hit.collider.tag == "Floor")
-            //{
-            //    FindObjectOfType<RayBox>().move_ = false;
-            //    //FindObjectOfType<MenuManager>().IniMainMenu();
-            //    state_ = State_.menu_mode;
-            //}
+        }
+
+        //詳細ステータス表示
+        if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetButtonDown("R1"))
+        {
+            Ray serch = new Ray(rayBox.transform.position, -rayBox.transform.up);
+            RaycastHit hiton = new RaycastHit();
+            //カーソルの下になんかいて
+            if (Physics.Raycast(serch, out hiton, 1000.0f))
+            {
+                if (hiton.transform.tag == "Player" || hiton.transform.tag == "Enemy")
+                {
+                    Shousai.SetActive(!Shousai.activeInHierarchy);
+                    FindObjectOfType<RayBox>().move_ = false;
+                    GameObject.Find("MapCursor").GetComponent<Image>().enabled = false;
+                    FindObjectOfType<MenuManager>().GetMainControlFlag(true);
+                    if (Shousai.activeInHierarchy)
+                    {
+                        FindObjectOfType<Shosai>()._chara = hiton.transform.gameObject;
+                    }
+                    else
+                    {
+                        FindObjectOfType<RayBox>().move_ = true;
+                        GameObject.Find("MapCursor").GetComponent<Image>().enabled = true;
+                        FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+                    }
+                }
+            }
+        }
+    }
+   
+    void MoveMode()
+    {
+        //キャンセル
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");
+            foreach (GameObject g in obj)
+            {
+                g.GetComponent<Square_Info>().DecisionEnd();
+            }
+            FindObjectOfType<RayBox>().SetMovePlayer(null);
+            FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+            state_ = State_.simulation_mode;
         }
     }
 
-    public void moveEnd()
+    void ActionMode()
+    {
+        //キャンセル
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            _nowChooseChar.GetComponent<Move_System>().GetNowPos().GetComponent<Square_Info>().ResetChara();
+            _nowChooseChar.transform.position = MoveStartPos;
+            _nowChooseChar.GetComponent<Move_System>().SetNowPos();
+
+            FindObjectOfType<RayBox>().SetMovePlayer(null);
+
+
+            FindObjectOfType<RayBox>().SetCameraPosition(_nowChooseChar);
+
+            FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+            FindObjectOfType<RayBox>().move_ = true;
+
+            FindObjectOfType<MenuManager>().GetMainControlFlag(false);
+
+            _nowChooseChar = null;
+            state_ = State_.simulation_mode;
+        }
+    }
+
+    void WeaponMode()
+    {
+        if (!once)
+        {
+            //アイテム所持情報取得
+            var items = _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist;
+            count = 0;
+            //なんもないとき
+            if (items == null)
+            {
+                once = true;
+                choose = true;
+            }
+            //アイテムの中から武器を取得描画
+            foreach (var obj in items)
+            {
+                if (obj.GetComponent<Weapon>())
+                {
+                    GameObject ui = Instantiate(
+                        Resources.Load("WeaponUI"),
+                        GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
+                    ui.transform.localPosition = new Vector3(0, count * -100, 0);
+                    ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Weapon>()._name;
+                    ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
+                    weapons.Add(obj);
+                    weaponUIs.Add(ui);
+                    count++;
+                }
+            }
+            count = 0;
+            once = true;
+        }
+        //武器選択中
+        if (!choose)
+        {
+            foreach (var obj in weaponUIs)
+            {
+                obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
+            }
+            weaponUIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+
+            if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
+            {
+                if (count == 0) return;
+                count--;
+                _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
+            }
+            if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
+            {
+                if (count == weaponUIs.Count - 1) return;
+                count++;
+                _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
+            }
+            if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
+            {
+                choose = true;
+                _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
+            }
+
+            //キャンセル
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                foreach (var obj in weaponUIs)
+                {
+                    obj.SetActive(false);
+                    Destroy(obj, 1.0f);
+                }
+
+                choose = false;
+                once = false;
+                count = 0;
+                weapons.Clear();
+                weaponUIs.Clear();
+                state_ = State_.action_mode;
+                FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+            }
+        }
+        //選択完了
+        else
+        {
+            foreach (var obj in weaponUIs)
+            {
+                obj.SetActive(false);
+                Destroy(obj, 1.0f);
+            }
+
+            choose = false;
+            once = false;
+            count = 0;
+            weapons.Clear();
+            weaponUIs.Clear();
+            _nowChooseChar.GetComponent<PlayerAttack>().RangeSearch();
+        }
+    }
+
+    void SkillMode()
+    {
+        if (!once)
+        {
+            var skill = _nowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>()._skillprefablist;
+            count = 0;
+            if (skill == null)
+            {
+                once = true;
+                choose = true;
+            }
+            foreach (var obj in skill)
+            {
+                if (obj.GetComponent<CommandSkill>())
+                {
+                    if (obj.GetComponent<CommandSkill>()._activ)
+                    {
+                        GameObject ui = Instantiate(
+                            Resources.Load("WeaponUI"),
+                            GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
+                        ui.transform.localPosition = new Vector3(0, count * -100, 0);
+                        ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<CommandSkill>()._name;
+                        ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
+                        weapons.Add(obj);
+                        weaponUIs.Add(ui);
+                        count++;
+                    }
+                }
+            }
+            count = 0;
+            once = true;
+        }
+        if (!choose)
+        {
+            foreach (var obj in weaponUIs)
+            {
+                obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
+            }
+            weaponUIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+
+            if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
+            {
+                if (count == 0) return;
+                count--;
+            }
+            if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
+            {
+                if (count == weaponUIs.Count - 1) return;
+                count++;
+            }
+            if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
+            {
+                choose = true;
+            }
+
+            //キャンセル
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                foreach (var obj in weaponUIs)
+                {
+                    obj.SetActive(false);
+                    Destroy(obj, 1.0f);
+                }
+
+                choose = false;
+                once = false;
+                count = 0;
+                weapons.Clear();
+                weaponUIs.Clear();
+                state_ = State_.action_mode;
+                FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+            }
+        }
+        else
+        {
+            foreach (var obj in weaponUIs)
+            {
+                obj.SetActive(false);
+                Destroy(obj, 1.0f);
+            }
+
+            _nowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>().SkillEffect(_nowChooseChar, weapons[count]);
+            choose = false;
+            once = false;
+            weapons.Clear();
+            weaponUIs.Clear();
+
+            TurnEnd();
+            state_ = State_.stay_mode;
+        }
+    }
+
+    void ItemMode()
+    {
+        if (!once)
+        {
+            var items = _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist;
+            count = 0;
+            foreach (var obj in items)
+            {
+                if (obj.GetComponent<Item>())
+                {
+                    GameObject ui = Instantiate(
+                        Resources.Load("WeaponUI"),
+                        GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
+                    ui.transform.localPosition = new Vector3(0, count * -100, 0);
+                    ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Item>()._name;
+                    ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
+                    weapons.Add(obj);
+                    weaponUIs.Add(ui);
+                    count++;
+                }
+            }
+            if (count == 0)
+            {
+                Debug.Log("使えるアイテムを持っていません");
+                FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+                choose = false;
+                once = false;
+                weapons.Clear();
+                weaponUIs.Clear();
+                state_ = State_.action_mode;
+            }
+            count = 0;
+            once = true;
+        }
+        if (!choose)
+        {
+            foreach (var obj in weaponUIs)
+            {
+                obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
+                weaponUIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            }
+
+            if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
+            {
+                if (count == 0) return;
+                count--;
+            }
+            if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
+            {
+                if (count == weaponUIs.Count - 1) return;
+                count++;
+            }
+            if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
+            {
+                choose = true;
+            }
+
+            //キャンセル
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                foreach (var obj in weaponUIs)
+                {
+                    obj.SetActive(false);
+                    Destroy(obj, 1.0f);
+                }
+
+                choose = false;
+                once = false;
+                count = 0;
+                weapons.Clear();
+                weaponUIs.Clear();
+                state_ = State_.action_mode;
+                FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+            }
+        }
+        else
+        {
+            foreach (var obj in weaponUIs)
+            {
+                obj.SetActive(false);
+                Destroy(obj, 1.0f);
+            }
+
+            _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().UseItem(_nowChooseChar, weapons[count]);
+            choose = false;
+            once = false;
+            weapons.Clear();
+            weaponUIs.Clear();
+
+            TurnEnd();
+            state_ = State_.stay_mode;
+        }
+    }
+
+    void PlayerAttackMode()
+    {
+        //仮実装 カーソルが敵に自動で照準
+        if (!attacking)
+        {
+            var range_enemy = _nowChooseChar.GetComponent<PlayerAttack>().GetInAttackRangeEnemy();
+            if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1 || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (count == 0)
+                {
+                    count = range_enemy.Count - 1;
+                }
+                else
+                {
+                    count--;
+                }
+            }
+            if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1 || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if (count == range_enemy.Count - 1)
+                {
+                    count = 0;
+                }
+                else
+                {
+                    count++;
+                }
+            }
+            var pos = range_enemy[count].transform.position;
+            pos.y = rayBox.transform.position.y;
+            rayBox.transform.position = pos;
+
+            //キャンセル
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                count = 0;
+                //選択キャラの攻撃可能状態を解除
+                _nowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
+
+                Destroy(battleui);//戦闘時UI削除
+
+                state_ = State_.action_mode;
+                FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+            }
+        }
+
+        Ray ray = new Ray(rayBox.transform.position, -rayBox.transform.up);
+        RaycastHit hit = new RaycastHit();
+        //カーソルの下になんかいて
+        if (Physics.Raycast(ray, out hit, 1000.0f))
+        {
+            if (hit.transform.tag == "Enemy")
+            {
+                battleui = FindObjectOfType<StatusUI>().SetBattleStatus(_nowChooseChar, hit.transform.gameObject);
+            }
+
+            //スペース(仮)が押されて && まだ攻撃してないなら
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("O")) && !attacking)
+            {
+                //カーソルがエネミーをさしていたら
+                if (hit.transform.tag == "Enemy")
+                {
+                    attacking = true;
+                    count = 0;
+                    //選択キャラの攻撃可能状態を解除
+                    _nowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
+
+                    //キャラの向き変更
+                    _nowChooseChar.transform.LookAt(hit.transform);
+
+                    Debug.Log("自キャラの攻撃！");
+                    FindObjectOfType<RayBox>().move_ = false;
+
+                    //とりあえずのエフェクト表示&SE
+                    var effect = Instantiate(Resources.Load("Eff_Hit_6"), hit.transform.position, Quaternion.identity);
+                    m_audio.PlaySe("GunShot");
+                    Destroy(effect, 1.0f);
+
+                    int e_nowhp = hit.transform.GetComponent<Character>()._totalhp;
+                    int p_nowhp = _nowChooseChar.GetComponent<Character>()._totalhp;
+
+                    //とりあえずゲージ表示
+                    FindObjectOfType<StatusUI>().setactive(true);
+
+                    FindObjectOfType<StatusUI>().setPlayerHpGage(
+                        _nowChooseChar.GetComponent<Character>()._totalMaxhp, p_nowhp);
+                    FindObjectOfType<StatusUI>().setEnemyHpGage(
+                        hit.transform.GetComponent<Character>()._totalMaxhp, e_nowhp);
+
+                    PlayerRedGage.GetComponent<DamageGage>().setdamageGage(
+                        _nowChooseChar.GetComponent<Character>()._totalMaxhp, p_nowhp);
+                    EnemyRedGage.GetComponent<DamageGage>().setdamageGage(
+                        hit.transform.GetComponent<Character>()._totalMaxhp, e_nowhp);
+
+                    //戦闘結果計算
+                    FindObjectOfType<BattleManager>().BattleSetup(_nowChooseChar, hit.transform.gameObject);
+
+                    e_dm = e_nowhp - hit.transform.GetComponent<Character>()._totalhp;//敵ダメージ算出(仮)
+                    p_dm = p_nowhp - _nowChooseChar.GetComponent<Character>()._totalhp;//プレイヤダメージ算出
+
+                    DamegeUI_Init(hit.transform.gameObject, e_dm);
+                    FindObjectOfType<StatusUI>().setEnemyDamage(e_dm);
+
+                    //攻撃キャラを一時的に保存
+                    _nowCounterChara = hit.collider.gameObject;
+                    _nowAttackChara = _nowChooseChar;
+
+                    //結果をUIに渡す
+                    FindObjectOfType<StatusUI>().setUnitStatus(
+                        hit.collider.GetComponent<Character>()._name,
+                        hit.collider.GetComponent<Character>()._totalhp,
+                        hit.collider.GetComponent<Character>()._totalMaxhp);
+
+
+                    //演出上の間をおいてから敵の反撃へ
+                    StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () =>
+                    {
+                        state_ = State_.enemy_counter_mode;
+                    }));
+                }
+                //プレイヤー
+                else if (hit.transform.tag == "Player")
+                {
+                    //何もしない
+                }
+                //カーソルがエネミー以外のとこにあると
+                else
+                {
+                    Debug.Log("そのマスには何もいません");
+                }
+            }
+        }
+    }
+
+    void EnemyCounterMode()
+    {
+        if (attacking)
+        {
+            if (_nowCounterChara)
+            {
+                Debug.Log("敵の反撃！");
+                //とりあえずの反撃エフェクト表示&SE
+                var effect = Instantiate(Resources.Load("Eff_Hit_6"), _nowAttackChara.transform.position, Quaternion.identity);
+                m_audio.PlaySe("GunShot");
+                Destroy(effect, 1.0f);
+
+                //キャラの向き変更
+                _nowCounterChara.transform.LookAt(_nowAttackChara.transform);
+
+                DamegeUI_Init(_nowAttackChara, p_dm);
+
+                FindObjectOfType<StatusUI>().setPlayerDamage(p_dm);
+
+                //結果をUIに渡す
+                FindObjectOfType<StatusUI>().setUnitStatus(
+                    _nowAttackChara.GetComponent<Character>()._name,
+                    _nowAttackChara.GetComponent<Character>()._totalhp,
+                    _nowAttackChara.GetComponent<Character>()._totalMaxhp);
+
+            }
+
+            //演出上の遅延
+            StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () =>
+            {
+                Destroy(battleui);
+                TurnEnd();
+            }));
+            attacking = false;
+        }
+    }
+
+    void EnemyTurnMode()
+    {
+        FindObjectOfType<StatusUI>().setactive(false);
+
+        //行動予定エネミーのHPが０なら
+        if (_randamEnemy == null)
+        {
+            //別のエネミーに
+            _randamEnemy = GameObject.FindGameObjectWithTag("Enemy");
+        }
+
+        //敵が一体でもいれば
+        if (_randamEnemy)
+        {
+            //敵の行動を開始
+            _randamEnemy.GetComponent<EnemyBase>().SetNextGoal(_randamEnemy.GetComponent<EnemyBase>().target_square);
+            state_ = State_.enemy_move_mode;
+        }
+    }
+
+
+    /// <summary>
+    /// プレイヤーの移動終了
+    /// </summary>
+    public void PlayerMoveEnd()
     {
         FindObjectOfType<SubMenuRenderer>().SubMenuStart();
         FindObjectOfType<RayBox>().move_ = false;
         state_ = State_.action_mode;
     }
 
-    /// <summary>
-    /// 敵の攻撃終了で攻撃された味方キャラの反撃
-    /// </summary>
-    /// <param name="enemy">攻撃した敵</param>
-    /// <param name="target">攻撃された味方</param>
-    /// <param name="damage">反撃時のダメージ(ui用)</param>
-    public void EnemyAttackEnd(GameObject enemy, GameObject target, int damage)
-    {
-        Debug.Log("自キャラの反撃！");
-        var effect = Instantiate(Resources.Load("Eff_Hit_6"), enemy.transform.position, Quaternion.identity);
-        m_audio.PlaySe("GunShot");
-        Destroy(effect, 1.0f);
-
-        //キャラの向き変更
-        target.transform.LookAt(enemy.transform);
-
-        DamegeUI_Init(enemy, damage);
-
-        FindObjectOfType<StatusUI>().setUnitStatus(
-                                enemy.GetComponent<Character>()._name,
-                                enemy.GetComponent<Character>()._totalhp,
-                                enemy.GetComponent<Character>()._totalMaxhp);
-
-        FindObjectOfType<StatusUI>().setEnemyDamage(damage);
-
-        //演出上の間をおいてからプレイヤーのターンへ
-        StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () =>
-        {
-            EnemyTurnEnd();
-        }));
-    }
 
     /// <summary>
     /// 頭の上にUIでダメージを表示
@@ -924,6 +952,7 @@ public class BattleFlowTest : MonoBehaviour
         StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () => 
         {
             Turn_TextReset();
+            FindObjectOfType<MenuManager>().GetMainControlFlag(false);
             FindObjectOfType<RayBox>().move_ = true;
             state_ = State_.simulation_mode;
         }));
@@ -989,22 +1018,6 @@ public class BattleFlowTest : MonoBehaviour
             StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
             {
                 state_ = State_.weapon_mode;
-            }));
-        }
-    }
-
-    //メニュー閉じる(未使用)
-    public void MenuEnd()
-    {
-        if(state_ == State_.menu_mode)
-        {
-            m_audio.PlaySe("choose");
-            _nowChooseChar = null;//選んでたキャラリセット
-            FindObjectOfType<RayBox>().move_ = true;
-            //プログラム上の問題で遅延
-            StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
-            {
-                changeST(State_.simulation_mode);
             }));
         }
     }

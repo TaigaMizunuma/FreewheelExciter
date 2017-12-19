@@ -80,7 +80,7 @@ public class Move_System : MonoBehaviour
                     {
                         g.GetComponent<Square_Info>().DecisionEnd();
                     }
-                    FindObjectOfType<BattleFlowTest>().moveEnd();
+                    FindObjectOfType<BattleFlowTest>().PlayerMoveEnd();
                 }
             }
         }
@@ -169,7 +169,7 @@ public class Move_System : MonoBehaviour
                 SetNowPos();
                 cost = first_cost;
                 move_list_num = 0;
-                FindObjectOfType<BattleFlowTest>().moveEnd();// 10/31 追加
+                FindObjectOfType<BattleFlowTest>().PlayerMoveEnd();// 10/31 追加
             }
             move_timer = 0;
         }

@@ -86,10 +86,42 @@ public class CharaStatus : MonoBehaviour
                                 target.GetComponent<Character>()._totalhp,
                                 target.GetComponent<Character>()._totalMaxhp);
 
-        //演出上の間
+        //すぐに行動しないように遅延
         StartCoroutine(DelayMethod.DelayMethodCall(1.0f, () =>
         {
-            FindObjectOfType<BattleFlowTest>().EnemyAttackEnd(gameObject, target, dm);
+            EnemyAttackEnd(gameObject, target, dm);
+        }));
+    }
+
+    /// <summary>
+    /// 敵の攻撃終了で攻撃された味方キャラの反撃
+    /// </summary>
+    /// <param name="enemy">攻撃した敵</param>
+    /// <param name="target">攻撃された味方</param>
+    /// <param name="damage">反撃時のダメージ(ui用)</param>
+    public void EnemyAttackEnd(GameObject enemy, GameObject target, int damage)
+    {
+        Debug.Log("自キャラの反撃！");
+        var effect = Instantiate(Resources.Load("Eff_Hit_6"), enemy.transform.position, Quaternion.identity);
+        FindObjectOfType<AudioManager>().PlaySe("GunShot");
+        Destroy(effect, 1.0f);
+
+        //キャラの向き変更
+        target.transform.LookAt(enemy.transform);
+
+        FindObjectOfType<BattleFlowTest>().DamegeUI_Init(enemy, damage);
+
+        FindObjectOfType<StatusUI>().setUnitStatus(
+                                enemy.GetComponent<Character>()._name,
+                                enemy.GetComponent<Character>()._totalhp,
+                                enemy.GetComponent<Character>()._totalMaxhp);
+
+        FindObjectOfType<StatusUI>().setEnemyDamage(damage);
+
+        //すぐに行動しないように遅延
+        StartCoroutine(DelayMethod.DelayMethodCall(1.0f, () =>
+        {
+            FindObjectOfType<BattleFlowTest>().EnemyTurnEnd();
         }));
     }
 }
