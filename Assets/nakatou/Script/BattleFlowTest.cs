@@ -102,7 +102,7 @@ public class BattleFlowTest : MonoBehaviour
 
         _TurnText.text = "第１章 \n PlayerTurn";
 
-        m_audio.PlayBgm("battle1");
+        //m_audio.PlayBgm("battle1");
         
         StartCoroutine(DelayMethod.DelayMethodCall(1.0f, () =>
         {
