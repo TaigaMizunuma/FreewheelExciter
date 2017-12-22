@@ -6,7 +6,9 @@ public class PlayerAttack : MonoBehaviour
     private int MinCost = 1;//最小攻撃範囲
     private int MaxCost = 1;//最大攻撃範囲
     GameObject Now_pos;
+
     List<GameObject> attack_range = new List<GameObject>();//攻撃範囲のマス取得
+    List<GameObject> serch_range = new List<GameObject>();//攻撃範囲のマス取得
 
     public bool range_line = false;//キャラクターの攻撃範囲が直線かそうじゃないか
 
@@ -34,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public void AttackReady()
@@ -89,10 +91,6 @@ public class PlayerAttack : MonoBehaviour
         InAttackRange_Enemy.Clear();
     }
 
-    public List<GameObject> GetAttackRange()
-    {
-        return attack_range;
-    }
 
     /// <summary>
     ///ゲッター 攻撃範囲に入ってるエネミー
@@ -130,10 +128,8 @@ public class PlayerAttack : MonoBehaviour
 
         InRange_Player.Clear();
 
-        Retrieval();
-        RetrievalRelease();
-        //AttackRelease();
-       
+        Retrieval2();
+
         return InRange_Player;
     }
 
@@ -149,23 +145,22 @@ public class PlayerAttack : MonoBehaviour
        
         InRange_Enemy.Clear();
 
-        Retrieval();
-        RetrievalRelease();
-        foreach(GameObject obj in attack_range)
+        Retrieval2();
+
+        foreach(GameObject obj in serch_range)
         {
             if (obj.GetComponent<Square_Info>().GetChara() && obj.GetComponent<Square_Info>().GetChara().tag == "Enemy")
             {
                 InRange_Enemy.Add(obj.GetComponent<Square_Info>().GetChara());
             }
         }
-        foreach (GameObject atkmas in attack_range)
-        {
-            atkmas.GetComponent<Square_Info>().DecisionEnd();
-        }
 
         return InRange_Enemy;
     }
 
+    /// <summary>
+    /// 攻撃用　サーチ
+    /// </summary>
     public void Retrieval()
     {
         RaycastHit hit;
@@ -175,6 +170,7 @@ public class PlayerAttack : MonoBehaviour
             Now_pos.GetComponent<Square_Info>().SetChara(gameObject);
         }
         attack_range.Clear();
+
         Square_Info si_;
         si_ = Now_pos.GetComponent<Square_Info>();
         GameObject[] nears_ = si_.GetNear();
@@ -184,19 +180,14 @@ public class PlayerAttack : MonoBehaviour
             if (nears_[i].GetComponent<Square_Info>().GetChara() != null)
             {
                 if (nears_[i].GetComponent<Square_Info>().GetChara().tag == "Player")
-                {
-                    if (!InRange_Player.Contains(nears_[i].GetComponent<Square_Info>().GetChara()) && 
-                        gameObject != nears_[i].GetComponent<Square_Info>().GetChara())
-                    {
-                        InRange_Player.Add(nears_[i].GetComponent<Square_Info>().GetChara());
-                    }                 
+                {   
                     continue;
                 } 
             }
             Square_Info n_si_ = nears_[i].GetComponent<Square_Info>();
             if (1 <= MaxCost)
             {
-                n_si_.AttackRange();
+                //n_si_.AttackRange();
                 if (!attack_range.Contains(n_si_.gameObject))
                 {
                     attack_range.Add(n_si_.gameObject);
@@ -224,11 +215,6 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (n.GetComponent<Square_Info>().GetChara().tag == "Player")
                 {
-                    if (!InRange_Player.Contains(n.gameObject.GetComponent<Square_Info>().GetChara()) &&
-                        gameObject != n.GetComponent<Square_Info>().GetChara())
-                    {
-                        InRange_Player.Add(n.GetComponent<Square_Info>().GetChara());
-                    }
                     continue;
                 }
             }
@@ -236,7 +222,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (cost_ <= MaxCost)
             {
-                n_si_.AttackRange();
+                //n_si_.AttackRange();
                 if (!attack_range.Contains(n_si_.gameObject))
                 {
                     attack_range.Add(n_si_.gameObject);
@@ -255,11 +241,6 @@ public class PlayerAttack : MonoBehaviour
         {
             if (near_.GetComponent<Square_Info>().GetChara().tag == "Player")
             {
-                if (!InRange_Player.Contains(near_.gameObject.GetComponent<Square_Info>().GetChara()) &&
-                    gameObject != near_.GetComponent<Square_Info>().GetChara())
-                {
-                    InRange_Player.Add(near_.GetComponent<Square_Info>().GetChara());
-                }
                 return;
             }
         }
@@ -267,7 +248,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (cost_ <= MaxCost)
         {
-            n_si_.AttackRange();
+            //n_si_.AttackRange();
             if (!attack_range.Contains(n_si_.gameObject))
             {
                 attack_range.Add(n_si_.gameObject);
@@ -318,5 +299,120 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-   
+
+    /// <summary>
+    /// スキル用　サーチ
+    /// </summary>
+    public void Retrieval2()
+    {
+        RaycastHit hit;
+        if (Physics.SphereCast(transform.position - new Vector3(0, -0.5f, 0), 0.2f, Vector3.down, out hit, 5.0f))
+        {
+            Now_pos = hit.transform.gameObject;
+            Now_pos.GetComponent<Square_Info>().SetChara(gameObject);
+        }
+
+        serch_range.Clear();
+
+        Square_Info si_;
+        si_ = Now_pos.GetComponent<Square_Info>();
+        GameObject[] nears_ = si_.GetNear();
+        for (int i = 0; i < nears_.Length; i++)
+        {
+            if (nears_[i] == null) continue;
+            if (nears_[i].GetComponent<Square_Info>().GetChara() != null)
+            {
+                if (nears_[i].GetComponent<Square_Info>().GetChara().tag == "Player")
+                {
+                    var obj = nears_[i].gameObject.GetComponent<Square_Info>().GetChara();
+                    if ((!InRange_Player.Contains(obj)) && (obj != gameObject))
+                    {
+                        InRange_Player.Add(nears_[i].GetComponent<Square_Info>().GetChara());
+                    }
+                    continue;
+                }
+            }
+            Square_Info n_si_ = nears_[i].GetComponent<Square_Info>();
+            if (1 <= MaxCost)
+            {
+                //n_si_.AttackRange();
+                if (!serch_range.Contains(n_si_.gameObject))
+                {
+                    serch_range.Add(n_si_.gameObject);
+                }
+            }
+            if (1 < MaxCost)
+            {
+                if (!range_line) Retrieval2(nears_[i], 2);
+                else
+                {
+                    Retrieval2(nears_[i], 2, i);
+                }
+            }
+        }
+    }
+
+    void Retrieval2(GameObject near, int cost_)
+    {
+        Square_Info si_;
+        si_ = near.GetComponent<Square_Info>();
+        GameObject[] nears_ = si_.GetNear();
+        foreach (GameObject n in nears_)
+        {
+            if (n.GetComponent<Square_Info>().GetChara() != null)
+            {
+                if (n.GetComponent<Square_Info>().GetChara().tag == "Player")
+                {
+                    var obj = n.gameObject.GetComponent<Square_Info>().GetChara();
+                    if ((!InRange_Player.Contains(obj)) && (gameObject != obj))
+                    {
+                        InRange_Player.Add(n.GetComponent<Square_Info>().GetChara());
+                    }
+                    continue;
+                }
+            }
+            Square_Info n_si_ = n.GetComponent<Square_Info>();
+
+            if (cost_ <= MaxCost)
+            {
+                //n_si_.AttackRange();
+                if (!serch_range.Contains(n_si_.gameObject))
+                {
+                    serch_range.Add(n_si_.gameObject);
+                }
+            }
+            if (cost_ < MaxCost) Retrieval2(n, cost_ + 1);
+        }
+    }
+
+    void Retrieval2(GameObject near, int cost_, int num)
+    {
+        Square_Info si_;
+        si_ = near.GetComponent<Square_Info>();
+        GameObject near_ = si_.GetNear()[num];
+        if (near_.GetComponent<Square_Info>().GetChara() != null)
+        {
+            if (near_.GetComponent<Square_Info>().GetChara().tag == "Player")
+            {
+                var obj = near_.gameObject.GetComponent<Square_Info>().GetChara();
+                if ( (!InRange_Player.Contains(obj)) && (gameObject != obj) )
+                {
+                    InRange_Player.Add(near_.GetComponent<Square_Info>().GetChara());
+                }
+                return;
+            }
+        }
+        Square_Info n_si_ = near_.GetComponent<Square_Info>();
+
+        if (cost_ <= MaxCost)
+        {
+            //n_si_.AttackRange();
+            if (!serch_range.Contains(n_si_.gameObject))
+            {
+                serch_range.Add(n_si_.gameObject);
+            }
+        }
+        if (cost_ < MaxCost) Retrieval2(near_, cost_ + 1, num);
+    }
+
 }

@@ -54,10 +54,11 @@ public class EnemyBase : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         // 移動
         if (moving_) Move();
-        else if (Input.GetKeyDown(KeyCode.RightShift)) SetNextGoal(target_square);
+        //else if (Input.GetKeyDown(KeyCode.RightShift)) SetNextGoal(target_square);
     }
 
     public void SetNextGoal(GameObject next)
@@ -123,12 +124,10 @@ public class EnemyBase : MonoBehaviour {
 
     void Search()
     {
+        //移動の必要がない時
         if (target_square == now_pos)
         {
-            if(player_in_range)
-            {
-                GetComponent<CharaStatus>().attack_to_player(in_range_player);
-            }
+            GetComponent<EnemyAttack>().RangeSearch();
             return;
         }
         if (target_square.GetComponent<Square_Info>().GetChara() != null)
@@ -151,7 +150,6 @@ public class EnemyBase : MonoBehaviour {
         route_.Add(target_square);
         while (route_[route_.Count - 1] != now_pos)
         {
-            //if(route_[route_.Count - 1].GetComponent<Square_Info>().SearchRoute().GetComponent<Square_Info>().GetCost()<=first_cost)
             route_.Add(route_[route_.Count - 1].GetComponent<Square_Info>().SearchRoute());
         }
         if (route_.Count > 0)
@@ -210,9 +208,10 @@ public class EnemyBase : MonoBehaviour {
                 }
             }
             move_timer = 0;
+            //移動終了時
             if (moving_ == false && cost_remainder == false)
             {
-                FindObjectOfType<BattleFlowTest>().EnemyTurnEnd();
+                GetComponent<EnemyAttack>().RangeSearch();
             }
         }
     }
@@ -260,7 +259,6 @@ public class EnemyBase : MonoBehaviour {
                     n_si_.Decision();
 
                     RangeSearch(n, move_cost + attak_range);
-
                 }
             }
             PlayerSearch();
@@ -318,8 +316,7 @@ public class EnemyBase : MonoBehaviour {
             }
         }
         if (player_in_range)
-        {
-            
+        {           
             GameObject[] g_near = target_square.GetComponent<Square_Info>().GetNear();
             target_square = null;
             foreach (GameObject g in g_near)
@@ -356,7 +353,6 @@ public class EnemyBase : MonoBehaviour {
         GameObject[] nears_ = si_.GetNear();
         foreach (GameObject n in nears_)
         {
-
             Square_Info n_si_ = n.GetComponent<Square_Info>();
             if (move_cost - n_si_.GetCost() >= 0 && n_si_.CanSetCost(move_cost, now_pos))
             {

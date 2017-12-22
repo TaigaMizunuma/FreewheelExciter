@@ -155,9 +155,12 @@ public class BattleFlowTest : MonoBehaviour
         }
 
         //メニューフラグ制御
-        if (state_ != State_.simulation_mode)
+        if ((state_ == State_.simulation_mode || state_ == State_.menu_mode) && !Shousai.activeInHierarchy)
         {
-            if (state_ == State_.menu_mode) return;
+            FindObjectOfType<MenuManager>().SetMainControlFlag(false);
+        }
+        else
+        {
             FindObjectOfType<MenuManager>().SetMainControlFlag(true);
         }
 
@@ -298,7 +301,6 @@ public class BattleFlowTest : MonoBehaviour
                     Shousai.SetActive(!Shousai.activeInHierarchy);
                     FindObjectOfType<RayBox>().move_ = false;
                     GameObject.Find("MapCursor").GetComponent<Image>().enabled = false;
-                    FindObjectOfType<MenuManager>().SetMainControlFlag(true);
                     if (Shousai.activeInHierarchy)
                     {
                         FindObjectOfType<Shosai>()._chara = hiton.transform.gameObject;
@@ -307,7 +309,6 @@ public class BattleFlowTest : MonoBehaviour
                     {
                         FindObjectOfType<RayBox>().move_ = true;
                         GameObject.Find("MapCursor").GetComponent<Image>().enabled = true;
-                        FindObjectOfType<MenuManager>().SetMainControlFlag(false);
                     }
                 }
             }
@@ -325,7 +326,6 @@ public class BattleFlowTest : MonoBehaviour
                 g.GetComponent<Square_Info>().DecisionEnd();
             }
             FindObjectOfType<RayBox>().SetMovePlayer(null);
-            FindObjectOfType<MenuManager>().SetMainControlFlag(false);
             state_ = State_.simulation_mode;
         }
     }
@@ -346,8 +346,6 @@ public class BattleFlowTest : MonoBehaviour
 
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();
             FindObjectOfType<RayBox>().move_ = true;
-
-            FindObjectOfType<MenuManager>().SetMainControlFlag(false);
 
             _nowChooseChar = null;
             state_ = State_.simulation_mode;
@@ -680,6 +678,7 @@ public class BattleFlowTest : MonoBehaviour
 
                 state_ = State_.action_mode;
                 FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+                FindObjectOfType<RayBox>().SetCameraPosition(_nowChooseChar);
             }
         }
 
@@ -751,7 +750,7 @@ public class BattleFlowTest : MonoBehaviour
                         hit.collider.GetComponent<Character>()._totalMaxhp);
 
 
-                    //演出上の間をおいてから敵の反撃へ
+                    //すぐ行動しないよう間をおいて敵の反撃へ
                     StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () =>
                     {
                         state_ = State_.enemy_counter_mode;
@@ -957,7 +956,6 @@ public class BattleFlowTest : MonoBehaviour
         StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () => 
         {
             Turn_TextReset();
-            FindObjectOfType<MenuManager>().SetMainControlFlag(false);
             FindObjectOfType<RayBox>().move_ = true;
             state_ = State_.simulation_mode;
         }));

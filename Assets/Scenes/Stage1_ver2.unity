@@ -2178,6 +2178,7 @@ GameObject:
   - component: {fileID: 53552070}
   - component: {fileID: 53552068}
   - component: {fileID: 53552069}
+  - component: {fileID: 53552075}
   m_Layer: 0
   m_Name: enemy (2)
   m_TagString: Enemy
@@ -2266,7 +2267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4fae2871dcaea4fa0f4a1ebd900b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
+  _equipment: {fileID: 1749674127}
   _faceimage: {fileID: 0}
   _name: "\u3046\u3093\u3053"
   _position: {x: 0, y: 0, z: 0}
@@ -2369,6 +2370,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &53552075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53552066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4064986990d0a4e9709390ebd462b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range_line: 0
 --- !u!1 &59486933
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,8 +3163,8 @@ MonoBehaviour:
   _hit: 100
   _critical: 1
   _attackcount: 1
-  _min: 1
-  _max: 1
+  _min: 2
+  _max: 3
   _weapontype: 0
 --- !u!1 &106504696
 GameObject:
@@ -3573,6 +3586,7 @@ GameObject:
   - component: {fileID: 119770657}
   - component: {fileID: 119770655}
   - component: {fileID: 119770656}
+  - component: {fileID: 119770662}
   m_Layer: 0
   m_Name: enemy (1)
   m_TagString: Enemy
@@ -3661,7 +3675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4fae2871dcaea4fa0f4a1ebd900b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
+  _equipment: {fileID: 551498821}
   _faceimage: {fileID: 0}
   _name: "\u30A2\u30CA\u30AF\u30DC"
   _position: {x: 0, y: 0, z: 0}
@@ -3702,7 +3716,7 @@ MonoBehaviour:
   _skillchecker: {fileID: 0}
   _HpState: 0
   _NowState: 0
-  _joblist: 0
+  _joblist: 1
 --- !u!114 &119770658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3764,6 +3778,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &119770662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 119770653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4064986990d0a4e9709390ebd462b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range_line: 0
 --- !u!1 &121378234
 GameObject:
   m_ObjectHideFlags: 0
@@ -19725,7 +19751,7 @@ MonoBehaviour:
   _critical: 1
   _attackcount: 1
   _min: 1
-  _max: 1
+  _max: 3
   _weapontype: 0
 --- !u!1 &555218533
 GameObject:
@@ -28820,6 +28846,7 @@ GameObject:
   - component: {fileID: 803775640}
   - component: {fileID: 803775638}
   - component: {fileID: 803775639}
+  - component: {fileID: 803775645}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Enemy
@@ -28908,7 +28935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4fae2871dcaea4fa0f4a1ebd900b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
+  _equipment: {fileID: 104547410}
   _faceimage: {fileID: 0}
   _name: "\u4E2D\u6771"
   _position: {x: 0, y: 0, z: 0}
@@ -28976,7 +29003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target_square: {fileID: 0}
-  first_cost: 30
+  first_cost: 5
   move_speed: 2
   attak_range: 1
   line_range: 1
@@ -29011,6 +29038,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &803775645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 803775636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4064986990d0a4e9709390ebd462b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range_line: 0
 --- !u!1 &805989014
 GameObject:
   m_ObjectHideFlags: 0
@@ -32060,6 +32099,15 @@ Prefab:
       propertyPath: EnemyRedGage
       value: 
       objectReference: {fileID: 1673276596}
+    - target: {fileID: 114497342842723724, guid: bfe1b8393775c4d4594589283e104ee8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263407468818414, guid: bfe1b8393775c4d4594589283e104ee8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114269823659654606, guid: bfe1b8393775c4d4594589283e104ee8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: bfe1b8393775c4d4594589283e104ee8, type: 2}
@@ -69140,7 +69188,7 @@ MonoBehaviour:
   _critical: 1
   _attackcount: 1
   _min: 1
-  _max: 1
+  _max: 2
   _weapontype: 0
 --- !u!1 &1750734569
 GameObject:
