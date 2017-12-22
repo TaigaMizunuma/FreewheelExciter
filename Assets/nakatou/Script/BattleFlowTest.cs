@@ -46,7 +46,7 @@ public class BattleFlowTest : MonoBehaviour
     AudioManager m_audio;
 
     //敵ターンに行動する敵キャラ
-    public GameObject _randamEnemy;
+    public GameObject _ActionEnemy;
 
     //ターン出現時に操作不能にする時間
     [SerializeField]
@@ -98,7 +98,8 @@ public class BattleFlowTest : MonoBehaviour
         m_audio = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
         Shousai = Instantiate(Resources.Load("Shosai"), GameObject.Find("Canvas").transform) as GameObject;
         Shousai.SetActive(false);
-        
+        SetActionEnemy();
+
         _TurnText.text = "第１章 \n PlayerTurn";
 
         m_audio.PlayBgm("battle1");
@@ -150,8 +151,7 @@ public class BattleFlowTest : MonoBehaviour
         //カメラ追従
         if (state_ == State_.enemy_move_mode ||state_ == State_.enemy_attack_mode)
         {
-            if (!_randamEnemy) setRandamEnemy(GameObject.FindGameObjectWithTag("Enemy"));
-            FindObjectOfType<RayBox>().SetCameraPosition(_randamEnemy);
+            FindObjectOfType<RayBox>().SetCameraPosition(_ActionEnemy);
         }
 
         //メニューフラグ制御
@@ -774,7 +774,7 @@ public class BattleFlowTest : MonoBehaviour
     {
         if (attacking)
         {
-            if (_nowCounterChara && _nowCounterChara.tag != "Dead")
+            if (_nowCounterChara && _nowCounterChara.GetComponent<Character>()._HpState != Character.HP_State.Dead)
             {
                 Debug.Log("敵の反撃！");
                 //とりあえずの反撃エフェクト表示&SE
@@ -811,20 +811,11 @@ public class BattleFlowTest : MonoBehaviour
     {
         FindObjectOfType<StatusUI>().setactive(false);
 
-        //行動予定エネミーのHPが０なら
-        if (_randamEnemy == null)
-        {
-            //別のエネミーに
-            _randamEnemy = GameObject.FindGameObjectWithTag("Enemy");
-        }
+        SetActionEnemy();
 
-        //敵が一体でもいれば
-        if (_randamEnemy)
-        {
-            //敵の行動を開始
-            _randamEnemy.GetComponent<EnemyBase>().SetNextGoal(_randamEnemy.GetComponent<EnemyBase>().target_square);
-            state_ = State_.enemy_move_mode;
-        }
+        //敵が一体でもいれば敵の行動を開始
+        _ActionEnemy.GetComponent<EnemyBase>().SetNextGoal(_ActionEnemy.GetComponent<EnemyBase>().target_square);
+        state_ = State_.enemy_move_mode;
     }
 
 
@@ -920,7 +911,8 @@ public class BattleFlowTest : MonoBehaviour
     /// </summary>
     public void TurnEnd()
     {
-        if (state_ == State_.enemy_counter_mode || state_ == State_.action_mode || state_ == State_.skill_mode || state_ == State_.item_mode)
+        if (state_ == State_.enemy_counter_mode || state_ == State_.action_mode ||
+            state_ == State_.skill_mode || state_ == State_.item_mode || state_ == State_.menu_mode)
         {
             //待機選択時
             if (state_ == State_.action_mode) FindObjectOfType<SubMenuRenderer>().SubMenuStart();
@@ -1029,17 +1021,42 @@ public class BattleFlowTest : MonoBehaviour
     /// 任意のステートに変更
     /// </summary>
     /// <param name="st">State_.name</param>
-    public void changeST(State_ st)
+    public void ChangeST(State_ st)
     {
         state_ = st;
     }
 
     /// <summary>
-    /// 仮 行動するエネミーを決定
+    ///行動するエネミーを決定
+    ///一番プレイヤーに近い敵が行動する
     /// </summary>
-    /// <param name="obj"></param>
-    public void setRandamEnemy(GameObject obj)
+    public void SetActionEnemy()
     {
-        _randamEnemy = obj;
+        var enemys = GameObject.FindGameObjectsWithTag("Enemy");
+        var players = GameObject.FindGameObjectsWithTag("Player");
+        GameObject minobj = null;
+
+        foreach (var enemy in enemys)
+        {
+            foreach(var player in players)
+            {
+                if (minobj == null)
+                {
+                    minobj = enemy;
+                    continue;
+                }
+                //一番近いキャラ
+                if (Vector3.Distance(enemy.transform.position, minobj.transform.position) >
+                    Vector3.Distance(enemy.transform.position, player.transform.position))
+                {
+                    //死んでなかったら登録
+                    if (enemy.GetComponent<Character>()._HpState != Character.HP_State.Dead)
+                    {
+                        minobj = enemy;
+                    }
+                }
+            }
+        }
+        _ActionEnemy = minobj;
     }
 }

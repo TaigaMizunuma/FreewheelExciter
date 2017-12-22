@@ -31,9 +31,12 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
-
+        
     }
 
+    /// <summary>
+    /// 攻撃準備状態
+    /// </summary>
     public void AttackReady()
     {
         var count = 0;
@@ -75,6 +78,7 @@ public class EnemyAttack : MonoBehaviour
         }
         else
         {
+            //一番近いプレイヤーを攻撃対象にセット
             GameObject minobj = null;
             foreach(var obj in InAttackRange_Player)
             {
@@ -93,6 +97,9 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 攻撃準備状態解除
+    /// </summary>
     public void AttackRelease()
     {
         foreach (GameObject atk in attack_range)
@@ -102,7 +109,7 @@ public class EnemyAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// プレイヤーの攻撃時、攻撃範囲を調べる
+    /// エネミーの攻撃時、攻撃範囲を調べる
     /// </summary>
     public void RangeSearch()
     {
@@ -114,6 +121,33 @@ public class EnemyAttack : MonoBehaviour
         RetrievalRelease();
 
         AttackReady();
+    }
+
+    /// <summary>
+    /// エネミーの反撃時　反撃できるか判定
+    /// </summary>
+    /// <param name="target_player">攻撃してきたキャラ</param>
+    public bool CounterRangeSearch(GameObject target_player)
+    {
+        Character c = gameObject.GetComponent<Character>();
+        MinCost = c._range[0];
+        MaxCost = c._range[1];
+
+        Retrieval();
+        RetrievalRelease();
+
+        foreach (var atk in attack_range)
+        {
+            if (atk.GetComponent<Square_Info>().GetChara())
+            {
+                //自分の攻撃範囲内にいるキャラが攻撃してきたプレイヤーなら反撃可能
+                if (atk.GetComponent<Square_Info>().GetChara() == target_player)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /// <summary>
@@ -310,7 +344,7 @@ public class EnemyAttack : MonoBehaviour
     /// <param name="damage">反撃時のダメージ(ui用)</param>
     public void EnemyAttackEnd(GameObject enemy, GameObject target, int damage)
     {
-        if (target.tag != "Dead")
+        if (target.GetComponent<Character>()._HpState != Character.HP_State.Dead)
         {
             Debug.Log("自キャラの反撃！");
             var effect = Instantiate(Resources.Load("Eff_Hit_6"), enemy.transform.position, Quaternion.identity);

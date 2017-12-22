@@ -36,9 +36,12 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        
     }
 
+    /// <summary>
+    /// 攻撃準備状態
+    /// </summary>
     public void AttackReady()
     {
         var count = 0;
@@ -82,6 +85,9 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 攻撃準備状態を解除
+    /// </summary>
     public void AttackRelease()
     {
         foreach (GameObject atk in attack_range)
@@ -114,6 +120,33 @@ public class PlayerAttack : MonoBehaviour
         RetrievalRelease();
 
         AttackReady();
+    }
+
+    /// <summary>
+    /// プレイヤーの反撃時　反撃できるか判定
+    /// </summary>
+    /// <param name="target_enemy">攻撃してきたキャラ</param>
+    public bool CounterRangeSearch(GameObject target_enemy)
+    {
+        Character c = gameObject.GetComponent<Character>();
+        MinCost = c._range[0];
+        MaxCost = c._range[1];
+
+        Retrieval();
+        RetrievalRelease();
+
+        foreach (var atk in attack_range)
+        {
+            if (atk.GetComponent<Square_Info>().GetChara())
+            {
+                //自分の攻撃範囲内にいるキャラが攻撃してきたエネミーなら反撃可能
+                if (atk.GetComponent<Square_Info>().GetChara() == target_enemy)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /// <summary>
