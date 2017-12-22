@@ -51,13 +51,14 @@ public struct Buff
 
 public class Character : MonoBehaviour {
 
-    public int _id;                             //Characterリストのナンバー
+    private int _id;                            //Characterリストのナンバー
     private int _classid;                       //classリストのナンバー
     public GameObject _equipment;               //装備アイテムのID
 
     public Image _faceimage;    //フォアグラ
 
     public string _name;        //名前
+    //public string _class;     //職業
     public Vector3 _position;   //座標
     public bool _hero = false;  //主人公かどうか
     private bool _reset = false;
@@ -130,7 +131,6 @@ public class Character : MonoBehaviour {
     public GameObject _itemprefablist;      //アイテムの親オブジェクトの取得
     public GameObject _skillprefablist;     //スキルの親オブジェクトの取得
     public SkillChecker _skillchecker;      //スキルチェッカースクリプト
-    public StatusSave _statussave;
 
     //キャラリスト読み込み
     Entity_CharaList charaList;
@@ -184,7 +184,7 @@ public class Character : MonoBehaviour {
         //自分の子にあるスキルリストを取得
         _skillprefablist = GameObject.Find(transform.name + "/SkillList");
         _skillchecker = GetComponent<SkillChecker>();
-        _statussave = GetComponent<StatusSave>();
+
         Initialize();
         
     }
@@ -294,13 +294,18 @@ public class Character : MonoBehaviour {
     }
 
     /// <summary>
-    /// hp,str,skl,spd,luk,def,cur,move
+    /// id,lv,合計lv,hp,totalhp,str,skl,spd,luk,def,cur,move,exp
     /// </summary>
     /// <returns></returns>
     public List<int> GetStatus()
     {
         List<int> i = new List<int>();
+        i.Add(_id);
+        i.Add((int)_joblist);
+        i.Add(_level);
+        i.Add(_totalLevel);
         i.Add(_hp);
+        i.Add(_totalhp);
         i.Add(_str);
         i.Add(_skl);
         i.Add(_spd);
@@ -308,38 +313,10 @@ public class Character : MonoBehaviour {
         i.Add(_def);
         i.Add(_cur);
         i.Add(_move);
-        return i;
-    }
+        i.Add(_exp);
+        i.Add((int)_NowState);
 
-    /// <summary>
-    /// ロードしたデータを適用
-    /// </summary>
-    /// <param name="_save">セーブデータクラス</param>
-    public void LoadData()
-    {
-        _statussave.LoadStatus();
-        _id = _statussave.r_id;
-        _joblist = (Joblist)Enum.ToObject(typeof(Joblist), _statussave.r_job);
-        _name = _statussave.r_name;
-        _position = _statussave.r_pos;
-        _hero = _statussave.r_hero;
-        _level = _statussave.r_lv;
-        _totalLevel = _statussave.r_totallv;
-        _hp = _statussave.r_hp;
-        _totalhp = _statussave.r_totalhp;
-        _str = _statussave.r_str;
-        _skl = _statussave.r_skl;
-        _spd = _statussave.r_spd;
-        _luk = _statussave.r_luk;
-        _def = _statussave.r_def;
-        _cur = _statussave.r_cur;
-        _move = _statussave.r_move;
-        _exp = _statussave.r_exp;
-        _addstatuslist = _statussave.r_addstatus;
-        _addonetimestatuslist = _statussave.r_addonestatus;
-        _addbufflist = _statussave.r_addbuffstatus;
-        _stability = _statussave.r_stability;
-        _NowState = (State)Enum.ToObject(typeof(State), _statussave.r_state);
+        return i;
     }
 
     /// <summary>
