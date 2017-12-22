@@ -36,6 +36,10 @@ public class MenuManager : MonoBehaviour
         /*ダミーボタンセット*/
         eventSystem.SetSelectedGameObject(DummyButton);
         eventSystem.sendNavigationEvents = false;
+        GameObject.Find("Menu1_Situation").GetComponent<Button>().onClick.AddListener(() => OnSituation());
+        GameObject.Find("Menu2_Config").GetComponent<Button>().onClick.AddListener(() => OnConfig());
+        GameObject.Find("Menu3_Interruption").GetComponent<Button>().onClick.AddListener(() => OnInterruption());
+        GameObject.Find("Menu4_End").GetComponent<Button>().onClick.AddListener(() => OnEnd());
     }
 	void Update ()
     {
@@ -66,8 +70,9 @@ public class MenuManager : MonoBehaviour
     {
         /*04終了*/
         eventSystem.sendNavigationEvents = false;
-        IniMainMenu();
         FindObjectOfType<BattleFlowTest>().TurnEnd();
+        IniMainMenu();
+        
     }
 
     public void MainMenuEventSystemStart()

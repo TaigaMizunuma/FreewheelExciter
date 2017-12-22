@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114497342842723724}
   - component: {fileID: 114747746862826144}
   - component: {fileID: 114819982092994416}
-  - component: {fileID: 114269823659654606}
+  - component: {fileID: 114566192071154538}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -43,17 +43,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114269823659654606
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1263407468818414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e248f842aa286644bb257f585fe9a442, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114497342842723724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -68,10 +57,22 @@ MonoBehaviour:
   state_: 0
   _nowChooseChar: {fileID: 0}
   _TurnText: {fileID: 0}
-  _randamEnemy: {fileID: 0}
+  _ActionEnemy: {fileID: 0}
   waitTime: 1
   PlayerRedGage: {fileID: 0}
   EnemyRedGage: {fileID: 0}
+  Shousai: {fileID: 0}
+--- !u!114 &114566192071154538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263407468818414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64e490f209d49349b9b9b287a2507ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114747746862826144
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -103,13 +103,7 @@ public class BattleFlowTest : MonoBehaviour
         _TurnText.text = "第１章 \n PlayerTurn";
 
         m_audio.PlayBgm("battle1");
-
-        // ボタンが押された時の処理を登録
-        //GameObject.Find("Menu5_Attack").GetComponent<Button>().onClick.AddListener(() => attackBt());
-        //GameObject.Find("Menu6_Skill").GetComponent<Button>().onClick.AddListener(() => SkillBt());
-        //GameObject.Find("Menu7_Item").GetComponent<Button>().onClick.AddListener(() => ItemBt());
-        //GameObject.Find("Menu8_Return").GetComponent<Button>().onClick.AddListener(() => TurnEnd());
-
+        
         StartCoroutine(DelayMethod.DelayMethodCall(1.0f, () =>
         {
             Turn_TextReset();
@@ -129,9 +123,7 @@ public class BattleFlowTest : MonoBehaviour
             GameEnd = true;
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
-                FindObjectOfType<Fade>().SetOutFade(true);
-                FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
-                FindObjectOfType<Fade>().SetScene("Title");
+                FindObjectOfType<GameRequirement>().GameClear();
             }));
         }
         else if(!GameObject.FindGameObjectWithTag("Player"))
@@ -140,10 +132,7 @@ public class BattleFlowTest : MonoBehaviour
             GameEnd = true;
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
-                
-                FindObjectOfType<Fade>().SetOutFade(true);
-                FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
-                FindObjectOfType<Fade>().SetScene("GameOver");
+                FindObjectOfType<GameRequirement>().GameOver();
             }));
         }
         if (GameEnd) return;//ゲーム終了
@@ -950,6 +939,7 @@ public class BattleFlowTest : MonoBehaviour
             Turn_TextReset();
             FindObjectOfType<RayBox>().move_ = true;
             state_ = State_.simulation_mode;
+            FindObjectOfType<SituationTexts>().TurnCountUp();
         }));
     }
 

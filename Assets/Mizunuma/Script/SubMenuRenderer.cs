@@ -25,6 +25,11 @@ public class SubMenuRenderer : MonoBehaviour
     {
         GameObjectAcquisition();
         MainMenuFalse();
+        // ボタンが押された時の処理を登録
+        GameObject.Find("Menu5_Attack").GetComponent<Button>().onClick.AddListener(() => FindObjectOfType<BattleFlowTest>().attackBt());
+        GameObject.Find("Menu6_Skill").GetComponent<Button>().onClick.AddListener(() => FindObjectOfType<BattleFlowTest>().SkillBt());
+        GameObject.Find("Menu7_Item").GetComponent<Button>().onClick.AddListener(() => FindObjectOfType<BattleFlowTest>().ItemBt());
+        GameObject.Find("Menu8_Return").GetComponent<Button>().onClick.AddListener(() => FindObjectOfType<BattleFlowTest>().TurnEnd());
     }
     public void SubMenuStart()
     {
@@ -44,26 +49,6 @@ public class SubMenuRenderer : MonoBehaviour
                 //FindObjectOfType<MenuManager>().GetMainControlFlag(false);
                 break;
         }
-    }
-    public void OnAttack()
-    {
-        /*05アタック*/
-        Debug.Log("アタック");
-    }
-    public void OnSkill()
-    {
-        /*06スキル*/
-        Debug.Log("スキル");
-    }
-    public void OnItem()
-    {
-        /*07道具*/
-        Debug.Log("道具");
-    }
-    public void OnReturn()
-    {
-        /*08戻る*/
-        Debug.Log("戻る");
     }
     private void MainMenuTrue()
     {

@@ -172,7 +172,7 @@ public class GameDataSaveManager : MonoBehaviour
                                                  Mathf.Floor(SaveRenderTimes % 60f),
                                                  SaveRenderTimes % 1 * 99));
             /*03累計ターン数*/
-            SaveDataTurnText1.text = "累計ターン数" + SaveData.GetInt("SaveSlotTurnString1");
+            SaveDataTurnText1.text = "累計ターン数 " + SaveData.GetInt("SaveSlotTurnString1");
             /*04キャラクターの名前*/
             SaveDataNameText1.text = "ヒュー";
             if (SaveDataNoText1.enabled == true)
@@ -198,7 +198,7 @@ public class GameDataSaveManager : MonoBehaviour
                                                  Mathf.Floor(SaveRenderTimes % 60f),
                                                  SaveRenderTimes % 1 * 99));
             /*03累計ターン数*/
-            SaveDataTurnText2.text = "累計ターン数" + SaveData.GetInt("SaveSlotTurnString2");
+            SaveDataTurnText2.text = "累計ターン数 " + SaveData.GetInt("SaveSlotTurnString2");
             /*04キャラクターの名前*/
             SaveDataNameText2.text = "ヒュー";
             if (SaveDataNoText2.enabled == true)

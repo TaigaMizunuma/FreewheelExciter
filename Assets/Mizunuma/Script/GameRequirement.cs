@@ -10,17 +10,17 @@ public class GameRequirement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Debug.Log("セーブデータクリア");
-            SaveData.Clear();
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log("セーブしますた");
-            FindObjectOfType<SituationTexts>().TurnCountUp();
-            GameSituationDataSave();
-        }
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    Debug.Log("セーブデータクリア");
+        //    SaveData.Clear();
+        //}
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    Debug.Log("セーブしますた");
+        //  
+        //    GameSituationDataSave();
+        //}
     }
     /// <summary>
     /// ゲームクリアしたときに呼ばれるメソッド
@@ -67,9 +67,9 @@ public class GameRequirement : MonoBehaviour
         SaveData.SetFloat("GameDataTime", SaveDataTime);
         Debug.Log(SaveDataTime);
         /*章番号セーブ*/
-        SaveData.SetInt("GameDataNumber",3);
+        SaveData.SetInt("GameDataNumber", FindObjectOfType<StoryCSVReader>().GetStoryNumber());
         /*章タイトルセーブ*/
-        SaveData.SetString("GameDataTitle", "ベンオウ");
+        SaveData.SetString("GameDataTitle", FindObjectOfType<StoryCSVReader>().GetStoryTitle());
         /*クリア時にセーブ*/
         SaveData.Save();
     }
