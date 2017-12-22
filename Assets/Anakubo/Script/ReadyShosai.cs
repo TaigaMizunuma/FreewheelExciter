@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Shosai : MonoBehaviour {
+public class ReadyShosai : MonoBehaviour {
     public GameObject[] pages_;
     private int page_num = 0;
     private int before_num;
     public Text page_num_text;
+    // 親のcanvasを取得
+    private GameObject parent_canvas;
 
     //.//////////////////////////////////////
     public GameObject _chara;       //対象のキャラクターオブジェクト
@@ -15,24 +17,26 @@ public class Shosai : MonoBehaviour {
     public GameObject _UI1;         //1ページ目(基礎ステータス)
     public GameObject _UI2;         //2ページ目(戦闘用ステータス)
     public GameObject _UI3;         //3ページ目(スキル一覧)
-//.///////////////////////////////////////
+                                    //.///////////////////////////////////////
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         PageChange();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (_chara != null)
-        {
-            //////////////////////////////////////////////////////////////////////////////////////////////
-            _LeftUI.GetComponent<UILeftStatus>().SetData(_chara.GetComponent<Character>());
-            _UI1.GetComponent<UIStandardStatus>().SetData(_chara.GetComponent<Character>());
-            _UI2.GetComponent<UIBattleStatus>().SetData(_chara.GetComponent<Character>());
-            _UI3.GetComponent<UISkillList>().SetData(_chara.GetComponent<Character>());
-            //////////////////////////////////////////////////////////////////////////////////////////////
-        }
+        parent_canvas = transform.parent.gameObject;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (_chara == null) _chara = parent_canvas.GetComponent<ReadyManager>().GetUnit();
+
+        //////////////////////////////////////////////////////////////////////////////////////////////
+        _LeftUI.GetComponent<UILeftStatus>().SetData(_chara.GetComponent<Character>());
+        _UI1.GetComponent<UIStandardStatus>().SetData(_chara.GetComponent<Character>());
+        _UI2.GetComponent<UIBattleStatus>().SetData(_chara.GetComponent<Character>());
+        _UI3.GetComponent<UISkillList>().SetData(_chara.GetComponent<Character>());
+        //////////////////////////////////////////////////////////////////////////////////////////////
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -50,13 +54,14 @@ public class Shosai : MonoBehaviour {
         {
             page_num = 0;
             _chara = null;
-            gameObject.SetActive(false);
+            parent_canvas.GetComponent<ReadyManager>().SetUnit(null);
+            parent_canvas.GetComponent<ReadyManager>().ModeChange(1);
         }
     }
 
     void PageChange()
     {
-        for(int i = 0; i < pages_.Length; i++)
+        for (int i = 0; i < pages_.Length; i++)
         {
             if (page_num == i)
             {
@@ -68,11 +73,6 @@ public class Shosai : MonoBehaviour {
             }
         }
         before_num = page_num;
-        page_num_text.text = "ページ  "+(page_num+1)+" / "+ pages_.Length;
-    }
-
-    public void ResetPage()
-    {
-        page_num = 0;
+        page_num_text.text = "ページ  " + (page_num + 1) + " / " + pages_.Length;
     }
 }

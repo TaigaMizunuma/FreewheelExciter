@@ -1334,7 +1334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1732465455515606
 GameObject:
   m_ObjectHideFlags: 1
@@ -1494,7 +1494,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224427063914112160}
-  - component: {fileID: 114095015307113088}
+  - component: {fileID: 114899539660401426}
   m_Layer: 5
   m_Name: Shosai
   m_TagString: Untagged
@@ -1998,27 +1998,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 00
---- !u!114 &114095015307113088
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1823764509722238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c709b3080dec2f4c884383fad8255d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pages_:
-  - {fileID: 1732465455515606}
-  - {fileID: 1233191372386058}
-  - {fileID: 1662845128069718}
-  page_num_text: {fileID: 114579483010539908}
-  _chara: {fileID: 0}
-  _LeftUI: {fileID: 1631964709131828}
-  _UI1: {fileID: 1732465455515606}
-  _UI2: {fileID: 1233191372386058}
-  _UI3: {fileID: 1662845128069718}
 --- !u!114 &114098214929626096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2031,12 +2010,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players_:
-  - {fileID: 1950681351723866, guid: 3a9c0438f5c1f32469af9bf9edad1009, type: 2}
-  - {fileID: 1950681351723866, guid: 3a9c0438f5c1f32469af9bf9edad1009, type: 2}
-  - {fileID: 1950681351723866, guid: 3a9c0438f5c1f32469af9bf9edad1009, type: 2}
-  - {fileID: 1950681351723866, guid: 3a9c0438f5c1f32469af9bf9edad1009, type: 2}
-  - {fileID: 1950681351723866, guid: 3a9c0438f5c1f32469af9bf9edad1009, type: 2}
-  - {fileID: 1950681351723866, guid: 3a9c0438f5c1f32469af9bf9edad1009, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   unit_: {fileID: 1358727745930458}
 --- !u!114 &114106233419502600
 MonoBehaviour:
@@ -3207,10 +3186,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 51
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 51
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -4570,6 +4549,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114899539660401426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1823764509722238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a53c86285048d4ca678687db457e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pages_:
+  - {fileID: 1732465455515606}
+  - {fileID: 1233191372386058}
+  - {fileID: 1662845128069718}
+  page_num_text: {fileID: 114579483010539908}
+  _chara: {fileID: 0}
+  _LeftUI: {fileID: 1631964709131828}
+  _UI1: {fileID: 1732465455515606}
+  _UI2: {fileID: 1233191372386058}
+  _UI3: {fileID: 1662845128069718}
 --- !u!114 &114913785117911916
 MonoBehaviour:
   m_ObjectHideFlags: 1
