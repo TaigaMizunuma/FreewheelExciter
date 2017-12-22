@@ -68,7 +68,6 @@ public class MenuManager : MonoBehaviour
         eventSystem.sendNavigationEvents = false;
         IniMainMenu();
         FindObjectOfType<BattleFlowTest>().TurnEnd();
-        Debug.Log("呼ばれた");
     }
 
     public void MainMenuEventSystemStart()

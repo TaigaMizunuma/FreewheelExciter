@@ -134,12 +134,10 @@ public class SituationTexts : MonoBehaviour
         return TurnCount;
     }
 
-    public void SaveSituation()
+    public float GetTime()
     {
-        SaveData.SetFloat("GamePlayTime", SaveGameTime);
-        Debug.Log("プレイタイム保存");
-        SaveData.SetInt("GamePlayTurn", TurnCount);
-        Debug.Log("ターン保存");
+        return SaveGameTime;
     }
+
 }
 
