@@ -35,6 +35,7 @@ public class Move_System : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        rayBox = FindObjectOfType<RayBox>().gameObject;
         cost = first_cost;
         RaycastHit hit;
         if (Physics.SphereCast(transform.position - new Vector3(0,-0.5f,0), 0.2f, Vector3.down, out hit, 5.0f))

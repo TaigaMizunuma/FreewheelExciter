@@ -118,7 +118,6 @@ GameObject:
   - component: {fileID: 381315520}
   - component: {fileID: 381315519}
   - component: {fileID: 381315518}
-  - component: {fileID: 381315522}
   - component: {fileID: 381315521}
   m_Layer: 0
   m_Name: BlockMaster
@@ -187,25 +186,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyObj:
   - {fileID: 1039629314997470, guid: c69cda7ada7d5f7478a4ce9496e5e7fe, type: 2}
-  c_enemyCSVName: Stage1_Enemy
+  c_enemyPosCSVName: Stage1_Enemy
   e_initPosY: 0.5
   e_initRotY: 180
---- !u!114 &381315522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 381315517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbfbd3438e6fa7f468cef19803ee63de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerObj:
-  - {fileID: 1628218234893168, guid: 9d7911d573f30c047bbffbd092a01cf8, type: 2}
-  c_playerCSVName: Stage1_Player
-  p_initPosY: 0.5
-  p_initRotY: 0
+  eneCount: 0
 --- !u!1 &673367624
 GameObject:
   m_ObjectHideFlags: 0

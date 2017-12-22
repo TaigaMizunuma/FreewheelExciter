@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Square_Info : MonoBehaviour {
+public class Square_Info : MonoBehaviour
+{
     public int move_cost = 1;
     private GameObject[] near_squares;
     private bool isDecisioned = false;
@@ -18,19 +19,26 @@ public class Square_Info : MonoBehaviour {
     private bool[] existNextSquare = { false, false, false, false };
 
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
+    }
+
+    void Start()
+    {
         SearchNearSquare();
         near_squares = new GameObject[nears_.Count];
-        for(int i = 0; i < nears_.Count; i++)
+        for (int i = 0; i < nears_.Count; i++)
         {
             near_squares[i] = nears_[i];
         }
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     public int GetCost()
     {
@@ -62,7 +70,7 @@ public class Square_Info : MonoBehaviour {
         return isDecisioned;
     }
 
-    public bool CanSetCost(int c,GameObject b)
+    public bool CanSetCost(int c, GameObject b)
     {
         if (before_point != null)
         {
@@ -152,7 +160,7 @@ public class Square_Info : MonoBehaviour {
     public int GetRushCost()
     {
         int m_cos = -1;
-        for(int i = 0; i < nears_.Count; i++)
+        for (int i = 0; i < nears_.Count; i++)
         {
             if (m_cos < 0 || m_cos > nears_[i].GetComponent<Square_Info>().GetMaxCost())
             {
@@ -161,7 +169,7 @@ public class Square_Info : MonoBehaviour {
         }
         return m_cos;
     }
-    
+
     public bool ExistNextSquare(int num)
     {
         return existNextSquare[num];
