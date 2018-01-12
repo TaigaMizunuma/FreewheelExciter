@@ -35,7 +35,7 @@ public class CharaStatus : MonoBehaviour
 
             StartCoroutine(DelayMethod.DelayMethodCall(1.5f, () =>
             {
-                _anim.SetBool("damage", true);
+                _anim.SetTrigger("Dead");
                 Destroy(gameObject, 3.0f);
             }));
         }

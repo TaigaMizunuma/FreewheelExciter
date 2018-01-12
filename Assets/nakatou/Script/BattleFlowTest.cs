@@ -49,8 +49,7 @@ public class BattleFlowTest : MonoBehaviour
     public GameObject _ActionEnemy;
 
     //ターン出現時に操作不能にする時間
-    [SerializeField]
-    private float waitTime = 1.0f;
+    private float waitTime = 2.0f;
 
     //攻撃中か？
     bool attacking = false;
@@ -68,8 +67,8 @@ public class BattleFlowTest : MonoBehaviour
     bool once = false;
     bool choose = false;
     int count = 0;
-    List<GameObject> weaponUIs = new List<GameObject>();
-    List<GameObject> weapons = new List<GameObject>();
+    List<GameObject> UIs = new List<GameObject>();
+    List<GameObject> ChoiceObjs = new List<GameObject>();
 
     //hpui用
     public GameObject PlayerRedGage;
@@ -365,8 +364,8 @@ public class BattleFlowTest : MonoBehaviour
                     ui.transform.localPosition = new Vector3(0, count * -100, 0);
                     ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Weapon>()._name;
                     ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                    weapons.Add(obj);
-                    weaponUIs.Add(ui);
+                    ChoiceObjs.Add(obj);
+                    UIs.Add(ui);
                     count++;
                 }
             }
@@ -376,34 +375,34 @@ public class BattleFlowTest : MonoBehaviour
         //武器選択中
         if (!choose)
         {
-            foreach (var obj in weaponUIs)
+            foreach (var obj in UIs)
             {
                 obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
             }
-            weaponUIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            UIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
             if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
             {
                 if (count == 0) return;
                 count--;
-                _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
+                _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
             }
             if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
             {
-                if (count == weaponUIs.Count - 1) return;
+                if (count == UIs.Count - 1) return;
                 count++;
-                _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
+                _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
             }
             if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
             {
                 choose = true;
-                _nowChooseChar.GetComponent<Character>().Equipment(weapons[count]);
+                _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
             }
 
             //キャンセル
             if (Input.GetKeyDown(KeyCode.X))
             {
-                foreach (var obj in weaponUIs)
+                foreach (var obj in UIs)
                 {
                     obj.SetActive(false);
                     Destroy(obj, 1.0f);
@@ -412,8 +411,8 @@ public class BattleFlowTest : MonoBehaviour
                 choose = false;
                 once = false;
                 count = 0;
-                weapons.Clear();
-                weaponUIs.Clear();
+                ChoiceObjs.Clear();
+                UIs.Clear();
                 state_ = State_.action_mode;
                 FindObjectOfType<SubMenuRenderer>().SubMenuStart();
             }
@@ -421,7 +420,7 @@ public class BattleFlowTest : MonoBehaviour
         //選択完了
         else
         {
-            foreach (var obj in weaponUIs)
+            foreach (var obj in UIs)
             {
                 obj.SetActive(false);
                 Destroy(obj, 1.0f);
@@ -430,8 +429,8 @@ public class BattleFlowTest : MonoBehaviour
             choose = false;
             once = false;
             count = 0;
-            weapons.Clear();
-            weaponUIs.Clear();
+            ChoiceObjs.Clear();
+            UIs.Clear();
             _nowChooseChar.GetComponent<PlayerAttack>().RangeSearch();
         }
     }
@@ -459,8 +458,8 @@ public class BattleFlowTest : MonoBehaviour
                         ui.transform.localPosition = new Vector3(0, count * -100, 0);
                         ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<CommandSkill>()._name;
                         ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                        weapons.Add(obj);
-                        weaponUIs.Add(ui);
+                        ChoiceObjs.Add(obj);
+                        UIs.Add(ui);
                         count++;
                     }
                 }
@@ -470,11 +469,11 @@ public class BattleFlowTest : MonoBehaviour
         }
         if (!choose)
         {
-            foreach (var obj in weaponUIs)
+            foreach (var obj in UIs)
             {
                 obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
             }
-            weaponUIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            UIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
             if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
             {
@@ -483,7 +482,7 @@ public class BattleFlowTest : MonoBehaviour
             }
             if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
             {
-                if (count == weaponUIs.Count - 1) return;
+                if (count == UIs.Count - 1) return;
                 count++;
             }
             if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
@@ -494,7 +493,7 @@ public class BattleFlowTest : MonoBehaviour
             //キャンセル
             if (Input.GetKeyDown(KeyCode.X))
             {
-                foreach (var obj in weaponUIs)
+                foreach (var obj in UIs)
                 {
                     obj.SetActive(false);
                     Destroy(obj, 1.0f);
@@ -503,25 +502,25 @@ public class BattleFlowTest : MonoBehaviour
                 choose = false;
                 once = false;
                 count = 0;
-                weapons.Clear();
-                weaponUIs.Clear();
+                ChoiceObjs.Clear();
+                UIs.Clear();
                 state_ = State_.action_mode;
                 FindObjectOfType<SubMenuRenderer>().SubMenuStart();
             }
         }
         else
         {
-            foreach (var obj in weaponUIs)
+            foreach (var obj in UIs)
             {
                 obj.SetActive(false);
                 Destroy(obj, 1.0f);
             }
 
-            _nowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>().SkillEffect(_nowChooseChar, weapons[count]);
+            _nowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>().SkillEffect(_nowChooseChar, ChoiceObjs[count]);
             choose = false;
             once = false;
-            weapons.Clear();
-            weaponUIs.Clear();
+            ChoiceObjs.Clear();
+            UIs.Clear();
 
             TurnEnd();
             state_ = State_.stay_mode;
@@ -544,8 +543,8 @@ public class BattleFlowTest : MonoBehaviour
                     ui.transform.localPosition = new Vector3(0, count * -100, 0);
                     ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Item>()._name;
                     ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                    weapons.Add(obj);
-                    weaponUIs.Add(ui);
+                    ChoiceObjs.Add(obj);
+                    UIs.Add(ui);
                     count++;
                 }
             }
@@ -555,8 +554,8 @@ public class BattleFlowTest : MonoBehaviour
                 FindObjectOfType<SubMenuRenderer>().SubMenuStart();
                 choose = false;
                 once = false;
-                weapons.Clear();
-                weaponUIs.Clear();
+                ChoiceObjs.Clear();
+                UIs.Clear();
                 state_ = State_.action_mode;
             }
             count = 0;
@@ -564,10 +563,10 @@ public class BattleFlowTest : MonoBehaviour
         }
         if (!choose)
         {
-            foreach (var obj in weaponUIs)
+            foreach (var obj in UIs)
             {
                 obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                weaponUIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                UIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             }
 
             if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
@@ -577,7 +576,7 @@ public class BattleFlowTest : MonoBehaviour
             }
             if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
             {
-                if (count == weaponUIs.Count - 1) return;
+                if (count == UIs.Count - 1) return;
                 count++;
             }
             if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
@@ -588,7 +587,7 @@ public class BattleFlowTest : MonoBehaviour
             //キャンセル
             if (Input.GetKeyDown(KeyCode.X))
             {
-                foreach (var obj in weaponUIs)
+                foreach (var obj in UIs)
                 {
                     obj.SetActive(false);
                     Destroy(obj, 1.0f);
@@ -597,25 +596,25 @@ public class BattleFlowTest : MonoBehaviour
                 choose = false;
                 once = false;
                 count = 0;
-                weapons.Clear();
-                weaponUIs.Clear();
+                ChoiceObjs.Clear();
+                UIs.Clear();
                 state_ = State_.action_mode;
                 FindObjectOfType<SubMenuRenderer>().SubMenuStart();
             }
         }
         else
         {
-            foreach (var obj in weaponUIs)
+            foreach (var obj in UIs)
             {
                 obj.SetActive(false);
                 Destroy(obj, 1.0f);
             }
 
-            _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().UseItem(_nowChooseChar, weapons[count]);
+            _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().UseItem(_nowChooseChar, ChoiceObjs[count]);
             choose = false;
             once = false;
-            weapons.Clear();
-            weaponUIs.Clear();
+            ChoiceObjs.Clear();
+            UIs.Clear();
 
             TurnEnd();
             state_ = State_.stay_mode;
@@ -786,7 +785,7 @@ public class BattleFlowTest : MonoBehaviour
 
             }
 
-            //演出上の遅延
+            //すぐ行動しないように遅延
             StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () =>
             {
                 Destroy(battleui);
@@ -909,10 +908,11 @@ public class BattleFlowTest : MonoBehaviour
             //ステートを変更 & UI表示
             _TurnText.color = new Color(255, 0, 0, 255);
             _TurnText.text = "Enemy Turn";
+            _TurnText.gameObject.GetComponent<Animator>().SetBool("Init", true);//ターン終了時のアニメーション
             m_audio.PlaySe("TurnStart");
             FindObjectOfType<ExpGage>().Enabled(false);
 
-            //演出上の遅延
+            //すぐ行動しないように遅延
             StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () =>
             {
                 Turn_TextReset();
@@ -929,11 +929,11 @@ public class BattleFlowTest : MonoBehaviour
         _TurnText.color = new Color(0, 0, 255, 255);
         _TurnText.text = "Player Turn";
         m_audio.PlaySe("TurnStart");
-
+        _TurnText.gameObject.GetComponent<Animator>().SetBool("Init", true);//ターン終了時のアニメーション
         FindObjectOfType<StatusUI>().setactive(false);
         FindObjectOfType<ExpGage>().Enabled(false);
 
-        //演出上の遅延
+        //すぐ行動しないように遅延
         StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () => 
         {
             Turn_TextReset();
