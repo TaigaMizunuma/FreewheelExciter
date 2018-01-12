@@ -22,6 +22,8 @@ public class EnemyPersonalCSV : MonoBehaviour
     int e_level;
     [SerializeField]
     string e_job;
+    [SerializeField]
+    string e_strength;
 
 
 
@@ -42,6 +44,7 @@ public class EnemyPersonalCSV : MonoBehaviour
         e_name = c_enemyPerDatas[e_number + 1][1];
         e_level = int.Parse(c_enemyPerDatas[e_number + 1][2]);
         e_job = c_enemyPerDatas[e_number + 1][3];
+        e_strength = c_enemyPerDatas[e_number + 1][4];
 
     }
 
@@ -60,4 +63,8 @@ public class EnemyPersonalCSV : MonoBehaviour
         return e_job;
     }
 
+    public string GetStrength()
+    {
+        return e_strength;
+    }
 }
