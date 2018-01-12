@@ -151,4 +151,9 @@ public class RayBox : MonoBehaviour
         move_player = p;
         if(move_player==null) GameObject.FindGameObjectWithTag("lRend").GetComponent<RouteLine>().LineDelete();
     }
+
+    public GameObject GetSelectSquare()
+    {
+        return selectSquare;
+    }
 }

@@ -25,14 +25,33 @@ public class PosSort : MonoBehaviour {
         for (int i = 0; i < units_.Length; i++)
         {
             units_[i].transform.position = first_pos[i].transform.position + new Vector3(0, 1.0f, 0);
+            units_[i].GetComponent<Move_System>().SetNowPos();
         }
     }
 
-    public void ChangePos(int a,int b)
+    public void ChangePos(GameObject a,GameObject b)
     {
-        GameObject a_pos = first_pos[a];
-        GameObject b_pos = first_pos[b];
-        first_pos[a] = b_pos;
-        first_pos[b] = a_pos;
+        int num_a = GetPosNum(a);
+        int num_b = GetPosNum(b);
+        first_pos[num_a] = b;
+        first_pos[num_b] = a;
+        SetFirstPos();
+    }
+
+    public GameObject[] GetFirstPos()
+    {
+        return first_pos;
+    }
+
+    public int GetPosNum(GameObject fp)
+    {
+        for(int i = 0; i < first_pos.Length; i++)
+        {
+            if (fp == first_pos[i])
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }

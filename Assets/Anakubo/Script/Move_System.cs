@@ -274,4 +274,65 @@ public class Move_System : MonoBehaviour
             now_pos.GetComponent<Square_Info>().SetChara(gameObject);
         }
     }
+
+    public void RangeDisplay()
+    {
+        int move_cost = first_cost;
+        Square_Info si_;
+        si_ = now_pos.GetComponent<Square_Info>();
+        si_.SetNowPosCost(move_cost);
+        si_.Decision();
+        GameObject[] nears_ = si_.GetNear();
+        foreach (GameObject n in nears_)
+        {
+            Square_Info n_si_ = n.GetComponent<Square_Info>();
+            if (move_cost - n_si_.GetCost() >= 0 && n_si_.CanSetCost(move_cost, now_pos))
+            {
+                n_si_.Decision();
+
+                RangeSearch(n, move_cost);
+            }
+        }
+    }
+
+    public void DisplayEnd()
+    {
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");
+        foreach (GameObject g in obj)
+        {
+            g.GetComponent<Square_Info>().DecisionEnd();
+        }
+    }
+
+    void RangeSearch(GameObject near, int cost_)
+    {
+        AddRangeList(near);
+        Square_Info si_;
+        si_ = near.GetComponent<Square_Info>();
+        GameObject[] nears_ = si_.GetNear();
+        cost_ -= si_.GetCost();
+        foreach (GameObject n in nears_)
+        {
+
+            Square_Info n_si_ = n.GetComponent<Square_Info>();
+            if (cost_ - n_si_.GetCost() >= 0 && n_si_.CanSetCost(cost_, near))
+            {
+                n_si_.Decision();
+                RangeSearch(n, cost_);
+            }
+        }
+    }
+
+    void AddRangeList(GameObject range_)
+    {
+        bool exist_ = false;
+        if (_range != null)
+        {
+            foreach (GameObject r in _range)
+            {
+                if (r == range_) exist_ = true;
+            }
+        }
+        if (!exist_) _range.Add(range_);
+    }
 }

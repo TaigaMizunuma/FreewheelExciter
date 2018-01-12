@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Hensei : MonoBehaviour {
+public class Hensei : MonoBehaviour
+{
     // ユニットのリスト
     private List<GameObject> units_;
     // 出撃かどうか
@@ -22,26 +23,27 @@ public class Hensei : MonoBehaviour {
     private GameObject[] models;
     // 親のcanvasを取得
     private GameObject parent_canvas;
-    
+
     /////////////////////////////////////
-    
+
     ////////////////////////////////////
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Awake()
+    {
         units_ = new List<GameObject>();
         Transform obj = unit_parent.GetComponentInChildren<Transform>();
         if (obj.childCount > 0)
         {
-            foreach(Transform ob in obj)
+            foreach (Transform ob in obj)
             {
                 units_.Add(ob.gameObject);
             }
         }
         models = new GameObject[units_.Count];
         sortie_ = new bool[units_.Count];
-        for(int i = 0; i < sortie_.Length; i++)
+        for (int i = 0; i < sortie_.Length; i++)
         {
             if (sortie_num > 0)
             {
@@ -58,8 +60,14 @@ public class Hensei : MonoBehaviour {
         parent_canvas = transform.parent.gameObject;
     }
 
+    void OnEnable()
+    {
+        cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
+    }
+
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         // 下キーで１つ下に 下から２番目のときに押すとカーソルは動かずに表示されているユニットがずれる
         if (Input.GetKeyDown(KeyCode.DownArrow) && unit_num < units_.Count - 2)
         {
@@ -93,7 +101,7 @@ public class Hensei : MonoBehaviour {
             unit_num -= 2;
         }
 
-        if(Input.GetKeyDown(KeyCode.RightArrow) && pos_num_x == 0)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && pos_num_x == 0)
         {
             pos_num_x++;
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
@@ -117,7 +125,7 @@ public class Hensei : MonoBehaviour {
                 models[unit_num] = null;
                 cursor_.GetComponent<PosSort>().SetFirstPos();
             }
-            else if(sortie_num>0)
+            else if (sortie_num > 0)
             {
                 units_[unit_num].GetComponent<Text>().color = new Color(0.2f, 0.2f, 0.2f, 1);
                 sortie_[unit_num] = true;
@@ -140,7 +148,7 @@ public class Hensei : MonoBehaviour {
     public List<GameObject> SortieUnits()
     {
         List<GameObject> u_ = new List<GameObject>();
-        for(int i = 0; i < sortie_.Length; i++)
+        for (int i = 0; i < sortie_.Length; i++)
         {
             if (sortie_[i] == true) u_.Add(unit_parent.GetComponent<UnitList>().GetPlayerModel(i));
         }
