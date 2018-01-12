@@ -333,6 +333,14 @@ public class BattleManager : MonoBehaviour {
                 }
                 else
                 {
+
+                    var exrate = 1;
+                    //特攻判定
+                    if ((_atkside._chara._equipment.GetComponent<Weapon>()._weaponEffectType == Weapon_Effect_Type.SoldierKiller && (_defside._chara._joblist == Joblist.Soldier || _defside._chara._joblist == Joblist.General))
+                        || (_atkside._chara._equipment.GetComponent<Weapon>()._weaponEffectType == Weapon_Effect_Type.BikeKiller && (_defside._chara._joblist == Joblist.Rider || _defside._chara._joblist == Joblist.Pilot || _defside._chara._joblist == Joblist.Motorhead || _defside._chara._joblist == Joblist.Captain)))
+                    {
+                        exrate = 2;
+                    }
                     //必殺判定
                     if (Random.Range(0, 100) <= _atkside._critical + _addcri)
                     {
@@ -345,14 +353,15 @@ public class BattleManager : MonoBehaviour {
                                 //必殺発動+防御無視+撃殺
                                 //力を2倍+敵の防御0+攻撃力に力を加算して攻撃力を再計算
                                 Debug.Log(_atkside._chara._name + ":防御無視+撃殺!");
-                                _atkside.set_atk(0-_atkside._chara._totalstr, 2);
+                                //キラーの場合倍率にさらに2をかける
+                                _atkside.set_atk(0 - _atkside._chara._totalstr, 2 * exrate);
                             }
                             else
                             {
                                 //必殺発動+防御無視
                                 //力を2倍+敵の防御0にして攻撃力を再計算
                                 Debug.Log(_atkside._chara._name + ":防御無視!");
-                                _atkside.set_atk(0, 2);
+                                _atkside.set_atk(0, 2 * exrate);
                             }
 
                             _defside._chara._totalhp -= _atkside._atk;
@@ -365,12 +374,12 @@ public class BattleManager : MonoBehaviour {
                                 //必殺発動+撃殺
                                 //力を2倍+攻撃力に力を加算して攻撃力を再計算
                                 Debug.Log(_atkside._chara._name + ":撃殺!");
-                                _atkside.set_atk(_defside._chara._totaldef - _atkside._chara._totalstr, 2);
+                                _atkside.set_atk(_defside._chara._totaldef - _atkside._chara._totalstr, 2 * exrate);
                             }
                             else
                             {                               
                                 //力を2倍にして攻撃力を再計算
-                                _atkside.set_atk(_defside._chara._totaldef, 2);
+                                _atkside.set_atk(_defside._chara._totaldef, 2 * exrate);
                             }
 
                             _defside._chara._totalhp -= _atkside._atk;
@@ -382,7 +391,7 @@ public class BattleManager : MonoBehaviour {
                             Debug.Log(_atkside._chara._name + ":ダメージ吸収!");
                             _atkside._chara._totalhp += (_atkside._atk) / 2;
                         }
-                        _atkside.set_atk(_defside._chara._totaldef, 1);
+                        _atkside.set_atk(_defside._chara._totaldef, 1 * exrate);
                     }
                     else
                     {
@@ -396,14 +405,14 @@ public class BattleManager : MonoBehaviour {
                                 //防御無視+撃殺
                                 //力を2倍+敵の防御0+攻撃力に力を加算して攻撃力を再計算
                                 Debug.Log(_atkside._chara._name + ":防御無視+撃殺!");
-                                _atkside.set_atk(0 - _atkside._chara._totalstr, 1);
+                                _atkside.set_atk(0 - _atkside._chara._totalstr, 1 * exrate);
                             }
                             else
                             {
                                 //防御無視
                                 //力を2倍+敵の防御0にして攻撃力を再計算
                                 Debug.Log(_atkside._chara._name + ":防御無視!");
-                                _atkside.set_atk(0, 1);
+                                _atkside.set_atk(0, 1 * exrate);
                             }
 
                             _defside._chara._totalhp -= _atkside._atk;
@@ -416,12 +425,12 @@ public class BattleManager : MonoBehaviour {
                                 //撃殺
                                 //攻撃力に力を加算して攻撃力を再計算
                                 Debug.Log(_atkside._chara._name + ":撃殺!");
-                                _atkside.set_atk(_defside._chara._totaldef - _atkside._chara._totalstr, 1);
+                                _atkside.set_atk(_defside._chara._totaldef - _atkside._chara._totalstr, 1 * exrate);
                             }
                             else
                             {
                                 //通常攻撃
-                                _atkside.set_atk(_defside._chara._totaldef, 1);
+                                _atkside.set_atk(_defside._chara._totaldef, 1 * exrate);
                             }
 
                             _defside._chara._totalhp -= _atkside._atk;
@@ -433,6 +442,18 @@ public class BattleManager : MonoBehaviour {
                             Debug.Log(_atkside._chara._name + ":ダメージ吸収!");
                             _atkside._chara._totalhp += _atkside._atk / 2;
                         }
+                    }
+
+                    //毒や麻痺の判定
+                    if (_atkside._chara._equipment.GetComponent<Weapon>()._weaponEffectType == Weapon_Effect_Type.Poison)
+                    {
+                        //相手を毒にする
+                        _defside._chara.ChangeState("Poison");
+                    }
+                    else if (_atkside._chara._equipment.GetComponent<Weapon>()._weaponEffectType == Weapon_Effect_Type.Paralysis)
+                    {
+                        //相手を麻痺にする
+                        _defside._chara.ChangeState("Paralysis");
                     }
 
                     if (_defside._chara._totalhp <= 0)

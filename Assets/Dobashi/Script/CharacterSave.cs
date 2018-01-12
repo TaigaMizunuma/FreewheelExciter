@@ -5,6 +5,8 @@ using UnityEngine;
 public class CharacterSave : MonoBehaviour {
 
     public Character _chara;
+
+    ///保存するデータ(取得用)
     public int _id = 10;             //判別用ID
     public int _job;            //クラス
     public string _name;        //名前

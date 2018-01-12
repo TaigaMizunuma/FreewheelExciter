@@ -23,11 +23,12 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    plain: 1
-    forest: 1
-    river: 3
-    mountain: 2
-    desert: 1
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 1
     name: "\u30B9\u30CA\u30A4\u30D1\u30FC"
     hp: 4
@@ -39,11 +40,12 @@ MonoBehaviour:
     def: 2
     cur: 2
     move: 0
-    plain: 1
-    forest: 1
-    river: 3
-    mountain: 2
-    desert: 1
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 2
     name: "\u30ED\u30FC\u30B0"
     hp: 2
@@ -55,11 +57,12 @@ MonoBehaviour:
     def: 0
     cur: 2
     move: 1
-    plain: 1
-    forest: 1
-    river: 3
-    mountain: 3
-    desert: 2
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 3
     name: "\u30A2\u30B5\u30B7\u30F3"
     hp: 4
@@ -71,11 +74,12 @@ MonoBehaviour:
     def: 0
     cur: 2
     move: 1
-    plain: 1
-    forest: 1
-    river: 3
-    mountain: 3
-    desert: 2
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 4
     name: "\u30D5\u30A1\u30A4\u30BF\u30FC"
     hp: 0
@@ -87,11 +91,12 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    plain: 1
-    forest: 1
-    river: 3
-    mountain: 3
-    desert: 2
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 5
     name: "\u30DE\u30FC\u30B7\u30E3\u30EB"
     hp: 4
@@ -103,11 +108,12 @@ MonoBehaviour:
     def: 2
     cur: 0
     move: 1
-    plain: 1
-    forest: 2
-    river: 2
-    mountain: 2
-    desert: 3
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 6
     name: "\u30BD\u30EB\u30B8\u30E3\u30FC"
     hp: 0
@@ -119,11 +125,12 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    plain: 1
-    forest: 2
-    river: 99
-    mountain: 3
-    desert: 99
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 7
     name: "\u30B8\u30A7\u30CD\u30E9\u30EB"
     hp: 4
@@ -135,11 +142,12 @@ MonoBehaviour:
     def: 4
     cur: 2
     move: 1
-    plain: 1
-    forest: 2
-    river: 99
-    mountain: 3
-    desert: 99
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 8
     name: "\u30DE\u30FC\u30BB\u30CA\u30EA\u30FC"
     hp: 0
@@ -151,11 +159,12 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    plain: 1
-    forest: 2
-    river: 99
-    mountain: 3
-    desert: 2
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 9
     name: "\u30A6\u30A9\u30FC\u30EA\u30A2"
     hp: 6
@@ -167,11 +176,12 @@ MonoBehaviour:
     def: 3
     cur: 0
     move: 1
-    plain: 0
-    forest: 0
-    river: 0
-    mountain: 0
-    desert: 0
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 10
     name: "\u30E9\u30A4\u30C0\u30FC"
     hp: 0
@@ -183,11 +193,12 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    plain: 0
-    forest: 0
-    river: 0
-    mountain: 0
-    desert: 0
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 11
     name: "\u30E2\u30FC\u30BF\u30FC\u30D8\u30C3\u30C9"
     hp: 3
@@ -199,11 +210,12 @@ MonoBehaviour:
     def: 3
     cur: 0
     move: 1
-    plain: 0
-    forest: 0
-    river: 0
-    mountain: 0
-    desert: 0
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 12
     name: "\u30D1\u30A4\u30ED\u30C3\u30C8"
     hp: 0
@@ -215,11 +227,12 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    plain: 0
-    forest: 0
-    river: 0
-    mountain: 0
-    desert: 0
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 13
     name: "\u30AD\u30E3\u30D7\u30C6\u30F3"
     hp: 0
@@ -231,11 +244,12 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    plain: 0
-    forest: 0
-    river: 0
-    mountain: 0
-    desert: 0
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 14
     name: "\u30EC\u30F3\u30B8\u30E3\u30FC"
     hp: 0
@@ -247,11 +261,12 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    plain: 0
-    forest: 0
-    river: 0
-    mountain: 0
-    desert: 0
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 15
     name: "\u30ED\u30FC\u30C9"
     hp: 3
@@ -263,11 +278,12 @@ MonoBehaviour:
     def: 3
     cur: 5
     move: 1
-    plain: 0
-    forest: 0
-    river: 0
-    mountain: 0
-    desert: 0
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 16
     name: none
     hp: 0
@@ -279,11 +295,12 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    plain: 0
-    forest: 0
-    river: 0
-    mountain: 0
-    desert: 0
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0
   - id: 17
     name: none
     hp: 0
@@ -295,8 +312,9 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    plain: 0
-    forest: 0
-    river: 0
-    mountain: 0
-    desert: 0
+    gun: 0
+    rifle: 0
+    knife: 0
+    fist: 0
+    spear: 0
+    axe: 0

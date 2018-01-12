@@ -37,10 +37,13 @@ public struct Buff
 {
     public int[] _datalist;
 
+    //バフスキル追加
     public void SetData(int[] data)
     {
         _datalist = data;
     }
+    //バフスキルのターン経過
+    //ターン0になったらバフを削除
     public bool AddTurn()
     {
         _datalist[13] -= 1;
@@ -113,6 +116,8 @@ public class Character : MonoBehaviour {
     public int[] _addstatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };                 //定数増加量配列
     public int[] _addonetimestatuslist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };          //戦闘時ステータス増加量配列
     public int[] _addbufflist = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };                   //ターン制限付きバフステータス増加量配列
+                                                                                                //上限値以下かの判定
+    public int[] def_st = { 0, 0, 0, 0, 0, 0, 0, 0 };
     public List<Buff> _bufflist = new List<Buff>();
 
 
@@ -228,7 +233,14 @@ public class Character : MonoBehaviour {
                 break;
 
         }
-        
+
+        if (Input.GetKeyDown("j") && transform.tag =="Player")
+        {
+            Debug.Log("Characterデータロード");
+            _statussave.LoadStatus();
+            LoadData();
+        }
+
         //exp100でレベルアップ
         if (_exp >= 100)
         {
@@ -282,13 +294,13 @@ public class Character : MonoBehaviour {
         _addonetimestatuslist[13] += _max;
     }
 
-
     /// <summary>
     /// 自分の戦闘終了時の処理
     /// </summary>
     public void BattleEnd()
     {
         _stability = false;
+        //1戦闘限りのバフを初期化
         _addonetimestatuslist = new int[14] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     }
@@ -314,7 +326,6 @@ public class Character : MonoBehaviour {
     /// <summary>
     /// ロードしたデータを適用
     /// </summary>
-    /// <param name="_save">セーブデータクラス</param>
     public void LoadData()
     {
         _statussave.LoadStatus();
@@ -434,7 +445,28 @@ public class Character : MonoBehaviour {
     {
         _equipment = weapon;
     }
-    
+
+    /// <summary>
+    /// 装備できるかチェック
+    /// </summary>
+    /// <param name="weapon">装備する予定の武器</param>
+    /// <returns>装備できるかどうか</returns>
+    public bool Check_Equipment(GameObject weapon)
+    {
+        if (
+            (weapon.GetComponent<Weapon>()._weapontype == Weapon_Type.Gun && classList.param[(int)_joblist].gun == 1) ||
+            (weapon.GetComponent<Weapon>()._weapontype == Weapon_Type.Rifle && classList.param[(int)_joblist].rifle == 1) ||
+            (weapon.GetComponent<Weapon>()._weapontype == Weapon_Type.Knife && classList.param[(int)_joblist].knife == 1) ||
+            (weapon.GetComponent<Weapon>()._weapontype == Weapon_Type.Fist && classList.param[(int)_joblist].fist == 1) ||
+            (weapon.GetComponent<Weapon>()._weapontype == Weapon_Type.Spear && classList.param[(int)_joblist].spear == 1) ||
+            (weapon.GetComponent<Weapon>()._weapontype == Weapon_Type.Axe && classList.param[(int)_joblist].axe == 1)
+            )
+        {
+            return true;
+        }
+        return false;
+    }
+
     /// <summary>
     /// 装備のstockの取得
     /// </summary>
@@ -511,16 +543,17 @@ public class Character : MonoBehaviour {
         _addstatuslist = AddPassiveStatus();
         _addbufflist = AddBuffStatus();
 
-        _totalMaxhp = _hp + classList.param[_classid].hp;
+        RevisionStatus();
 
-        _totalstr = _str + classList.param[_classid].str + _addstatuslist[1] + _addbufflist[0] + _addonetimestatuslist[1];
-        _totalskl = _skl + classList.param[_classid].skl + _addstatuslist[2] + _addbufflist[1] + _addonetimestatuslist[2];
-        _totalspd = _spd + classList.param[_classid].spd + _addstatuslist[3] + _addbufflist[2] + _addonetimestatuslist[3];
-        _totalluk = _luk + classList.param[_classid].luk + _addstatuslist[4] + _addbufflist[3] + _addonetimestatuslist[4];
-        _totaldef = _def + classList.param[_classid].def + _addstatuslist[5] + _addbufflist[4] + _addonetimestatuslist[5];
-        _totalcur = _cur + classList.param[_classid].cur + _addstatuslist[6] + _addbufflist[5] + _addonetimestatuslist[6];
-        _totalmove = _move + classList.param[_classid].move + _addstatuslist[7] + _addbufflist[6] + _addonetimestatuslist[7];
-  
+        _totalMaxhp = def_st[0];
+        _totalstr = def_st[1] + _addstatuslist[1] + _addbufflist[0] + _addonetimestatuslist[1];
+        _totalskl = def_st[2] + _addstatuslist[2] + _addbufflist[1] + _addonetimestatuslist[2];
+        _totalspd = def_st[3] + _addstatuslist[3] + _addbufflist[2] + _addonetimestatuslist[3];
+        _totalluk = def_st[4] + _addstatuslist[4] + _addbufflist[3] + _addonetimestatuslist[4];
+        _totaldef = def_st[5] + _addstatuslist[5] + _addbufflist[4] + _addonetimestatuslist[5];
+        _totalcur = def_st[6] + _addstatuslist[6] + _addbufflist[5] + _addonetimestatuslist[6];
+        _totalmove = def_st[7] + _addstatuslist[7] + _addbufflist[6] + _addonetimestatuslist[7];
+        
         //攻撃回数(基本は1)
         _attack_count = _equipment.GetComponent<Weapon>()._attackcount + _addbufflist[10] + _addonetimestatuslist[11];
 
@@ -548,7 +581,7 @@ public class Character : MonoBehaviour {
 
         //攻撃力計算
         //装備が銃だったら技を参照にする。
-        if (_equipment.GetComponent<Weapon>()._weapontype == Weapon_Type.gun || _equipment.GetComponent<Weapon>()._weapontype == Weapon_Type.rifle)
+        if (_equipment.GetComponent<Weapon>()._weapontype == Weapon_Type.Gun || _equipment.GetComponent<Weapon>()._weapontype == Weapon_Type.Rifle)
         {
             //射程プラス1
             if (_skillchecker._Awesomearm)
@@ -581,6 +614,52 @@ public class Character : MonoBehaviour {
         if(_attack_speed < 0)
         {
             _attack_speed = 0;
+        }
+    }
+
+    void RevisionStatus()
+    {
+        //上限値以下かの判定
+        //def_st = new int[8];
+        def_st[0] = _hp + classList.param[(int)_joblist].hp;
+        def_st[1] = _str + classList.param[(int)_joblist].str;
+        def_st[2] = _skl + classList.param[(int)_joblist].skl;
+        def_st[3] = _spd + classList.param[(int)_joblist].spd;
+        def_st[4] = _luk + classList.param[(int)_joblist].luk;
+        def_st[5] = _def + classList.param[(int)_joblist].def;
+        def_st[6] = _cur + classList.param[(int)_joblist].cur;
+        def_st[7] = _move + classList.param[(int)_joblist].move;
+        if (class_def_list.param[(int)_joblist].hp_max < _hp + classList.param[(int)_joblist].hp)
+        {
+            def_st[0] = class_def_list.param[(int)_joblist].hp_max;
+        }
+        if (class_def_list.param[(int)_joblist].str_max < _str + classList.param[(int)_joblist].str)
+        {
+            def_st[1] = class_def_list.param[(int)_joblist].str_max;
+        }
+        if (class_def_list.param[(int)_joblist].skl_max < _skl + classList.param[(int)_joblist].skl)
+        {
+            def_st[2] = class_def_list.param[(int)_joblist].skl_max;
+        }
+        if (class_def_list.param[(int)_joblist].spd_max < _spd + classList.param[(int)_joblist].spd)
+        {
+            def_st[3] = class_def_list.param[(int)_joblist].spd_max;
+        }
+        if (class_def_list.param[(int)_joblist].luk_max < _luk + classList.param[(int)_joblist].luk)
+        {
+            def_st[4] = class_def_list.param[(int)_joblist].luk_max;
+        }
+        if (class_def_list.param[(int)_joblist].def_max < _def + classList.param[(int)_joblist].def)
+        {
+            def_st[5] = class_def_list.param[(int)_joblist].def_max;
+        }
+        if (class_def_list.param[(int)_joblist].cur_max < _cur + classList.param[(int)_joblist].cur)
+        {
+            def_st[6] = class_def_list.param[(int)_joblist].cur_max;
+        }
+        if (class_def_list.param[(int)_joblist].move_max < _move + classList.param[(int)_joblist].move)
+        {
+            def_st[7] = class_def_list.param[(int)_joblist].move_max;
         }
     }
 
@@ -676,7 +755,7 @@ public class Character : MonoBehaviour {
     /// <summary>
     /// Stateの変更
     /// </summary>
-    /// <param name="_statename">変更するState名</param>
+    /// <param name="_statename">変更するState名:Poison:Paralysis:Default</param>
     public void ChangeState(string _statename)
     {
         _NowState = (State)Enum.Parse(typeof(State), _statename);

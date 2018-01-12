@@ -12,24 +12,6 @@ MonoBehaviour:
   m_Name: ClassDefaultStatus
   m_EditorClassIdentifier: 
   param:
-  - id: 0
-    name: None
-    hp: 0
-    str: 0
-    skl: 0
-    spd: 0
-    luk: 0
-    def: 0
-    cur: 0
-    move: 0
-    hp_r: 0
-    str_r: 0
-    skl_r: 0
-    spd_r: 0
-    luk_r: 0
-    def_r: 0
-    cur_r: 0
-    move_r: 0
   - id: 1
     name: Gunner
     hp: 18
@@ -48,6 +30,14 @@ MonoBehaviour:
     def_r: 10
     cur_r: 1
     move_r: 1
+    hp_max: 60
+    str_max: 10
+    skl_max: 30
+    spd_max: 25
+    luk_max: 30
+    def_max: 20
+    cur_max: 20
+    move_max: 15
   - id: 2
     name: Sniper
     hp: 22
@@ -66,6 +56,14 @@ MonoBehaviour:
     def_r: 10
     cur_r: 1
     move_r: 1
+    hp_max: 60
+    str_max: 10
+    skl_max: 30
+    spd_max: 25
+    luk_max: 30
+    def_max: 20
+    cur_max: 20
+    move_max: 15
   - id: 3
     name: Rogue
     hp: 20
@@ -84,6 +82,14 @@ MonoBehaviour:
     def_r: 10
     cur_r: 1
     move_r: 1
+    hp_max: 60
+    str_max: 10
+    skl_max: 25
+    spd_max: 30
+    luk_max: 30
+    def_max: 20
+    cur_max: 20
+    move_max: 15
   - id: 4
     name: Assassin
     hp: 22
@@ -102,6 +108,14 @@ MonoBehaviour:
     def_r: 10
     cur_r: 1
     move_r: 1
+    hp_max: 60
+    str_max: 20
+    skl_max: 28
+    spd_max: 28
+    luk_max: 30
+    def_max: 22
+    cur_max: 20
+    move_max: 15
   - id: 5
     name: Fighter
     hp: 18
@@ -120,6 +134,14 @@ MonoBehaviour:
     def_r: 15
     cur_r: 0
     move_r: 1
+    hp_max: 60
+    str_max: 29
+    skl_max: 24
+    spd_max: 29
+    luk_max: 30
+    def_max: 22
+    cur_max: 20
+    move_max: 15
   - id: 6
     name: Marshall
     hp: 22
@@ -138,6 +160,14 @@ MonoBehaviour:
     def_r: 15
     cur_r: 0
     move_r: 1
+    hp_max: 60
+    str_max: 29
+    skl_max: 24
+    spd_max: 29
+    luk_max: 30
+    def_max: 22
+    cur_max: 20
+    move_max: 15
   - id: 7
     name: Soldier
     hp: 20
@@ -156,6 +186,14 @@ MonoBehaviour:
     def_r: 40
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 28
+    skl_max: 27
+    spd_max: 23
+    luk_max: 30
+    def_max: 30
+    cur_max: 20
+    move_max: 15
   - id: 8
     name: General
     hp: 24
@@ -174,6 +212,14 @@ MonoBehaviour:
     def_r: 40
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 28
+    skl_max: 27
+    spd_max: 23
+    luk_max: 30
+    def_max: 30
+    cur_max: 20
+    move_max: 15
   - id: 9
     name: Mercenary
     hp: 24
@@ -192,6 +238,14 @@ MonoBehaviour:
     def_r: 20
     cur_r: 0
     move_r: 1
+    hp_max: 60
+    str_max: 30
+    skl_max: 24
+    spd_max: 26
+    luk_max: 30
+    def_max: 24
+    cur_max: 20
+    move_max: 15
   - id: 10
     name: Warrior
     hp: 30
@@ -210,6 +264,14 @@ MonoBehaviour:
     def_r: 20
     cur_r: 0
     move_r: 1
+    hp_max: 60
+    str_max: 30
+    skl_max: 24
+    spd_max: 26
+    luk_max: 30
+    def_max: 24
+    cur_max: 20
+    move_max: 15
   - id: 11
     name: Rider
     hp: 20
@@ -228,6 +290,14 @@ MonoBehaviour:
     def_r: 25
     cur_r: 0
     move_r: 1
+    hp_max: 60
+    str_max: 25
+    skl_max: 22
+    spd_max: 25
+    luk_max: 30
+    def_max: 23
+    cur_max: 20
+    move_max: 15
   - id: 12
     name: Motorhead
     hp: 23
@@ -246,6 +316,14 @@ MonoBehaviour:
     def_r: 25
     cur_r: 0
     move_r: 1
+    hp_max: 60
+    str_max: 25
+    skl_max: 22
+    spd_max: 25
+    luk_max: 30
+    def_max: 23
+    cur_max: 20
+    move_max: 15
   - id: 13
     name: Pilot
     hp: 20
@@ -264,6 +342,14 @@ MonoBehaviour:
     def_r: 25
     cur_r: 0
     move_r: 1
+    hp_max: 60
+    str_max: 27
+    skl_max: 22
+    spd_max: 22
+    luk_max: 30
+    def_max: 25
+    cur_max: 20
+    move_max: 15
   - id: 14
     name: Captain
     hp: 24
@@ -282,6 +368,14 @@ MonoBehaviour:
     def_r: 25
     cur_r: 0
     move_r: 1
+    hp_max: 60
+    str_max: 27
+    skl_max: 22
+    spd_max: 22
+    luk_max: 30
+    def_max: 25
+    cur_max: 20
+    move_max: 15
   - id: 15
     name: Ranger
     hp: 0
@@ -300,6 +394,14 @@ MonoBehaviour:
     def_r: 0
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 22
+    skl_max: 27
+    spd_max: 27
+    luk_max: 30
+    def_max: 22
+    cur_max: 25
+    move_max: 15
   - id: 16
     name: Load
     hp: 0
@@ -318,6 +420,14 @@ MonoBehaviour:
     def_r: 0
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 22
+    skl_max: 27
+    spd_max: 27
+    luk_max: 30
+    def_max: 22
+    cur_max: 25
+    move_max: 15
   - id: 17
     name: Thief
     hp: 0
@@ -336,6 +446,14 @@ MonoBehaviour:
     def_r: 0
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 30
+    skl_max: 30
+    spd_max: 30
+    luk_max: 30
+    def_max: 30
+    cur_max: 30
+    move_max: 30
   - id: 18
     name: Android
     hp: 0
@@ -354,6 +472,14 @@ MonoBehaviour:
     def_r: 0
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 30
+    skl_max: 30
+    spd_max: 30
+    luk_max: 30
+    def_max: 30
+    cur_max: 30
+    move_max: 30
   - id: 19
     name: Hacker
     hp: 0
@@ -372,6 +498,14 @@ MonoBehaviour:
     def_r: 0
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 30
+    skl_max: 30
+    spd_max: 30
+    luk_max: 30
+    def_max: 30
+    cur_max: 30
+    move_max: 30
   - id: 20
     name: Singer
     hp: 0
@@ -390,6 +524,14 @@ MonoBehaviour:
     def_r: 0
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 30
+    skl_max: 30
+    spd_max: 30
+    luk_max: 30
+    def_max: 30
+    cur_max: 30
+    move_max: 30
   - id: 21
     name: Valkyrie
     hp: 0
@@ -408,6 +550,14 @@ MonoBehaviour:
     def_r: 0
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 30
+    skl_max: 30
+    spd_max: 30
+    luk_max: 30
+    def_max: 30
+    cur_max: 30
+    move_max: 30
   - id: 22
     name: Paladin
     hp: 0
@@ -426,6 +576,14 @@ MonoBehaviour:
     def_r: 0
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 30
+    skl_max: 30
+    spd_max: 30
+    luk_max: 30
+    def_max: 30
+    cur_max: 30
+    move_max: 30
   - id: 23
     name: Desperado
     hp: 0
@@ -444,6 +602,14 @@ MonoBehaviour:
     def_r: 0
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 30
+    skl_max: 30
+    spd_max: 30
+    luk_max: 30
+    def_max: 30
+    cur_max: 30
+    move_max: 30
   - id: 24
     name: EarthDragon
     hp: 0
@@ -462,3 +628,11 @@ MonoBehaviour:
     def_r: 0
     cur_r: 0
     move_r: 0
+    hp_max: 60
+    str_max: 30
+    skl_max: 30
+    spd_max: 30
+    luk_max: 30
+    def_max: 30
+    cur_max: 30
+    move_max: 30

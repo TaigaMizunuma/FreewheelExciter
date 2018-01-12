@@ -39,14 +39,23 @@ public class RepositoryManager : MonoBehaviour {
         {
             var i = obj.GetComponent<Item>();
             _itemrepository.AddItem(i._name,i._message,i._recovery,i._stock,i._type,i._effect.ToString());
-            Destroy(i);
+            Destroy(obj);
         }
         else if (obj.GetComponent<Weapon>())
         {
             var i = obj.GetComponent<Weapon>();
-            _weaponrepository.AddItem(i._name,i._message,i._stock,i._maxstock,i._type,i._atk,i._weight,i._hit,i._critical,i._attackcount,i._min,i._max,i._weapontype.ToString());
-            Destroy(i);
+            _weaponrepository.AddItem(i._name,i._message,i._stock,i._maxstock,i._atk,i._weight,i._hit,i._critical,i._attackcount,i._min,i._max,i._weapontype.ToString(), i._weaponEffectType.ToString());
+            Destroy(obj);
         }
+    }
+
+
+    /// <summary>
+    /// アイテムを捨てる
+    /// </summary>
+    public void DiscardItem(GameObject obj)
+    {
+
     }
 
     /// <summary>
@@ -54,7 +63,7 @@ public class RepositoryManager : MonoBehaviour {
     /// </summary>
     /// <param name="chara">受け取るキャラクターオブジェクト</param>
     /// <param name="id">取り出すアイテムID</param>
-    void GetItem(GameObject chara, int id,string type)
+    public void GetItem(GameObject chara, int id,string type)
     {
         GameObject j = null;
         if (type == "Item")
@@ -65,9 +74,19 @@ public class RepositoryManager : MonoBehaviour {
         {
             j = _weaponrepository.GetItem(id);
         }
-        GameObject k = GameObject.Find(chara.transform.name + "/ItemList");
-        k.GetComponent<ItemPrefabList>().AddItem(j);
+        if(j == null)
+        {
+            Debug.Log("アイテムがありません");
+        }
+        else
+        {
+            Debug.Log(j.name + "を取り出しました");
+            GameObject k = GameObject.Find(chara.transform.name + "/ItemList");
+            k.GetComponent<ItemPrefabList>().AddItem(j);
+        }
     }
+
+
 
     /// <summary>
     /// アイテム交換実行
@@ -76,7 +95,7 @@ public class RepositoryManager : MonoBehaviour {
     /// <param name="item">差し出すアイテム</param>
     /// <param name="id">取り出すアイテムid</param>
     /// <param name="type">受け取るアイテムの種類("Item"or"Weapon")</param>
-    void ChangeItem(GameObject chara,GameObject item,int id,string type)
+    public void ChangeItem(GameObject chara,GameObject item,int id,string type)
     {
 
         var i = item;
@@ -91,8 +110,8 @@ public class RepositoryManager : MonoBehaviour {
         {
             var itemscript = i.GetComponent<Weapon>();
             _weaponrepository.AddItem(itemscript._name,itemscript._message,itemscript._stock,itemscript._maxstock,
-                itemscript._type,itemscript._atk,itemscript._weight,itemscript._hit,
-                itemscript._critical,itemscript._attackcount,itemscript._min,itemscript._max,itemscript._weapontype.ToString());
+                itemscript._atk,itemscript._weight,itemscript._hit,
+                itemscript._critical,itemscript._attackcount,itemscript._min,itemscript._max,itemscript._weapontype.ToString(),itemscript._weaponEffectType.ToString());
         }
 
         //受け取るアイテムの選別

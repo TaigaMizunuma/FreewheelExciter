@@ -11,8 +11,6 @@ public class ItemRepository : MonoBehaviour {
 
     public struct ItemData
     {
-        //アイテムID
-        public int _id;
         //アイテム名
         public string _name;
         //アイテムの説明
@@ -26,9 +24,8 @@ public class ItemRepository : MonoBehaviour {
         //アイテム効果
         public string _effect;
 
-        public void SetData(int id, string name, string message,int recovery,int stock, string type,string effect)
+        public void SetData(string name, string message,int recovery,int stock, string type,string effect)
         {
-            _id = id;
             _name = name;
             _message = message;
             _recovery = recovery;
@@ -63,16 +60,15 @@ public class ItemRepository : MonoBehaviour {
     public void AddItem(string _name,string _message,int _recovery,int _stock,string _type,string _effect)
     {
         var i = new ItemData();
-        i.SetData(_repositoryid,_name,_message,_recovery,_stock,_type,_effect);
+        i.SetData(_name,_message,_recovery,_stock,_type,_effect);
         _itemrepository.Add(i);
-        _repositoryid++;
     }
 
     /// <summary>
     /// アイテムの取り出し
     /// </summary>
     /// <param name="_no">取り出すアイテムのナンバー</param>
-    /// <returns></returns>
+    /// <returns>アイテムオブジェクト</returns>
     public GameObject GetItem(int _no)
     {
         var i = _itemrepository[_no];

@@ -21,10 +21,11 @@ public class Entity_ClassList : ScriptableObject
 		public int def;
 		public int cur;
 		public int move;
-		public int plain;
-		public int forest;
-		public int river;
-		public int mountain;
-		public int desert;
+		public int gun;
+		public int rifle;
+		public int knife;
+		public int fist;
+		public int spear;
+		public int axe;
 	}
 }

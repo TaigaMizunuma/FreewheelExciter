@@ -28,5 +28,13 @@ public class Entity_ClassDefaultStatus : ScriptableObject
 		public int def_r;
 		public int cur_r;
 		public int move_r;
+		public int hp_max;
+		public int str_max;
+		public int skl_max;
+		public int spd_max;
+		public int luk_max;
+		public int def_max;
+		public int cur_max;
+		public int move_max;
 	}
 }

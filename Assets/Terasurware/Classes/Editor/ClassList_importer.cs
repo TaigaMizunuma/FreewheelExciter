@@ -69,11 +69,12 @@ public class ClassList_importer : AssetPostprocessor
 					cell = row.GetCell(8); p.def = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(9); p.cur = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(10); p.move = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(11); p.plain = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(12); p.forest = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(13); p.river = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(14); p.mountain = (int)(cell == null ? 0 : cell.NumericCellValue);
-					cell = row.GetCell(15); p.desert = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(11); p.gun = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(12); p.rifle = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(13); p.knife = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(14); p.fist = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(15); p.spear = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(16); p.axe = (int)(cell == null ? 0 : cell.NumericCellValue);
 
                         data.param.Add(p);
                     }

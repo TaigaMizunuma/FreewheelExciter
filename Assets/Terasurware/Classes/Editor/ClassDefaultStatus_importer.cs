@@ -76,6 +76,14 @@ public class ClassDefaultStatus_importer : AssetPostprocessor
 					cell = row.GetCell(15); p.def_r = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(16); p.cur_r = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(17); p.move_r = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(18); p.hp_max = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(19); p.str_max = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(20); p.skl_max = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(21); p.spd_max = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(22); p.luk_max = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(23); p.def_max = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(24); p.cur_max = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(25); p.move_max = (int)(cell == null ? 0 : cell.NumericCellValue);
 
                         data.param.Add(p);
                     }

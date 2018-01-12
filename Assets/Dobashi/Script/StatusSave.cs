@@ -33,6 +33,8 @@ public class StatusSave : MonoBehaviour {
     public int[] r_addbuffstatus;
     public bool r_stability;
     public int r_state;
+    public GameObject r_itemobj;
+    public GameObject r_skillobj;
 
     [SerializeField]
     public class DataSave
@@ -60,6 +62,8 @@ public class StatusSave : MonoBehaviour {
         public int[] _addbuffstatus;//バフによる加算ステータス
         public bool _stability;     //コマンドスキルによる追撃可能かの判別
         public int _state;          //状態異常
+        public GameObject _itemobj;  //アイテムの親オブジェクト
+        public GameObject _skillobj; //スキルの親オブジェクト
 
         public DataSave()
         {
@@ -85,6 +89,8 @@ public class StatusSave : MonoBehaviour {
             _addbuffstatus = new int[14];
             _stability = false;
             _state = 0;
+            _itemobj = null;
+            _skillobj = null;
         }
 
     }
@@ -99,15 +105,18 @@ public class StatusSave : MonoBehaviour {
 	void Update () {
         //if (Input.GetKeyDown("h"))
         //{
-        //    Debug.Log("Characterデータセーブ");        
+        //    Debug.Log("Characterデータセーブ");
         //    SaveStatus(NewData());
         //}
-        //if (Input.GetKeyDown("j"))
+        //if (Input.GetKeyDown("f"))
         //{
-        //    Debug.Log("Characterデータロード");
+        //    Debug.Log("オブジェクトロードテスト");
         //    LoadStatus();
+        //    Instantiate(r_itemobj);
+        //    Instantiate(r_skillobj);
         //}
-	}
+        
+    }
 
     /// <summary>
     /// キャラクターステータスをセーブするときに呼ぶ
@@ -151,6 +160,8 @@ public class StatusSave : MonoBehaviour {
         r_addonestatus = gs._addonestatus;
         r_addbuffstatus = gs._addbuffstatus;
         r_state = gs._state;
+        r_itemobj = gs._itemobj;
+        r_skillobj = gs._skillobj;
     }
 
     /// <summary>
@@ -180,6 +191,8 @@ public class StatusSave : MonoBehaviour {
         i._addonestatus = _chara._addonetimestatuslist;
         i._addbuffstatus = _chara._addbufflist;
         i._state = (int)_chara._NowState;
+        i._itemobj = _chara._itemprefablist;
+        i._skillobj = _chara._skillprefablist;
         return i;
     }
 }
