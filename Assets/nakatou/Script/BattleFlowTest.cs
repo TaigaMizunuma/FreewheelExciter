@@ -383,6 +383,23 @@ public class BattleFlowTest : MonoBehaviour
                     }
                 }
             }
+            if(count==0)
+            {
+                foreach (var obj in UIs)
+                {
+                    obj.SetActive(false);
+                    Destroy(obj, 1.0f);
+                }
+                Destroy(SetumeiWindow);
+                choose = false;
+                once = false;
+                count = 0;
+                ChoiceObjs.Clear();
+                UIs.Clear();
+                state_ = State_.action_mode;
+                FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+                return;
+            }
             count = 0;
             once = true;
         }
@@ -588,6 +605,7 @@ public class BattleFlowTest : MonoBehaviour
                 ChoiceObjs.Clear();
                 UIs.Clear();
                 state_ = State_.action_mode;
+                return;
             }
             count = 0;
             once = true;
