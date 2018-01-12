@@ -69,6 +69,7 @@ public class BattleFlowTest : MonoBehaviour
     int count = 0;
     List<GameObject> UIs = new List<GameObject>();
     List<GameObject> ChoiceObjs = new List<GameObject>();
+    GameObject SetumeiWindow;
 
     //hpui用
     public GameObject PlayerRedGage;
@@ -318,6 +319,9 @@ public class BattleFlowTest : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 行動選択
+    /// </summary>
     void ActionMode()
     {
         //キャンセル
@@ -333,17 +337,22 @@ public class BattleFlowTest : MonoBehaviour
             FindObjectOfType<RayBox>().SetCameraPosition(_nowChooseChar);
 
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-            FindObjectOfType<RayBox>().move_ = true;
 
             _nowChooseChar = null;
             state_ = State_.simulation_mode;
         }
     }
 
+    /// <summary>
+    /// 武器選択
+    /// </summary>
     void WeaponMode()
     {
         if (!once)
         {
+            //説明用ウィンドウ表示
+            SetumeiWindow = Instantiate(Resources.Load("Waku"),
+                        GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
             //アイテム所持情報取得
             var items = _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist;
             count = 0;
@@ -358,15 +367,20 @@ public class BattleFlowTest : MonoBehaviour
             {
                 if (obj.GetComponent<Weapon>())
                 {
-                    GameObject ui = Instantiate(
-                        Resources.Load("WeaponUI"),
-                        GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
-                    ui.transform.localPosition = new Vector3(0, count * -100, 0);
-                    ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Weapon>()._name;
-                    ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                    ChoiceObjs.Add(obj);
-                    UIs.Add(ui);
-                    count++;
+                    if (_nowChooseChar.GetComponent<Character>().Check_Equipment(obj))
+                    {
+                        GameObject ui = Instantiate(
+                            Resources.Load("WeaponUI"),
+                            GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
+                        ui.transform.localPosition = new Vector3(0, count * -120, 0);
+                        ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Weapon>()._name;
+                        ui.GetComponent<UIsText>()._name = obj.GetComponent<Weapon>()._name;
+                        ui.GetComponent<UIsText>()._message = obj.GetComponent<Weapon>()._message;
+                        ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
+                        ChoiceObjs.Add(obj);
+                        UIs.Add(ui);
+                        count++;
+                    }
                 }
             }
             count = 0;
@@ -380,6 +394,9 @@ public class BattleFlowTest : MonoBehaviour
                 obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
             }
             UIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            SetumeiWindow.transform.FindChild("Setumei").GetComponent<Text>().text =
+                UIs[count].GetComponent<UIsText>()._message;
+
 
             if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
             {
@@ -407,7 +424,7 @@ public class BattleFlowTest : MonoBehaviour
                     obj.SetActive(false);
                     Destroy(obj, 1.0f);
                 }
-
+                Destroy(SetumeiWindow);
                 choose = false;
                 once = false;
                 count = 0;
@@ -425,7 +442,7 @@ public class BattleFlowTest : MonoBehaviour
                 obj.SetActive(false);
                 Destroy(obj, 1.0f);
             }
-
+            Destroy(SetumeiWindow);
             choose = false;
             once = false;
             count = 0;
@@ -439,6 +456,10 @@ public class BattleFlowTest : MonoBehaviour
     {
         if (!once)
         {
+            //説明用ウィンドウ表示
+            SetumeiWindow = Instantiate(Resources.Load("Waku"),
+                        GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
+            //スキル情報取得
             var skill = _nowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>()._skillprefablist;
             count = 0;
             if (skill == null)
@@ -457,6 +478,8 @@ public class BattleFlowTest : MonoBehaviour
                             GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
                         ui.transform.localPosition = new Vector3(0, count * -100, 0);
                         ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<CommandSkill>()._name;
+                        ui.GetComponent<UIsText>()._name = obj.GetComponent<CommandSkill>()._name;
+                        ui.GetComponent<UIsText>()._message = obj.GetComponent<CommandSkill>()._message;
                         ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
                         ChoiceObjs.Add(obj);
                         UIs.Add(ui);
@@ -474,6 +497,8 @@ public class BattleFlowTest : MonoBehaviour
                 obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
             }
             UIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            SetumeiWindow.transform.FindChild("Setumei").GetComponent<Text>().text =
+                UIs[count].GetComponent<UIsText>()._message;
 
             if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
             {
@@ -498,7 +523,7 @@ public class BattleFlowTest : MonoBehaviour
                     obj.SetActive(false);
                     Destroy(obj, 1.0f);
                 }
-
+                Destroy(SetumeiWindow);
                 choose = false;
                 once = false;
                 count = 0;
@@ -515,7 +540,7 @@ public class BattleFlowTest : MonoBehaviour
                 obj.SetActive(false);
                 Destroy(obj, 1.0f);
             }
-
+            Destroy(SetumeiWindow);
             _nowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>().SkillEffect(_nowChooseChar, ChoiceObjs[count]);
             choose = false;
             once = false;
@@ -531,6 +556,9 @@ public class BattleFlowTest : MonoBehaviour
     {
         if (!once)
         {
+            SetumeiWindow = Instantiate(Resources.Load("Waku"),
+                        GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
+
             var items = _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist;
             count = 0;
             foreach (var obj in items)
@@ -542,6 +570,8 @@ public class BattleFlowTest : MonoBehaviour
                         GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
                     ui.transform.localPosition = new Vector3(0, count * -100, 0);
                     ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Item>()._name;
+                    ui.GetComponent<UIsText>()._name = obj.GetComponent<Item>()._name;
+                    ui.GetComponent<UIsText>()._message = obj.GetComponent<Item>()._message;
                     ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
                     ChoiceObjs.Add(obj);
                     UIs.Add(ui);
@@ -552,6 +582,7 @@ public class BattleFlowTest : MonoBehaviour
             {
                 Debug.Log("使えるアイテムを持っていません");
                 FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+                Destroy(SetumeiWindow);
                 choose = false;
                 once = false;
                 ChoiceObjs.Clear();
@@ -566,8 +597,11 @@ public class BattleFlowTest : MonoBehaviour
             foreach (var obj in UIs)
             {
                 obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
-                UIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             }
+            UIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+
+            SetumeiWindow.transform.FindChild("Setumei").GetComponent<Text>().text =
+                UIs[count].GetComponent<UIsText>()._message;
 
             if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
             {
@@ -592,7 +626,7 @@ public class BattleFlowTest : MonoBehaviour
                     obj.SetActive(false);
                     Destroy(obj, 1.0f);
                 }
-
+                Destroy(SetumeiWindow);
                 choose = false;
                 once = false;
                 count = 0;
@@ -609,7 +643,7 @@ public class BattleFlowTest : MonoBehaviour
                 obj.SetActive(false);
                 Destroy(obj, 1.0f);
             }
-
+            Destroy(SetumeiWindow);
             _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().UseItem(_nowChooseChar, ChoiceObjs[count]);
             choose = false;
             once = false;
