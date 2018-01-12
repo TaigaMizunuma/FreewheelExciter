@@ -34,11 +34,8 @@ public class Fade : MonoBehaviour {
 
     private string changeName;
 
-
-
     void Start ()
     {
-
         isFadeIn = true;
         isFadeOut = false;
 
@@ -124,7 +121,10 @@ public class Fade : MonoBehaviour {
     /// </summary>
     public void SetOutFade(bool flag)
     {
-        isFadeOut = flag;
+        if (isFadeIn != true)
+        {
+            isFadeOut = flag;
+        }
     }
 
     /// <summary>
@@ -132,7 +132,10 @@ public class Fade : MonoBehaviour {
     /// </summary>
     public void SetSceneChangeSwitch(bool flag)
     {
-        sceneChangeSwitch = flag;
+        if (isFadeIn != true)
+        {
+            sceneChangeSwitch = flag;
+        }
     }
 
     /// <summary>
