@@ -177,7 +177,7 @@ Light:
 GameObject:
   m_PrefabParentObject: {fileID: 1822336326439510, guid: 9a5d5addf3a0f154e8b28228fd30697e,
     type: 2}
-  m_PrefabInternal: {fileID: 509674093}
+  m_PrefabInternal: {fileID: 957798277}
 --- !u!1 &299084675
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &509674093
+--- !u!1001 &957798277
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -311,25 +311,20 @@ Prefab:
       propertyPath: eventSystem
       value: 
       objectReference: {fileID: 1175570550}
-    - target: {fileID: 114081385912259802, guid: 9a5d5addf3a0f154e8b28228fd30697e,
+    - target: {fileID: 111486416554812440, guid: 9a5d5addf3a0f154e8b28228fd30697e,
         type: 2}
-      propertyPath: m_Color.r
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 92a5e91fb4d30e1459d1448f1c6327c4, type: 2}
+    - target: {fileID: 111486416554812440, guid: 9a5d5addf3a0f154e8b28228fd30697e,
+        type: 2}
+      propertyPath: m_PlayAutomatically
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114081385912259802, guid: 9a5d5addf3a0f154e8b28228fd30697e,
+    - target: {fileID: 224060674656183370, guid: 9a5d5addf3a0f154e8b28228fd30697e,
         type: 2}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114081385912259802, guid: 9a5d5addf3a0f154e8b28228fd30697e,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114081385912259802, guid: 9a5d5addf3a0f154e8b28228fd30697e,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 63.360004
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a5d5addf3a0f154e8b28228fd30697e, type: 2}
@@ -489,7 +484,7 @@ Camera:
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114081385912259802, guid: 9a5d5addf3a0f154e8b28228fd30697e,
     type: 2}
-  m_PrefabInternal: {fileID: 509674093}
+  m_PrefabInternal: {fileID: 957798277}
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &2001956788
 GameObject:
