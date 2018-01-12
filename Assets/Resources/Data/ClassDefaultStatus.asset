@@ -430,22 +430,22 @@ MonoBehaviour:
     move_max: 15
   - id: 17
     name: Thief
-    hp: 0
-    str: 0
-    skl: 0
-    spd: 0
-    luk: 0
-    def: 0
-    cur: 0
-    move: 0
-    hp_r: 0
-    str_r: 0
-    skl_r: 0
-    spd_r: 0
+    hp: 16
+    str: 3
+    skl: 3
+    spd: 3
+    luk: 3
+    def: 1
+    cur: 3
+    move: 5
+    hp_r: 50
+    str_r: 20
+    skl_r: 20
+    spd_r: 20
     luk_r: 0
-    def_r: 0
+    def_r: 20
     cur_r: 0
-    move_r: 0
+    move_r: 1
     hp_max: 60
     str_max: 30
     skl_max: 30
