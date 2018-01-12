@@ -2384,7 +2384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyObj:
   - {fileID: 1724679625813882, guid: 186759b2a09c75f4d8ed170adde5a638, type: 2}
-  c_enemyPosCSVName: Stage2(Test)_Enemy
+  c_enemyPosCSVName: Stage2_Enemy
   AdjustmentPosX: -8
   AdjustmentPosY: 0.5
   AdjustmentPosZ: 0.5

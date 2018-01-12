@@ -20,9 +20,9 @@ public class EnemyImporter : MonoBehaviour
     string c_enemyPosCSVName;
 
     //エネミーの初期配置のデータ
-    TextAsset c_enemyFile;
-    List<string[]> c_enemyDatas = new List<string[]>();
-    int c_enemyHeight = 0;
+    TextAsset c_enemyPosFile;
+    List<string[]> c_enemyPosDatas = new List<string[]>();
+    int c_enemyPosHeight = 0;
 
     //エネミーを置く場所
     float e_initPosX;
@@ -50,20 +50,18 @@ public class EnemyImporter : MonoBehaviour
     [SerializeField]
     int eneCount;
 
-    int e_number;
-
     void Awake()
     {
         //エネミー初期配置CSVデータ読み込み
-        c_enemyFile = Resources.Load("MapEnemyData/" + c_enemyPosCSVName) as TextAsset;
+        c_enemyPosFile = Resources.Load("CSV/MapEnemyPlaceData/" + c_enemyPosCSVName) as TextAsset;
 
-        StringReader reader = new StringReader(c_enemyFile.text);
+        StringReader reader = new StringReader(c_enemyPosFile.text);
 
         while (reader.Peek() > -1)
         {
             string line = reader.ReadLine();
-            c_enemyDatas.Add(line.Split(','));
-            c_enemyHeight++;
+            c_enemyPosDatas.Add(line.Split(','));
+            c_enemyPosHeight++;
         }
         EnemyInstance();
     }
@@ -74,20 +72,31 @@ public class EnemyImporter : MonoBehaviour
     void EnemyInstance()
     {
         //エネミー初期配置
-        for (int e_i = 0; e_i < c_enemyDatas.Count; e_i++)
+        for (int e_i = 0; e_i < c_enemyPosDatas.Count; e_i++)
         {
-            for (int e_j = 0; e_j < c_enemyDatas[e_i].Length; e_j++)
+            for (int e_j = 0; e_j < c_enemyPosDatas[e_i].Length; e_j++)
             {
                 //エネミー位置
                 e_initPosX = e_j + AdjustmentPosX;
                 e_initPosZ = -e_i + AdjustmentPosZ;
-                e_number = int.Parse(c_enemyDatas[e_i][e_j]);
 
-                if (c_enemyDatas[e_i][e_j] != "0")
+                switch (c_enemyPosDatas[e_i][e_j])
                 {
-                    var charaInstance = (GameObject)Instantiate(enemyObj[0], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
-                    charaInstance.name = "Enemy" + eneCount;
-                    eneCount++;
+                    case "0":
+                        break;
+
+                    case "1":
+                        var charaInstance = (GameObject)Instantiate(enemyObj[0], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
+                        charaInstance.name = "Enemy" + eneCount;
+                        charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
+                        eneCount++;
+                        break;
+                    case "2":
+                        charaInstance = (GameObject)Instantiate(enemyObj[1], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
+                        charaInstance.name = "Enemy" + eneCount;
+                        charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
+                        eneCount++;
+                        break;
                 }
             }
         }

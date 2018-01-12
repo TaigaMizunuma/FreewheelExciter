@@ -574,6 +574,7 @@ GameObject:
   - component: {fileID: 114792739452255074}
   - component: {fileID: 114762436634291996}
   - component: {fileID: 114167108734205830}
+  - component: {fileID: 114597405054135350}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Enemy
@@ -1647,6 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a4fae2871dcaea4fa0f4a1ebd900b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
   _name: "\u4E2D\u6771"
@@ -1686,6 +1688,7 @@ MonoBehaviour:
   _itemprefablist: {fileID: 0}
   _skillprefablist: {fileID: 0}
   _skillchecker: {fileID: 0}
+  _statussave: {fileID: 0}
   _HpState: 0
   _NowState: 0
   _joblist: 0
@@ -1701,6 +1704,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemprefablist: []
+--- !u!114 &114597405054135350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1724679625813882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1174acae99bcc5a4791038139a5d76d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  e_number: 0
+  c_enePerCSVName: Stage2_EnemyPersonalData
+  e_name: 
+  e_level: 0
+  e_job: 
 --- !u!114 &114645874313749972
 MonoBehaviour:
   m_ObjectHideFlags: 1

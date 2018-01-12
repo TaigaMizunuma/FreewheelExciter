@@ -41,7 +41,7 @@ public class MapImporterScript : MonoBehaviour
 
     void Awake()
     {
-        MapCSVFile = Resources.Load("MapData/" + MapCSV) as TextAsset;
+        MapCSVFile = Resources.Load("CSV/MapData/" + MapCSV) as TextAsset;
         StringReader reader = new StringReader(MapCSVFile.text);
 
         while (reader.Peek() > -1)
