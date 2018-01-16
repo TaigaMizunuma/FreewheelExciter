@@ -78,6 +78,7 @@ public class BattleFlowTest : MonoBehaviour
     public GameObject Shousai;//詳細ステータス
 
     bool GameEnd = false;//仮
+    public bool GameStart = false;
 
     Vector3 MoveStartPos;//キャンセル用
     GameObject battleui;//戦闘時UI;
@@ -90,32 +91,12 @@ public class BattleFlowTest : MonoBehaviour
     }
     void Start()
     {
-        /*メニュー制御不可*/
-        FindObjectOfType<MenuManager>().SetMainControlFlag(true);
-        FindObjectOfType<SubMenuRenderer>().GetSubControlFlag(true);
-        rayBox = FindObjectOfType<RayBox>().gameObject;
-        rayBox.GetComponent<RayBox>().move_ = false;
-        m_audio = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
-        Shousai = Instantiate(Resources.Load("Shosai"), GameObject.Find("Canvas").transform) as GameObject;
-        Shousai.SetActive(false);
-        SetActionEnemy();
-
-        _TurnText.text = "第１章 \n PlayerTurn";
-
-        //m_audio.PlayBgm("battle1");
-        
-        StartCoroutine(DelayMethod.DelayMethodCall(1.0f, () =>
-        {
-            Turn_TextReset();
-            /*メニュー制御可*/
-            FindObjectOfType<MenuManager>().SetMainControlFlag(false);
-            FindObjectOfType<SubMenuRenderer>().GetSubControlFlag(false);
-            rayBox.GetComponent<RayBox>().move_ = true;
-        }));
+        if (GameStart) StartGame();
     }
 
     void Update()
     {
+        if (!GameStart) return;
         //仮 勝敗判定
         if (!GameObject.FindGameObjectWithTag("Enemy"))
         {
@@ -1100,5 +1081,33 @@ public class BattleFlowTest : MonoBehaviour
             }
         }
         _ActionEnemy = minobj;
+    }
+
+    public void StartGame()
+    {
+        /*メニュー制御不可*/
+        FindObjectOfType<MenuManager>().SetMainControlFlag(true);
+        FindObjectOfType<SubMenuRenderer>().GetSubControlFlag(true);
+        rayBox = FindObjectOfType<RayBox>().gameObject;
+        rayBox.GetComponent<RayBox>().move_ = false;
+        m_audio = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
+        Shousai = Instantiate(Resources.Load("Shosai"), GameObject.Find("Canvas").transform) as GameObject;
+        Shousai.SetActive(false);
+        SetActionEnemy();
+
+        _TurnText.text = "第１章 \n PlayerTurn";
+
+        //m_audio.PlayBgm("battle1");
+
+        StartCoroutine(DelayMethod.DelayMethodCall(1.0f, () =>
+        {
+            Turn_TextReset();
+            /*メニュー制御可*/
+            FindObjectOfType<MenuManager>().SetMainControlFlag(false);
+            FindObjectOfType<SubMenuRenderer>().GetSubControlFlag(false);
+            rayBox.GetComponent<RayBox>().move_ = true;
+        }));
+
+        GameStart = true;
     }
 }
