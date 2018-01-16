@@ -229,6 +229,10 @@ public class BattleManager : MonoBehaviour {
         _attacker.set_chara(_attack);
         _def.set_chara(_interceptor);
 
+        //各キャラのステータス計算
+        _attacker._chara.TotalStatus();
+        _def._chara.TotalStatus();
+
         //与ダメセット
         _attacker.set_atk(_def._chara._totaldef,1);
         _def.set_atk(_attacker._chara._totaldef,1);
@@ -267,6 +271,10 @@ public class BattleManager : MonoBehaviour {
         //クラスセット
         _attacker.set_chara(_attack);
         _def.set_chara(_interceptor);
+
+        //各キャラのステータス計算
+        _attacker._chara.TotalStatus();
+        _def._chara.TotalStatus();
 
         //与ダメセット
         _attacker.set_atk(_def._chara._totaldef, 1);

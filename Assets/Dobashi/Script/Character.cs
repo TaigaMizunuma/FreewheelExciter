@@ -538,7 +538,7 @@ public class Character : MonoBehaviour {
     ///各補正値と基本ステータスを足す。
     ///攻撃速度、命中、回避、必殺率の計算も行う
     /// </summary>
-    void TotalStatus()
+    public void TotalStatus()
     {
         _addstatuslist = AddPassiveStatus();
         _addbufflist = AddBuffStatus();
@@ -571,8 +571,8 @@ public class Character : MonoBehaviour {
         
         //命中率(武器の命中率 + 技 + 運/2)
         _hit = _equipment.GetComponent<Weapon>()._hit + _totalskl + (_totalluk / 2) + _addbufflist[7] + _addonetimestatuslist[8];
-        //回避率(速さ + 運)
-        _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9];
+        //回避率(速さ + 運 + 地形補正)
+        _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9] + GetComponent<Move_System>().GetNowPos().GetComponent<MapStatus>().GetMapEvasionRate();
         //必殺率(武器の必殺率 + 技/2)
         _critical = _equipment.GetComponent<Weapon>()._critical + (_totalskl / 2) + _addbufflist[9] + _addonetimestatuslist[10];
         //攻撃範囲のセット
@@ -750,6 +750,7 @@ public class Character : MonoBehaviour {
         {
             _totalhp -= _totalMaxhp / 5;
         }
+        TotalStatus();
     }
 
     /// <summary>
