@@ -54,5 +54,5 @@ MonoBehaviour:
   _skill_list: 4
   _name: "\u9283\u7D0B\u958B\u653E"
   _message: "HP-5\u3057\u30663\u30BF\u30FC\u30F3\u306E\u9593\u529B\u306B\u546A\u529B\u3092\u8FFD\u52A0"
-  _level: 0
+  _level: 5
   _activ: 0

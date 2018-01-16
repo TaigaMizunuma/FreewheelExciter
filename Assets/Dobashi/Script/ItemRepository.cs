@@ -85,7 +85,7 @@ public class ItemRepository : MonoBehaviour {
         SaveData.SetList<ItemData>("ItemRepositoryList", _itemrepository);
     }
     /// <summary>
-    /// アイテム倉庫のリストをセーブ
+    /// アイテム倉庫のリストをロード
     /// </summary>
     public void Load()
     {

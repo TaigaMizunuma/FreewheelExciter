@@ -53,6 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\u672A\u6765\u4E88\u77E5"
   _message: "\u546A\u529B%\u306E\u78BA\u7387\u30673\u30BF\u30FC\u30F3\u306E\u9593\u3059\u3079\u3066\u306E\u653B\u6483\u3092\u56DE\u907F\u3059\u308B"
-  _level: 0
+  _level: 1
   _activ: 0
   _skill_list: 14

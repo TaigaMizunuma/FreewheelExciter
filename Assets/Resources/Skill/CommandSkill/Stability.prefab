@@ -54,5 +54,5 @@ MonoBehaviour:
   _skill_list: 3
   _name: "\u5B89\u5B9A"
   _message: "\u6B21\u306E\u6226\u95D8\u6642\u3001\u304A\u4E92\u3044\u8FFD\u6483\u304C\u3067\u304D\u306A\u3044"
-  _level: 0
+  _level: 15
   _activ: 0
