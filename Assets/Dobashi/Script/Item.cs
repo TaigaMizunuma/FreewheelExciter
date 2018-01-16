@@ -135,7 +135,10 @@ public class Item : MonoBehaviour {
                 break;
             case Effect_Type.bullet:
                 //弾
-
+                if (i._equipment.GetComponent<Weapon>()._weapontype == Weapon_Type.Gun || i._equipment.GetComponent<Weapon>()._weapontype == Weapon_Type.Rifle)
+                {
+                    i._equipment.GetComponent<Weapon>()._stock = i._equipment.GetComponent<Weapon>()._maxstock;
+                }
                 break;
         }
     }

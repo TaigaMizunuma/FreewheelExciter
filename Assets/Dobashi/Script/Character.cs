@@ -234,12 +234,12 @@ public class Character : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyDown("j") && transform.tag =="Player")
-        {
-            Debug.Log("Characterデータロード");
-            _statussave.LoadStatus();
-            LoadData();
-        }
+        //if (Input.GetKeyDown("j") && transform.tag =="Player")
+        //{
+        //    Debug.Log("Characterデータロード");
+        //    _statussave.LoadStatus();
+        //    LoadData();
+        //}
 
         //exp100でレベルアップ
         if (_exp >= 100)
@@ -777,6 +777,7 @@ public class Character : MonoBehaviour {
         //毒の場合最大Hpの20％ダメージ
         if (_NowState == State.Poison)
         {
+            Debug.Log("毒ダメージ");
             _totalhp -= _totalMaxhp / 5;
         }
         TotalStatus();
