@@ -11,7 +11,7 @@ public class PosSort : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        SetFirstPos();
+        //SetFirstPos();
 	}
 	
 	// Update is called once per frame

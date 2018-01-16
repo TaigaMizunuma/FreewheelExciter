@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Hensei : MonoBehaviour
 {
-    // ユニットのリスト
+    // 編成画面のユニットのリスト
     private List<GameObject> units_;
     // 出撃かどうか
     private bool[] sortie_;
@@ -19,8 +19,8 @@ public class Hensei : MonoBehaviour
     private int pos_num_y = 0;
     // 出撃可能人数
     public int sortie_num = 6;
-    // 生成したキャラモデルを格納
-    private GameObject[] models;
+    // プレイヤーを格納
+    private GameObject[] players_;
     // 親のcanvasを取得
     private GameObject parent_canvas;
 
@@ -30,38 +30,13 @@ public class Hensei : MonoBehaviour
 
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
-        units_ = new List<GameObject>();
-        Transform obj = unit_parent.GetComponentInChildren<Transform>();
-        if (obj.childCount > 0)
-        {
-            foreach (Transform ob in obj)
-            {
-                units_.Add(ob.gameObject);
-            }
-        }
-        models = new GameObject[units_.Count];
-        sortie_ = new bool[units_.Count];
-        for (int i = 0; i < sortie_.Length; i++)
-        {
-            if (sortie_num > 0)
-            {
-                sortie_[i] = true;
-                sortie_num--;
-                //models[i] = Instantiate(unit_parent.GetComponent<UnitList>().GetPlayerModel(i));
-            }
-            else
-            {
-                sortie_[i] = false;
-                units_[i].GetComponent<Text>().color = new Color(0.7f, 0.7f, 0.7f, 1);
-            }
-        }
-        parent_canvas = transform.parent.gameObject;
     }
 
     void OnEnable()
     {
+        if (units_ == null) return;
         cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
     }
 
@@ -121,8 +96,7 @@ public class Hensei : MonoBehaviour
                 units_[unit_num].GetComponent<Text>().color = new Color(0.7f, 0.7f, 0.7f, 1);
                 sortie_[unit_num] = false;
                 sortie_num++;
-                Destroy(models[unit_num]);
-                models[unit_num] = null;
+                players_[unit_num].SetActive(false);
                 cursor_.GetComponent<PosSort>().SetFirstPos();
             }
             else if (sortie_num > 0)
@@ -130,7 +104,7 @@ public class Hensei : MonoBehaviour
                 units_[unit_num].GetComponent<Text>().color = new Color(0.2f, 0.2f, 0.2f, 1);
                 sortie_[unit_num] = true;
                 sortie_num--;
-                //models[unit_num] = Instantiate(unit_parent.GetComponent<UnitList>().GetPlayerModel(unit_num));
+                players_[unit_num].SetActive(true);
                 cursor_.GetComponent<PosSort>().SetFirstPos();
             }
         }
@@ -140,7 +114,7 @@ public class Hensei : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            parent_canvas.GetComponent<ReadyManager>().SetUnit(unit_parent.GetComponent<UnitList>().players_[unit_num]);
+            parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
             transform.parent.GetComponent<ReadyManager>().ModeChange(6);
         }
     }
@@ -167,5 +141,35 @@ public class Hensei : MonoBehaviour
         }
 
         return c_pos;
+    }
+
+    public void Init()
+    {
+        units_ = new List<GameObject>();
+        Transform obj = unit_parent.GetComponentInChildren<Transform>();
+        if (obj.childCount > 0)
+        {
+            foreach (Transform ob in obj)
+            {
+                units_.Add(ob.gameObject);
+            }
+        }
+        players_ = GameObject.FindGameObjectsWithTag("Player");
+        sortie_ = new bool[units_.Count];
+        for (int i = 0; i < sortie_.Length; i++)
+        {
+            if (sortie_num > 0)
+            {
+                sortie_[i] = true;
+                sortie_num--;
+            }
+            else
+            {
+                sortie_[i] = false;
+                units_[i].GetComponent<Text>().color = new Color(0.7f, 0.7f, 0.7f, 1);
+                players_[i].SetActive(false);
+            }
+        }
+        parent_canvas = transform.parent.gameObject;
     }
 }

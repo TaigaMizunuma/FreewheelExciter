@@ -30,6 +30,9 @@ public class MapReady : MonoBehaviour
     // 範囲表示中のキャラ
     private GameObject show_range_chara = null;
 
+    // 準備画面の背景を取得
+    private GameObject ready_back;
+
     // Use this for initialization
     void Start()
     {
@@ -43,6 +46,7 @@ public class MapReady : MonoBehaviour
             }
         }
         parent_canvas = transform.parent.gameObject;
+        ready_back = GameObject.Find("ReadyBack");
     }
 
     // Update is called once per frame
@@ -64,6 +68,7 @@ public class MapReady : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.X))
             {
                 transform.parent.GetComponent<ReadyManager>().ModeChange(0);
+                ready_back.SetActive(true);
             }
             if (Input.GetKeyDown(KeyCode.Z) && menu_num != 2)
             {
@@ -71,6 +76,7 @@ public class MapReady : MonoBehaviour
                 if (menu_num == 1) sort_mode = true;
                 menus_parent.SetActive(false);
                 cursor_.SetActive(false);
+                ray_box.GetComponent<RayBox>().move_ = true;
             }
         }
         else
@@ -135,6 +141,7 @@ public class MapReady : MonoBehaviour
                             cursor_.SetActive(true);
                             sort_mode = false;
                             map_view = false;
+                            ray_box.GetComponent<RayBox>().move_ = false;
                         }
                     }
                     else if (show_range)
@@ -148,6 +155,7 @@ public class MapReady : MonoBehaviour
                         menus_parent.SetActive(true);
                         cursor_.SetActive(true);
                         map_view = false;
+                        ray_box.GetComponent<RayBox>().move_ = false;
                     }
                 }
             }
@@ -161,6 +169,7 @@ public class MapReady : MonoBehaviour
                         cursor_.SetActive(true);
                         sort_mode = false;
                         map_view = false;
+                        ray_box.GetComponent<RayBox>().move_ = false;
                     }
                 }
                 else if (show_range)
@@ -174,6 +183,7 @@ public class MapReady : MonoBehaviour
                     menus_parent.SetActive(true);
                     cursor_.SetActive(true);
                     map_view = false;
+                    ray_box.GetComponent<RayBox>().move_ = false;
                 }
             }
         }

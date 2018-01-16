@@ -9,8 +9,7 @@ public class UnitList : MonoBehaviour {
     private GameObject n_unit_;
 
 	// Use this for initialization
-	void Awake () {
-        
+	void Start () {
         unit_.GetComponent<Text>().text = players_[0].GetComponent<Character>()._name;
         for (int i = 1; i < players_.Length; i++)
         {
@@ -23,6 +22,7 @@ public class UnitList : MonoBehaviour {
             n_unit_.GetComponent<RectTransform>().anchoredPosition = pos;
             n_unit_.GetComponent<Text>().text = players_[i].GetComponent<Character>()._name;
         }
+        GameObject.Find("Hensei").GetComponent<Hensei>().Init();
 	}
 	
 	// Update is called once per frame
