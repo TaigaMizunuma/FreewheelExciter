@@ -23,7 +23,7 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    gun: 0
+    gun: 1
     rifle: 0
     knife: 0
     fist: 0
@@ -40,8 +40,8 @@ MonoBehaviour:
     def: 2
     cur: 2
     move: 0
-    gun: 0
-    rifle: 0
+    gun: 1
+    rifle: 1
     knife: 0
     fist: 0
     spear: 0
@@ -57,9 +57,9 @@ MonoBehaviour:
     def: 0
     cur: 2
     move: 1
-    gun: 0
+    gun: 1
     rifle: 0
-    knife: 0
+    knife: 1
     fist: 0
     spear: 0
     axe: 0
@@ -74,9 +74,9 @@ MonoBehaviour:
     def: 0
     cur: 2
     move: 1
-    gun: 0
+    gun: 1
     rifle: 0
-    knife: 0
+    knife: 1
     fist: 0
     spear: 0
     axe: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
     gun: 0
     rifle: 0
     knife: 0
-    fist: 0
+    fist: 1
     spear: 0
     axe: 0
   - id: 5
@@ -111,7 +111,7 @@ MonoBehaviour:
     gun: 0
     rifle: 0
     knife: 0
-    fist: 0
+    fist: 1
     spear: 0
     axe: 0
   - id: 6
@@ -129,7 +129,7 @@ MonoBehaviour:
     rifle: 0
     knife: 0
     fist: 0
-    spear: 0
+    spear: 1
     axe: 0
   - id: 7
     name: "\u30B8\u30A7\u30CD\u30E9\u30EB"
@@ -146,8 +146,8 @@ MonoBehaviour:
     rifle: 0
     knife: 0
     fist: 0
-    spear: 0
-    axe: 0
+    spear: 1
+    axe: 1
   - id: 8
     name: "\u30DE\u30FC\u30BB\u30CA\u30EA\u30FC"
     hp: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
     knife: 0
     fist: 0
     spear: 0
-    axe: 0
+    axe: 1
   - id: 9
     name: "\u30A6\u30A9\u30FC\u30EA\u30A2"
     hp: 6
@@ -181,7 +181,7 @@ MonoBehaviour:
     knife: 0
     fist: 0
     spear: 0
-    axe: 0
+    axe: 1
   - id: 10
     name: "\u30E9\u30A4\u30C0\u30FC"
     hp: 0
@@ -197,8 +197,8 @@ MonoBehaviour:
     rifle: 0
     knife: 0
     fist: 0
-    spear: 0
-    axe: 0
+    spear: 1
+    axe: 1
   - id: 11
     name: "\u30E2\u30FC\u30BF\u30FC\u30D8\u30C3\u30C9"
     hp: 3
@@ -214,8 +214,8 @@ MonoBehaviour:
     rifle: 0
     knife: 0
     fist: 0
-    spear: 0
-    axe: 0
+    spear: 1
+    axe: 1
   - id: 12
     name: "\u30D1\u30A4\u30ED\u30C3\u30C8"
     hp: 0
@@ -227,11 +227,11 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    gun: 0
+    gun: 1
     rifle: 0
     knife: 0
     fist: 0
-    spear: 0
+    spear: 1
     axe: 0
   - id: 13
     name: "\u30AD\u30E3\u30D7\u30C6\u30F3"
@@ -244,11 +244,11 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    gun: 0
+    gun: 1
     rifle: 0
     knife: 0
     fist: 0
-    spear: 0
+    spear: 1
     axe: 0
   - id: 14
     name: "\u30EC\u30F3\u30B8\u30E3\u30FC"
@@ -261,9 +261,9 @@ MonoBehaviour:
     def: 0
     cur: 0
     move: 0
-    gun: 0
+    gun: 1
     rifle: 0
-    knife: 0
+    knife: 1
     fist: 0
     spear: 0
     axe: 0
@@ -278,9 +278,9 @@ MonoBehaviour:
     def: 3
     cur: 5
     move: 1
-    gun: 0
+    gun: 1
     rifle: 0
-    knife: 0
+    knife: 1
     fist: 0
     spear: 0
     axe: 0
