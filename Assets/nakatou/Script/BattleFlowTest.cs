@@ -375,7 +375,8 @@ public class BattleFlowTest : MonoBehaviour
                     }
                 }
             }
-            if(count==0)
+            //使える武器を持ってない
+            if (count==0)
             {
                 foreach (var obj in UIs)
                 {
@@ -390,6 +391,7 @@ public class BattleFlowTest : MonoBehaviour
                 UIs.Clear();
                 state_ = State_.action_mode;
                 FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+
                 return;
             }
             count = 0;
@@ -441,6 +443,7 @@ public class BattleFlowTest : MonoBehaviour
                 UIs.Clear();
                 state_ = State_.action_mode;
                 FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+                
             }
         }
         //選択完了
@@ -495,6 +498,22 @@ public class BattleFlowTest : MonoBehaviour
                         count++;
                     }
                 }
+            }
+            //使えるスキルを持ってない
+            if (count == 0)
+            {
+                Debug.Log("使えるスキルを持っていません");
+                
+                Destroy(SetumeiWindow);
+                choose = false;
+                once = false;
+                count = 0;
+                ChoiceObjs.Clear();
+                UIs.Clear();
+                state_ = State_.action_mode;
+                FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+
+                return;
             }
             count = 0;
             once = true;
@@ -587,16 +606,19 @@ public class BattleFlowTest : MonoBehaviour
                     count++;
                 }
             }
+            //使えるアイテムを持ってない
             if (count == 0)
             {
                 Debug.Log("使えるアイテムを持っていません");
-                FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+                
                 Destroy(SetumeiWindow);
                 choose = false;
                 once = false;
                 ChoiceObjs.Clear();
                 UIs.Clear();
                 state_ = State_.action_mode;
+                FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+
                 return;
             }
             count = 0;
@@ -1009,6 +1031,7 @@ public class BattleFlowTest : MonoBehaviour
         {
             m_audio.PlaySe("choose");
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();//サブメニュー非表示
+            FindObjectOfType<MenuManager>().SetEventSystem(false);
 
             //プログラムの問題で遅延
             StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
@@ -1027,6 +1050,7 @@ public class BattleFlowTest : MonoBehaviour
         {
             m_audio.PlaySe("choose");
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();//サブメニュー非表示
+            FindObjectOfType<MenuManager>().SetEventSystem(false);
 
             //プログラムの問題で遅延
             StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
@@ -1040,13 +1064,14 @@ public class BattleFlowTest : MonoBehaviour
     /// <summary>
     /// 攻撃ボタン
     /// </summary>
-    public void attackBt()
+    public void AttackBt()
     {
         if(state_ == State_.action_mode)
         {
             m_audio.PlaySe("choose");
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();//サブメニュー非表示
-            
+            FindObjectOfType<MenuManager>().SetEventSystem(false);
+
             //プログラムの問題で遅延
             StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
             {

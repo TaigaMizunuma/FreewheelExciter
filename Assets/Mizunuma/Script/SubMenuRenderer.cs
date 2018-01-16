@@ -26,7 +26,7 @@ public class SubMenuRenderer : MonoBehaviour
         GameObjectAcquisition();
         MainMenuFalse();
         // ボタンが押された時の処理を登録
-        GameObject.Find("Menu5_Attack").GetComponent<Button>().onClick.AddListener(() => FindObjectOfType<BattleFlowTest>().attackBt());
+        GameObject.Find("Menu5_Attack").GetComponent<Button>().onClick.AddListener(() => FindObjectOfType<BattleFlowTest>().AttackBt());
         GameObject.Find("Menu6_Skill").GetComponent<Button>().onClick.AddListener(() => FindObjectOfType<BattleFlowTest>().SkillBt());
         GameObject.Find("Menu7_Item").GetComponent<Button>().onClick.AddListener(() => FindObjectOfType<BattleFlowTest>().ItemBt());
         GameObject.Find("Menu8_Return").GetComponent<Button>().onClick.AddListener(() => FindObjectOfType<BattleFlowTest>().TurnEnd());
