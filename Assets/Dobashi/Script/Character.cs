@@ -571,6 +571,8 @@ public class Character : MonoBehaviour {
         
         //命中率(武器の命中率 + 技 + 運/2)
         _hit = _equipment.GetComponent<Weapon>()._hit + _totalskl + (_totalluk / 2) + _addbufflist[7] + _addonetimestatuslist[8];
+        //回避率計算
+        //足元のマスがとれない場合地形補正はなしにする
         if (transform.tag == "Player")
         {
             if (GetComponent<Move_System>().GetNowPos())
@@ -580,7 +582,7 @@ public class Character : MonoBehaviour {
             }
             else
             {
-                //回避率(速さ + 運 + 地形補正)
+                //回避率(速さ + 運)
                 _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9];
             }
             
@@ -811,11 +813,11 @@ public class Character : MonoBehaviour {
     /// </summary>
     void LevelUp()
     {
-        List<string> lvup = new List<string>(); 
+        List<string> lvup = new List<string>();
         bool _loop = true;
         _level++;
         _totalLevel++;
-        _exp = 0;       
+        _exp = 0;
         //各能力が上昇するかの抽選
         if (UnityEngine.Random.Range(0, 100) <= _hprate)
         {
