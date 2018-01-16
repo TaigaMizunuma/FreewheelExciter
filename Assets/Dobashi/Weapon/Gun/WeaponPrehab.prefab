@@ -52,16 +52,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _name: S&W M10
+  _name: M92F
   _message: "\u30CF\u30F3\u30C9\u30AC\u30F3"
   _stock: 6
   _maxstock: 6
-  _type: Gun
   _atk: 3
   _weight: 2
   _hit: 100
   _critical: 10
   _attackcount: 1
-  _min: 2
+  _min: 1
   _max: 2
   _weapontype: 1
+  _weaponEffectType: 0
