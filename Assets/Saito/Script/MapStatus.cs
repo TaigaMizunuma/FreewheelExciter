@@ -26,6 +26,8 @@ public class MapStatus : MonoBehaviour
     [SerializeField]
     float mapHeight;
 
+    public bool startPosition;
+
     //キャラクターのオブジェクト
     [SerializeField]
     GameObject characterObj;
