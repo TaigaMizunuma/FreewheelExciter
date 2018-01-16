@@ -59,14 +59,4 @@ public class LogDisplay : MonoBehaviour
         //画面に表示
         GUI.Label(m_Area, m_StringBuilder.ToString(), m_style);
     }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-            print("Zを押しました");
-        if (Input.GetKeyDown(KeyCode.X))
-            Debug.Log("Xを押しました");
-        if (Input.GetKeyDown(KeyCode.C))
-            Debug.LogWarning("Cを押しました");
-    }
 }

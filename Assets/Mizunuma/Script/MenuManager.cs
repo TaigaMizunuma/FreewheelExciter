@@ -71,8 +71,8 @@ public class MenuManager : MonoBehaviour
         /*04終了*/
         eventSystem.sendNavigationEvents = false;
         FindObjectOfType<BattleFlowTest>().TurnEnd();
-        IniMainMenu();
-        
+        FindObjectOfType<BattleFlowTest>().state_ = State_.stay_mode;
+        MenuCaseFalse();
     }
 
     public void MainMenuEventSystemStart()
@@ -99,13 +99,7 @@ public class MenuManager : MonoBehaviour
                 FindObjectOfType<BattleFlowTest>().state_ = State_.menu_mode;
                 break;
             case 2:
-                MainMenuFalse();
-                /*サブメニュー制御可能*/
-                FindObjectOfType<SubMenuRenderer>().GetSubControlFlag(false);
-                /*カーソル制限*/
-                FindObjectOfType<RayBox>().move_ = true;
-                /*カーソル表示仮*/
-                MapCursor.enabled = true;
+                MenuCaseFalse();
                 FindObjectOfType<BattleFlowTest>().state_ = State_.simulation_mode;
                 break;
         }
@@ -149,5 +143,16 @@ public class MenuManager : MonoBehaviour
     {
         /*イベントシステムロック*/
         eventSystem.sendNavigationEvents = flag;
+    }
+
+    private void MenuCaseFalse()
+    {
+        MainMenuFalse();
+        /*サブメニュー制御可能*/
+        FindObjectOfType<SubMenuRenderer>().GetSubControlFlag(false);
+        /*カーソル制限*/
+        FindObjectOfType<RayBox>().move_ = true;
+        /*カーソル表示仮*/
+        MapCursor.enabled = true;
     }
 }

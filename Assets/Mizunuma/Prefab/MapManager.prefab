@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 114854079561154564}
   - component: {fileID: 114262653107542446}
   m_Layer: 5
-  m_Name: Dummy_Button
+  m_Name: DummyButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1346,7 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventSystem: {fileID: 0}
   MapFrame: {fileID: 1574579355356444}
-  SituationButton: {fileID: 1414775784866492}
+  SituationButton: {fileID: 1386462661665112}
   BGMButton: {fileID: 1132962270981044}
   SEButton: {fileID: 1478657462834626}
   ReturnButton: {fileID: 1445246625513464}
@@ -1364,7 +1364,7 @@ MonoBehaviour:
   MapFrame: {fileID: 1781783748556668}
   YesButton: {fileID: 1275968917466096}
   NoButton: {fileID: 1251460085450792}
-  MenuButton: {fileID: 1414775784866492}
+  MenuButton: {fileID: 1158644390747214}
   eventSystem: {fileID: 0}
 --- !u!114 &114148236664413244
 MonoBehaviour:
