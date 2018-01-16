@@ -571,8 +571,35 @@ public class Character : MonoBehaviour {
         
         //命中率(武器の命中率 + 技 + 運/2)
         _hit = _equipment.GetComponent<Weapon>()._hit + _totalskl + (_totalluk / 2) + _addbufflist[7] + _addonetimestatuslist[8];
-        //回避率(速さ + 運 + 地形補正)
-        _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9] + GetComponent<Move_System>().GetNowPos().GetComponent<MapStatus>().GetMapEvasionRate();
+        if (transform.tag == "Player")
+        {
+            if (GetComponent<Move_System>().GetNowPos())
+            {
+                //回避率(速さ + 運 + 地形補正)
+                _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9] + GetComponent<Move_System>().GetNowPos().GetComponent<MapStatus>().GetMapEvasionRate();
+            }
+            else
+            {
+                //回避率(速さ + 運 + 地形補正)
+                _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9];
+            }
+            
+        }
+        else if (transform.tag == "Enemy")
+        {
+            if (GetComponent<EnemyBase>().GetNowPos())
+            {
+                //回避率(速さ + 運 + 地形補正)
+                _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9] + GetComponent<EnemyBase>().GetNowPos().GetComponent<MapStatus>().GetMapEvasionRate();
+            }
+            else
+            {
+                //回避率(速さ + 運 + 地形補正)
+                _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9];
+            }
+            
+        }
+        
         //必殺率(武器の必殺率 + 技/2)
         _critical = _equipment.GetComponent<Weapon>()._critical + (_totalskl / 2) + _addbufflist[9] + _addonetimestatuslist[10];
         //攻撃範囲のセット
