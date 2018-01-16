@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1387880669473792}
+  m_IsPrefabParent: 1
+--- !u!1 &1387880669473792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4585875694619712}
+  - component: {fileID: 114750892447775112}
+  - component: {fileID: 114069407199214788}
+  - component: {fileID: 114558151929942366}
+  m_Layer: 0
+  m_Name: MapMaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4585875694619712
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387880669473792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114069407199214788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387880669473792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24892a651aac36541aa23506297058ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blocks:
+  - {fileID: 1447706069781276, guid: 613ffa2021a94a9439a338b895094e66, type: 2}
+  - {fileID: 1055318656718074, guid: 5f07d7d4bfdd59545b7dae1803f0f9b0, type: 2}
+  - {fileID: 1265769600551596, guid: b3f98d97b686faf4983750dace09ea6d, type: 2}
+  - {fileID: 1842369222309254, guid: ab4f498c2af3f564382c258078f223ac, type: 2}
+  - {fileID: 1306967804695840, guid: 74d60cee79abe5642a3babb23984f4ef, type: 2}
+  - {fileID: 1025188022752370, guid: d1531cc9abcc95148a697fd87726864c, type: 2}
+  - {fileID: 1025188022752370, guid: d1531cc9abcc95148a697fd87726864c, type: 2}
+  MapCSV: Stage2_Map
+  AdjustmentPosX: -8
+  AdjustmentPosY: 0
+  AdjustmentPosZ: 0.5
+--- !u!114 &114558151929942366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387880669473792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13c13452fe19244d8256afa8f375d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyObj:
+  - {fileID: 1724679625813882, guid: bb9e19185d07c3a4997d552795fbbdef, type: 2}
+  - {fileID: 1724679625813882, guid: b264586891af927468a62af362509f48, type: 2}
+  - {fileID: 1724679625813882, guid: 8c5ca9f4bb6c6d54b8d27b03dee8fad3, type: 2}
+  - {fileID: 1724679625813882, guid: 089c066e1b2d7fb4abab6b605a5af39f, type: 2}
+  - {fileID: 1724679625813882, guid: 2fbbc1304567ae944aac2f4d14baeace, type: 2}
+  - {fileID: 1724679625813882, guid: 924e8cae168a7be41bd83b9253ea50ba, type: 2}
+  - {fileID: 1724679625813882, guid: f99194f602cd0e048bd98da8326beccd, type: 2}
+  - {fileID: 1724679625813882, guid: 0ae505e2d2d69464490b5baf15f0b1d2, type: 2}
+  - {fileID: 1724679625813882, guid: 919e9890e9725564ba47980386e45a75, type: 2}
+  - {fileID: 1724679625813882, guid: 68a8b2aeda360da4da0a6b7bd467fade, type: 2}
+  c_enemyPosCSVName: Stage2_Enemy
+  AdjustmentPosX: -8
+  AdjustmentPosY: 0.5
+  AdjustmentPosZ: 0.5
+  AdjustmentRotY: 180
+  eneCount: 0
+--- !u!114 &114750892447775112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387880669473792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209c7246e51f15f4590fc0a8755830df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMapHighLightSwitch: 1
+  masterMapStatus: 0
+  HideObjectOnOff: 0
+  playerCount: 0

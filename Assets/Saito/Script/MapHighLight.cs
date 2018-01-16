@@ -28,7 +28,7 @@ public class MapHighLight : MonoBehaviour
     //ブロックの挙動全体スクリプトを早めに読み込んでおきます
     void Awake()
     {
-        blockMas = GameObject.Find("BlockMaster").GetComponent<BlockMasterScript>();
+        blockMas = GameObject.Find("MapMaster").GetComponent<BlockMasterScript>();
     }
 
     void Start()

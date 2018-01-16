@@ -40,7 +40,7 @@ public class MapStatus : MonoBehaviour
 
     void Start()
     {
-        blcMaster = GameObject.Find("BlockMaster").GetComponent<BlockMasterScript>();
+        blcMaster = GameObject.Find("MapMaster").GetComponent<BlockMasterScript>();
 
         Entity_MapStatus mapStatus = Resources.Load("Data/MapStatus") as Entity_MapStatus;
 
