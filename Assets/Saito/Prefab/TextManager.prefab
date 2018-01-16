@@ -53,8 +53,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterImage:
-  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
-  - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 21300000, guid: dc7676194e7ed5d4abb3ef01afd51789, type: 3}
+  - {fileID: 21300000, guid: 9bbe8f4bed76f374392294d30c786106, type: 3}
+  - {fileID: 21300000, guid: 34ed2c59a87684f4a86d65b6310f5406, type: 3}
+  - {fileID: 21300000, guid: 4fad3071e68051140b115ead5f845a4e, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
   backGround: []
 --- !u!114 &114435155072594706
 MonoBehaviour:
@@ -67,17 +70,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215c467f7ba30e34dba36508d5754dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: 
+  dataLoadName: 
   readStartNumber: 0
   readEndNumber: 0
-  dataLoadName: 
   storyText: {fileID: 0}
   nameText: {fileID: 0}
   LOneCharacterWindowImage: {fileID: 0}
   LTwoCharacterWindowImage: {fileID: 0}
   ROneCharacterWindowImage: {fileID: 0}
   RTwoCharacterWindowImage: {fileID: 0}
-  fade: {fileID: 0}
   nameImage: {fileID: 0}
   LNameDisplayVector: {x: 125, y: 255}
   RNameDisplayVector: {x: 1120, y: 255}
+  fade: {fileID: 0}

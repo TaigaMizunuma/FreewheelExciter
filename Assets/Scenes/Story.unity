@@ -280,6 +280,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114043937142954778, guid: f948a453f25f9e74f9cf97ab80dd273a,
+        type: 2}
+      propertyPath: characterImage.Array.size
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4361953962073240, guid: f948a453f25f9e74f9cf97ab80dd273a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -382,6 +387,36 @@ Prefab:
       propertyPath: RNameDisplayVector.y
       value: 295
       objectReference: {fileID: 0}
+    - target: {fileID: 114043937142954778, guid: f948a453f25f9e74f9cf97ab80dd273a,
+        type: 2}
+      propertyPath: characterImage.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 34ed2c59a87684f4a86d65b6310f5406,
+        type: 3}
+    - target: {fileID: 114043937142954778, guid: f948a453f25f9e74f9cf97ab80dd273a,
+        type: 2}
+      propertyPath: characterImage.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4fad3071e68051140b115ead5f845a4e,
+        type: 3}
+    - target: {fileID: 114043937142954778, guid: f948a453f25f9e74f9cf97ab80dd273a,
+        type: 2}
+      propertyPath: characterImage.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb,
+        type: 3}
+    - target: {fileID: 114043937142954778, guid: f948a453f25f9e74f9cf97ab80dd273a,
+        type: 2}
+      propertyPath: characterImage.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: dc7676194e7ed5d4abb3ef01afd51789,
+        type: 3}
+    - target: {fileID: 114043937142954778, guid: f948a453f25f9e74f9cf97ab80dd273a,
+        type: 2}
+      propertyPath: characterImage.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9bbe8f4bed76f374392294d30c786106,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f948a453f25f9e74f9cf97ab80dd273a, type: 2}
   m_IsPrefabParent: 0

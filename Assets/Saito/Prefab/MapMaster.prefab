@@ -78,12 +78,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyObj:
   - {fileID: 1724679625813882, guid: bb9e19185d07c3a4997d552795fbbdef, type: 2}
-  - {fileID: 1724679625813882, guid: b264586891af927468a62af362509f48, type: 2}
+  - {fileID: 1850623321649676, guid: b264586891af927468a62af362509f48, type: 2}
   - {fileID: 1724679625813882, guid: 8c5ca9f4bb6c6d54b8d27b03dee8fad3, type: 2}
   - {fileID: 1724679625813882, guid: 089c066e1b2d7fb4abab6b605a5af39f, type: 2}
   - {fileID: 1724679625813882, guid: 2fbbc1304567ae944aac2f4d14baeace, type: 2}
   - {fileID: 1724679625813882, guid: 924e8cae168a7be41bd83b9253ea50ba, type: 2}
-  - {fileID: 1724679625813882, guid: f99194f602cd0e048bd98da8326beccd, type: 2}
   - {fileID: 1724679625813882, guid: 0ae505e2d2d69464490b5baf15f0b1d2, type: 2}
   - {fileID: 1724679625813882, guid: 919e9890e9725564ba47980386e45a75, type: 2}
   - {fileID: 1724679625813882, guid: 68a8b2aeda360da4da0a6b7bd467fade, type: 2}

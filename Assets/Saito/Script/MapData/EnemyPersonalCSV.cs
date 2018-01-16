@@ -29,7 +29,7 @@ public class EnemyPersonalCSV : MonoBehaviour
 
     void Start()
     {
-        //エネミー初期配置CSVデータ読み込み
+        //エネミー初期パラメータCSVデータ読み込み
         c_enePerCSVFile = Resources.Load("CSV/MapEnemyPersonalData/" + c_enePerCSVName) as TextAsset;
 
         StringReader reader = new StringReader(c_enePerCSVFile.text);

@@ -82,57 +82,80 @@ public class EnemyImporter : MonoBehaviour
 
                 switch (c_enemyPosDatas[e_i][e_j])
                 {
+                    //何もなし
                     case "0":
                         break;
-
+                    //ガンナー
                     case "1":
                         var charaInstance = (GameObject)Instantiate(enemyObj[0], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
                         charaInstance.name = "Enemy" + eneCount;
                         charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
                         eneCount++;
                         break;
+                    //ファイター
                     case "2":
                         charaInstance = (GameObject)Instantiate(enemyObj[1], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
                         charaInstance.name = "Enemy" + eneCount;
                         charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
                         eneCount++;
                         break;
+                    //ソルジャー
                     case "3":
                         charaInstance = (GameObject)Instantiate(enemyObj[2], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
                         charaInstance.name = "Enemy" + eneCount;
                         charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
                         eneCount++;
                         break;
+                    //マーセナリー
                     case "4":
                         charaInstance = (GameObject)Instantiate(enemyObj[3], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
                         charaInstance.name = "Enemy" + eneCount;
                         charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
                         eneCount++;
                         break;
+                    //ライダー
                     case "5":
                         charaInstance = (GameObject)Instantiate(enemyObj[4], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
                         charaInstance.name = "Enemy" + eneCount;
                         charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
                         eneCount++;
                         break;
+                    //パイロット
                     case "6":
                         charaInstance = (GameObject)Instantiate(enemyObj[5], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
                         charaInstance.name = "Enemy" + eneCount;
                         charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
                         eneCount++;
                         break;
+                    //レンジャー
                     case "7":
                         charaInstance = (GameObject)Instantiate(enemyObj[6], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
                         charaInstance.name = "Enemy" + eneCount;
                         charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
                         eneCount++;
                         break;
+                    //スナイパー
                     case "8":
                         charaInstance = (GameObject)Instantiate(enemyObj[7], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
                         charaInstance.name = "Enemy" + eneCount;
                         charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
                         eneCount++;
                         break;
+                    //マーシャル
+                    case "9":
+                        charaInstance = (GameObject)Instantiate(enemyObj[8], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
+                        charaInstance.name = "Enemy" + eneCount;
+                        charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
+                        eneCount++;
+                        break;
+                    //ウォリアー
+                    case "A":
+                        charaInstance = (GameObject)Instantiate(enemyObj[9], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
+                        charaInstance.name = "Enemy" + eneCount;
+                        charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
+                        eneCount++;
+                        break;
+
                 }
             }
         }
