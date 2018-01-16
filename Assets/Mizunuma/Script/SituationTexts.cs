@@ -106,7 +106,7 @@ public class SituationTexts : MonoBehaviour
         /*章番号*/
         /*ストーリー番号 章タイトルを記入*/
         StoryStringText.text = "第" + FindObjectOfType<StoryCSVReader>().GetStoryNumber() + 
-                               "章" + FindObjectOfType<StoryCSVReader>().GetStoryTitle();
+                               " 章" + FindObjectOfType<StoryCSVReader>().GetStoryTitle();
 
         /*テキスト書き換え 敵の数関係取得*/
         EnemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
