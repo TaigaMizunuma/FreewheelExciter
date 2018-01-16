@@ -134,6 +134,16 @@ public class BattleFlowTest : MonoBehaviour
             FindObjectOfType<MenuManager>().SetMainControlFlag(true);
         }
 
+        //
+        if(state_ == State_.simulation_mode || state_ == State_.move_mode)
+        {
+            rayBox.GetComponent<RayBox>().move_ = true;
+        }
+        else
+        {
+            rayBox.GetComponent<RayBox>().move_ = false;
+        }
+
         //遷移
         switch (state_)
         {
@@ -933,11 +943,11 @@ public class BattleFlowTest : MonoBehaviour
     public void TurnEnd()
     {
         if (state_ == State_.enemy_counter_mode || state_ == State_.action_mode ||
-            state_ == State_.skill_mode || state_ == State_.item_mode || state_ == State_.menu_mode)
+        state_ == State_.skill_mode || state_ == State_.item_mode || state_ == State_.menu_mode)
         {
             //待機選択時
             if (state_ == State_.action_mode) FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-            
+
             //ステートを変更 & UI表示
             _TurnText.color = new Color(255, 0, 0, 255);
             _TurnText.text = "Enemy Turn";
