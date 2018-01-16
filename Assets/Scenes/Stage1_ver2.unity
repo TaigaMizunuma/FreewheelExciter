@@ -7952,7 +7952,7 @@ MonoBehaviour:
   _attackcount: 1
   _min: 1
   _max: 1
-  _weapontype: 0
+  _weapontype: 1
   _weaponEffectType: 0
 --- !u!1 &241641657
 GameObject:
@@ -24917,7 +24917,7 @@ MonoBehaviour:
   _attackcount: 1
   _min: 1
   _max: 7
-  _weapontype: 0
+  _weapontype: 1
   _weaponEffectType: 0
 --- !u!1 &718665062
 GameObject:
@@ -40684,7 +40684,7 @@ MonoBehaviour:
   _attackcount: 1
   _min: 3
   _max: 3
-  _weapontype: 0
+  _weapontype: 1
   _weaponEffectType: 0
 --- !u!1 &1058658523
 GameObject:
@@ -65926,7 +65926,7 @@ MonoBehaviour:
   _attackcount: 1
   _min: 2
   _max: 2
-  _weapontype: 0
+  _weapontype: 1
   _weaponEffectType: 0
 --- !u!1 &1681721219
 GameObject:
@@ -68448,7 +68448,7 @@ MonoBehaviour:
   _attackcount: 1
   _min: 1
   _max: 1
-  _weapontype: 0
+  _weapontype: 1
   _weaponEffectType: 0
 --- !u!1 &1734912274
 GameObject:
@@ -68505,7 +68505,7 @@ MonoBehaviour:
   _attackcount: 1
   _min: 1
   _max: 1
-  _weapontype: 0
+  _weapontype: 1
   _weaponEffectType: 0
 --- !u!1 &1741627831
 GameObject:
