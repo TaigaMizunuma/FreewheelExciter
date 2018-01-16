@@ -103,4 +103,23 @@ public class WeaponRepository : MonoBehaviour {
         _weaponrepository.RemoveAt(_no);
         return j;
     }
+
+    /// <summary>
+    /// 武器倉庫のリストを保存
+    /// </summary>
+    public void Save()
+    {
+        SaveData.SetList<WeaponData>("WeaponRepositoryList", _weaponrepository);
+    }
+    /// <summary>
+    /// 武器倉庫のリストをセーブ
+    /// </summary>
+    public void Load()
+    {
+        if (SaveData.HasKey("WeaponRepositoryList") == true)
+        {
+            /*①ロード処理*/
+            _weaponrepository = SaveData.GetList("WeaponRepositoryList", _weaponrepository);
+        }
+    }
 }

@@ -37,16 +37,12 @@ public class ItemRepository : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        AddItem("きずぐすり","HPを10回復",10,10,"Item","none");
+        //AddItem("きずぐすり","HPを10回復",10,10,"Item","none");
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //if (Input.GetKeyDown("6"))
-        //{
-        //    Debug.Log(_itemrepository[0]._name);
-        //}
 		
 	}
 
@@ -55,8 +51,10 @@ public class ItemRepository : MonoBehaviour {
     /// </summary>
     /// <param name="_name">名前</param>
     /// <param name="_message">表示メッセージ</param>
+    /// <param name="_recovery">回復量</param>
     /// <param name="_stock">残り使用回数</param>
     /// <param name="_type">タイプ</param>
+    /// <param name="_effect">特殊効果</param>
     public void AddItem(string _name,string _message,int _recovery,int _stock,string _type,string _effect)
     {
         var i = new ItemData();
@@ -77,5 +75,24 @@ public class ItemRepository : MonoBehaviour {
         //アイテムの削除
         _itemrepository.RemoveAt(_no);
         return j;
+    }
+
+    /// <summary>
+    /// アイテム倉庫のリストを保存
+    /// </summary>
+    public void Save()
+    {
+        SaveData.SetList<ItemData>("ItemRepositoryList", _itemrepository);
+    }
+    /// <summary>
+    /// アイテム倉庫のリストをセーブ
+    /// </summary>
+    public void Load()
+    {
+        if (SaveData.HasKey("ItemRepositoryList") == true)
+        {
+            /*①ロード処理*/
+            _itemrepository = SaveData.GetList("ItemRepositoryList", _itemrepository);
+        }
     }
 }

@@ -16,6 +16,8 @@ public class RepositoryManager : MonoBehaviour {
 	void Start () {
         _itemrepository = GetComponent<ItemRepository>();
         _weaponrepository = GetComponent<WeaponRepository>();
+        _itemrepository.Load();
+        _weaponrepository.Load();
 	}
 	
 	// Update is called once per frame
@@ -27,6 +29,15 @@ public class RepositoryManager : MonoBehaviour {
         //}
 		
 	}
+
+    /// <summary>
+    /// 倉庫の内容をセーブする
+    /// </summary>
+    public void SaveRepository()
+    {
+        _itemrepository.Save();
+        _weaponrepository.Save();
+    }
 
     /// <summary>
     /// アイテムを倉庫にしまう
@@ -97,7 +108,6 @@ public class RepositoryManager : MonoBehaviour {
     /// <param name="type">受け取るアイテムの種類("Item"or"Weapon")</param>
     public void ChangeItem(GameObject chara,GameObject item,int id,string type)
     {
-
         var i = item;
         //しまうアイテムの選別
         if (i.GetComponent<Item>())
