@@ -91,6 +91,7 @@ public class RayBox : MonoBehaviour
     /// <param name="enemy"></param>
     public void SetCameraPosition(GameObject obj)
     {
+        if (!obj) return;
         transform.position = new Vector3(obj.transform.position.x, transform.position.y, obj.transform.position.z);
         SetSelectSquare();
     }

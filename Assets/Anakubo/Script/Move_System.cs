@@ -7,7 +7,7 @@ public class Move_System : MonoBehaviour
     // 移動コスト
     private int cost;
     // 初期コスト
-    public int first_cost;
+    private int first_cost;
     // 今いるマスを取得する用
     private GameObject now_pos;
     // 移動するルートを登録
@@ -36,6 +36,7 @@ public class Move_System : MonoBehaviour
     void Start ()
     {
         rayBox = FindObjectOfType<RayBox>().gameObject;
+        first_cost = GetComponent<Character>()._totalmove;
         cost = first_cost;
         RaycastHit hit;
         if (Physics.SphereCast(transform.position - new Vector3(0,-0.5f,0), 0.2f, Vector3.down, out hit, 5.0f))
@@ -48,7 +49,9 @@ public class Move_System : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update ()
-    {    
+    {
+        first_cost = GetComponent<Character>()._totalmove;
+        cost = first_cost;
         // 選択したマスが移動可能なマスであれば移動を開始する
         if ((Input.GetKeyDown(KeyCode.Return)|| Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space)) && !moving_)
         {
