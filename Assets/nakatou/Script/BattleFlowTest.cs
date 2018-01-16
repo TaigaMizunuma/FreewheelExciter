@@ -328,6 +328,7 @@ public class BattleFlowTest : MonoBehaviour
             FindObjectOfType<RayBox>().SetCameraPosition(_nowChooseChar);
 
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+            FindObjectOfType<MenuManager>().SetEventSystem(false);
 
             _nowChooseChar = null;
             state_ = State_.simulation_mode;
@@ -946,7 +947,11 @@ public class BattleFlowTest : MonoBehaviour
         state_ == State_.skill_mode || state_ == State_.item_mode || state_ == State_.menu_mode)
         {
             //待機選択時
-            if (state_ == State_.action_mode) FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+            if (state_ == State_.action_mode)
+            {
+                FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+                FindObjectOfType<MenuManager>().SetEventSystem(false);
+            }
 
             //ステートを変更 & UI表示
             _TurnText.color = new Color(255, 0, 0, 255);
