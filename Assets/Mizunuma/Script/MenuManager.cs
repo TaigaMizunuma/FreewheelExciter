@@ -73,6 +73,7 @@ public class MenuManager : MonoBehaviour
         FindObjectOfType<BattleFlowTest>().TurnEnd();
         FindObjectOfType<BattleFlowTest>().state_ = State_.stay_mode;
         MenuCaseFalse();
+        eventSystem.SetSelectedGameObject(DummyButton);
     }
 
     public void MainMenuEventSystemStart()
@@ -154,5 +155,6 @@ public class MenuManager : MonoBehaviour
         FindObjectOfType<RayBox>().move_ = true;
         /*カーソル表示仮*/
         MapCursor.enabled = true;
+        eventSystem.sendNavigationEvents = false;
     }
 }
