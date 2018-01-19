@@ -171,7 +171,10 @@ public class Character : MonoBehaviour {
     {
         Default = 0,    //特になし
         Paralysis = 1,  //麻痺
-        Poison = 2      //毒
+        Poison = 2,     //毒
+        Fire = 3,       //やけど
+        Sleep = 4,      //睡眠
+        Confusion = 5   //混乱
     }
 
     // Use this for initialization
@@ -630,6 +633,11 @@ public class Character : MonoBehaviour {
         {
             _totalmove = _totalmove / 2;
         }
+        else if (_NowState == State.Sleep)
+        {
+            _totalmove = 0;
+            _avoidance = 0;
+        }
 
         //最大値以上or0以下にならないように補正
         if (_totalMaxhp < _totalhp)
@@ -772,6 +780,11 @@ public class Character : MonoBehaviour {
         {
             Debug.Log("毒ダメージ");
             _totalhp -= _totalMaxhp / 5;
+        }
+        else if (_NowState == State.Fire)
+        {
+            Debug.Log("やけどダメージ");
+            _totalhp -= (int)(_totalMaxhp * 0.4f);
         }
         TotalStatus();
     }
