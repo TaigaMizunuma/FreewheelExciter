@@ -7,10 +7,12 @@ public class UnitList : MonoBehaviour {
     public GameObject[] players_;
     public GameObject unit_;
     private GameObject n_unit_;
+    private List<GameObject> unit_texts_ = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
         unit_.GetComponent<Text>().text = players_[0].GetComponent<Character>()._name;
+        unit_texts_.Add(unit_);
         for (int i = 1; i < players_.Length; i++)
         {
             n_unit_ = Instantiate(unit_);
@@ -21,8 +23,8 @@ public class UnitList : MonoBehaviour {
             pos.y = unit_.GetComponent<RectTransform>().anchoredPosition.y - ((float)(90 * (i / 2)));
             n_unit_.GetComponent<RectTransform>().anchoredPosition = pos;
             n_unit_.GetComponent<Text>().text = players_[i].GetComponent<Character>()._name;
+            unit_texts_.Add(n_unit_);
         }
-        GameObject.Find("Hensei").GetComponent<Hensei>().Init();
 	}
 	
 	// Update is called once per frame
@@ -33,5 +35,15 @@ public class UnitList : MonoBehaviour {
     public GameObject GetPlayerModel(int a)
     {
         return players_[a];
+    }
+
+    public List<GameObject> GetTexts()
+    {
+        return unit_texts_;
+    }
+
+    public GameObject[] GetPlayers()
+    {
+        return players_;
     }
 }

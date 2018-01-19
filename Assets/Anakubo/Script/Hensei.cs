@@ -25,6 +25,8 @@ public class Hensei : MonoBehaviour
     private GameObject parent_canvas;
     // PosSortを取得
     private PosSort pos_sort;
+    // Shosaiを取得
+    public GameObject shosai_;
 
     /////////////////////////////////////
 
@@ -41,11 +43,18 @@ public class Hensei : MonoBehaviour
     {
         if (units_ == null) return;
         cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
+        parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (parent_canvas == null) Init();
+        if (shosai_.activeSelf == false)
+        {
+            shosai_.SetActive(true);
+            shosai_.GetComponent<ReadyShosai>().Hensei_Display();
+        }
         // 下キーで１つ下に 下から２番目のときに押すとカーソルは動かずに表示されているユニットがずれる
         if (Input.GetKeyDown(KeyCode.DownArrow) && unit_num < units_.Count - 2)
         {
@@ -61,6 +70,8 @@ public class Hensei : MonoBehaviour
             }
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num += 2;
+            parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
+            shosai_.GetComponent<ReadyShosai>().SetUnit();
         }
         // 上キーで１つ上に 上から２番目のときに押すとカーソルは動かずに表示されているユニットがずれる
         if (Input.GetKeyDown(KeyCode.UpArrow) && unit_num > 1)
@@ -77,6 +88,8 @@ public class Hensei : MonoBehaviour
             }
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num -= 2;
+            parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
+            shosai_.GetComponent<ReadyShosai>().SetUnit();
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && pos_num_x == 0)
@@ -84,12 +97,16 @@ public class Hensei : MonoBehaviour
             pos_num_x++;
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num++;
+            parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
+            shosai_.GetComponent<ReadyShosai>().SetUnit();
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && pos_num_x == 1)
         {
             pos_num_x--;
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num--;
+            parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
+            shosai_.GetComponent<ReadyShosai>().SetUnit();
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -117,7 +134,7 @@ public class Hensei : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
+            shosai_.GetComponent<ReadyShosai>().Hensei_Display_End();
             transform.parent.GetComponent<ReadyManager>().ModeChange(6);
         }
     }
@@ -149,15 +166,8 @@ public class Hensei : MonoBehaviour
     public void Init()
     {
         units_ = new List<GameObject>();
-        Transform obj = unit_parent.GetComponentInChildren<Transform>();
-        if (obj.childCount > 0)
-        {
-            foreach (Transform ob in obj)
-            {
-                units_.Add(ob.gameObject);
-            }
-        }
-        players_ = GameObject.FindGameObjectsWithTag("Player");
+        units_ = unit_parent.GetComponent<UnitList>().GetTexts();
+        players_ = unit_parent.GetComponent<UnitList>().GetPlayers();
         sortie_ = new bool[units_.Count];
         for (int i = 0; i < sortie_.Length; i++)
         {

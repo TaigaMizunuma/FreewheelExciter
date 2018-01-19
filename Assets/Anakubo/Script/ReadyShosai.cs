@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ReadyShosai : MonoBehaviour {
+public class ReadyShosai : MonoBehaviour
+{
     public GameObject[] pages_;
     private int page_num = 0;
     private int before_num;
     public Text page_num_text;
     // 親のcanvasを取得
     private GameObject parent_canvas;
+    // 編成画面か
+    private bool isHensei_;
 
     //.//////////////////////////////////////
     public GameObject _chara;       //対象のキャラクターオブジェクト
@@ -26,6 +29,11 @@ public class ReadyShosai : MonoBehaviour {
         parent_canvas = transform.parent.gameObject;
     }
 
+    void OnEnable()
+    {
+        isHensei_ = false;
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -41,7 +49,7 @@ public class ReadyShosai : MonoBehaviour {
         _UI2.GetComponent<UIBattleStatus>().SetData(_chara.GetComponent<Character>());
         _UI3.GetComponent<UISkillList>().SetData(_chara.GetComponent<Character>());
         //////////////////////////////////////////////////////////////////////////////////////////////
-
+        if (isHensei_) return;
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             page_num++;
@@ -78,5 +86,36 @@ public class ReadyShosai : MonoBehaviour {
         }
         before_num = page_num;
         page_num_text.text = "ページ  " + (page_num + 1) + " / " + pages_.Length;
+    }
+
+    //編成の時に左の部分だけ表示する
+    public void Hensei_Display()
+    {
+        for (int i = 0; i < pages_.Length; i++)
+        {
+            pages_[i].SetActive(false);
+        }
+        isHensei_ = true;
+    }
+
+    public void Hensei_Display_End()
+    {
+        for (int i = 0; i < pages_.Length; i++)
+        {
+            if (page_num == i)
+            {
+                pages_[i].SetActive(true);
+            }
+            else
+            {
+                pages_[i].SetActive(false);
+            }
+        }
+        isHensei_ = false;
+    }
+
+    public void SetUnit()
+    {
+        _chara = parent_canvas.GetComponent<ReadyManager>().GetUnit();
     }
 }
