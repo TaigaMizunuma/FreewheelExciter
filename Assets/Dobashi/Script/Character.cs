@@ -58,12 +58,13 @@ public class Character : MonoBehaviour {
     private int _classid;                       //classリストのナンバー
     public GameObject _equipment;               //装備アイテムのID
 
-    public Image _faceimage;    //フォアグラ
+    public Sprite _faceimage;    //フォアグラ
 
     public string _name;        //名前
     public Vector3 _position;   //座標
     public bool _hero = false;  //主人公かどうか
     private bool _reset = false;
+    public bool _dropitem = false;  //アイテムドロップの有無(敵専用)
 
     [Header("レベル")]
     public int _level;          //現在のLv

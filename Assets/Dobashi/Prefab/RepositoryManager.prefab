@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114570312208990660}
   - component: {fileID: 114661447320979894}
   m_Layer: 0
-  m_Name: ItemRepository
+  m_Name: RepositoryManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

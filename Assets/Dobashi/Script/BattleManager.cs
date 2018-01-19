@@ -10,15 +10,6 @@ public class BattleManager : MonoBehaviour {
 
     private bool _battleend = false;
 
-    //public Skill_Effect_State _skill_effect_state;
-
-    //private int _atk1,_atk2;                    //攻撃の威力
-    //private float _accuracy1, _accuracy2;       //命中率
-    //private int attack_speed1, attack_speed2;   //攻撃速度
-    //private float avoidance1, avoidance2;       //回避率
-    //private float critical1, critical2;         //必殺率
-    //private float _luk1, _luk2;                 //必殺回避率
-
     public struct Attack_manager
     {
         public GameObject _obj;
@@ -656,6 +647,18 @@ public class BattleManager : MonoBehaviour {
         //装備の耐久を使った分だけ減らす
         _attacker._chara.UseEquipment(atk_stock);
         _def._chara.UseEquipment(def_stock);
+
+        //どちらかが死亡していて装備をドロップする敵だった場合
+        if (_attacker._chara._dropitem && _battleend && _attacker._chara._totalhp <= 0)
+        {
+            _def._chara._itemprefablist.GetComponent<ItemPrefabList>().AddItem(_attacker._chara._equipment);
+            Debug.Log(_def._chara._name + "は" + _attacker._chara._equipment.name + "を手に入れた!");
+        }
+        if (_def._chara._dropitem && _battleend && _def._chara._totalhp <= 0)
+        {
+            _attacker._chara._itemprefablist.GetComponent<ItemPrefabList>().AddItem(_def._chara._equipment);
+            Debug.Log(_attacker._chara._name + "は" + _def._chara._equipment.name + "を手に入れた!");
+        }
 
         _attacker._chara.BattleEnd();
         _def._chara.BattleEnd();

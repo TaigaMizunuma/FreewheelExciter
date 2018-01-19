@@ -2497,6 +2497,7 @@ MonoBehaviour:
   _name: "\u5C71\u8CCA"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
+  _dropitem: 1
   _level: 1
   _totalLevel: 0
   _totalMaxhp: 0
@@ -4042,6 +4043,7 @@ MonoBehaviour:
   _name: "\u5C71\u8CCA"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
+  _dropitem: 0
   _level: 2
   _totalLevel: 0
   _totalMaxhp: 0
@@ -11075,10 +11077,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
-  _faceimage: {fileID: 0}
+  _faceimage: {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
   _name: "\u30B2\u30A4\u30EA\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
+  _dropitem: 0
   _level: 0
   _totalLevel: 0
   _totalMaxhp: 0
@@ -13201,6 +13204,36 @@ Prefab:
       propertyPath: first_pos.Array.data[2]
       value: 
       objectReference: {fileID: 515469963}
+    - target: {fileID: 114763469411473764, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[0]
+      value: 
+      objectReference: {fileID: 590529223}
+    - target: {fileID: 114763469411473764, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[1]
+      value: 
+      objectReference: {fileID: 2032905167}
+    - target: {fileID: 114763469411473764, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[2]
+      value: 
+      objectReference: {fileID: 2069330236}
+    - target: {fileID: 114763469411473764, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[3]
+      value: 
+      objectReference: {fileID: 1551475914}
+    - target: {fileID: 114763469411473764, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[4]
+      value: 
+      objectReference: {fileID: 631116654}
+    - target: {fileID: 114763469411473764, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: players_.Array.data[5]
+      value: 
+      objectReference: {fileID: 309894198}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f75a52e7524462347bdedfa0f8da22d7, type: 2}
   m_IsPrefabParent: 0
@@ -22879,10 +22912,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
-  _faceimage: {fileID: 0}
+  _faceimage: {fileID: 21300000, guid: dc7676194e7ed5d4abb3ef01afd51789, type: 3}
   _name: "\u30D2\u30E5\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
+  _dropitem: 0
   _level: 0
   _totalLevel: 0
   _totalMaxhp: 0
@@ -25732,10 +25766,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
-  _faceimage: {fileID: 0}
+  _faceimage: {fileID: 21300000, guid: 4fad3071e68051140b115ead5f845a4e, type: 3}
   _name: "\u30B1\u30F3"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
+  _dropitem: 0
   _level: 0
   _totalLevel: 0
   _totalMaxhp: 0
@@ -31914,6 +31949,7 @@ MonoBehaviour:
   _name: "\u5C71\u8CCA"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
+  _dropitem: 0
   _level: 1
   _totalLevel: 0
   _totalMaxhp: 0
@@ -67664,10 +67700,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
-  _faceimage: {fileID: 0}
+  _faceimage: {fileID: 21300000, guid: 34ed2c59a87684f4a86d65b6310f5406, type: 3}
   _name: "\u30AD\u30FC\u30B9"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
+  _dropitem: 0
   _level: 0
   _totalLevel: 0
   _totalMaxhp: 0
@@ -87844,6 +87881,48 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &2007669000
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4551774493499436, guid: 092f43f50e195b643a75762d4be7846b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551774493499436, guid: 092f43f50e195b643a75762d4be7846b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551774493499436, guid: 092f43f50e195b643a75762d4be7846b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551774493499436, guid: 092f43f50e195b643a75762d4be7846b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551774493499436, guid: 092f43f50e195b643a75762d4be7846b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551774493499436, guid: 092f43f50e195b643a75762d4be7846b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551774493499436, guid: 092f43f50e195b643a75762d4be7846b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4551774493499436, guid: 092f43f50e195b643a75762d4be7846b, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 092f43f50e195b643a75762d4be7846b, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2008529201
 GameObject:
   m_ObjectHideFlags: 0
@@ -88670,6 +88749,7 @@ MonoBehaviour:
   _name: "\u30B8\u30A7\u30FC\u30B3\u30D6"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
+  _dropitem: 0
   _level: 0
   _totalLevel: 0
   _totalMaxhp: 0
@@ -89661,10 +89741,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
-  _faceimage: {fileID: 0}
+  _faceimage: {fileID: 21300000, guid: 9bbe8f4bed76f374392294d30c786106, type: 3}
   _name: "\u30A2\u30A4\u30F3"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
+  _dropitem: 0
   _level: 0
   _totalLevel: 0
   _totalMaxhp: 0

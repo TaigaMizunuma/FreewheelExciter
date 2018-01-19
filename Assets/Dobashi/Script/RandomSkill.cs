@@ -38,49 +38,4 @@ public class RandomSkill : MonoBehaviour {
     {
         gameObject.GetComponent<Transform>().name = _name;
     }
-
-    //public string Effect()
-    //{
-    //    if (_activ)
-    //    {
-    //        switch (_skill_list)
-    //        {
-    //            case Random_Skill_List.D_Ballet:
-    //                return "D_Ballet";
-    //            case Random_Skill_List.Cancel:
-    //                return "Cancel";
-    //            case Random_Skill_List.SandR:
-    //                return "SandR";
-    //            case Random_Skill_List.Smash:
-    //                return "Smash";
-    //            case Random_Skill_List.Destruction:
-    //                return "Destruction";
-    //            case Random_Skill_List.Counter:
-    //                return "Counter";
-    //            case Random_Skill_List.D_Aggressor:
-    //                return "D_Aggressor";
-    //            case Random_Skill_List.Fortress:
-    //                return "Fortress";
-    //            case Random_Skill_List.Genocide:
-    //                return "Genocide";
-    //            case Random_Skill_List.Weapon_Destruction:
-    //                return "Weapon_Destruction";
-    //            case Random_Skill_List.Running_W:
-    //                return "Running_W";
-    //            case Random_Skill_List.Raid:
-    //                return "Raid";
-    //            case Random_Skill_List.Shotdown:
-    //                return "Shotdown";
-    //            case Random_Skill_List.Saving:
-    //                return "Saving";
-    //            case Random_Skill_List.NewType:
-    //                return "NewType";
-    //            case Random_Skill_List.Praying:
-    //                return "Praying";
-
-    //        }
-    //        return "none";
-    //    }
-    //    return "none";
-    //}
 }
