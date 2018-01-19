@@ -22,6 +22,7 @@ public class Square_Info : MonoBehaviour
     void Awake()
     {
         move_cost = GetComponent<MapStatus>().GetMapCost();
+        if (move_cost <= 0) move_cost = 1;
     }
 
     void Start()
