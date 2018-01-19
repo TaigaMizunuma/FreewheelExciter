@@ -161,7 +161,6 @@ public class BattleFlowTest : MonoBehaviour
             case State_.move_mode:
                 //アニメ再生とか入れる予定
                 MoveMode();
-
                 break;
 
                 //移動後の行動選択
@@ -261,7 +260,7 @@ public class BattleFlowTest : MonoBehaviour
                     StartCoroutine(DelayMethod.DelayMethodCall(0.1f, () =>
                     {                     
                         _nowChooseChar.GetComponent<Move_System>().Retrieval();
-
+                        _nowChooseChar.GetComponent<Animator>().CrossFade("Run", 0.0f);
                         state_ = State_.move_mode;
                     }));
                 }
@@ -408,23 +407,27 @@ public class BattleFlowTest : MonoBehaviour
             SetumeiWindow.transform.FindChild("Setumei").GetComponent<Text>().text =
                 UIs[count].GetComponent<UIsText>()._message;
 
-
             if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
             {
                 if (count == 0) return;
                 count--;
                 _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
+
             }
             if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
             {
                 if (count == UIs.Count - 1) return;
                 count++;
                 _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
+
             }
             if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
             {
                 choose = true;
                 _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
+
+                //var anim = _nowCounterChara.GetComponent<Animator>();
+                //anim.CrossFade("NoneDamy", 0.0f);
             }
 
             //キャンセル
@@ -442,8 +445,7 @@ public class BattleFlowTest : MonoBehaviour
                 ChoiceObjs.Clear();
                 UIs.Clear();
                 state_ = State_.action_mode;
-                FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-                
+                FindObjectOfType<SubMenuRenderer>().SubMenuStart();             
             }
         }
         //選択完了
@@ -879,6 +881,7 @@ public class BattleFlowTest : MonoBehaviour
     public void PlayerMoveEnd()
     {
         FindObjectOfType<SubMenuRenderer>().SubMenuStart();
+        _nowChooseChar.GetComponent<Animator>().CrossFade("NoneDamy", 0.0f);
         FindObjectOfType<RayBox>().move_ = false;
         state_ = State_.action_mode;
     }

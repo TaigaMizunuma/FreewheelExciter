@@ -131,7 +131,53 @@ public class Item : MonoBehaviour {
                 break;
             case Effect_Type.classchange:
                 //クラスチェンジ
-                
+                //ガンナー
+                if (chara.GetComponent<Character>()._joblist == Joblist.Gunner)
+                {
+                    var job = 0;
+                    if (job == 0)
+                    {
+                        chara.GetComponent<Character>().ClassChange(Joblist.Sniper);
+                    }
+                    else if (job == 2)
+                    {
+                        chara.GetComponent<Character>().ClassChange(Joblist.Assassin);
+                    }
+                    else if (job == 1)
+                    {
+                        chara.GetComponent<Character>().ClassChange(Joblist.Rogue);
+                    }
+                }
+                //ソルジャー
+                else if (chara.GetComponent<Character>()._joblist == Joblist.Soldier)
+                {
+                    chara.GetComponent<Character>().ClassChange(Joblist.General);
+                }
+                //ファイター
+                else if (chara.GetComponent<Character>()._joblist == Joblist.Fighter)
+                {
+                    chara.GetComponent<Character>().ClassChange(Joblist.Marshall);
+                }
+                //マーセナリー
+                else if (chara.GetComponent<Character>()._joblist == Joblist.Mercenary)
+                {
+                    chara.GetComponent<Character>().ClassChange(Joblist.Warrior);
+                }
+                //ライダー
+                else if (chara.GetComponent<Character>()._joblist == Joblist.Rider)
+                {
+                    chara.GetComponent<Character>().ClassChange(Joblist.Motorhead);
+                }
+                //パイロット
+                else if (chara.GetComponent<Character>()._joblist == Joblist.Pilot)
+                {
+                    chara.GetComponent<Character>().ClassChange(Joblist.Captain);
+                }
+                //レンジャー
+                else if (chara.GetComponent<Character>()._joblist == Joblist.Ranger)
+                {
+                    chara.GetComponent<Character>().ClassChange(Joblist.Load);
+                }
                 break;
             case Effect_Type.bullet:
                 //弾

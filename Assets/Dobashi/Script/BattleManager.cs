@@ -516,6 +516,16 @@ public class BattleManager : MonoBehaviour {
             _Counter = _def._obj.GetComponent<EnemyAttack>().CounterRangeSearch(_attacker._obj);
         }
 
+        //ジョルジュ判定
+        if (_def._chara.GetComponent<SkillChecker>()._Georges)
+        {
+            _attacker._chara._georges = true;
+        }
+        if (_attacker._chara.GetComponent<SkillChecker>()._Georges)
+        {
+            _def._chara._georges = true;
+        }
+
         //カウンター時。反撃封じは無効
         if (_def._chara.GetComponent<SkillChecker>()._Counter && (Random.Range(0, 101) < _def._chara._totalspd) && _Counter)
         {

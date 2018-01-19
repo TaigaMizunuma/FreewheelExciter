@@ -55,16 +55,6 @@ public class WeaponRepository : MonoBehaviour {
         }
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     /// <summary>
     /// 武器を追加する
     /// </summary>

@@ -33,6 +33,8 @@ public enum Joblist
     EarthDragon
 }
 
+
+
 public struct Buff
 {
     public int[] _datalist;
@@ -54,15 +56,15 @@ public struct Buff
 
 public class Character : MonoBehaviour {
 
-    public int _id;                             //Characterリストのナンバー
-    private int _classid;                       //classリストのナンバー
-    public GameObject _equipment;               //装備アイテムのID
+    public int _id;                 //Characterリストのナンバー
+    private int _classid;           //classリストのナンバー
+    public GameObject _equipment;   //装備アイテムのオブジェクト
 
-    public Sprite _faceimage;    //フォアグラ
+    public Sprite _faceimage;       //フォアグラ
 
-    public string _name;        //名前
-    public Vector3 _position;   //座標
-    public bool _hero = false;  //主人公かどうか
+    public string _name;            //名前
+    public Vector3 _position;       //座標
+    public bool _hero = false;      //主人公かどうか
     private bool _reset = false;
     public bool _dropitem = false;  //アイテムドロップの有無(敵専用)
 
@@ -132,6 +134,7 @@ public class Character : MonoBehaviour {
     public int[] _range = {0,0};            //攻撃範囲(配列の0番目が最小,1番目が最大)
 
     public bool _stability = false;         //追撃できないかどうか
+    public bool _georges = false;           //ジョルジュの有無
 
     public GameObject _itemprefablist;      //アイテムの親オブジェクトの取得
     public GameObject _skillprefablist;     //スキルの親オブジェクトの取得
@@ -170,7 +173,6 @@ public class Character : MonoBehaviour {
         Paralysis = 1,  //麻痺
         Poison = 2      //毒
     }
-
 
     // Use this for initialization
     void Start()
@@ -248,7 +250,6 @@ public class Character : MonoBehaviour {
             LevelUp();
         }
 
-        //AddStatus();
         TotalStatus();
     }
 
@@ -301,6 +302,7 @@ public class Character : MonoBehaviour {
     public void BattleEnd()
     {
         _stability = false;
+        _georges = false;
         //1戦闘限りのバフを初期化
         _addonetimestatuslist = new int[14] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
@@ -389,8 +391,6 @@ public class Character : MonoBehaviour {
                     _currate = chara_rateList.param[_id].cur;
                     _move = charaList.param[_id].move;
                     _moverate = chara_rateList.param[_id].move;
-                    //クラス(職業)の読み込み
-                    //_joblist = (Joblist)Enum.Parse(typeof(Joblist), charaList.param[_id].job);
 
                 }
             }
@@ -432,7 +432,7 @@ public class Character : MonoBehaviour {
                 }
             }
         }
-        //ClassChange(_class);
+        _skillprefablist.GetComponent<SkillPrefabList>().CheckSkillLevel(_totalLevel);
         TotalStatus();
         FullRecoveryHP();
 
@@ -569,14 +569,14 @@ public class Character : MonoBehaviour {
             //攻撃速度(力 − 武器の重さ)
             _attack_speed = -_equipment.GetComponent<Weapon>()._weight + _totalstr;
         }
-        
         //命中率(武器の命中率 + 技 + 運/2)
         _hit = _equipment.GetComponent<Weapon>()._hit + _totalskl + (_totalluk / 2) + _addbufflist[7] + _addonetimestatuslist[8];
+
         //回避率計算
         //足元のマスがとれない場合地形補正はなしにする
         if (transform.tag == "Player")
         {
-            if (GetComponent<Move_System>().GetNowPos())
+            if (GetComponent<Move_System>().GetNowPos() && !_georges)
             {
                 //回避率(速さ + 運 + 地形補正)
                 _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9] + GetComponent<Move_System>().GetNowPos().GetComponent<MapStatus>().GetMapEvasionRate();
@@ -586,11 +586,10 @@ public class Character : MonoBehaviour {
                 //回避率(速さ + 運)
                 _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9];
             }
-            
         }
         else if (transform.tag == "Enemy")
         {
-            if (GetComponent<EnemyBase>().GetNowPos())
+            if (GetComponent<EnemyBase>().GetNowPos() && !_georges)
             {
                 //回避率(速さ + 運 + 地形補正)
                 _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9] + GetComponent<EnemyBase>().GetNowPos().GetComponent<MapStatus>().GetMapEvasionRate();
@@ -647,6 +646,9 @@ public class Character : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// ステータスの上限値を超えないように補正
+    /// </summary>
     void RevisionStatus()
     {
         //上限値以下かの判定
@@ -702,16 +704,6 @@ public class Character : MonoBehaviour {
         _joblist = _classname;
         //レベルの初期化
         _level = 1;
-        ////クラスを名前で検索
-        //for (var i = 0; i < classList.param.Count; i++)
-        //{
-        //    if (classList.param[i].name == _joblist.ToString())
-        //    {
-        //        ////クラスID上書き
-        //        //_classid = classList.param[i].id;
-                    
-        //    }
-        //}
     }
 
     /// <summary>
