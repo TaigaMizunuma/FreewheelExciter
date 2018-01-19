@@ -23,6 +23,8 @@ public class Hensei : MonoBehaviour
     private GameObject[] players_;
     // 親のcanvasを取得
     private GameObject parent_canvas;
+    // PosSortを取得
+    private PosSort pos_sort;
 
     /////////////////////////////////////
 
@@ -32,6 +34,7 @@ public class Hensei : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        pos_sort = GameObject.Find("ReadyCanvas").GetComponent<PosSort>();
     }
 
     void OnEnable()
@@ -97,7 +100,7 @@ public class Hensei : MonoBehaviour
                 sortie_[unit_num] = false;
                 sortie_num++;
                 players_[unit_num].SetActive(false);
-                cursor_.GetComponent<PosSort>().SetFirstPos();
+                pos_sort.SetFirstPos();
             }
             else if (sortie_num > 0)
             {
@@ -105,7 +108,7 @@ public class Hensei : MonoBehaviour
                 sortie_[unit_num] = true;
                 sortie_num--;
                 players_[unit_num].SetActive(true);
-                cursor_.GetComponent<PosSort>().SetFirstPos();
+                pos_sort.SetFirstPos();
             }
         }
         if (Input.GetKeyDown(KeyCode.X))

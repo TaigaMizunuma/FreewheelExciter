@@ -18,8 +18,8 @@ public class MapReady : MonoBehaviour
     private bool map_view = false;
     // rayboxを登録
     public GameObject ray_box;
-    // PosSortを持っているオブジェクトを登録
-    public GameObject pos_sort;
+    // PosSortを取得
+    private PosSort pos_sort;
     // 並び変える状態か
     private bool sort_mode = false;
     // 並び変え用
@@ -31,7 +31,7 @@ public class MapReady : MonoBehaviour
     private GameObject show_range_chara = null;
 
     // 準備画面の背景を取得
-    private GameObject ready_back;
+    public GameObject ready_back;
 
     // Use this for initialization
     void Start()
@@ -46,7 +46,7 @@ public class MapReady : MonoBehaviour
             }
         }
         parent_canvas = transform.parent.gameObject;
-        ready_back = GameObject.Find("ReadyBack");
+        pos_sort = GameObject.Find("ReadyCanvas").GetComponent<PosSort>();
     }
 
     // Update is called once per frame
@@ -84,7 +84,7 @@ public class MapReady : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z))
             {
                 bool check = false;
-                foreach (GameObject obj in pos_sort.GetComponent<PosSort>().GetFirstPos())
+                foreach (GameObject obj in pos_sort.GetFirstPos())
                 {
                     if (ray_box.GetComponent<RayBox>().GetSelectSquare() == obj)
                     {
@@ -101,7 +101,7 @@ public class MapReady : MonoBehaviour
                                 sort2 = obj;
                                 if (sort1 != sort2)
                                 {
-                                    pos_sort.GetComponent<PosSort>().ChangePos(sort1, sort2);
+                                    pos_sort.ChangePos(sort1, sort2);
                                     sort1 = null;
                                     sort2 = null;
                                 }

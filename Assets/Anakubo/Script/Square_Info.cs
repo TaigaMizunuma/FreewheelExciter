@@ -21,6 +21,7 @@ public class Square_Info : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        move_cost = GetComponent<MapStatus>().GetMapCost();
     }
 
     void Start()

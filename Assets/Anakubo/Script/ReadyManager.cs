@@ -14,16 +14,21 @@ public class ReadyManager : MonoBehaviour {
 
     private GameObject ready_back;
 
+    private bool init_ = false;
+
 	// Use this for initialization
 	void Start () {
-        ModeChange(0);
         battle_flow = GameObject.Find("GameManager").GetComponent<BattleFlowTest>();
         ready_back = GameObject.Find("ReadyBack");
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (!init_)
+        {
+            ModeChange(0);
+            init_ = true;
+        }
 	}
 
     public void ModeChange(int num)

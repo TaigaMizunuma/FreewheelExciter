@@ -29,7 +29,11 @@ public class ReadyShosai : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (_chara == null) _chara = parent_canvas.GetComponent<ReadyManager>().GetUnit();
+        if (_chara == null)
+        {
+            _chara = parent_canvas.GetComponent<ReadyManager>().GetUnit();
+            return;
+        }
 
         //////////////////////////////////////////////////////////////////////////////////////////////
         _LeftUI.GetComponent<UILeftStatus>().SetData(_chara.GetComponent<Character>());
