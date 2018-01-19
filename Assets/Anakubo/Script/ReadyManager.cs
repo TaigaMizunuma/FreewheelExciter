@@ -20,6 +20,7 @@ public class ReadyManager : MonoBehaviour {
 	void Start () {
         battle_flow = GameObject.Find("GameManager").GetComponent<BattleFlowTest>();
         ready_back = GameObject.Find("ReadyBack");
+        GameObject.Find("RayBox").GetComponent<RayBox>().move_ = false;
     }
 	
 	// Update is called once per frame
@@ -37,6 +38,7 @@ public class ReadyManager : MonoBehaviour {
         {
             battle_flow.StartGame();
             gameObject.SetActive(false);
+            GameObject.Find("RayBox").GetComponent<RayBox>().move_ = true;
         }
         else {
             now_mode = num;

@@ -17,7 +17,7 @@ public class MapReady : MonoBehaviour
     // マップを見る状態か
     private bool map_view = false;
     // rayboxを登録
-    public GameObject ray_box;
+    private GameObject ray_box;
     // PosSortを取得
     private PosSort pos_sort;
     // 並び変える状態か
@@ -47,6 +47,7 @@ public class MapReady : MonoBehaviour
         }
         parent_canvas = transform.parent.gameObject;
         pos_sort = GameObject.Find("ReadyCanvas").GetComponent<PosSort>();
+        ray_box = GameObject.Find("RayBox");
     }
 
     // Update is called once per frame
