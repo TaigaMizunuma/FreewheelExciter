@@ -235,6 +235,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &777975
 MeshRenderer:
@@ -497,6 +498,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1229481
 MeshRenderer:
@@ -918,6 +920,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &11488335
 MeshRenderer:
@@ -1211,6 +1214,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &16852590
 MeshRenderer:
@@ -1534,6 +1538,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &23917223
 MeshRenderer:
@@ -1796,6 +1801,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &34952551
 MeshRenderer:
@@ -2182,6 +2188,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &42072793
 MeshRenderer:
@@ -2731,6 +2738,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &60795047
 MeshRenderer:
@@ -3055,6 +3063,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &69405501
 MeshRenderer:
@@ -3755,6 +3764,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &113989485
 MeshRenderer:
@@ -4332,6 +4342,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &129852407
 MeshRenderer:
@@ -4649,7 +4660,7 @@ Prefab:
     - target: {fileID: 114435155072594706, guid: f948a453f25f9e74f9cf97ab80dd273a,
         type: 2}
       propertyPath: dataLoadName
-      value: Dummy
+      value: Battle1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f948a453f25f9e74f9cf97ab80dd273a, type: 2}
@@ -4689,6 +4700,7 @@ MonoBehaviour:
   isFadeOut: 0
   isFadeIn: 0
   sceneChangeSwitch: 0
+  changeName: 
 --- !u!1 &141310626
 GameObject:
   m_ObjectHideFlags: 0
@@ -4848,6 +4860,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &145435128
 MeshRenderer:
@@ -5182,6 +5195,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &146831714
 MeshRenderer:
@@ -5444,6 +5458,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &153081197
 MeshRenderer:
@@ -5737,6 +5752,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &158367188
 MeshRenderer:
@@ -5999,6 +6015,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &161488310
 MeshRenderer:
@@ -6342,6 +6359,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &169076443
 MeshRenderer:
@@ -6634,6 +6652,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &180591653
 MeshRenderer:
@@ -7028,6 +7047,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &187313239
 MeshRenderer:
@@ -7415,6 +7435,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &194951285
 MeshRenderer:
@@ -7773,6 +7794,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &206860779
 MeshRenderer:
@@ -8183,6 +8205,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &218370596
 MeshRenderer:
@@ -8518,6 +8541,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &223411857
 MeshRenderer:
@@ -9072,6 +9096,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &250230553
 MeshRenderer:
@@ -9334,6 +9359,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &253048817
 MeshRenderer:
@@ -9739,6 +9765,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &262549867
 MeshRenderer:
@@ -10271,6 +10298,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &287740246
 MeshRenderer:
@@ -10533,6 +10561,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &289410978
 MeshRenderer:
@@ -11261,6 +11290,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &322245642
 MeshRenderer:
@@ -11653,6 +11683,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &333067396
 MeshRenderer:
@@ -11915,6 +11946,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &335488240
 MeshRenderer:
@@ -12272,6 +12304,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &340595464
 MeshRenderer:
@@ -12776,6 +12809,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &353420897
 MeshRenderer:
@@ -13266,6 +13300,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &364958020
 MeshRenderer:
@@ -13528,6 +13563,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &366006063
 MeshRenderer:
@@ -13790,6 +13826,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &366603300
 MeshRenderer:
@@ -14052,6 +14089,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &368379224
 MeshRenderer:
@@ -14314,6 +14352,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &368493885
 MeshRenderer:
@@ -14643,6 +14682,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &383681388
 MeshRenderer:
@@ -14905,6 +14945,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &389266539
 MeshRenderer:
@@ -15177,6 +15218,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &395118431
 MeshRenderer:
@@ -15439,6 +15481,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &402930809
 MeshRenderer:
@@ -15763,6 +15806,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &411003949
 MeshRenderer:
@@ -16184,6 +16228,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &423899185
 MeshRenderer:
@@ -16622,6 +16667,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &437502345
 MeshRenderer:
@@ -16884,6 +16930,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &439170412
 MeshRenderer:
@@ -17177,6 +17224,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &446079222
 MeshRenderer:
@@ -17439,6 +17487,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &447003271
 MeshRenderer:
@@ -18160,6 +18209,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &473422401
 MeshRenderer:
@@ -18422,6 +18472,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &473487003
 MeshRenderer:
@@ -18756,6 +18807,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &484047354
 MeshRenderer:
@@ -19060,6 +19112,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &486866847
 MeshRenderer:
@@ -19322,6 +19375,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &486869855
 MeshRenderer:
@@ -19584,6 +19638,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &492127254
 MeshRenderer:
@@ -19918,6 +19973,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &494259207
 MeshRenderer:
@@ -20305,6 +20361,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &507116084
 MeshRenderer:
@@ -20675,6 +20732,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &515469969
 MeshRenderer:
@@ -20968,6 +21026,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &526936531
 MeshRenderer:
@@ -21230,6 +21289,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &531205405
 MeshRenderer:
@@ -22039,6 +22099,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &574916223
 MeshRenderer:
@@ -22332,6 +22393,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &579856019
 MeshRenderer:
@@ -22594,6 +22656,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &584283383
 MeshRenderer:
@@ -23101,6 +23164,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &593363812
 MeshRenderer:
@@ -23431,6 +23495,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &596320154
 MeshRenderer:
@@ -23693,6 +23758,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &598559098
 MeshRenderer:
@@ -23955,6 +24021,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &598992488
 MeshRenderer:
@@ -24309,6 +24376,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &622316813
 MeshRenderer:
@@ -24571,6 +24639,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &626790648
 MeshRenderer:
@@ -24833,6 +24902,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &627528415
 MeshRenderer:
@@ -25095,6 +25165,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &628723139
 MeshRenderer:
@@ -25357,6 +25428,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &629076172
 MeshRenderer:
@@ -26300,6 +26372,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &655722813
 MeshRenderer:
@@ -26567,6 +26640,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &661337146
 MeshRenderer:
@@ -26865,6 +26939,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &677152282
 MeshRenderer:
@@ -27347,6 +27422,7 @@ MonoBehaviour:
   isFadeOut: 0
   isFadeIn: 0
   sceneChangeSwitch: 0
+  changeName: 
 --- !u!4 &703277814
 Transform:
   m_ObjectHideFlags: 0
@@ -27499,6 +27575,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &718665068
 MeshRenderer:
@@ -27761,6 +27838,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &719035621
 MeshRenderer:
@@ -28023,6 +28101,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &720200237
 MeshRenderer:
@@ -28402,6 +28481,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &728850553
 MeshRenderer:
@@ -28759,6 +28839,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &739156491
 MeshRenderer:
@@ -29021,6 +29102,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &742149307
 MeshRenderer:
@@ -29283,6 +29365,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &743020267
 MeshRenderer:
@@ -29638,6 +29721,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &766600238
 MeshRenderer:
@@ -29931,6 +30015,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &770512349
 MeshRenderer:
@@ -30193,6 +30278,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &772754456
 MeshRenderer:
@@ -30601,6 +30687,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &776382362
 MeshRenderer:
@@ -30863,6 +30950,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &779981203
 MeshRenderer:
@@ -31222,6 +31310,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &793155669
 MeshRenderer:
@@ -31484,6 +31573,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &796670347
 MeshRenderer:
@@ -32032,6 +32122,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &805989020
 MeshRenderer:
@@ -32596,6 +32687,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &830450080
 MeshRenderer:
@@ -32858,6 +32950,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &830522077
 MeshRenderer:
@@ -33195,6 +33288,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &836523495
 MeshRenderer:
@@ -33549,6 +33643,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &846503347
 MeshRenderer:
@@ -33811,6 +33906,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &847289976
 MeshRenderer:
@@ -34073,6 +34169,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &848164747
 MeshRenderer:
@@ -34396,6 +34493,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &851817630
 MeshRenderer:
@@ -34658,6 +34756,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &854389285
 MeshRenderer:
@@ -34920,6 +35019,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &859616693
 MeshRenderer:
@@ -35389,6 +35489,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &869637914
 MeshRenderer:
@@ -35651,6 +35752,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &869889273
 MeshRenderer:
@@ -35943,6 +36045,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &876779132
 MeshRenderer:
@@ -36383,6 +36486,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &899822217
 MeshRenderer:
@@ -36645,6 +36749,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &902782812
 MeshRenderer:
@@ -36970,6 +37075,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &909524688
 MeshRenderer:
@@ -37313,6 +37419,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &917157970
 MeshRenderer:
@@ -37750,6 +37857,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &930378609
 MeshRenderer:
@@ -38047,6 +38155,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &939211661
 MeshRenderer:
@@ -38314,6 +38423,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &940765539
 MeshRenderer:
@@ -38607,6 +38717,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &947209627
 MeshRenderer:
@@ -38936,6 +39047,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &957436283
 MeshRenderer:
@@ -39259,6 +39371,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &967889807
 MeshRenderer:
@@ -39521,6 +39634,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &971197227
 MeshRenderer:
@@ -40012,6 +40126,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &974548203
 MeshRenderer:
@@ -40274,6 +40389,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &975614525
 MeshRenderer:
@@ -40603,6 +40719,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &985653389
 MeshRenderer:
@@ -41150,6 +41267,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1003969921
 MeshRenderer:
@@ -41525,6 +41643,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1013256527
 MeshRenderer:
@@ -41787,6 +41906,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1013363802
 MeshRenderer:
@@ -42049,6 +42169,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1014863211
 MeshRenderer:
@@ -42447,6 +42568,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1031416680
 MeshRenderer:
@@ -42783,6 +42905,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1033400383
 MeshRenderer:
@@ -43045,6 +43168,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1039067678
 MeshRenderer:
@@ -43307,6 +43431,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1039681914
 MeshRenderer:
@@ -43569,6 +43694,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1040316131
 MeshRenderer:
@@ -43862,6 +43988,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1045828419
 MeshRenderer:
@@ -44124,6 +44251,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1049690678
 MeshRenderer:
@@ -44897,6 +45025,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1074642001
 MeshRenderer:
@@ -45386,6 +45515,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1091843895
 MeshRenderer:
@@ -45648,6 +45778,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1093002703
 MeshRenderer:
@@ -45910,6 +46041,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1093202743
 MeshRenderer:
@@ -46476,6 +46608,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1107941266
 MeshRenderer:
@@ -46998,6 +47131,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1126455844
 MeshRenderer:
@@ -47322,6 +47456,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1135274315
 MeshRenderer:
@@ -47723,6 +47858,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1145006960
 MeshRenderer:
@@ -48363,6 +48499,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1156563271
 MeshRenderer:
@@ -48687,6 +48824,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1160033822
 MeshRenderer:
@@ -49010,6 +49148,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1165220729
 MeshRenderer:
@@ -49272,6 +49411,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1166474064
 MeshRenderer:
@@ -49944,6 +50084,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1188397250
 MeshRenderer:
@@ -50237,6 +50378,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1194664856
 MeshRenderer:
@@ -50656,6 +50798,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1206944520
 MeshRenderer:
@@ -51063,6 +51206,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1217808630
 MeshRenderer:
@@ -51325,6 +51469,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1218070738
 MeshRenderer:
@@ -51724,6 +51869,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1222821575
 MeshRenderer:
@@ -51986,6 +52132,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1224404608
 MeshRenderer:
@@ -52248,6 +52395,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1224489760
 MeshRenderer:
@@ -52510,6 +52658,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1225800314
 MeshRenderer:
@@ -52772,6 +52921,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1226337845
 MeshRenderer:
@@ -53039,6 +53189,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1231583636
 MeshRenderer:
@@ -53301,6 +53452,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1231899836
 MeshRenderer:
@@ -53803,6 +53955,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1258807101
 MeshRenderer:
@@ -54107,6 +54260,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1269719799
 MeshRenderer:
@@ -54430,6 +54584,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1279817003
 MeshRenderer:
@@ -54795,6 +54950,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1288339095
 MeshRenderer:
@@ -55104,6 +55260,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1293384601
 MeshRenderer:
@@ -55536,6 +55693,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1309420692
 MeshRenderer:
@@ -55862,6 +56020,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1313903660
 MeshRenderer:
@@ -56124,6 +56283,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1314702167
 MeshRenderer:
@@ -56602,6 +56762,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1323792417
 MeshRenderer:
@@ -57030,6 +57191,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1333013608
 MeshRenderer:
@@ -57538,6 +57700,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1353267082
 MeshRenderer:
@@ -57800,6 +57963,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1357270901
 MeshRenderer:
@@ -58130,6 +58294,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1358056000
 MeshRenderer:
@@ -58584,6 +58749,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1372693464
 MeshRenderer:
@@ -58979,6 +59145,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1378746819
 MeshRenderer:
@@ -59271,6 +59438,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1380813490
 MeshRenderer:
@@ -59533,6 +59701,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1383668389
 MeshRenderer:
@@ -59857,6 +60026,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1385599467
 MeshRenderer:
@@ -60246,6 +60416,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1388695154
 MeshRenderer:
@@ -60908,6 +61079,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1417938253
 MeshRenderer:
@@ -61244,6 +61416,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1428150863
 MeshRenderer:
@@ -61711,6 +61884,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1431781704
 MeshRenderer:
@@ -62003,6 +62177,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1438364365
 MeshRenderer:
@@ -62298,6 +62473,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1441130525
 MeshRenderer:
@@ -62770,6 +62946,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1449706111
 MeshRenderer:
@@ -63087,6 +63264,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1458688055
 MeshRenderer:
@@ -63596,6 +63774,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1470384356
 MeshRenderer:
@@ -63920,6 +64099,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1481186890
 MeshRenderer:
@@ -64411,6 +64591,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1495995631
 MeshRenderer:
@@ -64723,6 +64904,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1501836325
 MeshRenderer:
@@ -65047,6 +65229,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1513590721
 MeshRenderer:
@@ -65340,6 +65523,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1516857368
 MeshRenderer:
@@ -65767,6 +65951,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1539071080
 MeshRenderer:
@@ -66029,6 +66214,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1539198866
 MeshRenderer:
@@ -66338,6 +66524,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1541916636
 MeshRenderer:
@@ -66600,6 +66787,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1543486086
 MeshRenderer:
@@ -66892,6 +67080,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1545459980
 MeshRenderer:
@@ -67154,6 +67343,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1549320271
 MeshRenderer:
@@ -67892,6 +68082,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1560246371
 MeshRenderer:
@@ -68433,6 +68624,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1586263053
 MeshRenderer:
@@ -68866,6 +69058,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1590665252
 MeshRenderer:
@@ -69128,6 +69321,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1595725196
 MeshRenderer:
@@ -69591,6 +69785,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1610654436
 MeshRenderer:
@@ -69946,6 +70141,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1617563533
 MeshRenderer:
@@ -70270,6 +70466,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1625454455
 MeshRenderer:
@@ -70532,6 +70729,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1625809652
 MeshRenderer:
@@ -70929,6 +71127,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1633883019
 MeshRenderer:
@@ -71253,6 +71452,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1639735584
 MeshRenderer:
@@ -71645,6 +71845,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1643977420
 MeshRenderer:
@@ -71907,6 +72108,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1645096830
 MeshRenderer:
@@ -72461,6 +72663,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1663204721
 MeshRenderer:
@@ -72723,6 +72926,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1667876656
 MeshRenderer:
@@ -73144,6 +73348,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1681721225
 MeshRenderer:
@@ -73456,6 +73661,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1684811077
 MeshRenderer:
@@ -73821,6 +74027,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1692834779
 MeshRenderer:
@@ -74312,6 +74519,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1698828344
 MeshRenderer:
@@ -74574,6 +74782,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1699248690
 MeshRenderer:
@@ -74866,6 +75075,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1705546549
 MeshRenderer:
@@ -75391,6 +75601,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1722943114
 MeshRenderer:
@@ -76018,6 +76229,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1741923147
 MeshRenderer:
@@ -76280,6 +76492,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1746027173
 MeshRenderer:
@@ -76542,6 +76755,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1748993292
 MeshRenderer:
@@ -76804,6 +77018,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1750734575
 MeshRenderer:
@@ -77066,6 +77281,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1755833503
 MeshRenderer:
@@ -77328,6 +77544,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1756871372
 MeshRenderer:
@@ -77937,6 +78154,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1778219080
 MeshRenderer:
@@ -78340,6 +78558,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1792586652
 MeshRenderer:
@@ -78602,6 +78821,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1802719298
 MeshRenderer:
@@ -78864,6 +79084,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1803395341
 MeshRenderer:
@@ -79126,6 +79347,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1813613244
 MeshRenderer:
@@ -79621,6 +79843,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1837594444
 MeshRenderer:
@@ -79883,6 +80106,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1838644419
 MeshRenderer:
@@ -80207,6 +80431,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1843358912
 MeshRenderer:
@@ -80469,6 +80694,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1843825014
 MeshRenderer:
@@ -80835,6 +81061,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1857856229
 MeshRenderer:
@@ -81097,6 +81324,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1859235436
 MeshRenderer:
@@ -81537,6 +81765,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1865369916
 MeshRenderer:
@@ -81910,6 +82139,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1878253578
 MeshRenderer:
@@ -82311,6 +82541,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1884048055
 MeshRenderer:
@@ -82573,6 +82804,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1889585845
 MeshRenderer:
@@ -82984,6 +83216,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1896322513
 MeshRenderer:
@@ -83443,6 +83676,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1920564459
 MeshRenderer:
@@ -83773,6 +84007,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1921481566
 MeshRenderer:
@@ -84035,6 +84270,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1923929269
 MeshRenderer:
@@ -84297,6 +84533,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1933233351
 MeshRenderer:
@@ -84728,6 +84965,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1943093829
 MeshRenderer:
@@ -85052,6 +85290,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1947844403
 MeshRenderer:
@@ -85419,6 +85658,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1953778144
 MeshRenderer:
@@ -85712,6 +85952,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1967265036
 MeshRenderer:
@@ -86037,6 +86278,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1972777264
 MeshRenderer:
@@ -86299,6 +86541,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1972939564
 MeshRenderer:
@@ -86571,6 +86814,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1984829303
 MeshRenderer:
@@ -86906,6 +87150,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1991767839
 MeshRenderer:
@@ -87199,6 +87444,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &1994617510
 MeshRenderer:
@@ -87694,6 +87940,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2008529207
 MeshRenderer:
@@ -88158,6 +88405,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2031667246
 MeshRenderer:
@@ -88705,6 +88953,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2036952519
 MeshRenderer:
@@ -89113,6 +89362,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2052035485
 MeshRenderer:
@@ -89620,6 +89870,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2070891973
 MeshRenderer:
@@ -89990,6 +90241,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2075485761
 MeshRenderer:
@@ -90331,6 +90583,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2078305542
 MeshRenderer:
@@ -90664,6 +90917,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2083100139
 MeshRenderer:
@@ -91017,6 +91271,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2095092001
 MeshRenderer:
@@ -91279,6 +91534,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2095097200
 MeshRenderer:
@@ -91572,6 +91828,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2097749605
 MeshRenderer:
@@ -91932,6 +92189,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2105278594
 MeshRenderer:
@@ -92609,6 +92867,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2138394791
 MeshRenderer:
@@ -92871,6 +93130,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2140813138
 MeshRenderer:
@@ -93206,6 +93466,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2141594090
 MeshRenderer:
@@ -93499,6 +93760,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!23 &2146523580
 MeshRenderer:
