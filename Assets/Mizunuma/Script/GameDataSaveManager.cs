@@ -59,7 +59,6 @@ public class GameDataSaveManager : MonoBehaviour
     /// <summary>
     /// ボタン
     /// </summary>
-    private GameObject DummyButton;
     public EventSystem eventSystem;
 
     /// <summary>
@@ -72,13 +71,24 @@ public class GameDataSaveManager : MonoBehaviour
     /// </summary>
     private int SaveSloatInitNamber = 0;
     private int SaveSloatInitNamber2 = 0;
-
-
     /// <summary>
     /// Animation
     /// </summary>
     private Animation m_Animation;
     private Animation m_Animation2;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private Image SavePlayerPicture1;
+    private Image SavePlayerPicture2;
+
+    /// <summary>
+    /// false = 削除モードオフ true = 削除モードオン
+    /// </summary>
+    private bool SaveDataDeleteFlag = false;
+    private int D_Count;
+
     // Use this for initialization
     void Start()
     {
@@ -88,14 +98,24 @@ public class GameDataSaveManager : MonoBehaviour
         SetSaveSlot2();
         m_Animation = GameObject.Find("SaveDatas[1]").GetComponent<Animation>();
         m_Animation2 = GameObject.Find("SaveDatas[2]").GetComponent<Animation>();
-    }
+        SavePlayerPicture1 = GameObject.Find("SavaDataPlayerPicture").GetComponent<Image>();
+        SavePlayerPicture2 = GameObject.Find("SavaDataPlayerPicture2").GetComponent<Image>();
 
+        if (SaveSloatInitNamber == 1 || SaveData.HasKey("SaveNumber1") == true)
+        {
+            SavePlayerPicture1.enabled = true;
+        }
+        if (SaveSloatInitNamber2 == 1|| SaveData.HasKey("SaveNumber2") == true)
+        {
+            SavePlayerPicture2.enabled = true;
+        }
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
             DataClear();
-        }
+        }   
     }
     /// <summary>
     /// TextGetComponent
@@ -114,8 +134,6 @@ public class GameDataSaveManager : MonoBehaviour
         SaveDataTurnText2 = GameObject.Find("SaveDataTurnText2").GetComponent<Text>();
         SaveDataNameText2 = GameObject.Find("SaveDataNameText2").GetComponent<Text>();
         SaveDataNoText2 = GameObject.Find("NoDataText2").GetComponent<Text>();
-        //ダミーボタン
-        DummyButton = GameObject.Find("DummyButton");
 
     }
     /// <summary>
@@ -123,58 +141,101 @@ public class GameDataSaveManager : MonoBehaviour
     /// </summary>
     public void GetSaveButton1()
     {
-        /*セーブ識別*/
         SaveSlotNumber = 1;
         m_Animation.Play();
         StartCoroutine(DelayMethod.DelayMethodCall(0.25f, () =>
-        {
-           
+        {   
             /*セーブテキスト非表示*/
             SaveDataNoText1.enabled = false;
-            //初回
-            if (SaveSloatInitNamber == 0)
+            /*セーブモード切替 false=新規作成モード true=セーブモード*/
+            if (SaveData.HasKey("GameSaveCheck") == false)
             {
-                /*01タイトル*/
-                SaveDataConditionsText1.text = "第" + "1" +
-                                               "章 " + "赤光 白熱";
-                Debug.Log("プレイ時間読み込み");
-                /*02プレイ時間*/
-                SaveDataTimeText1.text = ("プレイ時間 " + "00:00");
-                Debug.Log("ターン数読み込み");
-                /*03累計ターン数*/
-                SaveDataTurnText1.text = "累計ターン数 " + "0";
-                Debug.Log("Characterの名前読み込み");
-                /*04キャラクターの名前*/
-                SaveDataNameText1.text = "ヒュー";
-                //初回用セーブ
-                SaveNumber[1] = 1;
-                SaveSlotPurpose[1] = "赤光 白熱";
+                if (SaveSloatInitNamber == 0 && SaveDataDeleteFlag == false)
+                {
+                    Debug.Log("01_新規作成モード");
+                    /*新規作成モード*/
+                    /*01タイトル*/
+                    SaveDataConditionsText1.text = "第" + "1" +
+                                                   "章 " + "赤光 白熱";
+                    Debug.Log("プレイ時間読み込み");
+                    /*02プレイ時間*/
+                    SaveDataTimeText1.text = ("プレイ時間 " + "00:00");
+                    Debug.Log("ターン数読み込み");
+                    /*03累計ターン数*/
+                    SaveDataTurnText1.text = "累計ターン数 " + "0";
+                    Debug.Log("Characterの名前読み込み");
+                    /*04キャラクターの名前*/
+                    SaveDataNameText1.text = "ヒュー";
+                    //初回用セーブ
+                    SaveNumber[1] = 1;
+                    SaveSlotPurpose[1] = "赤光 白熱";
+                    SavePlayerPicture1.enabled = true;
+                    SaveDistribute();
+                }
+                else if(SaveSloatInitNamber == 1 && SaveDataDeleteFlag == false)
+                {
+                    Debug.Log("02_ロードモード");
+                    /*遅延実行*/
+                    Invoke("SetFadeOut", 1.5f);
+                    eventSystem.sendNavigationEvents = false;
+                }
+                else if(SaveDataDeleteFlag == true)
+                {
+                    Debug.Log("04_データの削除をしました");
+                    /*データ削除*/
+                    SaveData.Remove("SaveNumber1");
+                    SaveData.Remove("SaveSlotPurpose1");
+                    SaveData.Remove("SaveSlotTimes1");
+                    SaveData.Remove("SaveSlotTurnString1");
+                    /*セーブテキスト非表示*/
+                    SaveDataNoText1.enabled = true;
+                    SaveDataNameText1.enabled = false;
+                    SaveDataTimeText1.enabled = false;
+                    SaveDataTurnText1.enabled = false;
+                    SaveDataConditionsText1.enabled = false;
+                    SavePlayerPicture1.enabled = false;
+                    Invoke("SetSaveOut", 1.5f);
+                    eventSystem.sendNavigationEvents = false;
 
-                SaveDistribute();
+
+                }
             }
-            if (SaveSloatInitNamber == 1)
+            /*セーブモード*/
+            if (SaveData.HasKey("GameSaveCheck") == true && SaveDataDeleteFlag == false)
             {
-                StartSave();
-                Debug.Log("タイトル読み込み");
-                /*01タイトル*/
-                SaveDataConditionsText1.text = "第" + SaveNumber[1] +
-                                               "章 " + SaveSlotPurpose[1];
-                Debug.Log("プレイ時間読み込み");
-                /*02プレイ時間*/
-                SaveRenderTimes = SaveSlotTimes[1];
-                SaveDataTimeText1.text = ("プレイ時間 " + string.Format("{1:00}:{2:00}",
-                                                     Mathf.Floor(SaveRenderTimes / 3600f),
-                                                     Mathf.Floor(SaveRenderTimes / 60f),
-                                                     Mathf.Floor(SaveRenderTimes % 60f),
-                                                     SaveRenderTimes % 1 * 99));
-                Debug.Log("ターン数読み込み");
-                /*03累計ターン数*/
-                SaveDataTurnText1.text = "累計ターン数 " + SaveSlotTurnString[1];
-                Debug.Log("Characterの名前読み込み");
-                /*04キャラクターの名前*/
-                SaveDataNameText1.text = "ヒュー";
-                SaveDistribute();
-                Debug.Log("スロット1 セーブしました");
+                Debug.Log("03_セーブモード");
+                /*上書きモード*/
+                if (SaveData.HasKey("SaveNumber1") == true && SaveData.HasKey("SaveSlotPurpose1") == true &&
+                SaveData.HasKey("SaveSlotTimes1") == true && SaveData.HasKey("SaveSlotTurnString1") == true ||
+                SaveData.HasKey("SaveNumber2") == true && SaveData.HasKey("SaveSlotPurpose2") == true &&
+                SaveData.HasKey("SaveSlotTimes2") == true && SaveData.HasKey("SaveSlotTurnString2") == true)
+                {
+                    StartSave();
+                    Debug.Log("タイトル読み込み");
+                    /*01タイトル*/
+                    SaveDataConditionsText1.text = "第" + SaveNumber[1] +
+                                                   "章 " + SaveSlotPurpose[1];
+                    Debug.Log("プレイ時間読み込み");
+                    /*02プレイ時間*/
+                    SaveRenderTimes = SaveSlotTimes[1];
+                    SaveDataTimeText1.text = ("プレイ時間 " + string.Format("{1:00}:{2:00}",
+                                                         Mathf.Floor(SaveRenderTimes / 3600f),
+                                                         Mathf.Floor(SaveRenderTimes / 60f),
+                                                         Mathf.Floor(SaveRenderTimes % 60f),
+                                                         SaveRenderTimes % 1 * 99));
+                    Debug.Log("ターン数読み込み");
+                    /*03累計ターン数*/
+                    SaveDataTurnText1.text = "累計ターン数 " + SaveSlotTurnString[1];
+                    Debug.Log("Characterの名前読み込み");
+                    /*04キャラクターの名前*/
+                    SaveDataNameText1.text = "ヒュー";
+                    SaveDistribute();
+                    Debug.Log("スロット1 セーブしました");
+                }
+                else
+                {
+                    Debug.Log("エラー番号01:セーブデータがありません");
+                }
             }
         }));
     }
@@ -183,51 +244,96 @@ public class GameDataSaveManager : MonoBehaviour
         /*セーブ識別*/
         SaveSlotNumber = 2;
         //初回時
-            m_Animation2.Play();
+        m_Animation2.Play();
         StartCoroutine(DelayMethod.DelayMethodCall(0.25f, () =>
         {
-            
-            if (SaveSloatInitNamber == 0)
+            /*セーブモード切替 false=新規作成モード true=セーブモード*/
+            if (SaveData.HasKey("GameSaveCheck") == false)
             {
-                SaveDataNoText2.enabled = false;
-                /*01タイトル*/
-                SaveDataConditionsText2.text = "第" + "1" +
-                                               "章 " + "赤光 白熱";
-                Debug.Log("プレイ時間読み込み");
-                /*02プレイ時間*/
-                SaveDataTimeText2.text = ("プレイ時間 " + "00:00");
-                Debug.Log("ターン数読み込み");
-                /*03累計ターン数*/
-                SaveDataTurnText2.text = "累計ターン数 " + "0";
-                Debug.Log("Characterの名前読み込み");
-                /*04キャラクターの名前*/
-                SaveDataNameText2.text = "ヒュー";
-                //初回用セーブ
-                SaveNumber[2] = 1;
-                SaveSlotPurpose[2] = "赤光 白熱";
 
-                SaveDistribute();
+                if (SaveSloatInitNamber2 == 0 && SaveDataDeleteFlag == false)
+                {
+                    Debug.Log("01_新規作成モード");
+                    SaveDataNoText2.enabled = false;
+                    /*01タイトル*/
+                    SaveDataConditionsText2.text = "第" + "1" +
+                                                   "章 " + "赤光 白熱";
+                    Debug.Log("プレイ時間読み込み");
+                    /*02プレイ時間*/
+                    SaveDataTimeText2.text = ("プレイ時間 " + "00:00");
+                    Debug.Log("ターン数読み込み");
+                    /*03累計ターン数*/
+                    SaveDataTurnText2.text = "累計ターン数 " + "0";
+                    Debug.Log("Characterの名前読み込み");
+                    /*04キャラクターの名前*/
+                    SaveDataNameText2.text = "ヒュー";
+                    //初回用セーブ
+                    SaveNumber[2] = 1;
+                    SaveSlotPurpose[2] = "赤光 白熱";
+                    SavePlayerPicture2.enabled = true;
+                    SaveDistribute();
+                }
+                else if(SaveSloatInitNamber2 == 1 && SaveDataDeleteFlag == false)
+                {
+                    Debug.Log("02_ロードモード");
+                    /*ダミーボタンセット*/
+                    eventSystem.sendNavigationEvents = false;
+                    /*遅延実行*/
+                    Invoke("SetFadeOut", 1.5f);
+                }
+                else if (SaveDataDeleteFlag == true)
+                {
+                    Debug.Log("04_データの削除をしました");
+                    Invoke("SetSaveOut", 1.5f);
+                    eventSystem.sendNavigationEvents = false;
+                    SaveData.Remove("SaveNumber2");
+                    SaveData.Remove("SaveSlotPurpose2");
+                    SaveData.Remove("SaveSlotTimes2");
+                    SaveData.Remove("SaveSlotTurnString2");
+                    Debug.Log("04_データの削除をしました");
+                    /*セーブテキスト非表示*/
+                    SaveDataNoText2.enabled = true;
+                    SaveDataNameText2.enabled = false;
+                    SaveDataTimeText2.enabled = false;
+                    SaveDataTurnText2.enabled = false;
+                    SaveDataConditionsText2.enabled = false;
+                    SavePlayerPicture2.enabled = false;
+                    Invoke("SetSaveOut", 1.5f);
+                    eventSystem.sendNavigationEvents = false;
+
+                }
             }
-            if (SaveSloatInitNamber == 1)
+            if (SaveData.HasKey("GameSaveCheck") == true && SaveDataDeleteFlag == false)
             {
-                StartSave();
-                /*01タイトル*/
-                SaveDataConditionsText2.text = "第" + SaveNumber[2] +
-                                              "章 " + SaveSlotPurpose[2];
+                if (SaveData.HasKey("SaveNumber2") == true && SaveData.HasKey("SaveSlotPurpose2") == true &&
+                SaveData.HasKey("SaveSlotTimes2") == true && SaveData.HasKey("SaveSlotTurnString2") == true ||
+                SaveData.HasKey("SaveNumber1") == true && SaveData.HasKey("SaveSlotPurpose1") == true &&
+                SaveData.HasKey("SaveSlotTimes1") == true && SaveData.HasKey("SaveSlotTurnString1") == true)
+                {
+                    Debug.Log("03_セーブモード");
+                    StartSave();
+                    /*01タイトル*/
+                    SaveDataConditionsText2.text = "第" + SaveNumber[2] +
+                                                  "章 " + SaveSlotPurpose[2];
 
-                /*02プレイ時間*/
-                SaveRenderTimes = SaveSlotTimes[2];
-                SaveDataTimeText2.text = ("プレイ時間 " + string.Format("{1:00}:{2:00}",
-                                                     Mathf.Floor(SaveRenderTimes / 3600f),
-                                                     Mathf.Floor(SaveRenderTimes / 60f),
-                                                     Mathf.Floor(SaveRenderTimes % 60f),
-                                                     SaveRenderTimes % 1 * 99));
-                /*03累計ターン数*/
-                SaveDataTurnText2.text = "累計ターン数 " + SaveSlotTurnString[2];
-                /*04キャラクターの名前*/
-                SaveDataNameText2.text = "ヒュー";
-                SaveDistribute();
-                Debug.Log("スロット2 セーブしました");
+                    /*02プレイ時間*/
+                    SaveRenderTimes = SaveSlotTimes[2];
+                    SaveDataTimeText2.text = ("プレイ時間 " + string.Format("{1:00}:{2:00}",
+                                                         Mathf.Floor(SaveRenderTimes / 3600f),
+                                                         Mathf.Floor(SaveRenderTimes / 60f),
+                                                         Mathf.Floor(SaveRenderTimes % 60f),
+                                                         SaveRenderTimes % 1 * 99));
+                    /*03累計ターン数*/
+                    SaveDataTurnText2.text = "累計ターン数 " + SaveSlotTurnString[2];
+                    /*04キャラクターの名前*/
+                    SaveDataNameText2.text = "ヒュー";
+                    SaveDistribute();
+                    Debug.Log("スロット2 セーブしました");
+                }
+                else
+                {
+                    Debug.Log("エラー番号02:セーブデータがありません");
+                }
             }
         }));
     }
@@ -257,6 +363,7 @@ public class GameDataSaveManager : MonoBehaviour
             {
                 SaveDataNoText1.enabled = false;
             }
+            SaveSloatInitNamber = 1;
         }
     }
     public void SetSaveSlot2()
@@ -283,6 +390,7 @@ public class GameDataSaveManager : MonoBehaviour
             {
                 SaveDataNoText2.enabled = false;
             }
+            SaveSloatInitNamber2 = 1;
         }
     }
 
@@ -293,11 +401,18 @@ public class GameDataSaveManager : MonoBehaviour
         FindObjectOfType<Fade>().SetScene("Story");
 
     }
+    public void SetSaveOut()
+    {
+        FindObjectOfType<Fade>().SetOutFade(true);
+        FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+        FindObjectOfType<Fade>().SetScene("SaveData");
+
+    }
     /*ボタンが押された後に保存*/
     private void SaveDistribute()
     {
         /*ダミーボタンセット*/
-        eventSystem.SetSelectedGameObject(DummyButton);
+        eventSystem.sendNavigationEvents = false;
         /*数値の保存*/
         /*章番号*/
         SaveData.SetInt("SaveNumber" + SaveSlotNumber, SaveNumber[SaveSlotNumber]);
@@ -307,10 +422,17 @@ public class GameDataSaveManager : MonoBehaviour
         SaveData.SetFloat("SaveSlotTimes" + SaveSlotNumber, SaveSlotTimes[SaveSlotNumber]);
         /*章のターン*/
         SaveData.SetInt("SaveSlotTurnString" + SaveSlotNumber, SaveSlotTurnString[SaveSlotNumber]);
+        /*全体セーブ*/
         SaveData.Save();
+        SaveData.Remove("GameSaveCheck");
+        if (SaveData.HasKey("SaveData") == false)
+        {
+            Debug.Log("セーブキーが削除されました");
+        }
         /*遅延実行*/
         Invoke("SetFadeOut", 1.5f);
         Debug.Log("保存");
+
     }
     /// <summary>
     /// ゲームから要素をロードします
@@ -329,13 +451,29 @@ public class GameDataSaveManager : MonoBehaviour
         Debug.Log("要素取得");
 
     }
-
     private void DataClear()
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
             Debug.Log("クリア");
             SaveData.Clear();
+        }
+    }
+    public void DeleteButton()
+    {
+        Debug.Log("選択時にセーブデータを削除します。");
+        
+        if (D_Count == 0)
+        {
+            Debug.Log("削除モードオン");
+            D_Count = 1;
+            SaveDataDeleteFlag = true;
+        }
+        else
+       {
+            Debug.Log("削除モードオフ");
+            D_Count = 0;
+            SaveDataDeleteFlag = false;
         }
     }
 }

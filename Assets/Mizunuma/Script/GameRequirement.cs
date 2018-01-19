@@ -7,6 +7,10 @@ public class GameRequirement : MonoBehaviour
     /*セーブデータ格納変数*/
     private int SaveDataTurn = 0;
     private float SaveDataTime = 0;
+    private int SaveOne = 0;
+    void Start()
+    {
+    }
 
     void Update()
     {
@@ -30,7 +34,7 @@ public class GameRequirement : MonoBehaviour
         /*クリア時セーブ*/
         GameSituationDataSave();
         /*次の章へ現在はタイトルにしている。*/
-        FindObjectOfType<Fade>().SetScene("Title");
+        FindObjectOfType<Fade>().SetScene("Story");
         /*フェード実行*/
         FadeInitialize();
     }
@@ -59,18 +63,28 @@ public class GameRequirement : MonoBehaviour
     /// </summary>
     private void GameSituationDataSave()
     {
-        /*ターンセーブ*/
-        SaveDataTurn = FindObjectOfType<SituationTexts>().GetTurn();
-        SaveData.SetInt("GameDataTurn",SaveDataTurn);
-        /*タイムセーブ*/
-        SaveDataTime = FindObjectOfType<SituationTexts>().GetTime();
-        SaveData.SetFloat("GameDataTime", SaveDataTime);
-        Debug.Log(SaveDataTime);
-        /*章番号セーブ*/
-        SaveData.SetInt("GameDataNumber", FindObjectOfType<StoryCSVReader>().GetStoryNumber());
-        /*章タイトルセーブ*/
-        SaveData.SetString("GameDataTitle", FindObjectOfType<StoryCSVReader>().GetStoryTitle());
-        /*クリア時にセーブ*/
-        SaveData.Save();
+        GameDataFolderSave();
+    }
+
+    private void GameDataFolderSave()
+    {
+        if (SaveOne == 0)
+        {
+            /*ターンセーブ*/
+            SaveDataTurn = FindObjectOfType<SituationTexts>().GetTurn();
+            SaveData.SetInt("GameDataTurn", SaveDataTurn);
+            /*タイムセーブ*/
+            SaveDataTime = FindObjectOfType<SituationTexts>().GetTime();
+            SaveData.SetFloat("GameDataTime", SaveDataTime);
+            /*章番号セーブ*/
+            SaveData.SetInt("GameDataNumber", FindObjectOfType<StoryCSVReader>().GetStoryNumber());
+            /*章タイトルセーブ*/
+            SaveData.SetString("GameDataTitle", FindObjectOfType<StoryCSVReader>().GetStoryTitle());
+            /*クリア時にセーブ*/
+            SaveData.Save();
+            /*セーブ用キー作成*/
+            SaveData.SetString("GameSaveCheck", "SaveCheck");
+            SaveOne = 1;
+        }
     }
 }
