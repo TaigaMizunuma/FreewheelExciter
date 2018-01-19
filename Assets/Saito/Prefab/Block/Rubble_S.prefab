@@ -148,7 +148,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
-  startPosition: 0
+  startPosition: 1
   characterObj: {fileID: 0}
 --- !u!114 &114587355695787182
 MonoBehaviour:

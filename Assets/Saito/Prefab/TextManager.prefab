@@ -58,6 +58,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 34ed2c59a87684f4a86d65b6310f5406, type: 3}
   - {fileID: 21300000, guid: 4fad3071e68051140b115ead5f845a4e, type: 3}
   - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: 5ea0acd059a2aed4ca19f744bf5d7e77, type: 3}
+  - {fileID: 21300000, guid: 6d82b00fbacec49459d292c4f7967d4a, type: 3}
+  - {fileID: 21300000, guid: 057bba9d6571bae4ca7741d31fb07dcc, type: 3}
+  - {fileID: 21300000, guid: 248a0a2f239941d48bde6ce5342e2cc8, type: 3}
+  - {fileID: 21300000, guid: 964576c325aa15746aabc7b6ab1bcf09, type: 3}
+  - {fileID: 21300000, guid: 6e58d9ed0a294d746a65156461761a89, type: 3}
+  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
+  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
+  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
+  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
+  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
+  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
+  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
+  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
+  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
   backGround: []
 --- !u!114 &114435155072594706
 MonoBehaviour:
@@ -70,6 +85,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215c467f7ba30e34dba36508d5754dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  storyNumber: 0
+  nextLoadScene: 
+  endFlag: 0
   dataLoadName: 
   readStartNumber: 0
   readEndNumber: 0

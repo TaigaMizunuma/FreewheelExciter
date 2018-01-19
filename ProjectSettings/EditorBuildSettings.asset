@@ -15,8 +15,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage1_ver2.unity
     guid: df46d4ecd8adb154aa7de88f16090f64
   - enabled: 1
+    path: Assets/Saito/Scene/Stage2.unity
+    guid: 110b2a08af39fef4ca6f2b13052bb415
+  - enabled: 1
+    path: Assets/Saito/Scene/Stage3.unity
+    guid: 4db5c9de4de757c4cba47bfcfb972309
+  - enabled: 1
+    path: Assets/Saito/Scene/Stage4.unity
+    guid: b23d1733eccd8904f8e09b341372d5ca
+  - enabled: 1
+    path: Assets/Saito/Scene/Stage5.unity
+    guid: 00000000000000000000000000000000
+  - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: d08707468652fd2408cff0a92d7e2f1c
   - enabled: 1
     path: Assets/Scenes/SaveData.unity
-    guid: 00000000000000000000000000000000
+    guid: 43c5189a850651a4394c9e8d73cfac1f

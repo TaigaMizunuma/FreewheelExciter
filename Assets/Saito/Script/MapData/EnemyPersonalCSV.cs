@@ -25,12 +25,15 @@ public class EnemyPersonalCSV : MonoBehaviour
     [SerializeField]
     string e_strength;
 
+    [SerializeField]
+    int storyCount;
 
-
-    void Start()
+    void Awake()
     {
+        storyCount = FindObjectOfType<StoryCSVReader>().GetStoryNumber();
+
         //エネミー初期パラメータCSVデータ読み込み
-        c_enePerCSVFile = Resources.Load("CSV/MapEnemyPersonalData/" + c_enePerCSVName) as TextAsset;
+        c_enePerCSVFile = Resources.Load("CSV/MapEnemyPersonalData/" + "Stage" + storyCount + "_EnemyPersonalData") as TextAsset;
 
         StringReader reader = new StringReader(c_enePerCSVFile.text);
 
@@ -45,6 +48,10 @@ public class EnemyPersonalCSV : MonoBehaviour
         e_level = int.Parse(c_enemyPerDatas[e_number + 1][2]);
         e_job = c_enemyPerDatas[e_number + 1][3];
         e_strength = c_enemyPerDatas[e_number + 1][4];
+    }
+
+    void Start()
+    {
 
     }
 

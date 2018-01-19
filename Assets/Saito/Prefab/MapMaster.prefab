@@ -60,8 +60,18 @@ MonoBehaviour:
   - {fileID: 1842369222309254, guid: ab4f498c2af3f564382c258078f223ac, type: 2}
   - {fileID: 1306967804695840, guid: 74d60cee79abe5642a3babb23984f4ef, type: 2}
   - {fileID: 1025188022752370, guid: d1531cc9abcc95148a697fd87726864c, type: 2}
-  - {fileID: 1025188022752370, guid: d1531cc9abcc95148a697fd87726864c, type: 2}
-  MapCSV: Stage2_Map
+  - {fileID: 1025188022752370, guid: edd167b7332b37e4cbd294ac695a3608, type: 2}
+  - {fileID: 1159494132121844, guid: 6685de6b7cdae074a8d5ba2bca18a988, type: 2}
+  start_Blocks:
+  - {fileID: 1447706069781276, guid: 60b911e655d36004b87830b1097aa20f, type: 2}
+  - {fileID: 1055318656718074, guid: 476fd5f0eeafc714189f303a42816632, type: 2}
+  - {fileID: 1265769600551596, guid: 5d839f87316ccfd40887c64c6a4a34b6, type: 2}
+  - {fileID: 1842369222309254, guid: 35b2bff74fc3bd745b60ea4ab547fd7c, type: 2}
+  - {fileID: 1306967804695840, guid: 357ce82a2b8a99641b4a5bf63a70fdb5, type: 2}
+  - {fileID: 1025188022752370, guid: 93b37270281fde747b0b8fd278ebb379, type: 2}
+  - {fileID: 1025188022752370, guid: 9c424b4ef33247048af8e6d64de452e8, type: 2}
+  - {fileID: 1159494132121844, guid: 44901a04fbd522c4aab2ddeb602df147, type: 2}
+  MapCSV: Stage1_Map
   AdjustmentPosX: -8
   AdjustmentPosY: 0
   AdjustmentPosZ: 0.5
@@ -86,7 +96,7 @@ MonoBehaviour:
   - {fileID: 1724679625813882, guid: 0ae505e2d2d69464490b5baf15f0b1d2, type: 2}
   - {fileID: 1724679625813882, guid: 919e9890e9725564ba47980386e45a75, type: 2}
   - {fileID: 1724679625813882, guid: 68a8b2aeda360da4da0a6b7bd467fade, type: 2}
-  c_enemyPosCSVName: Stage2_Enemy
+  c_enemyPosCSVName: Stage1_Enemy
   AdjustmentPosX: -8
   AdjustmentPosY: 0.5
   AdjustmentPosZ: 0.5

@@ -1,0 +1,14 @@
+﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions
+5,0,ヒュー,みんな準備はできたか？　坑道へ行くぞ！,0,0,0,0,ON,OFF,OFF,OFF,0,Battle5,0,9,0,異端からの反撃,Stage5,Boss
+,1,アイン,結局、ハイランドに戻らないといけないか…,0,1,0,0,OFF,ON,OFF,OFF,0,,0,9,,,,
+,2,キース,何が待ってるかしらないが、ここよりはいいだろう,0,0,2,0,OFF,OFF,ON,OFF,0,,0,9,,,,
+,3,ケン,俺の拳法…どこまで通用するか…,0,0,0,3,OFF,OFF,OFF,ON,0,,0,9,,,,
+,4,ゲイリー,レナードさんに会って、特別ボーナスでももらうかね,4,0,0,0,ON,OFF,OFF,OFF,0,,0,9,,,,
+,5,イゴール,どこであろうと、俺は自由に走るだけだぜ,0,6,0,0,OFF,ON,OFF,OFF,0,,0,9,,,,
+,6,サイモン,俺の予想なんだが、この戦い、うまくいくと思うぜ,0,0,7,0,OFF,OFF,ON,OFF,0,,0,9,,,,
+,7,ジャイロ,坑道でヘリってどうなんだ？,0,0,0,8,OFF,OFF,OFF,ON,0,,0,9,,,,
+,8,フィーナ,まだよくわかってないけど、やるしかない！,9,0,0,0,ON,OFF,OFF,OFF,0,,9,14,,,,
+,9,ヴィック,夢にまで見た上の世界か…,0,10,0,0,OFF,ON,OFF,OFF,0,,16,14,,,,
+,10,ジェーコブ,…,0,0,0,5,SHADE,OFF,OFF,ON,0,,16,14,,,,
+,11,ヒュー,どうした？,0,0,0,5,ON,OFF,OFF,SHADE,0,,16,14,,,,
+,12,ジェーコブ,…いや、大したことではない　往くか,0,0,0,5,SHADE,OFF,OFF,ON,1,,16,14,,,,

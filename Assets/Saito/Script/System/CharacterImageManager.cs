@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class CharacterImageManager : MonoBehaviour {
 
-    //キャラクターの顔グラ
+    //メインキャラクター(仲間になるキャラ)の顔グラ
+    [Tooltip("要素10まではメインキャラで固定にします")]
     public Sprite[] characterImage;
 
     //会話中の背景

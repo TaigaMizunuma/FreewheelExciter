@@ -52,6 +52,10 @@ public class EnemyImporter : MonoBehaviour
 
     void Awake()
     {
+    }
+
+    void Start()
+    {
         //エネミー初期配置CSVデータ読み込み
         c_enemyPosFile = Resources.Load("CSV/MapEnemyPlaceData/" + c_enemyPosCSVName) as TextAsset;
 
@@ -64,10 +68,6 @@ public class EnemyImporter : MonoBehaviour
             c_enemyPosHeight++;
         }
         EnemyInstance();
-    }
-
-    void Start()
-    {
     }
     void EnemyInstance()
     {

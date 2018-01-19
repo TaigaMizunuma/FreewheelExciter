@@ -17,6 +17,7 @@ public class StoryCSVReader : MonoBehaviour
     int storyID;
 
     //章番号
+    [SerializeField]
     int storyNumber;
 
     //バトル中かストーリー画面かの判定(バトル中に他シーンに飛ばないようにするため)
@@ -27,6 +28,7 @@ public class StoryCSVReader : MonoBehaviour
     static int nextreadEndNumber;
 
     //次にロードするシーンの名前
+    [SerializeField]
     string nextLoadScene;
 
     //今表示しているテキスト
@@ -52,6 +54,7 @@ public class StoryCSVReader : MonoBehaviour
     string clearCondition;
 
     //テキストの終了判定
+    [SerializeField]
     int endFlag;
 
     //何処からストーリーデータをロードするか
@@ -147,10 +150,6 @@ public class StoryCSVReader : MonoBehaviour
             storyCSVDatas.Add(line.Split(','));
             storyCSVHeight++;
         }
-    }
-
-    void Start()
-    {
         //読み込んだデータの処理
         for (column = 0; column < storyCSVDatas.Count; column++)
         {
@@ -166,13 +165,14 @@ public class StoryCSVReader : MonoBehaviour
                 if (storySheetText != null)
                 {
                     nameText.text = storyCharacterName;
-                }else{
+                }
+                else {
                     nameImage.SetActive(false);
                     nameText.text = "";
                 }
                 LOneCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][4]);
-                ROneCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][5]);
-                LTwoCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][6]);
+                LTwoCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][5]);
+                ROneCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][6]);
                 RTwoCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][7]);
 
                 LOneCharacterWindowImage.sprite = c_ImgManager.characterImage[LOneCharacterImageNum];
@@ -181,8 +181,8 @@ public class StoryCSVReader : MonoBehaviour
                 RTwoCharacterWindowImage.sprite = c_ImgManager.characterImage[RTwoCharacterImageNum];
 
                 LOneBlackOut = storyCSVDatas[storyID + 1][8];
-                ROneBlackOut = storyCSVDatas[storyID + 1][9];
-                LTwoBlackOut = storyCSVDatas[storyID + 1][10];
+                LTwoBlackOut = storyCSVDatas[storyID + 1][9];
+                ROneBlackOut = storyCSVDatas[storyID + 1][10];
                 RTwoBlackOut = storyCSVDatas[storyID + 1][11];
 
                 endFlag = int.Parse(storyCSVDatas[storyID + 1][12]);
@@ -191,15 +191,22 @@ public class StoryCSVReader : MonoBehaviour
                 nextreadEndNumber = int.Parse(storyCSVDatas[storyID + 1][15]);
                 sceneMode = int.Parse(storyCSVDatas[storyID + 1][16]);
 
-                if(sceneMode == 0){
+                if (sceneMode == 0)
+                {
                     scenePattern = ScenePattern.Message;
-                }else{
+                }
+                else {
                     scenePattern = ScenePattern.Battle;
                 }
 
                 FindObjectOfType<Fade>().SetScene(storyCSVDatas[storyID + 1][18]);
             }
         }
+
+    }
+
+    void Start()
+    {
         red = 1f; green = 1f; blue = 1f;
         BlackOut();
     }
@@ -246,6 +253,7 @@ public class StoryCSVReader : MonoBehaviour
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
                     nextLoadScene = FindObjectOfType<Fade>().GetScene();
+                    //デバッグ用
                     FindObjectOfType<Fade>().SetOutFade(true);
                     FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
                 }
@@ -280,8 +288,8 @@ public class StoryCSVReader : MonoBehaviour
     void CharacterImageDisplay()
     {
         LOneCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][4]);
-        ROneCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][5]);
-        LTwoCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][6]);
+        LTwoCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][5]);
+        ROneCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][6]);
         RTwoCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][7]);
 
         LOneCharacterWindowImage.sprite = c_ImgManager.characterImage[LOneCharacterImageNum];
@@ -290,8 +298,8 @@ public class StoryCSVReader : MonoBehaviour
         RTwoCharacterWindowImage.sprite = c_ImgManager.characterImage[RTwoCharacterImageNum];
 
         LOneBlackOut = storyCSVDatas[storyID + 1][8];
-        ROneBlackOut = storyCSVDatas[storyID + 1][9];
-        LTwoBlackOut = storyCSVDatas[storyID + 1][10];
+        LTwoBlackOut = storyCSVDatas[storyID + 1][9];
+        ROneBlackOut = storyCSVDatas[storyID + 1][10];
         RTwoBlackOut = storyCSVDatas[storyID + 1][11];
 
         BlackOut();

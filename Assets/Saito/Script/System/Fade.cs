@@ -32,6 +32,7 @@ public class Fade : MonoBehaviour {
     [HideInInspector]
     public bool sceneChangeSwitch;
 
+    [SerializeField]
     private string changeName;
 
     void Start ()

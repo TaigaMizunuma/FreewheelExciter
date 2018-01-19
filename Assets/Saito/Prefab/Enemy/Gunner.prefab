@@ -1654,11 +1654,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   e_number: 0
-  c_enePerCSVName: Stage2_EnemyPersonalData
+  c_enePerCSVName: 
   e_name: 
   e_level: 0
   e_job: 
   e_strength: 
+  storyCount: 0
 --- !u!114 &114645874313749972
 MonoBehaviour:
   m_ObjectHideFlags: 1
