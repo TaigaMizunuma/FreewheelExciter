@@ -471,6 +471,7 @@ public class GameDataSaveManager : MonoBehaviour
             D_Count = 1;
             SaveDataDeleteFlag = true;
             m_Animation3.Play();
+            
         }
         else
        {

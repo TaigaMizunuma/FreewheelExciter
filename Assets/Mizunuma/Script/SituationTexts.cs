@@ -105,8 +105,8 @@ public class SituationTexts : MonoBehaviour
     {
         /*章番号*/
         /*ストーリー番号 章タイトルを記入*/
-        StoryStringText.text = "第" + FindObjectOfType<StoryCSVReader>().GetStoryNumber() + 
-                               " 章" + FindObjectOfType<StoryCSVReader>().GetStoryTitle();
+        StoryStringText.text = "第 " + FindObjectOfType<StoryCSVReader>().GetStoryNumber() + 
+                               " 章 " + FindObjectOfType<StoryCSVReader>().GetStoryTitle();
 
         /*テキスト書き換え 敵の数関係取得*/
         EnemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
@@ -114,7 +114,7 @@ public class SituationTexts : MonoBehaviour
         PlayerObjects = GameObject.FindGameObjectsWithTag("Player");
         PlayerCounterText.text = "自軍" + PlayerObjects.Length + "体";
 
-        TurnText_05.text = "ターン数: " + TurnCount;
+        TurnText_05.text = "ターン数 " + TurnCount;
 
         
 

@@ -2781,7 +2781,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1727008686214786, guid: f75a52e7524462347bdedfa0f8da22d7, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114098214929626096, guid: f75a52e7524462347bdedfa0f8da22d7,
         type: 2}
@@ -6264,7 +6264,7 @@ Prefab:
     - target: {fileID: 114497342842723724, guid: bfe1b8393775c4d4594589283e104ee8,
         type: 2}
       propertyPath: GameStart
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfe1b8393775c4d4594589283e104ee8, type: 2}
@@ -12800,6 +12800,61 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114779591108382770, guid: d1ca20f1492d80e4496627a48e813cc2,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: c7e45cb862d2bda45a8f89be52cd9cf9, type: 3}
+    - target: {fileID: 114932068332686734, guid: d1ca20f1492d80e4496627a48e813cc2,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: c7e45cb862d2bda45a8f89be52cd9cf9, type: 3}
+    - target: {fileID: 114602686149001046, guid: d1ca20f1492d80e4496627a48e813cc2,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: c7e45cb862d2bda45a8f89be52cd9cf9, type: 3}
+    - target: {fileID: 114868364739501626, guid: d1ca20f1492d80e4496627a48e813cc2,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: c7e45cb862d2bda45a8f89be52cd9cf9, type: 3}
+    - target: {fileID: 114256473307364456, guid: d1ca20f1492d80e4496627a48e813cc2,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: c7e45cb862d2bda45a8f89be52cd9cf9, type: 3}
+    - target: {fileID: 114404830519879838, guid: d1ca20f1492d80e4496627a48e813cc2,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: c7e45cb862d2bda45a8f89be52cd9cf9, type: 3}
+    - target: {fileID: 114060102411981190, guid: d1ca20f1492d80e4496627a48e813cc2,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: c7e45cb862d2bda45a8f89be52cd9cf9, type: 3}
+    - target: {fileID: 114058198002035204, guid: d1ca20f1492d80e4496627a48e813cc2,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: c7e45cb862d2bda45a8f89be52cd9cf9, type: 3}
+    - target: {fileID: 114402832771379820, guid: d1ca20f1492d80e4496627a48e813cc2,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: c7e45cb862d2bda45a8f89be52cd9cf9, type: 3}
+    - target: {fileID: 114534131916469572, guid: d1ca20f1492d80e4496627a48e813cc2,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: c7e45cb862d2bda45a8f89be52cd9cf9, type: 3}
+    - target: {fileID: 114575922873640594, guid: d1ca20f1492d80e4496627a48e813cc2,
+        type: 2}
+      propertyPath: m_Text
+      value: "\u7D42\u4E86\u3057\u307E\u3059\u304B\uFF1F"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1ca20f1492d80e4496627a48e813cc2, type: 2}
