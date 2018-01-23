@@ -96,6 +96,7 @@ public class BattleFlowTest : MonoBehaviour
     }
     void Start()
     {
+        FindObjectOfType<MenuManager>().SetMainControlFlag(true);
         if (GameStart) StartGame();
     }
 
