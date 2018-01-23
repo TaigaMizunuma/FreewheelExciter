@@ -33,12 +33,12 @@ public class ItemPrefabList : MonoBehaviour {
         {
             Debug.Log("アイテムがいっぱいです");
             item.transform.parent = transform;
-            ItemAddList();
+            _itemprefablist.Add(item);
         }
         else
         {
             item.transform.parent = transform;
-            ItemAddList();
+            _itemprefablist.Add(item);
         }
     }
 

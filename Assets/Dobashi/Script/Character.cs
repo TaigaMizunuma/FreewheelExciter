@@ -135,6 +135,10 @@ public class Character : MonoBehaviour {
 
     public bool _stability = false;         //追撃できないかどうか
     public bool _georges = false;           //ジョルジュの有無
+    public bool _healplus = false;          //回復量増加
+    public bool _yani = false;              //ヤニの有無
+    public int _yaniTurn = 0;               //ヤニの残りたーん
+    public int _healplusturn = 0;           //回復量増加残りターン
 
     public GameObject _itemprefablist;      //アイテムの親オブジェクトの取得
     public GameObject _skillprefablist;     //スキルの親オブジェクトの取得
@@ -176,6 +180,7 @@ public class Character : MonoBehaviour {
         Sleep = 4,      //睡眠
         Confusion = 5   //混乱
     }
+
 
     // Use this for initialization
     void Start()
@@ -438,7 +443,7 @@ public class Character : MonoBehaviour {
         }
         _skillprefablist.GetComponent<SkillPrefabList>().CheckSkillLevel(_totalLevel);
         TotalStatus();
-        FullRecoveryHP();
+        RecoveryHP(100);
 
     }
 
@@ -716,11 +721,22 @@ public class Character : MonoBehaviour {
     }
 
     /// <summary>
-    /// HPの全回復
+    /// HPの回復
     /// </summary>
-    public void FullRecoveryHP()
+    public void RecoveryHP(int _heal)
     {
-        _totalhp = _totalMaxhp;
+        int i = 0;
+        i = _heal;
+        //回復量増加状態
+        if (_healplus)
+        {
+            i = (int)(i * 1.5f);
+        }
+        _totalhp += i;
+        if (_totalhp > _totalMaxhp)
+        {
+            _totalhp = _totalMaxhp;
+        }
     }
 
     /// <summary>
@@ -786,6 +802,24 @@ public class Character : MonoBehaviour {
         {
             Debug.Log("やけどダメージ");
             _totalhp -= (int)(_totalMaxhp * 0.4f);
+        }
+        if (_yani)
+        {
+            Debug.Log("タバコで回復");
+            RecoveryHP((int)(_totalMaxhp * 0.1f));
+            _yaniTurn--;
+            if (_yaniTurn <= 0)
+            {
+                _yani = false;
+            }
+        }
+        if (_healplus)
+        {
+            _healplusturn--;
+            if (_healplusturn <= 0)
+            {
+                _healplus = false;
+            }
         }
         TotalStatus();
     }

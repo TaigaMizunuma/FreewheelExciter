@@ -109,12 +109,12 @@ public class Item : MonoBehaviour {
         if (i._skillchecker._Oldsoldier)
         {
             //HP回復2倍
-            i._totalhp += _recovery * 2;
+            i.RecoveryHP(_recovery * 2);
         }
         else
         {
             //HP回復
-            i._totalhp += _recovery;
+            i.RecoveryHP(_recovery);
         }
         
         switch (_effect)
@@ -125,9 +125,13 @@ public class Item : MonoBehaviour {
                 break;
             case Effect_Type.healplus:
                 //回復量増加
+                i._yani = true;
+                i._yaniTurn = 5;
                 break;
             case Effect_Type.regeneration:
                 //リジェネ
+                i._healplus = true;
+                i._healplusturn = 3;
                 break;
             case Effect_Type.classchange:
                 //クラスチェンジ
