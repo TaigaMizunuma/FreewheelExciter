@@ -1617,6 +1617,11 @@ MonoBehaviour:
   _range: 0000000000000000
   _stability: 0
   _georges: 0
+  _healplus: 0
+  _yani: 0
+  _yaniTurn: 0
+  _healplusturn: 0
+  _isDead: 0
   _itemprefablist: {fileID: 0}
   _skillprefablist: {fileID: 0}
   _skillchecker: {fileID: 0}
@@ -1729,9 +1734,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _name: "\u304D\u305A\u3050\u3059\u308A"
-  _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
+  _message: "HP\u309210\u56DE\u5FA9\u3059\u308B"
   _recovery: 10
-  _stock: 10
+  _stock: 3
   _type: Item
   _effect: 0
 --- !u!114 &114429690468638308
@@ -1882,6 +1887,7 @@ MonoBehaviour:
   r_addbuffstatus: 
   r_stability: 0
   r_state: 0
+  r_isDead: 0
   r_itemobj: {fileID: 0}
   r_skillobj: {fileID: 0}
 --- !u!114 &114819497073158804
