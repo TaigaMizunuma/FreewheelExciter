@@ -299,9 +299,44 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 114952964009688384, guid: 9a5d5addf3a0f154e8b28228fd30697e,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114952964009688384, guid: 9a5d5addf3a0f154e8b28228fd30697e,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114952964009688384, guid: 9a5d5addf3a0f154e8b28228fd30697e,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a5d5addf3a0f154e8b28228fd30697e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &204917814 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1861838384361876, guid: 9a5d5addf3a0f154e8b28228fd30697e,
+    type: 2}
+  m_PrefabInternal: {fileID: 204917813}
+--- !u!111 &204917815
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204917814}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ea0c18de3e9595b4f8fc24618625ac59, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: ea0c18de3e9595b4f8fc24618625ac59, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &271397815 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1822336326439510, guid: 9a5d5addf3a0f154e8b28228fd30697e,
@@ -619,6 +654,7 @@ MonoBehaviour:
   isFadeOut: 0
   isFadeIn: 0
   sceneChangeSwitch: 0
+  changeName: 
 --- !u!4 &2071441657
 Transform:
   m_ObjectHideFlags: 0

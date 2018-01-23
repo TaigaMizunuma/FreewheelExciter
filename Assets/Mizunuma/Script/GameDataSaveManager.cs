@@ -76,6 +76,7 @@ public class GameDataSaveManager : MonoBehaviour
     /// </summary>
     private Animation m_Animation;
     private Animation m_Animation2;
+    private Animation m_Animation3;
 
     /// <summary>
     /// 
@@ -98,6 +99,7 @@ public class GameDataSaveManager : MonoBehaviour
         SetSaveSlot2();
         m_Animation = GameObject.Find("SaveDatas[1]").GetComponent<Animation>();
         m_Animation2 = GameObject.Find("SaveDatas[2]").GetComponent<Animation>();
+        m_Animation3 = GameObject.Find("DeleteText").GetComponent<Animation>();
         SavePlayerPicture1 = GameObject.Find("SavaDataPlayerPicture").GetComponent<Image>();
         SavePlayerPicture2 = GameObject.Find("SavaDataPlayerPicture2").GetComponent<Image>();
 
@@ -468,12 +470,14 @@ public class GameDataSaveManager : MonoBehaviour
             Debug.Log("削除モードオン");
             D_Count = 1;
             SaveDataDeleteFlag = true;
+            m_Animation3.Play();
         }
         else
        {
             Debug.Log("削除モードオフ");
             D_Count = 0;
             SaveDataDeleteFlag = false;
+            m_Animation3.Stop();
         }
     }
 }

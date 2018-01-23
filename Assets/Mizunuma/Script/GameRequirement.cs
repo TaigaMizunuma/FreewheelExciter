@@ -84,6 +84,7 @@ public class GameRequirement : MonoBehaviour
             SaveData.Save();
             /*セーブ用キー作成*/
             SaveData.SetString("GameSaveCheck", "SaveCheck");
+            /*セーブカウント*/
             SaveOne = 1;
         }
     }
