@@ -105,7 +105,7 @@ public class BattleFlowTest : MonoBehaviour
         //仮 勝敗判定
         if (!GameObject.FindGameObjectWithTag("Enemy"))
         {
-            _TurnText.text = "GameClear!!";
+            //_TurnText.text = "GameClear!!";
             GameEnd = true;
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
@@ -114,7 +114,7 @@ public class BattleFlowTest : MonoBehaviour
         }
         else if(!GameObject.FindGameObjectWithTag("Player"))
         {
-            _TurnText.text = "GameOver...";
+            //_TurnText.text = "GameOver...";
             GameEnd = true;
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
@@ -1049,6 +1049,7 @@ public class BattleFlowTest : MonoBehaviour
             Turn_TextReset();
             FindObjectOfType<RayBox>().move_ = true;
             state_ = State_.simulation_mode;
+            FindObjectOfType<RayBox>().LookHero();
             FindObjectOfType<SituationTexts>().TurnCountUp();
         }));
     }
@@ -1295,7 +1296,7 @@ public class BattleFlowTest : MonoBehaviour
         Shousai.SetActive(false);
         SetActionEnemy();
 
-        _TurnText.text = "第"+FindObjectOfType<StoryCSVReader>().GetStoryNumber() +"章 \n PlayerTurn";
+        _TurnText.text = "第" + FindObjectOfType<StoryCSVReader>().GetStoryNumber() + "章 \n PlayerTurn";
 
         //m_audio.PlayBgm("battle1");
 
@@ -1306,8 +1307,11 @@ public class BattleFlowTest : MonoBehaviour
             FindObjectOfType<MenuManager>().SetMainControlFlag(false);
             FindObjectOfType<SubMenuRenderer>().GetSubControlFlag(false);
             rayBox.GetComponent<RayBox>().move_ = true;
+            state_ = State_.stay_mode;
         }));
 
         GameStart = true;
     }
+
+    
 }
