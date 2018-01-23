@@ -1307,7 +1307,7 @@ public class BattleFlowTest : MonoBehaviour
             FindObjectOfType<MenuManager>().SetMainControlFlag(false);
             FindObjectOfType<SubMenuRenderer>().GetSubControlFlag(false);
             rayBox.GetComponent<RayBox>().move_ = true;
-            state_ = State_.stay_mode;
+            state_ = State_.simulation_mode;
         }));
 
         GameStart = true;
