@@ -253,6 +253,16 @@ public class BattleFlowTest : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// ゲームが終了したか?
+    /// </summary>
+    /// <returns></returns>
+    public bool GetGameEnd()
+    {
+        return GameEnd;
+    }
+
     /// <summary>
     /// キャラ選択モード
     /// </summary>
