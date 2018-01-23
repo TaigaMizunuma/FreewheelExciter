@@ -1,5 +1,5 @@
 ﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions
-3,0,ヒュー,ファイアフライ…厳しい戦いだった…,0,0,0,1,ON,OFF,OFF,OFF,0,Story4Before,0,12,0,嵐の出撃,Story,Boss
+3,0,ヒュー,ファイアフライ…厳しい戦いだった…,0,0,0,1,ON,OFF,OFF,OFF,0,Story4Before,0,12,0,嵐の出撃,SaveData,Boss
 ,1,アイン,だが、これで3つも倒したことになるぜ,0,0,0,1,SHADE,OFF,OFF,ON,0,,0,0,,,,
 ,2,ヒュー,そうだな。,0,0,0,1,ON,OFF,OFF,SHADE,0,,0,0,,,,
 ,3,ヒュー,おいあんた、何かちょうどいい敵を知らないか,0,0,0,1,ON,OFF,OFF,SHADE,0,,0,0,,,,

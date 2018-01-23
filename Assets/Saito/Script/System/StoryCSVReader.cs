@@ -14,10 +14,10 @@ public class StoryCSVReader : MonoBehaviour
     string s_title;
 
     //今表示してるID
+    [SerializeField]
     int storyID;
 
     //章番号
-    [SerializeField]
     int storyNumber;
 
     //バトル中かストーリー画面かの判定(バトル中に他シーンに飛ばないようにするため)
@@ -125,6 +125,11 @@ public class StoryCSVReader : MonoBehaviour
     //シーンごとの処理分けステート
     ScenePattern scenePattern;
 
+    public bool battleScenarioSwitch;
+
+    [SerializeField]
+    GameObject messageWindow;
+
     enum ScenePattern
     {
         Message,
@@ -195,9 +200,12 @@ public class StoryCSVReader : MonoBehaviour
                 {
                     scenePattern = ScenePattern.Message;
                 }
-                else {
+                else
+                {
                     scenePattern = ScenePattern.Battle;
                 }
+                readStartNumber = 0;
+                readEndNumber = int.Parse(storyCSVDatas[storyID + 1][15]);
 
                 FindObjectOfType<Fade>().SetScene(storyCSVDatas[storyID + 1][18]);
             }
@@ -221,49 +229,60 @@ public class StoryCSVReader : MonoBehaviour
     /// </summary>
     void TextDisplay()
     {
-        if (endFlag == 0 && fade.isFadeIn == false)
+        if (fade.isFadeIn == false)
         {
-            if (Input.GetKeyDown(KeyCode.U)){
+            if(scenePattern == ScenePattern.Message)
+            {
+                MessageStory();
+            }
+            if(scenePattern == ScenePattern.Battle)
+            {
+                BattleStory();
+            }
+        }
+    }
+
+    void MessageStory()
+    {
+        if (endFlag == 0)
+        {
+            if (Input.GetKeyDown(KeyCode.U))
+            {
                 storyID += 1;
                 endFlag = int.Parse(storyCSVDatas[storyID + 1][12]);
                 storyCharacterName = storyCSVDatas[storyID + 1][2];
                 storySheetText = storyCSVDatas[storyID + 1][3];
                 storyText.text = storySheetText;
-                if(storyCharacterName != "")
+                if (storyCharacterName != "")
                 {
                     nameText.text = storyCharacterName;
                     nameImage.SetActive(true);
-                }else{
+                }
+                else {
                     nameText.text = "";
                     nameImage.SetActive(false);
                 }
                 CharacterImageDisplay();
             }
-            if (Input.GetKeyDown(KeyCode.O)){
-                if (scenePattern == ScenePattern.Message){
+
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                if (scenePattern == ScenePattern.Message)
+                {
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
                     nextLoadScene = FindObjectOfType<Fade>().GetScene();
-                    FindObjectOfType<Fade>().SetOutFade(true);
-                    FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
-                }
-                if (scenePattern == ScenePattern.Battle){
-                    dataLoadName = nextStory;
-                    readStartNumber = nextreadStartNumber;
-                    readEndNumber = nextreadEndNumber;
-                    nextLoadScene = FindObjectOfType<Fade>().GetScene();
-                    //デバッグ用
                     FindObjectOfType<Fade>().SetOutFade(true);
                     FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
                 }
             }
         }
-        else if (endFlag == 1)
+        if (endFlag == 1)
         {
             if (Input.GetKeyDown(KeyCode.U))
             {
-                if(scenePattern == ScenePattern.Message)
+                if (scenePattern == ScenePattern.Message)
                 {
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
@@ -272,12 +291,63 @@ public class StoryCSVReader : MonoBehaviour
                     FindObjectOfType<Fade>().SetOutFade(true);
                     FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
                 }
-                if(scenePattern == ScenePattern.Battle)
+            }
+        }
+    }
+
+    /// <summary>
+    /// バトル中のメッセージウィンドウ制御
+    /// </summary>
+    void BattleStory()
+    {
+        if (battleScenarioSwitch == true)
+        {
+            messageWindow.SetActive(true);
+            {
+                if (Input.GetKeyDown(KeyCode.U))
                 {
-                    dataLoadName = nextStory;
-                    readStartNumber = nextreadStartNumber;
-                    readEndNumber = nextreadEndNumber;
+                    if (endFlag == 0)
+                    {
+                        storyID += 1;
+                        storyCharacterName = storyCSVDatas[storyID + 1][2];
+                        storySheetText = storyCSVDatas[storyID + 1][3];
+                        storyText.text = storySheetText;
+                        if (storyCharacterName != "")
+                        {
+                            nameText.text = storyCharacterName;
+                            nameImage.SetActive(true);
+                        }
+                        else {
+                            nameText.text = "";
+                            nameImage.SetActive(false);
+                        }
+                        CharacterImageDisplay();
+                        endFlag = int.Parse(storyCSVDatas[storyID + 1][12]);
+                    }
+                    if (storyID + 1 > readEndNumber)
+                    {
+                        if (Input.GetKeyDown(KeyCode.U))
+                        {
+                            nextreadStartNumber = int.Parse(storyCSVDatas[storyID + 1][14]);
+                            nextreadEndNumber = int.Parse(storyCSVDatas[storyID + 1][15]);
+                            readStartNumber = nextreadStartNumber;
+                            readEndNumber = nextreadEndNumber;
+                            messageWindow.SetActive(false);
+                            battleScenarioSwitch = false;
+                        }
+                    }
                 }
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            {
+                dataLoadName = nextStory;
+                readStartNumber = nextreadStartNumber;
+                readEndNumber = nextreadEndNumber;
+                nextLoadScene = FindObjectOfType<Fade>().GetScene();
+                FindObjectOfType<Fade>().SetOutFade(true);
+                FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
             }
         }
     }
@@ -363,15 +433,6 @@ public class StoryCSVReader : MonoBehaviour
                 break;
         }
     }
-
-    /// <summary>
-    /// バトル中のメッセージウィンドウ制御
-    /// </summary>
-    void BattleStory()
-    {
-
-    }
-
 
     public int GetStoryID()
     {

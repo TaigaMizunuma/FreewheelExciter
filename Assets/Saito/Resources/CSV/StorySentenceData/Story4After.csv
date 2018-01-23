@@ -1,5 +1,5 @@
 ﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions
-4,0,キース,…やっちまった。俺らがあのフウスイを倒しちまうなんて…,0,0,0,2,SHADE,OFF,OFF,ON,0,Story5Before,0,9,0,孤立の涙,Story,Boss
+4,0,キース,…やっちまった。俺らがあのフウスイを倒しちまうなんて…,0,0,0,2,SHADE,OFF,OFF,ON,0,Story5Before,0,9,0,孤立の涙,SaveData,Boss
 ,1,ヒュー,それだけ強くなったってことだ。,0,0,0,2,ON,OFF,OFF,SHADE,0,,,,,,,
 ,2,ヒュー,いよいよハイランドも見えてきた…,0,0,0,2,ON,OFF,OFF,ON,0,,,,,,,
 ,3,キース,見ろよ。独裁者を倒した俺らを、民どもが称えてやがる。,0,0,0,2,SHADE,OFF,OFF,ON,0,,,,,,,
