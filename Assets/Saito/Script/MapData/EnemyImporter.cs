@@ -50,10 +50,6 @@ public class EnemyImporter : MonoBehaviour
     [SerializeField]
     int eneCount;
 
-    void Awake()
-    {
-    }
-
     void Start()
     {
         //エネミー初期配置CSVデータ読み込み
@@ -155,7 +151,20 @@ public class EnemyImporter : MonoBehaviour
                         charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
                         eneCount++;
                         break;
-
+                    //アサシン
+                    case "B":
+                        charaInstance = (GameObject)Instantiate(enemyObj[10], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
+                        charaInstance.name = "Enemy" + eneCount;
+                        charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
+                        eneCount++;
+                        break;
+                    //ジェネラル
+                    case "C":
+                        charaInstance = (GameObject)Instantiate(enemyObj[11], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
+                        charaInstance.name = "Enemy" + eneCount;
+                        charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
+                        eneCount++;
+                        break;
                 }
             }
         }

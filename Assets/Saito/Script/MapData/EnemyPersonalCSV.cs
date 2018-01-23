@@ -44,15 +44,14 @@ public class EnemyPersonalCSV : MonoBehaviour
             c_enemyPerHeight++;
         }
 
-        e_name = c_enemyPerDatas[e_number + 1][1];
-        e_level = int.Parse(c_enemyPerDatas[e_number + 1][2]);
-        e_job = c_enemyPerDatas[e_number + 1][3];
-        e_strength = c_enemyPerDatas[e_number + 1][4];
     }
 
     void Start()
     {
-
+        e_name = c_enemyPerDatas[e_number + 1][1];
+        e_level = int.Parse(c_enemyPerDatas[e_number + 1][2]);
+        e_job = c_enemyPerDatas[e_number + 1][3];
+        e_strength = c_enemyPerDatas[e_number + 1][4];
     }
 
     public string GetEnemyName()

@@ -191,7 +191,6 @@ public class StoryCSVReader : MonoBehaviour
                 RTwoBlackOut = storyCSVDatas[storyID + 1][11];
 
                 endFlag = int.Parse(storyCSVDatas[storyID + 1][12]);
-                nextStory = storyCSVDatas[storyID + 1][13];
                 nextreadStartNumber = int.Parse(storyCSVDatas[storyID + 1][14]);
                 nextreadEndNumber = int.Parse(storyCSVDatas[storyID + 1][15]);
                 sceneMode = int.Parse(storyCSVDatas[storyID + 1][16]);
@@ -269,6 +268,7 @@ public class StoryCSVReader : MonoBehaviour
             {
                 if (scenePattern == ScenePattern.Message)
                 {
+                    nextStory = storyCSVDatas[storyID + 1][13];
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
@@ -284,6 +284,7 @@ public class StoryCSVReader : MonoBehaviour
             {
                 if (scenePattern == ScenePattern.Message)
                 {
+                    nextStory = storyCSVDatas[storyID + 1][13];
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
@@ -339,16 +340,25 @@ public class StoryCSVReader : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.O))
+
+        if (!GameObject.FindGameObjectWithTag("Enemy"))
         {
             {
+                nextStory = storyCSVDatas[storyID + 1][13];
                 dataLoadName = nextStory;
                 readStartNumber = nextreadStartNumber;
                 readEndNumber = nextreadEndNumber;
-                nextLoadScene = FindObjectOfType<Fade>().GetScene();
-                FindObjectOfType<Fade>().SetOutFade(true);
-                FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
             }
+        }
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            nextStory = storyCSVDatas[storyID + 1][13];
+            dataLoadName = nextStory;
+            readStartNumber = nextreadStartNumber;
+            readEndNumber = nextreadEndNumber;
+            nextLoadScene = FindObjectOfType<Fade>().GetScene();
+            FindObjectOfType<Fade>().SetOutFade(true);
+            FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
         }
     }
 
