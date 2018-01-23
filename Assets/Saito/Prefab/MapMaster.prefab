@@ -96,6 +96,8 @@ MonoBehaviour:
   - {fileID: 1724679625813882, guid: 0ae505e2d2d69464490b5baf15f0b1d2, type: 2}
   - {fileID: 1724679625813882, guid: 919e9890e9725564ba47980386e45a75, type: 2}
   - {fileID: 1724679625813882, guid: 68a8b2aeda360da4da0a6b7bd467fade, type: 2}
+  - {fileID: 1724679625813882, guid: dce0ed649481c9544bfa82dff84f2397, type: 2}
+  - {fileID: 1724679625813882, guid: 12366e1746214c947a90524e6cae10e2, type: 2}
   c_enemyPosCSVName: Stage1_Enemy
   AdjustmentPosX: -8
   AdjustmentPosY: 0.5

@@ -1558,7 +1558,7 @@ MonoBehaviour:
   _id: 0
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
-  _name: "\u4E2D\u6771"
+  _name: "\u30B9\u30CA\u30A4\u30D1\u30FC"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
   _dropitem: 0
@@ -1595,6 +1595,11 @@ MonoBehaviour:
   _range: 0000000000000000
   _stability: 0
   _georges: 0
+  _healplus: 0
+  _yani: 0
+  _yaniTurn: 0
+  _healplusturn: 0
+  _isDead: 0
   _itemprefablist: {fileID: 0}
   _skillprefablist: {fileID: 0}
   _skillchecker: {fileID: 0}

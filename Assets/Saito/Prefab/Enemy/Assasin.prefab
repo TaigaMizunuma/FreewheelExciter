@@ -134,6 +134,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1320177816570316
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4201137450005588}
+  - component: {fileID: 114831043467191102}
+  m_Layer: 0
+  m_Name: Stability
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1334379038612530
 GameObject:
   m_ObjectHideFlags: 1
@@ -510,22 +526,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1658524146858420
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4356443853185596}
-  - component: {fileID: 114772829259017896}
-  m_Layer: 0
-  m_Name: Onemore
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1724679625813882
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 114167108734205830}
   - component: {fileID: 114597405054135350}
   m_Layer: 0
-  m_Name: Rider
+  m_Name: Assasin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -718,6 +718,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1937499535980148
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4541966091309724}
+  - component: {fileID: 114935467425022644}
+  m_Layer: 0
+  m_Name: Def+2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1945975996332164
 GameObject:
   m_ObjectHideFlags: 1
@@ -849,6 +865,19 @@ Transform:
   - {fileID: 4113949159989110}
   m_Father: {fileID: 4304537883293234}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4201137450005588
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1320177816570316}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4618499760064194}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4212764622188038
 Transform:
@@ -1031,19 +1060,6 @@ Transform:
   m_Father: {fileID: 4009276930650898}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4356443853185596
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1658524146858420}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4618499760064194}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4361094342231976
 Transform:
   m_ObjectHideFlags: 1
@@ -1168,6 +1184,19 @@ Transform:
   m_Father: {fileID: 4321467033054966}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4541966091309724
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1937499535980148}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4618499760064194}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4567663441195252
 Transform:
   m_ObjectHideFlags: 1
@@ -1219,7 +1248,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4356443853185596}
+  - {fileID: 4541966091309724}
+  - {fileID: 4201137450005588}
   m_Father: {fileID: 4064233999402100}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1542,7 +1572,7 @@ MonoBehaviour:
   _id: 0
   _equipment: {fileID: 1427254508017210, guid: 117a4244d997dfa4caa975167fe0d9e2, type: 2}
   _faceimage: {fileID: 0}
-  _name: "\u30E9\u30A4\u30C0\u30FC"
+  _name: "\u30A2\u30B5\u30B7\u30F3"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
   _dropitem: 0
@@ -1590,7 +1620,7 @@ MonoBehaviour:
   _statussave: {fileID: 0}
   _HpState: 0
   _NowState: 0
-  _joblist: 10
+  _joblist: 6
 --- !u!114 &114431280456140794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1719,23 +1749,6 @@ MonoBehaviour:
   _Saving: 0
   _NewType: 0
   _Praying: 0
---- !u!114 &114772829259017896
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1658524146858420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290566a8509f82046b8c40a24765d4d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _name: "\u518D\u79FB\u52D5"
-  _message: "\u884C\u52D5\u5F8C\u3001\u6B8B\u3063\u305F\u79FB\u52D5\u529B\u5206\u79FB\u52D5\u3067\u304D\u308B"
-  _level: 10
-  _activ: 0
-  _addlist: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  _skill_list: 4
 --- !u!114 &114792011104171604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1760,6 +1773,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815a1de6ca2c52442aa098ef79dea233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114831043467191102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1320177816570316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 450cea2d79e2333428624982c35a65b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skill_list: 3
+  _name: "\u5B89\u5B9A"
+  _message: "\u6B21\u306E\u6226\u95D8\u6642\u3001\u304A\u4E92\u3044\u8FFD\u6483\u304C\u3067\u304D\u306A\u3044"
+  _level: 15
+  _activ: 0
+--- !u!114 &114935467425022644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1937499535980148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290566a8509f82046b8c40a24765d4d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: "\u5B88\u5099+2"
+  _message: "\u5B88\u5099+2"
+  _level: 5
+  _activ: 0
+  _addlist: 0000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000000
+  _skill_list: 0
 --- !u!114 &114982258809982100
 MonoBehaviour:
   m_ObjectHideFlags: 1
