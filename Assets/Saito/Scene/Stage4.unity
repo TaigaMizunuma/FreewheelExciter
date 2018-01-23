@@ -425,6 +425,11 @@ Prefab:
       propertyPath: dataLoadName
       value: Battle4
       objectReference: {fileID: 0}
+    - target: {fileID: 114435155072594706, guid: f948a453f25f9e74f9cf97ab80dd273a,
+        type: 2}
+      propertyPath: messageWindow
+      value: 
+      objectReference: {fileID: 656504542}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f948a453f25f9e74f9cf97ab80dd273a, type: 2}
   m_IsPrefabParent: 0
@@ -463,6 +468,19 @@ MonoBehaviour:
   isFadeOut: 0
   isFadeIn: 0
   sceneChangeSwitch: 0
+  changeName: 
+--- !u!114 &137716172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 137716169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eba688347dfee84d89fd92c8211e102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textTest: 0
 --- !u!1 &146435682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,6 +1475,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1651713549222702, guid: 4bfd972ca43596249b249a03cacb72f1,
     type: 2}
   m_PrefabInternal: {fileID: 538737355}
+--- !u!1 &656504542 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1713550922226996, guid: 9341071031dd9534d82416f07611e2c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1392745045}
 --- !u!1 &703277812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,6 +1516,7 @@ MonoBehaviour:
   isFadeOut: 0
   isFadeIn: 0
   sceneChangeSwitch: 0
+  changeName: 
 --- !u!4 &703277814
 Transform:
   m_ObjectHideFlags: 0
@@ -3228,6 +3252,10 @@ Prefab:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1713550922226996, guid: 9341071031dd9534d82416f07611e2c4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890534751313740, guid: 9341071031dd9534d82416f07611e2c4, type: 2}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

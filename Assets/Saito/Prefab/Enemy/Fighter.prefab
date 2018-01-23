@@ -1538,7 +1538,7 @@ Animator:
   m_GameObject: {fileID: 1850623321649676}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f7ba47d0644f66947862625d1abfb988, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e42b0603026f03c4984d3c82f6080dde, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 1
   m_ApplyRootMotion: 1
@@ -1761,6 +1761,7 @@ MonoBehaviour:
   _name: "\u4E2D\u6771"
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
+  _dropitem: 0
   _level: 3
   _totalLevel: 0
   _totalMaxhp: 0
@@ -1793,6 +1794,7 @@ MonoBehaviour:
   _critical: 0
   _range: 0000000000000000
   _stability: 0
+  _georges: 0
   _itemprefablist: {fileID: 0}
   _skillprefablist: {fileID: 0}
   _skillchecker: {fileID: 0}

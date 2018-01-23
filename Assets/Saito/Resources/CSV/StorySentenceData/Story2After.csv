@@ -1,5 +1,5 @@
 ﻿StoryNumber,ID,Name ,Story ,  LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions
-2,0,アイン,ヒュー！パーシングのヤツら、結構物持ちいいぞ！,0,0,0,1,OFF,OFF,OFF,ON,0,Story3Before,0,30,0,殺人機械,Story,Story
+2,0,アイン,ヒュー！パーシングのヤツら、結構物持ちいいぞ！,0,0,0,1,OFF,OFF,OFF,ON,0,Story3Before,0,30,0,殺人機械,SaveData,Story
 ,1,サイモン,もともとひったくり集団みたいなもんだ。もらっときな,0,0,7,1,OFF,OFF,ON,SHADE,0,,,,,,,
 ,2,ヒュー,…戦いに勝つと戦力と道具が手に入る、か,0,0,7,1,ON,OFF,OFF,OF,0,,,,,,,
 ,3,ヒュー,便利なシステムだ,0,0,7,1,ON,OFF,OFF,SHADE,0,,,,,,,
