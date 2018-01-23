@@ -250,6 +250,7 @@ public class Character : MonoBehaviour {
         //exp100でレベルアップ
         if (_exp >= 100)
         {
+            _exp = 0;
             LevelUp();
         }
 

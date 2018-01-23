@@ -516,6 +516,12 @@ public class BattleManager : MonoBehaviour {
             _Counter = _def._obj.GetComponent<EnemyAttack>().CounterRangeSearch(_attacker._obj);
         }
 
+        //睡眠時は反撃も不可
+        if (_def._chara._NowState == Character.State.Sleep)
+        {
+            _Counter = false;
+        }
+
         //ジョルジュ判定
         if (_def._chara.GetComponent<SkillChecker>()._Georges)
         {

@@ -29,9 +29,11 @@ public class ItemPrefabList : MonoBehaviour {
     /// <param name="item">追加するオブジェクト</param>
     public void AddItem(GameObject item)
     {
-        if (_itemprefablist.Count <= 5)
+        if (_itemprefablist.Count >= 5)
         {
             Debug.Log("アイテムがいっぱいです");
+            item.transform.parent = transform;
+            ItemAddList();
         }
         else
         {
