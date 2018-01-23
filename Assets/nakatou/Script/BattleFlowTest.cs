@@ -88,6 +88,8 @@ public class BattleFlowTest : MonoBehaviour
     List<GameObject> items;
     bool PlayerTurn = false;
 
+    public bool c_moving = false;
+
 
     void Awake()
     {
@@ -144,8 +146,9 @@ public class BattleFlowTest : MonoBehaviour
         //カーソル移動制御
         if(state_ == State_.simulation_mode || state_ == State_.move_mode)
         {
-            if(!Shousai.activeInHierarchy)
+            if (!Shousai.activeInHierarchy)
             {
+                if (c_moving == true) return;
                 rayBox.GetComponent<RayBox>().move_ = true;
             }
             else

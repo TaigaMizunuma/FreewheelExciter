@@ -58,13 +58,16 @@ public class Move_System : MonoBehaviour
             if (FindObjectOfType<BattleFlowTest>().state_ != State_.move_mode ||
                 FindObjectOfType<BattleFlowTest>()._nowChooseChar != gameObject) return;// 10/31 追加
 
+
             Ray ray = new Ray(rayBox.transform.position, -rayBox.transform.up);// 10/27 追加
             RaycastHit hit = new RaycastHit();
             if (Physics.Raycast(ray, out hit, 1000.0f))
             {
                 if (hit.transform.tag == "Floor" && hit.transform.GetComponent<Square_Info>().move_cost < 100)
                 {
+                    FindObjectOfType<BattleFlowTest>().c_moving = true;
                     FindObjectOfType<RayBox>().move_ = false;
+
                     Square_Info a = hit.transform.GetComponent<Square_Info>();
                     if (a.IsDecision())
                     {
