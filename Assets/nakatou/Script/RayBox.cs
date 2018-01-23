@@ -157,4 +157,18 @@ public class RayBox : MonoBehaviour
     {
         return selectSquare;
     }
+
+    public void LookHero()
+    {
+        GameObject[] players_ = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject p in players_)
+        {
+            if (p.GetComponent<Character>()._hero)
+            {
+                Transform p_pos = p.GetComponent<Move_System>().GetNowPos().transform;
+                transform.position = new Vector3(p_pos.position.x, transform.position.y, p_pos.position.z);
+                SetSelectSquare();
+            }
+        }
+    }
 }
