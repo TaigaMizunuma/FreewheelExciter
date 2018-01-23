@@ -137,7 +137,7 @@ public class Character : MonoBehaviour {
     public bool _georges = false;           //ジョルジュの有無
     public bool _healplus = false;          //回復量増加
     public bool _yani = false;              //ヤニの有無
-    public int _yaniTurn = 0;               //ヤニの残りたーん
+    public int _yaniTurn = 0;               //ヤニの残りターン
     public int _healplusturn = 0;           //回復量増加残りターン
     public bool _isDead = false;            //死亡済みか
 

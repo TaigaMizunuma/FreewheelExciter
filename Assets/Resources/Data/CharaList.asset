@@ -24,7 +24,7 @@ MonoBehaviour:
     luk: 4
     def: 3
     cur: 1
-    move: 4
+    move: 5
     skill1: 
     skill2: 
     skill3: 
@@ -33,15 +33,15 @@ MonoBehaviour:
     name: "\u30B8\u30A7\u30FC\u30B3\u30D6"
     job: "\u30B9\u30CA\u30A4\u30D1\u30FC"
     lv: 1
-    hp: 26
+    hp: 22
     sp: 16
     str: 5
-    skl: 12
-    spd: 10
+    skl: 7
+    spd: 8
     luk: 1
-    def: 5
-    cur: 5
-    move: 4
+    def: 3
+    cur: 3
+    move: 5
     skill1: 
     skill2: 
     skill3: 
@@ -58,7 +58,7 @@ MonoBehaviour:
     luk: 4
     def: 4
     cur: 0
-    move: 4
+    move: 5
     skill1: 
     skill2: 
     skill3: 
@@ -75,7 +75,7 @@ MonoBehaviour:
     luk: 1
     def: 3
     cur: 0
-    move: 4
+    move: 5
     skill1: 
     skill2: 
     skill3: 
@@ -92,7 +92,7 @@ MonoBehaviour:
     luk: 2
     def: 4
     cur: 0
-    move: 4
+    move: 5
     skill1: 
     skill2: 
     skill3: 
@@ -109,7 +109,7 @@ MonoBehaviour:
     luk: 2
     def: 10
     cur: 0
-    move: 4
+    move: 5
     skill1: 
     skill2: 
     skill3: 
@@ -126,7 +126,7 @@ MonoBehaviour:
     luk: 4
     def: 7
     cur: 0
-    move: 4
+    move: 5
     skill1: "\u30D3\u30EB\u30C9\u30A2\u30C3\u30D7"
     skill2: "\u30C9\u30EC\u30A4\u30F3\u30D1\u30F3\u30C1"
     skill3: 
@@ -143,7 +143,7 @@ MonoBehaviour:
     luk: 6
     def: 8
     cur: 2
-    move: 4
+    move: 5
     skill1: "\u30D2\u30FC\u30EB"
     skill2: "\u30CF\u30A4\u30D2\u30FC\u30EB"
     skill3: 
@@ -160,7 +160,7 @@ MonoBehaviour:
     luk: 5
     def: 10
     cur: 0
-    move: 4
+    move: 5
     skill1: 
     skill2: 
     skill3: 
@@ -177,7 +177,7 @@ MonoBehaviour:
     luk: 5
     def: 6
     cur: 0
-    move: 4
+    move: 5
     skill1: 
     skill2: 
     skill3: 
@@ -194,7 +194,7 @@ MonoBehaviour:
     luk: 5
     def: 2
     cur: 1
-    move: 4
+    move: 5
     skill1: 
     skill2: 
     skill3: 
@@ -211,7 +211,7 @@ MonoBehaviour:
     luk: 12
     def: 7
     cur: 1
-    move: 4
+    move: 5
     skill1: 
     skill2: 
     skill3: 

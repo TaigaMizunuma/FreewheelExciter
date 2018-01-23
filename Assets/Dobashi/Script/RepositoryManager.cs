@@ -60,15 +60,6 @@ public class RepositoryManager : MonoBehaviour {
         }
     }
 
-
-    /// <summary>
-    /// アイテムを捨てる
-    /// </summary>
-    public void DiscardItem(GameObject obj)
-    {
-
-    }
-
     /// <summary>
     /// アイテムを取り出す
     /// </summary>
