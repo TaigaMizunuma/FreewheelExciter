@@ -33,6 +33,7 @@ public class StatusSave : MonoBehaviour {
     public int[] r_addbuffstatus;
     public bool r_stability;
     public int r_state;
+    public bool r_isDead;
     public GameObject r_itemobj;
     public GameObject r_skillobj;
 
@@ -62,6 +63,7 @@ public class StatusSave : MonoBehaviour {
         public int[] _addbuffstatus;//バフによる加算ステータス
         public bool _stability;     //コマンドスキルによる追撃可能かの判別
         public int _state;          //状態異常
+        public bool _isDead;        //死亡済みか
         public GameObject _itemobj;  //アイテムの親オブジェクト
         public GameObject _skillobj; //スキルの親オブジェクト
 
@@ -89,6 +91,7 @@ public class StatusSave : MonoBehaviour {
             _addbuffstatus = new int[14];
             _stability = false;
             _state = 0;
+            _isDead = false;
             _itemobj = null;
             _skillobj = null;
         }
@@ -160,6 +163,7 @@ public class StatusSave : MonoBehaviour {
         r_addonestatus = gs._addonestatus;
         r_addbuffstatus = gs._addbuffstatus;
         r_state = gs._state;
+        r_isDead = gs._isDead;
         r_itemobj = gs._itemobj;
         r_skillobj = gs._skillobj;
     }
@@ -191,6 +195,7 @@ public class StatusSave : MonoBehaviour {
         i._addonestatus = _chara._addonetimestatuslist;
         i._addbuffstatus = _chara._addbufflist;
         i._state = (int)_chara._NowState;
+        i._isDead = _chara._isDead;
         i._itemobj = _chara._itemprefablist;
         i._skillobj = _chara._skillprefablist;
         return i;

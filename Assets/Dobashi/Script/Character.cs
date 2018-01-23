@@ -139,6 +139,7 @@ public class Character : MonoBehaviour {
     public bool _yani = false;              //ヤニの有無
     public int _yaniTurn = 0;               //ヤニの残りたーん
     public int _healplusturn = 0;           //回復量増加残りターン
+    public bool _isDead = false;            //死亡済みか
 
     public GameObject _itemprefablist;      //アイテムの親オブジェクトの取得
     public GameObject _skillprefablist;     //スキルの親オブジェクトの取得
@@ -267,7 +268,7 @@ public class Character : MonoBehaviour {
     /// </summary>
     void Dead()
     {
-        //Debug.Log("死:" + _name);
+        _isDead = true;
     }
 
     /// <summary>
@@ -362,6 +363,7 @@ public class Character : MonoBehaviour {
         _addonetimestatuslist = _statussave.r_addonestatus;
         _addbufflist = _statussave.r_addbuffstatus;
         _stability = _statussave.r_stability;
+        _isDead = _statussave.r_isDead;
         _NowState = (State)Enum.ToObject(typeof(State), _statussave.r_state);
     }
 
