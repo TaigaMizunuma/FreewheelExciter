@@ -22,7 +22,8 @@ public enum State_
     enemy_turn,
     enemy_move_mode,
     enemy_attack_mode,
-    player_counter_mode
+    player_counter_mode,
+    Exchange_mode//持ち物があふれたとき交換する
 }
 
 /// <summary>
@@ -83,6 +84,10 @@ public class BattleFlowTest : MonoBehaviour
     Vector3 MoveStartPos;//キャンセル用
     GameObject battleui;//戦闘時UI;
 
+    //アイテム交換モード用
+    List<GameObject> items;
+    bool PlayerTurn = false;
+
 
     void Awake()
     {
@@ -116,6 +121,7 @@ public class BattleFlowTest : MonoBehaviour
                 FindObjectOfType<GameRequirement>().GameOver();
             }));
         }
+
         if (GameEnd) return;//ゲーム終了
 
         //カメラ追従
@@ -134,10 +140,17 @@ public class BattleFlowTest : MonoBehaviour
             FindObjectOfType<MenuManager>().SetMainControlFlag(true);
         }
 
-        //
+        //カーソル移動制御
         if(state_ == State_.simulation_mode || state_ == State_.move_mode)
         {
-            rayBox.GetComponent<RayBox>().move_ = true;
+            if(!Shousai.activeInHierarchy)
+            {
+                rayBox.GetComponent<RayBox>().move_ = true;
+            }
+            else
+            {
+                rayBox.GetComponent<RayBox>().move_ = false;
+            }
         }
         else
         {
@@ -195,7 +208,7 @@ public class BattleFlowTest : MonoBehaviour
 
             //攻撃対象の選択
             case State_.player_attack_mode:
-                PlayerAttackMode();           
+                PlayerAttackMode();
 
                 break;
 
@@ -225,6 +238,12 @@ public class BattleFlowTest : MonoBehaviour
 
                 //プレイヤーの反撃(いらないかも)
             case State_.player_counter_mode:
+
+                break;
+
+                //持ち物が満杯だった時の交換モード
+            case State_.Exchange_mode:
+                ExchangeMode();
 
                 break;
 
@@ -363,7 +382,7 @@ public class BattleFlowTest : MonoBehaviour
                         GameObject ui = Instantiate(
                             Resources.Load("WeaponUI"),
                             GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
-                        ui.transform.localPosition = new Vector3(0, count * -120, 0);
+                        ui.transform.localPosition = new Vector3(0, 200 + count * -120, 0);
                         ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Weapon>()._name;
                         ui.GetComponent<UIsText>()._name = obj.GetComponent<Weapon>()._name;
                         ui.GetComponent<UIsText>()._message = obj.GetComponent<Weapon>()._message;
@@ -490,7 +509,7 @@ public class BattleFlowTest : MonoBehaviour
                         GameObject ui = Instantiate(
                             Resources.Load("WeaponUI"),
                             GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
-                        ui.transform.localPosition = new Vector3(0, count * -100, 0);
+                        ui.transform.localPosition = new Vector3(0, 200 + count * -100, 0);
                         ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<CommandSkill>()._name;
                         ui.GetComponent<UIsText>()._name = obj.GetComponent<CommandSkill>()._name;
                         ui.GetComponent<UIsText>()._message = obj.GetComponent<CommandSkill>()._message;
@@ -598,7 +617,7 @@ public class BattleFlowTest : MonoBehaviour
                     GameObject ui = Instantiate(
                         Resources.Load("WeaponUI"),
                         GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
-                    ui.transform.localPosition = new Vector3(0, count * -100, 0);
+                    ui.transform.localPosition = new Vector3(0, 200 + count * -100, 0);
                     ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Item>()._name;
                     ui.GetComponent<UIsText>()._name = obj.GetComponent<Item>()._name;
                     ui.GetComponent<UIsText>()._message = obj.GetComponent<Item>()._message;
@@ -969,13 +988,22 @@ public class BattleFlowTest : MonoBehaviour
     public void TurnEnd()
     {
         if (state_ == State_.enemy_counter_mode || state_ == State_.action_mode ||
-        state_ == State_.skill_mode || state_ == State_.item_mode || state_ == State_.menu_mode)
+        state_ == State_.skill_mode || state_ == State_.item_mode || state_ == State_.menu_mode || state_== State_.Exchange_mode)
         {
             //待機選択時
             if (state_ == State_.action_mode)
             {
                 FindObjectOfType<SubMenuRenderer>().SubMenuStart();
                 FindObjectOfType<MenuManager>().SetEventSystem(false);
+            }
+
+            state_ = State_.stay_mode;
+
+            if (SerchFullItemChara())
+            {
+                PlayerTurn = true;
+                state_ = State_.Exchange_mode;
+                return;
             }
 
             //ステートを変更 & UI表示
@@ -999,6 +1027,15 @@ public class BattleFlowTest : MonoBehaviour
     /// </summary>
     public void EnemyTurnEnd()
     {
+        state_ = State_.stay_mode;
+
+        if (SerchFullItemChara())
+        {
+            PlayerTurn = false;
+            state_ = State_.Exchange_mode;
+            return;
+        }
+
         _TurnText.color = new Color(0, 0, 255, 255);
         _TurnText.text = "Player Turn";
         m_audio.PlaySe("TurnStart");
@@ -1014,6 +1051,122 @@ public class BattleFlowTest : MonoBehaviour
             state_ = State_.simulation_mode;
             FindObjectOfType<SituationTexts>().TurnCountUp();
         }));
+    }
+
+    /// <summary>
+    /// アイテムがいっぱいのチャラを探す
+    /// </summary>
+    bool SerchFullItemChara()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(var chara in players)
+        {
+           if(chara.transform.FindChild("ItemList").GetComponent<ItemPrefabList>()._itemprefablist.Count > 5)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void ExchangeMode()
+    {
+        if (once == false)
+        {
+            Debug.Log("倉庫に送るアイテムを選択");
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var chara in players)
+            {
+                if (chara.transform.FindChild("ItemList").GetComponent<ItemPrefabList>()._itemprefablist.Count > 5)
+                {
+                    items = chara.transform.FindChild("ItemList").GetComponent<ItemPrefabList>()._itemprefablist;
+                }
+            }
+
+            count = 0;
+            foreach (var obj in items)
+            {
+                if (obj.GetComponent<Item>())
+                {
+                    GameObject ui = Instantiate(
+                        Resources.Load("WeaponUI"),
+                        GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
+                    ui.transform.localPosition = new Vector3(0, 250 + count * -100, 0);
+                    ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Item>()._name;
+                    ui.GetComponent<UIsText>()._name = obj.GetComponent<Item>()._name;
+                    ui.GetComponent<UIsText>()._message = obj.GetComponent<Item>()._message;
+                    ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
+                    UIs.Add(ui);
+                    count++;
+                }
+
+                if (obj.GetComponent<Weapon>())
+                {
+                    GameObject ui = Instantiate(
+                        Resources.Load("WeaponUI"),
+                        GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
+                    ui.transform.localPosition = new Vector3(0, 250 + count * -100, 0);
+                    ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Weapon>()._name;
+                    ui.GetComponent<UIsText>()._name = obj.GetComponent<Weapon>()._name;
+                    ui.GetComponent<UIsText>()._message = obj.GetComponent<Weapon>()._message;
+                    ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
+                    ChoiceObjs.Add(obj);
+                    UIs.Add(ui);
+                    count++;
+                }
+            }
+
+            count = 0;
+            once = true;
+        }
+
+        bool end = SerchFullItemChara();
+        if (end == true)
+        {
+            foreach (var obj in UIs)
+            {
+                obj.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
+            }
+            UIs[count].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+
+
+            if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
+            {
+                if (count == 0) return;
+                count--;
+            }
+            if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
+            {
+                if (count == UIs.Count - 1) return;
+                count++;
+            }
+
+            if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
+            {
+                FindObjectOfType<RepositoryManager>().AddItem(items[count]);
+
+                foreach (var obj in UIs)
+                {
+                    obj.SetActive(false);
+                    Destroy(obj, 1.0f);
+                }
+
+                items.Clear();
+                UIs.Clear();
+
+                count = 0;
+                once = false;
+
+                if(PlayerTurn)
+                {
+                    TurnEnd();
+                }
+                else
+                {
+                    EnemyTurnEnd();
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -1126,6 +1279,10 @@ public class BattleFlowTest : MonoBehaviour
         _ActionEnemy = minobj;
     }
 
+    /// <summary>
+    /// スタートの時の処理を関数化
+    /// 編成の処理のため
+    /// </summary>
     public void StartGame()
     {
         /*メニュー制御不可*/
@@ -1138,7 +1295,7 @@ public class BattleFlowTest : MonoBehaviour
         Shousai.SetActive(false);
         SetActionEnemy();
 
-        _TurnText.text = "第１章 \n PlayerTurn";
+        _TurnText.text = "第"+FindObjectOfType<StoryCSVReader>().GetStoryNumber() +"章 \n PlayerTurn";
 
         //m_audio.PlayBgm("battle1");
 

@@ -1616,6 +1616,7 @@ MonoBehaviour:
   _critical: 0
   _range: 0000000000000000
   _stability: 0
+  _georges: 0
   _itemprefablist: {fileID: 0}
   _skillprefablist: {fileID: 0}
   _skillchecker: {fileID: 0}
