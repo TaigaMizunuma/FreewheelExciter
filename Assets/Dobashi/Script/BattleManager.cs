@@ -8,6 +8,8 @@ public class BattleManager : MonoBehaviour {
     public GameObject _AttackSide;
     public GameObject _DefenseSide;
 
+    public BattleFlowTest _BattleflowTest;
+
     private bool _battleend = false;
 
     public struct Attack_manager
@@ -507,6 +509,9 @@ public class BattleManager : MonoBehaviour {
         //攻撃回数増加用変数
         var _count_plus = 1;
 
+        _BattleflowTest = FindObjectOfType<BattleFlowTest>();
+        
+
         if (_def._obj.tag == "Player")
         {
             _Counter = _def._obj.GetComponent<PlayerAttack>().CounterRangeSearch(_attacker._obj);
@@ -563,6 +568,7 @@ public class BattleManager : MonoBehaviour {
             {
                 //攻撃側の攻撃
                 atk_exp += BattleSystem(_attacker, _def, 0,atk_stock);
+                _BattleflowTest.AtkAnim(_attacker._obj);
                 if (!_attacker._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
                 if (_battleend) break;
             }
@@ -580,6 +586,7 @@ public class BattleManager : MonoBehaviour {
             {
                 //攻撃側の攻撃
                 atk_exp+= BattleSystem(_attacker, _def, 0,atk_stock);
+                _BattleflowTest.AtkAnim(_attacker._obj);
                 if (!_attacker._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
                 if (_battleend) break;
             }
@@ -631,6 +638,7 @@ public class BattleManager : MonoBehaviour {
                 {
                     //攻撃側の追撃
                     atk_exp += BattleSystem(_attacker, _def, 0, atk_stock);
+                    _BattleflowTest.AtkAnim(_attacker._obj);
                     if (!_attacker._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
                     if (_battleend) break;
                 }

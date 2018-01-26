@@ -511,7 +511,7 @@ public class Character : MonoBehaviour {
         {
             if (_equipment.GetComponent<Weapon>().StockDecrement())
             {
-                Debug.Log(_equipment.transform.name + "が壊れた…");
+                //Debug.Log(_equipment.transform.name + "が壊れた…");
                 _itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
             }
         }

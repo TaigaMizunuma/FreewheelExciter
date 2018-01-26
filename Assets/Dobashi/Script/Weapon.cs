@@ -111,7 +111,7 @@ public class Weapon : MonoBehaviour {
         if (_stock <= 0 && (_weapontype != Weapon_Type.Gun || _weapontype != Weapon_Type.Rifle))
         {
             //Debug.Log(_name + "が壊れた…");
-            Destroy(gameObject, 1.0f);
+            //Destroy(gameObject, 1.0f);
             return true;
         }
         else

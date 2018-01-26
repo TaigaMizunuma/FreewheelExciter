@@ -31,7 +31,7 @@ public class ItemPrefabList : MonoBehaviour {
     {
         if (_itemprefablist.Count >= 5)
         {
-            Debug.Log("アイテムがいっぱいです");
+            //Debug.Log("アイテムがいっぱいです");
             item.transform.parent = transform;
             _itemprefablist.Add(item);
         }
@@ -56,8 +56,8 @@ public class ItemPrefabList : MonoBehaviour {
             }
             if (_itemprefablist[i].GetComponent<Weapon>())
             {
-                if ((_itemprefablist[i].GetComponent<Weapon>()._stock <= 0 &&
-                    _itemprefablist[i].GetComponent<Weapon>()._weapontype != Weapon_Type.Gun && _itemprefablist[i].GetComponent<Weapon>()._weapontype != Weapon_Type.Rifle))
+                if (_itemprefablist[i].GetComponent<Weapon>()._stock <= 0 &&
+                    _itemprefablist[i].GetComponent<Weapon>()._weapontype != Weapon_Type.Gun && _itemprefablist[i].GetComponent<Weapon>()._weapontype != Weapon_Type.Rifle)
                 {
                     _itemprefablist.Remove(_itemprefablist[i]);
                 }
