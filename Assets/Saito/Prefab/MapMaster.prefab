@@ -100,7 +100,7 @@ MonoBehaviour:
   - {fileID: 1724679625813882, guid: 12366e1746214c947a90524e6cae10e2, type: 2}
   c_enemyPosCSVName: Stage1_Enemy
   AdjustmentPosX: -8
-  AdjustmentPosY: 0.5
+  AdjustmentPosY: 1
   AdjustmentPosZ: 0.5
   AdjustmentRotY: 180
   eneCount: 0

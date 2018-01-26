@@ -61,7 +61,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d805d830c4023774cb6259aca09f431e, type: 2}
+  - {fileID: 2100000, guid: b6b33a24a10187140bd7415af3ec300d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -132,6 +132,7 @@ MonoBehaviour:
   mapInvasion: 0
   mapEvasionRate: 0
   mapHeight: 0
+  startPosition: 0
   characterObj: {fileID: 0}
 --- !u!114 &114219925895206542
 MonoBehaviour:
