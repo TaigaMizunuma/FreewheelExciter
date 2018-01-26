@@ -597,4 +597,34 @@ public class ItemReady : MonoBehaviour {
         c1.RemoveItem();
         c2.RemoveItem();
     }
+
+    /// <summary>
+    /// アイテムを渡す
+    /// </summary>
+    /// <param name="_givechara">アイテムをもらうキャラ</param>
+    /// <param name="_getchara">アイテムを渡すキャラ</param>
+    /// <param name="_item">渡すアイテム</param>
+    public void GiveItem(GameObject _givechara,GameObject _getchara,GameObject _item)
+    {
+
+        var c1 = _givechara.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>();
+        var c2 = _getchara.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>();
+
+        //アイテムに空きがあった場合実行
+        if (c1._itemprefablist.Count <= 5)
+        {
+            c1.AddItem(_item);
+            c2.GiveItem(_item);
+
+            c1.RemoveItem();
+            c2.RemoveItem();
+        }
+        else
+        {
+            //もらう側のアイテムがいっぱいのとき
+        }
+
+        
+
+    }
 }
