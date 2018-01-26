@@ -49,7 +49,9 @@ public class ItemReady : MonoBehaviour {
     // 倉庫のアイテムの親
     public GameObject warehouse_list;
     // 倉庫のリスト
-    private List<GameObject> warehouse_items;
+    private List<GameObject>[] warehouse_items;
+    // 武器倉庫かアイテム倉庫か
+    private int repository_num = 0;
     // 預けるか受け取るか 0は未選択 1は預ける 2は受け取る
     private int warehouse_mode = 0;
     // 選択したアイテムを格納
@@ -65,54 +67,25 @@ public class ItemReady : MonoBehaviour {
     // はい と いいえ を登録
     public GameObject[] yes_no_;
 
+    // 詳細ウィンドウを取得
+    public GameObject frame_left;
+    // プレイヤーを取得
+    private GameObject[] players_;
+
     // Use this for initialization
     void Start () {
-        // モードに応じたUI表示をする
-        UIChange();
-        controll_list_[0].transform.parent.gameObject.SetActive(false);
-        // 使えるユニットを取得
-        units_ = new List<GameObject>();
-        Transform obj = units_parent.GetComponentInChildren<Transform>();
-        if (obj.childCount > 0)
-        {
-            foreach (Transform ob in obj)
-            {
-                units_.Add(ob.gameObject);
-            }
-        }
-        first_items = new List<GameObject>();
-        obj = first_item_list.GetComponentInChildren<Transform>();
-        if (obj.childCount > 0)
-        {
-            foreach (Transform ob in obj)
-            {
-                first_items.Add(ob.gameObject);
-            }
-        }
-        second_items = new List<GameObject>();
-        obj = second_item_list.GetComponentInChildren<Transform>();
-        if (obj.childCount > 0)
-        {
-            foreach (Transform ob in obj)
-            {
-                second_items.Add(ob.gameObject);
-            }
-        }
-        warehouse_items = new List<GameObject>();
-        obj = warehouse_list.GetComponentInChildren<Transform>();
-        if (obj.childCount > 0)
-        {
-            foreach (Transform ob in obj)
-            {
-                warehouse_items.Add(ob.gameObject);
-            }
-        }
-        // カーソルの位置を合わせる
-        cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[0]);
+    }
+
+    void OnEnable()
+    {
+        if (units_ == null) return;
+        cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
+        parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (players_ == null) return;
         switch (mode_)
         {
             case 0:
@@ -153,6 +126,7 @@ public class ItemReady : MonoBehaviour {
             }
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y*2 + pos_num_x]);
             unit_num += 2;
+            ShosaiUpdate();
         }
         // 上キーで１つ上に 上から２番目のときに押すとカーソルは動かずに表示されているユニットがずれる
         if (Input.GetKeyDown(KeyCode.UpArrow) && unit_num > 1)
@@ -169,6 +143,7 @@ public class ItemReady : MonoBehaviour {
             }
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num -= 2;
+            ShosaiUpdate();
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && pos_num_x == 0)
@@ -176,21 +151,23 @@ public class ItemReady : MonoBehaviour {
             pos_num_x++;
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num++;
+            ShosaiUpdate();
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && pos_num_x == 1)
         {
             pos_num_x--;
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num--;
+            ShosaiUpdate();
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
             if (first_unit == null)
             {
-                first_unit = units_[unit_num];
+                first_unit = players_[unit_num];
                 controll_list_[0].transform.parent.gameObject.SetActive(true);
-                first_items[0].transform.parent.gameObject.SetActive(false);
+                first_item_list.SetActive(false);
                 mode_ = 1;
                 ResetNum();
             }
@@ -198,10 +175,16 @@ public class ItemReady : MonoBehaviour {
             {
                 if (units_[unit_num] != first_unit)
                 {
-                    second_unit = units_[unit_num];
+                    second_unit = players_[unit_num];
                     mode_ = 2;
                     UIChange();
                     ResetNum();
+                    parent_canvas.GetComponent<ReadyManager>().SetUnit(first_unit);
+                    frame_left.GetComponent<UILeftStatus>().SetData(first_unit.GetComponent<Character>());
+                    frame_left.GetComponent<UIItemList>().SetData(first_unit.GetComponent<Character>(), first_item_list);
+                    parent_canvas.GetComponent<ReadyManager>().SetUnit(second_unit);
+                    UIs_parent[1].GetComponent<UILeftStatus>().SetData(second_unit.GetComponent<Character>());
+                    UIs_parent[1].GetComponent<UIItemList>().SetData(second_unit.GetComponent<Character>(), second_item_list);
                 }
             }
         }
@@ -217,7 +200,7 @@ public class ItemReady : MonoBehaviour {
             {
                 mode_ = 1;
                 controll_list_[0].transform.parent.gameObject.SetActive(true);
-                first_items[0].transform.parent.gameObject.SetActive(false);
+                first_item_list.SetActive(false);
                 ResetNum();
             }
         }
@@ -240,7 +223,7 @@ public class ItemReady : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.X))
         {
             controll_list_[0].transform.parent.gameObject.SetActive(false);
-            first_items[0].transform.parent.gameObject.SetActive(true);
+            first_item_list.SetActive(true);
             first_unit = null;
             mode_ = 0;
             ResetNum();
@@ -256,6 +239,8 @@ public class ItemReady : MonoBehaviour {
                 case 1:
                     mode_ = 3;
                     cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_controll[0]);
+                    first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
+                    warehouse_items[repository_num] = UIs_parent[2].GetComponent<UIRepository>().GetItemTexts(repository_num);
                     pos_num_y = 0;
                     break;
                 case 2:
@@ -265,13 +250,14 @@ public class ItemReady : MonoBehaviour {
                     yes_no_[0].transform.parent.gameObject.SetActive(false);
                     yes_no_[1].transform.parent.gameObject.SetActive(false);
                     pos_num_y = 0;
+                    first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
                     cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[0]);
                     break;
                 default:
                     break;
             }
             controll_list_[0].transform.parent.gameObject.SetActive(false);
-            first_items[0].transform.parent.gameObject.SetActive(true);
+            first_item_list.SetActive(true);
             ResetNum();
             UIChange();
         }
@@ -280,6 +266,15 @@ public class ItemReady : MonoBehaviour {
     // 交換をするモード
     void Mode2()
     {
+        if (first_items.Count == 0)
+        {
+            first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
+        }
+        if(second_items.Count == 0)
+        {
+            second_items = UIs_parent[1].GetComponent<UIItemList>().GetItemTexts();
+        }
+
         if (first_unit_item == null)
         {
             if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -303,7 +298,7 @@ public class ItemReady : MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                first_unit_item = first_items[pos_num_y];
+                first_unit_item = first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[pos_num_y];
                 pos_num_y = 0;
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(second_items[pos_num_y]);
             }
@@ -327,11 +322,21 @@ public class ItemReady : MonoBehaviour {
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(second_items[pos_num_y]);
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                second_unit_item = second_items[pos_num_y];
+                second_unit_item = second_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[pos_num_y];
+
+                ChangeItem(first_unit, second_unit, first_unit_item, second_unit_item);
 
 
                 first_unit_item = null;
                 second_unit_item = null;
+                parent_canvas.GetComponent<ReadyManager>().SetUnit(first_unit);
+                frame_left.GetComponent<UILeftStatus>().SetData(first_unit.GetComponent<Character>());
+                frame_left.GetComponent<UIItemList>().SetData(first_unit.GetComponent<Character>(), first_item_list);
+                parent_canvas.GetComponent<ReadyManager>().SetUnit(second_unit);
+                UIs_parent[1].GetComponent<UILeftStatus>().SetData(second_unit.GetComponent<Character>());
+                UIs_parent[1].GetComponent<UIItemList>().SetData(second_unit.GetComponent<Character>(), second_item_list);
+                first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
+                second_items = UIs_parent[1].GetComponent<UIItemList>().GetItemTexts();
                 pos_num_y = 0;
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
             }
@@ -358,7 +363,7 @@ public class ItemReady : MonoBehaviour {
             {
                 mode_ = 1;
                 controll_list_[0].transform.parent.gameObject.SetActive(true);
-                first_items[0].transform.parent.gameObject.SetActive(false);
+                first_item_list.SetActive(false);
                 ResetNum();
                 UIChange();
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(controll_list_[0]);
@@ -372,8 +377,14 @@ public class ItemReady : MonoBehaviour {
                 }
                 if (warehouse_mode == 2)
                 {
-                    cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_items[0]);
+                    if(warehouse_items[repository_num].Count > 0)
+                    cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_items[repository_num][0]);
+                    else
+                    {
+                        warehouse_mode = 0;
+                    }
                 }
+                
                 pos_num_y = 0;
             }
         }
@@ -394,17 +405,24 @@ public class ItemReady : MonoBehaviour {
             }
             if (warehouse_mode == 2)
             {
+                if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    if (repository_num == 0) repository_num = 1;
+                    else repository_num = 0;
+
+                    UIs_parent[2].GetComponent<UIRepository>().DisplayChange();
+                }
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     pos_num_y++;
-                    if (pos_num_y >= warehouse_items.Count) pos_num_y = 0;
+                    if (pos_num_y >= warehouse_items[repository_num].Count) pos_num_y = 0;
                 }
                 if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     pos_num_y--;
-                    if (pos_num_y < 0) pos_num_y = warehouse_items.Count - 1;
+                    if (pos_num_y < 0) pos_num_y = warehouse_items[repository_num].Count - 1;
                 }
-                cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_items[pos_num_y]);
+                cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_items[repository_num][pos_num_y]);
             }
             if (Input.GetKeyDown(KeyCode.X))
             {
@@ -445,7 +463,7 @@ public class ItemReady : MonoBehaviour {
                 {
                     mode_ = 1;
                     controll_list_[0].transform.parent.gameObject.SetActive(true);
-                    first_items[0].transform.parent.gameObject.SetActive(false);
+                    first_item_list.SetActive(false);
                     ResetNum();
                     UIChange();
                     cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(controll_list_[0]);
@@ -530,5 +548,50 @@ public class ItemReady : MonoBehaviour {
                 else UIs_parent[i].SetActive(false);
             }
         }
+    }
+
+    public void Init()
+    {
+        // モードに応じたUI表示をする
+        UIChange();
+        controll_list_[0].transform.parent.gameObject.SetActive(false);
+        // 使えるユニットを取得
+        units_ = new List<GameObject>();
+        units_ = units_parent.GetComponent<Item_UnitList>().GetUnitTexts();
+        first_items = new List<GameObject>();
+        second_items = new List<GameObject>();
+        warehouse_items = new List<GameObject>[2];
+        for (int i = 0; i < 2; i++)
+        {
+            warehouse_items[i] = new List<GameObject>();
+        }
+        // カーソルの位置を合わせる
+        cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[0]);
+
+        players_ = units_parent.GetComponent<Item_UnitList>().GetPlayers();
+        parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
+        ShosaiUpdate();
+    }
+
+    void ShosaiUpdate()
+    {
+        parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
+        frame_left.GetComponent<UILeftStatus>().SetData(players_[unit_num].GetComponent<Character>());
+        frame_left.GetComponent<UIItemList>().SetData(players_[unit_num].GetComponent<Character>(),first_item_list);
+    }
+
+    public void ChangeItem(GameObject _chara, GameObject _chara2, GameObject _item, GameObject _item2)
+    {
+        var c1 = _chara.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>();
+        var c2 = _chara2.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>();
+
+        c1.AddItem(_item2);
+        c2.AddItem(_item);
+
+        //Destroy(_item);
+        //Destroy(_item2);
+
+        c1.RemoveItem();
+        c2.RemoveItem();
     }
 }

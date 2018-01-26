@@ -21,13 +21,12 @@ public class Square_Info : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        move_cost = GetComponent<MapStatus>().GetMapCost();
+        if (move_cost <= 0) move_cost = 1;
     }
 
     void Start()
     {
-        move_cost = GetComponent<MapStatus>().GetMapCost();
-        if (move_cost <= 0) move_cost = 1;
-
         SearchNearSquare();
         near_squares = new GameObject[nears_.Count];
         for (int i = 0; i < nears_.Count; i++)

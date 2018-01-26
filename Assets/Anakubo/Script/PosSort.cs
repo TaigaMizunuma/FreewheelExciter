@@ -11,8 +11,14 @@ public class PosSort : MonoBehaviour {
     // 出撃するユニットを取得する
     private GameObject[] units_;
 
+    // 全てのプレイヤーキャラを取得
+    private GameObject[] p_;
+    // プレイヤーをID順に入れる
+    private List<GameObject> players_ = new List<GameObject>();
+
     // Use this for initialization
     void Start () {
+        p_ = GameObject.FindGameObjectsWithTag("Player");
         //SetFirstPos();
         bool set_ = false;
         floor_ = GameObject.FindGameObjectsWithTag("Floor");
@@ -22,7 +28,6 @@ public class PosSort : MonoBehaviour {
             {
                 first_pos.Add(f);
                 set_ = true;
-                Debug.Log("get");
             }
         }
         if (set_) SetFirstPos();
@@ -30,6 +35,17 @@ public class PosSort : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(p_ != null)
+        {
+            for (int i = 0; i < p_.Length; i++)
+            {
+                foreach (GameObject ply in p_)
+                {
+                    if (ply.GetComponent<Character>()._id == i) players_.Add(ply);
+                }
+            }
+            p_ = null;
+        }
 		if(first_pos == null)
         {
             bool set_ = false;
@@ -40,7 +56,6 @@ public class PosSort : MonoBehaviour {
                 {
                     first_pos.Add(f);
                     set_ = true;
-                    Debug.Log("get");
                 }
             }
             if (set_) SetFirstPos();
@@ -91,5 +106,16 @@ public class PosSort : MonoBehaviour {
             }
         }
         return -1;
+    }
+
+    public GameObject[] GetPlayers()
+    {
+        if (p_ != null) return null;
+        GameObject[] pls = new GameObject[players_.Count];
+        for (int i = 0; i < pls.Length; i++)
+        {
+            pls[i] = players_[i];
+        }
+        return pls;
     }
 }

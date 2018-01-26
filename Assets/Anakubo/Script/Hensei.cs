@@ -49,7 +49,7 @@ public class Hensei : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (parent_canvas == null) Init();
+        if (parent_canvas == null) return;
         if (shosai_.activeSelf == false)
         {
             shosai_.SetActive(true);
@@ -113,7 +113,8 @@ public class Hensei : MonoBehaviour
         {
             if (sortie_[unit_num])
             {
-                units_[unit_num].GetComponent<Text>().color = new Color(0.7f, 0.7f, 0.7f, 1);
+                if (players_[unit_num].GetComponent<Character>()._hero) return;
+                units_[unit_num].GetComponent<Text>().color = new Color(0.2f, 0.2f, 0.2f, 1);
                 sortie_[unit_num] = false;
                 sortie_num++;
                 players_[unit_num].SetActive(false);
@@ -121,7 +122,7 @@ public class Hensei : MonoBehaviour
             }
             else if (sortie_num > 0)
             {
-                units_[unit_num].GetComponent<Text>().color = new Color(0.2f, 0.2f, 0.2f, 1);
+                units_[unit_num].GetComponent<Text>().color = new Color(1.0f, 1.0f, 1.0f, 1);
                 sortie_[unit_num] = true;
                 sortie_num--;
                 players_[unit_num].SetActive(true);
@@ -179,7 +180,7 @@ public class Hensei : MonoBehaviour
             else
             {
                 sortie_[i] = false;
-                units_[i].GetComponent<Text>().color = new Color(0.7f, 0.7f, 0.7f, 1);
+                units_[i].GetComponent<Text>().color = new Color(0.2f, 0.2f, 0.2f, 1);
                 players_[i].SetActive(false);
             }
         }
