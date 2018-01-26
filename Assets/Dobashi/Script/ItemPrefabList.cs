@@ -42,6 +42,17 @@ public class ItemPrefabList : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// アイテム交換用
+    /// </summary>
+    /// <param name="getitem">もらいもの</param>
+    /// <param name="givitem">あげるもの</param>
+    public void ChangeItem(GameObject getitem,GameObject givitem)
+    {
+        AddItem(getitem);
+        _itemprefablist.Remove(givitem);
+    }
+
 
     /// <summary>
     /// 不要アイテムの削除

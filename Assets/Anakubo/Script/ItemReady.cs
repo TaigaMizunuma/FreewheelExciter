@@ -585,11 +585,14 @@ public class ItemReady : MonoBehaviour {
         var c1 = _chara.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>();
         var c2 = _chara2.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>();
 
-        c1.AddItem(_item2);
-        c2.AddItem(_item);
-
         //Destroy(_item);
         //Destroy(_item2);
+
+        //c1.AddItem(_item2);
+        //c2.AddItem(_item);
+
+        c1.ChangeItem(_item2,_item);
+        c2.ChangeItem(_item, _item2);
 
         c1.RemoveItem();
         c2.RemoveItem();
