@@ -2781,7 +2781,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1727008686214786, guid: f75a52e7524462347bdedfa0f8da22d7, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114098214929626096, guid: f75a52e7524462347bdedfa0f8da22d7,
         type: 2}
@@ -6264,7 +6264,7 @@ Prefab:
     - target: {fileID: 114497342842723724, guid: bfe1b8393775c4d4594589283e104ee8,
         type: 2}
       propertyPath: GameStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfe1b8393775c4d4594589283e104ee8, type: 2}
@@ -10586,6 +10586,11 @@ Prefab:
       propertyPath: rayBox
       value: 
       objectReference: {fileID: 1180679385}
+    - target: {fileID: 114669125964788414, guid: 830e02da8c0f485449219768739c70ae,
+        type: 2}
+      propertyPath: _stock
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 830e02da8c0f485449219768739c70ae, type: 2}
   m_IsPrefabParent: 0

@@ -446,6 +446,7 @@ public class BattleFlowTest : MonoBehaviour
                 if (count == 0) return;
                 count--;
                 _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
+                _nowChooseChar.GetComponent<Character>().TotalStatus();
 
             }
             if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
@@ -453,12 +454,14 @@ public class BattleFlowTest : MonoBehaviour
                 if (count == UIs.Count - 1) return;
                 count++;
                 _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
+                _nowChooseChar.GetComponent<Character>().TotalStatus();
 
             }
             if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
             {
                 choose = true;
                 _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
+                _nowChooseChar.GetComponent<Character>().TotalStatus();
 
                 //var anim = _nowCounterChara.GetComponent<Animator>();
                 //anim.CrossFade("NoneDamy", 0.0f);
@@ -1038,7 +1041,18 @@ public class BattleFlowTest : MonoBehaviour
             _TurnText.gameObject.GetComponent<Animator>().SetBool("Init", true);//ターン終了時のアニメーション
             m_audio.PlaySe("TurnStart");
             FindObjectOfType<ExpGage>().Enabled(false);
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            var players = GameObject.FindGameObjectsWithTag("Player");
+            for (var k = 0; k < players.Length; k++)
+            {
+                players[k].GetComponent<Character>().end();
+            }
+            var enemys = GameObject.FindGameObjectsWithTag("Enemy");
+            for (var e = 0;e < enemys.Length;e++)
+            {
+                enemys[e].GetComponent<Character>().end();
+            }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //すぐ行動しないように遅延
             StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () =>
             {

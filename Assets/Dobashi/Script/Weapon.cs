@@ -108,7 +108,7 @@ public class Weapon : MonoBehaviour {
     {
         _stock--;
         //0になったらtrueを返す。
-        if (_stock <= 0 && (_weapontype == Weapon_Type.Gun || _weapontype == Weapon_Type.Rifle))
+        if (_stock <= 0 && (_weapontype != Weapon_Type.Gun || _weapontype != Weapon_Type.Rifle))
         {
             //Debug.Log(_name + "が壊れた…");
             Destroy(gameObject, 1.0f);

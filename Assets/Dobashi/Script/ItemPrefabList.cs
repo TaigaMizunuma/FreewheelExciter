@@ -42,6 +42,36 @@ public class ItemPrefabList : MonoBehaviour {
         }
     }
 
+
+    /// <summary>
+    /// 不要アイテムの削除
+    /// </summary>
+    public void RemoveItem()
+    {
+        for (var i = 0; i < _itemprefablist.Count; i++)
+        {
+            if (_itemprefablist[i] == null)
+            {
+                _itemprefablist.RemoveAt(i);
+            }
+            if (_itemprefablist[i].GetComponent<Weapon>())
+            {
+                if ((_itemprefablist[i].GetComponent<Weapon>()._stock <= 0 &&
+                    _itemprefablist[i].GetComponent<Weapon>()._weapontype != Weapon_Type.Gun && _itemprefablist[i].GetComponent<Weapon>()._weapontype != Weapon_Type.Rifle))
+                {
+                    _itemprefablist.Remove(_itemprefablist[i]);
+                }
+            }
+            if (_itemprefablist[i].GetComponent<Item>())
+            {
+                if (_itemprefablist[i].GetComponent<Item>()._stock <= 0)
+                {
+                    _itemprefablist.Remove(_itemprefablist[i]);
+                }
+            }
+        }
+    }
+
     /// <summary>
     /// アイテムを使う
     /// </summary>
@@ -49,6 +79,10 @@ public class ItemPrefabList : MonoBehaviour {
     /// <param name="_Item">使うアイテムオブジェクト</param>
     public void UseItem(GameObject _chara,GameObject _Item)
     {
-        _Item.GetComponent<Item>().StockDecrement(_chara);
+        if (_Item.GetComponent<Item>().StockDecrement(_chara))
+        {
+            RemoveItem();
+        }
+        
     }
 }

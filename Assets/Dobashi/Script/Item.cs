@@ -92,7 +92,7 @@ public class Item : MonoBehaviour {
         if (_stock <= 0)
         {
             Debug.Log(_name + "がなくなった…");
-            Destroy(gameObject,1.0f);
+            //Destroy(gameObject,1.0f);
             return true;        
         }
         else

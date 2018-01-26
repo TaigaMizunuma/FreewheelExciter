@@ -264,7 +264,7 @@ public class Character : MonoBehaviour {
             LevelUp();
         }
 
-        TotalStatus();
+        //TotalStatus();
     }
 
     /// <summary>
@@ -489,7 +489,14 @@ public class Character : MonoBehaviour {
     /// <returns>ストック数</returns>
     public int GetStock()
     {
-        return _equipment.GetComponent<Weapon>()._stock;
+        if (!_equipment)
+        {
+            return 0;
+        }
+        else
+        {
+            return _equipment.GetComponent<Weapon>()._stock;
+        }
     }
 
 
@@ -505,6 +512,7 @@ public class Character : MonoBehaviour {
             if (_equipment.GetComponent<Weapon>().StockDecrement())
             {
                 Debug.Log(_equipment.transform.name + "が壊れた…");
+                _itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
             }
         }
         
@@ -558,6 +566,7 @@ public class Character : MonoBehaviour {
     {
         _addstatuslist = AddPassiveStatus();
         _addbufflist = AddBuffStatus();
+        _itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
 
         RevisionStatus();
 
