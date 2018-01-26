@@ -86,7 +86,7 @@ public class TitleScript : MonoBehaviour {
     public void GameCredit()
     {
         //本来はクレジットに飛ぶ
-        FindObjectOfType<Fade>().SetScene("Title");
+        FindObjectOfType<Fade>().SetScene("Credit");
         FindObjectOfType<Fade>().SetOutFade(true);
         FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
     }
