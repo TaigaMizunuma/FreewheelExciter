@@ -1094,6 +1094,49 @@ public class BattleFlowTest : MonoBehaviour
         }));
     }
 
+    public void AtkAnim(GameObject obj)
+    {
+        var animator = obj.GetComponent<Animator>();
+        Weapon_Type type =
+           animator.gameObject.GetComponent<Character>()._equipment.GetComponent<Weapon>()._weapontype;
+
+        //ハンドガン
+        if (type == Weapon_Type.Gun)
+        {
+            animator.CrossFade("HundGun_Atk", 0.0f);
+        }
+        //斧
+        else if (type == Weapon_Type.Axe)
+        {
+            animator.CrossFade("Axe_Atk", 0.0f);
+        }
+        //拳
+        else if (type == Weapon_Type.Fist)
+        {
+            animator.CrossFade("Punch_Atk", 0.0f);
+        }
+        //ナイフ
+        else if (type == Weapon_Type.Knife)
+        {
+            animator.CrossFade("Knife_Atk", 0.0f);
+        }
+        //ライフル
+        else if (type == Weapon_Type.Rifle)
+        {
+            animator.CrossFade("Rifle_Atk", 0.0f);
+        }
+        //槍
+        else if (type == Weapon_Type.Spear)
+        {
+            animator.CrossFade("Lance_Atk", 0.0f);
+        }
+        //素手
+        else
+        {
+            animator.CrossFade("Punch_Atk", 0.0f);
+        }
+    }
+
     /// <summary>
     /// アイテムがいっぱいのチャラを探す
     /// </summary>
