@@ -568,6 +568,11 @@ public class Character : MonoBehaviour {
         _addbufflist = AddBuffStatus();
         _itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
 
+        if (!_equipment)
+        {
+            _equipment = Resources.Load("Unarmed") as GameObject;
+        }
+
         RevisionStatus();
 
         _totalMaxhp = def_st[0];
