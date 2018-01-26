@@ -337,6 +337,7 @@ public class BattleFlowTest : MonoBehaviour
             {
                 g.GetComponent<Square_Info>().DecisionEnd();
             }
+            c_moving = false;
             FindObjectOfType<RayBox>().SetMovePlayer(null);
             state_ = State_.simulation_mode;
         }
@@ -916,6 +917,7 @@ public class BattleFlowTest : MonoBehaviour
         FindObjectOfType<SubMenuRenderer>().SubMenuStart();
         _nowChooseChar.GetComponent<Animator>().CrossFade("NoneDamy", 0.0f);
         FindObjectOfType<RayBox>().move_ = false;
+        c_moving = false;
         state_ = State_.action_mode;
     }
 
@@ -951,49 +953,59 @@ public class BattleFlowTest : MonoBehaviour
     /// <param name="upvalue"></param>
     public void LevelUpUI_Init(GameObject target, List<string> upvalue)
     {
-        var i = 2;
-        StartCoroutine(DelayMethod.DelayMethodCall(i, () =>
+        var ui = Instantiate(Resources.Load("LvUpWindow"),
+            GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
+        var text = ui.transform.FindChild("ValuesText").GetComponent<Text>();
+        text.text += target.GetComponent<Character>()._name + "\n";
+         foreach(var st in upvalue)
         {
-            //UI表示
-            GameObject text = Instantiate(
-                 Resources.Load("DamageTxt"),
-                 GameObject.Find("Canvas1").transform.Find("Frame")) as GameObject;
-            //ワールド座標をスクリーン座標に変換
-            var p = RectTransformUtility.WorldToScreenPoint(Camera.main, target.transform.position);
-            var retPosition = Vector2.zero;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                GameObject.Find("Canvas1").GetComponent<RectTransform>(),
-                p,
-                Camera.main,
-                out retPosition
-            );
-            text.transform.localPosition = retPosition;
-            text.GetComponent<DamegeUI>().setDamegeTxt("LevelUp!");
-        }));
-
-        i++;
-      
-        foreach (var value in upvalue)
-        {
-            StartCoroutine(DelayMethod.DelayMethodCall(i, () =>
-            {
-                GameObject text2 = Instantiate(
-                Resources.Load("DamageTxt"),
-                GameObject.Find("Canvas1").transform.Find("Frame")) as GameObject;
-                //ワールド座標をスクリーン座標に変換
-                var p2 = RectTransformUtility.WorldToScreenPoint(Camera.main, target.transform.position);
-                var retPosition2 = Vector2.zero;
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                    GameObject.Find("Canvas1").GetComponent<RectTransform>(),
-                    p2,
-                    Camera.main,
-                    out retPosition2
-                );
-                text2.transform.localPosition = retPosition2;
-                text2.GetComponent<DamegeUI>().setDamegeTxt(value);
-            }));
-            i++;
+            text.text += st + "\n";
         }
+        Destroy(ui, 5.0f);
+
+        //var i = 2;
+        //StartCoroutine(DelayMethod.DelayMethodCall(i, () =>
+        //{
+        //    //UI表示
+        //    GameObject text = Instantiate(
+        //         Resources.Load("DamageTxt"),
+        //         GameObject.Find("Canvas1").transform.Find("Frame")) as GameObject;
+        //    //ワールド座標をスクリーン座標に変換
+        //    var p = RectTransformUtility.WorldToScreenPoint(Camera.main, target.transform.position);
+        //    var retPosition = Vector2.zero;
+        //    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        //        GameObject.Find("Canvas1").GetComponent<RectTransform>(),
+        //        p,
+        //        Camera.main,
+        //        out retPosition
+        //    );
+        //    text.transform.localPosition = retPosition;
+        //    text.GetComponent<DamegeUI>().setDamegeTxt("LevelUp!");
+        //}));
+
+        //i++;
+
+        //foreach (var value in upvalue)
+        //{
+        //    StartCoroutine(DelayMethod.DelayMethodCall(i, () =>
+        //    {
+        //        GameObject text2 = Instantiate(
+        //        Resources.Load("DamageTxt"),
+        //        GameObject.Find("Canvas1").transform.Find("Frame")) as GameObject;
+        //        //ワールド座標をスクリーン座標に変換
+        //        var p2 = RectTransformUtility.WorldToScreenPoint(Camera.main, target.transform.position);
+        //        var retPosition2 = Vector2.zero;
+        //        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        //            GameObject.Find("Canvas1").GetComponent<RectTransform>(),
+        //            p2,
+        //            Camera.main,
+        //            out retPosition2
+        //        );
+        //        text2.transform.localPosition = retPosition2;
+        //        text2.GetComponent<DamegeUI>().setDamegeTxt(value);
+        //    }));
+        //    i++;
+        //}
     }
 
     /// <summary>
@@ -1084,6 +1096,9 @@ public class BattleFlowTest : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// 所持アイテムが上限の時の処理
+    /// </summary>
     void ExchangeMode()
     {
         if (once == false)
