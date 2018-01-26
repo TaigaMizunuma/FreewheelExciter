@@ -207,6 +207,10 @@ public class Character : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
+        if (!_equipment)
+        {
+            _equipment = Resources.Load("Unarmed") as GameObject;
+        }
         //HPの状態による分岐
         switch (_HpState)
         {
@@ -739,6 +743,7 @@ public class Character : MonoBehaviour {
         {
             _totalhp = _totalMaxhp;
         }
+        TotalStatus();
     }
 
     /// <summary>
@@ -913,47 +918,55 @@ public class Character : MonoBehaviour {
         }
 
         //能力が一切上がらなかった場合５０％の確率で再抽選
-        if(_loop || UnityEngine.Random.Range(0, 2) == 0)
+        if(_loop && UnityEngine.Random.Range(0, 2) == 0)
         {
             if (UnityEngine.Random.Range(0, 100) <= _hprate)
             {
                 lvup.Add("HP + 1");
                 _hp++;
+                _loop = false;
             }
             if (UnityEngine.Random.Range(0, 100) <= _strrate)
             {
                 lvup.Add("力 + 1");
                 _str++;
+                _loop = false;
             }
             if (UnityEngine.Random.Range(0, 100) <= _sklrate)
             {
                 lvup.Add("技 + 1");
                 _skl++;
+                _loop = false;
             }
             if (UnityEngine.Random.Range(0, 100) <= _spdrate)
             {
                 lvup.Add("速 + 1");
                 _spd++;
+                _loop = false;
             }
             if (UnityEngine.Random.Range(0, 100) <= _lukrate)
             {
                 lvup.Add("運 + 1");
                 _luk++;
+                _loop = false;
             }
             if (UnityEngine.Random.Range(0, 100) <= _defrate)
             {
                 lvup.Add("守 + 1");
                 _def++;
+                _loop = false;
             }
             if (UnityEngine.Random.Range(0, 100) <= _currate)
             {
                 lvup.Add("呪 + 1");
                 _cur++;
+                _loop = false;
             }
             if (UnityEngine.Random.Range(0, 100) <= _moverate)
             {
                 lvup.Add("移動 + 1");
                 _move++;
+                _loop = false;
             }
         }
 
