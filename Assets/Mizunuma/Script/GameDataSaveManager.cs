@@ -207,13 +207,15 @@ public class GameDataSaveManager : MonoBehaviour
             {
                 Debug.Log("03_セーブモード");
                 /*上書きモード*/
-                if (SaveData.HasKey("SaveNumber1") == true && SaveData.HasKey("SaveSlotPurpose1") == true &&
+                if (
                 SaveData.HasKey("SaveSlotTimes1") == true && SaveData.HasKey("SaveSlotTurnString1") == true ||
                 SaveData.HasKey("SaveNumber2") == true && SaveData.HasKey("SaveSlotPurpose2") == true &&
                 SaveData.HasKey("SaveSlotTimes2") == true && SaveData.HasKey("SaveSlotTurnString2") == true)
                 {
                     StartSave();
                     Debug.Log("タイトル読み込み");
+                    SaveDataNoText1.enabled = false;
+                    SavePlayerPicture1.enabled = true;
                     /*01タイトル*/
                     SaveDataConditionsText1.text = "第" + SaveNumber[1] +
                                                    "章 " + SaveSlotPurpose[1];
@@ -307,7 +309,7 @@ public class GameDataSaveManager : MonoBehaviour
             }
             if (SaveData.HasKey("GameSaveCheck") == true && SaveDataDeleteFlag == false)
             {
-                if (SaveData.HasKey("SaveNumber2") == true && SaveData.HasKey("SaveSlotPurpose2") == true &&
+                if (
                 SaveData.HasKey("SaveSlotTimes2") == true && SaveData.HasKey("SaveSlotTurnString2") == true ||
                 SaveData.HasKey("SaveNumber1") == true && SaveData.HasKey("SaveSlotPurpose1") == true &&
                 SaveData.HasKey("SaveSlotTimes1") == true && SaveData.HasKey("SaveSlotTurnString1") == true)
@@ -315,6 +317,8 @@ public class GameDataSaveManager : MonoBehaviour
                     Debug.Log("03_セーブモード");
                     StartSave();
                     /*01タイトル*/
+                    SaveDataNoText2.enabled = false;
+                    SavePlayerPicture1.enabled = true;
                     SaveDataConditionsText2.text = "第" + SaveNumber[2] +
                                                   "章 " + SaveSlotPurpose[2];
 
