@@ -140,6 +140,12 @@ public class StoryCSVReader : MonoBehaviour
         Battle,
     }
 
+    public enum NalationOrStory
+    {
+        Nalation,
+        Story,
+    }
+
     void Awake()
     {
         if (loadGameFlag == false)
@@ -500,19 +506,19 @@ public class StoryCSVReader : MonoBehaviour
         switch (s_loadNumber)
         {
             case 1:
-                dataLoadName = "Story1After";
+                dataLoadName = "Story2Before";
                 break;
             case 2:
-                dataLoadName = "Story2After";
+                dataLoadName = "Story3Before";
                 break;
             case 3:
-                dataLoadName = "Story3After";
+                dataLoadName = "Story4Before";
                 break;
             case 4:
-                dataLoadName = "Story4After";
+                dataLoadName = "Story5Before";
                 break;
             case 5:
-                dataLoadName = "Story5After";
+                dataLoadName = "Ending";
                 break;
         }
     }

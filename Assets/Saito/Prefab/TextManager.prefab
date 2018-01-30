@@ -73,7 +73,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
   - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
   - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
-  backGround: []
+  backGround:
+  - {fileID: 21300000, guid: 52d5009d5b284e049a058e1a5a95d161, type: 3}
+  - {fileID: 21300000, guid: 9ce01b7640ce49c4190746af180a7447, type: 3}
+  - {fileID: 21300000, guid: 5ec23787d27b2be4886e6c2ebfa0f0ea, type: 3}
+  - {fileID: 21300000, guid: c2151128016f304469a831c044a70959, type: 3}
+  - {fileID: 21300000, guid: 5509ec030f450f54b8b296489af06e6a, type: 3}
 --- !u!114 &114435155072594706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215c467f7ba30e34dba36508d5754dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storyNumber: 0
+  storyID: 0
   nextLoadScene: 
   endFlag: 0
   dataLoadName: 
@@ -101,3 +106,5 @@ MonoBehaviour:
   LNameDisplayVector: {x: 125, y: 255}
   RNameDisplayVector: {x: 1120, y: 255}
   fade: {fileID: 0}
+  battleScenarioSwitch: 0
+  messageWindow: {fileID: 0}
