@@ -3845,6 +3845,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114594019914619240, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: _data.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 224129443863285374, guid: f75a52e7524462347bdedfa0f8da22d7,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -4034,6 +4039,11 @@ Prefab:
       propertyPath: shosai_
       value: 
       objectReference: {fileID: 649534770}
+    - target: {fileID: 114594019914619240, guid: f75a52e7524462347bdedfa0f8da22d7,
+        type: 2}
+      propertyPath: _data.Array.data[3]
+      value: 
+      objectReference: {fileID: 576470130}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f75a52e7524462347bdedfa0f8da22d7, type: 2}
   m_IsPrefabParent: 0
@@ -7065,6 +7075,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7ae75a9fe64a40243ad76ff55b7f678e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &576470130 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1312941153330062, guid: f75a52e7524462347bdedfa0f8da22d7,
+    type: 2}
+  m_PrefabInternal: {fileID: 364221149}
 --- !u!1 &578832707
 GameObject:
   m_ObjectHideFlags: 0
