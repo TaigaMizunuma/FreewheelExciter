@@ -67,7 +67,6 @@ public class TitleScript : MonoBehaviour {
     public void Continue()
     {
         //ここでセーブデータから呼ぶ
-        //今はないのでテストシーンに飛ばしている
         FindObjectOfType<Fade>().SetScene("SaveData");
         FindObjectOfType<Fade>().SetOutFade(true);
         FindObjectOfType<Fade>().SetSceneChangeSwitch(true);

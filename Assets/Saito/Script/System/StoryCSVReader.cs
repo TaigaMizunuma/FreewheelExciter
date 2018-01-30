@@ -130,6 +130,10 @@ public class StoryCSVReader : MonoBehaviour
     [SerializeField]
     GameObject messageWindow;
 
+    int s_loadNumber;
+
+    static bool loadGameFlag;
+
     enum ScenePattern
     {
         Message,
@@ -138,6 +142,12 @@ public class StoryCSVReader : MonoBehaviour
 
     void Awake()
     {
+        if (loadGameFlag == false)
+        {
+            LoadNumber();
+        }
+        loadGameFlag = true;
+
         //次に読み込むストーリーが確定してたら
         if(nextStory != null)
         {
@@ -360,19 +370,6 @@ public class StoryCSVReader : MonoBehaviour
             readStartNumber = 0;
             readEndNumber = 0;
         }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            nextStory = storyCSVDatas[1][13];
-            storyNumber = int.Parse(storyCSVDatas[2][0]);
-            s_title = storyCSVDatas[2][17];
-            dataLoadName = nextStory;
-            readStartNumber = nextreadStartNumber;
-            readEndNumber = nextreadEndNumber;
-            nextLoadScene = FindObjectOfType<Fade>().GetScene();
-            FindObjectOfType<Fade>().SetOutFade(true);
-            FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
-        }
     }
 
     /// <summary>
@@ -487,5 +484,36 @@ public class StoryCSVReader : MonoBehaviour
     public string GetClearCondition()
     {
         return clearCondition;
+    }
+
+    /// <summary>
+    /// この数値を参照してどのストーリーを呼ぶか決める
+    /// </summary>
+    /// <param name="loadNum"></param>
+    public void SetLoadStoryNumber(int loadNum)
+    {
+        s_loadNumber = loadNum;
+    }
+
+    void LoadNumber()
+    {
+        switch (s_loadNumber)
+        {
+            case 1:
+                dataLoadName = "Story1After";
+                break;
+            case 2:
+                dataLoadName = "Story2After";
+                break;
+            case 3:
+                dataLoadName = "Story3After";
+                break;
+            case 4:
+                dataLoadName = "Story4After";
+                break;
+            case 5:
+                dataLoadName = "Story5After";
+                break;
+        }
     }
 }
