@@ -31,8 +31,6 @@ public class ItemReady : MonoBehaviour {
     // モード1 アイテムに関するアクションの選択
     // 操作の項目
     public GameObject[] controll_list_;
-    // 選んでる項目
-    private int controll_num = 0;
 
     // モード2 交換選択時の表示
     // 交換の時に選んだ二人目のユニット
@@ -61,7 +59,7 @@ public class ItemReady : MonoBehaviour {
 
     // モード4 捨てる選択時の表示
     // 捨てるアイテムを格納
-    private GameObject throw_item = null;
+    private int throw_item_num = -1;
     // 確認のテキストの親を登録
     public GameObject[] confirmation_;
     // はい と いいえ を登録
@@ -178,7 +176,7 @@ public class ItemReady : MonoBehaviour {
             }
             else
             {
-                if (units_[unit_num] != first_unit)
+                if (players_[unit_num] != first_unit)
                 {
 
                     second_unit = players_[unit_num];
@@ -205,6 +203,11 @@ public class ItemReady : MonoBehaviour {
                 controll_list_[0].transform.parent.gameObject.SetActive(true);
                 first_item_list.SetActive(false);
                 ResetNum();
+                for(int i = 0; i < players_.Length; i++)
+                {
+                    if (players_[i] == first_unit) unit_num = i;
+                }
+                ShosaiUpdate();
             }
         }
     }
@@ -230,6 +233,7 @@ public class ItemReady : MonoBehaviour {
             first_unit = null;
             mode_ = 0;
             ResetNum();
+            ShosaiUpdate();
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[0]);
         }
         if (Input.GetKeyDown(KeyCode.Z)){
@@ -268,6 +272,14 @@ public class ItemReady : MonoBehaviour {
             first_item_list.SetActive(true);
             ResetNum();
             UIChange();
+            if(mode_ != 0)
+            {
+                for (int i = 0; i < players_.Length; i++)
+                {
+                    if (players_[i] == first_unit) unit_num = i;
+                }
+            }
+            ShosaiUpdate();
         }
     }
 
@@ -303,6 +315,7 @@ public class ItemReady : MonoBehaviour {
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[0]);
                 ResetNum();
                 UIChange();
+                ShosaiUpdate();
             }
             if (Input.GetKeyDown(KeyCode.Z))
             {
@@ -368,7 +381,12 @@ public class ItemReady : MonoBehaviour {
                 controll_list_[0].transform.parent.gameObject.SetActive(true);
                 first_item_list.SetActive(false);
                 ResetNum();
+                for (int i = 0; i < players_.Length; i++)
+                {
+                    if (players_[i] == first_unit) unit_num = i;
+                }
                 UIChange();
+                ShosaiUpdate();
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(controll_list_[0]);
             }
             if (Input.GetKeyDown(KeyCode.Z))
@@ -405,6 +423,15 @@ public class ItemReady : MonoBehaviour {
                     if (pos_num_y < 0) pos_num_y = first_items.Count - 1;
                 }
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    GameObject.Find("RepositoryManager").GetComponent<RepositoryManager>().AddItem(first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[pos_num_y]);
+                    first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
+                    DisplayUpdate();
+                    first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
+                    pos_num_y = 0;
+                    cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
+                }
             }
             if (warehouse_mode == 2)
             {
@@ -441,7 +468,7 @@ public class ItemReady : MonoBehaviour {
     {
         if (!confirmation_[1].activeSelf)
         {
-            if (throw_item == null)
+            if (throw_item_num < 0)
             {
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
@@ -456,7 +483,7 @@ public class ItemReady : MonoBehaviour {
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    throw_item = first_items[pos_num_y];
+                    throw_item_num = pos_num_y;
                     confirmation_[0].SetActive(true);
                     yes_no_[0].transform.parent.gameObject.SetActive(true);
                     yes_no_[1].transform.parent.gameObject.SetActive(true);
@@ -468,7 +495,12 @@ public class ItemReady : MonoBehaviour {
                     controll_list_[0].transform.parent.gameObject.SetActive(true);
                     first_item_list.SetActive(false);
                     ResetNum();
+                    for (int i = 0; i < players_.Length; i++)
+                    {
+                        if (players_[i] == first_unit) unit_num = i;
+                    }
                     UIChange();
+                    ShosaiUpdate();
                     cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(controll_list_[0]);
                 }
             }
@@ -492,7 +524,7 @@ public class ItemReady : MonoBehaviour {
                     }
                     else
                     {
-                        throw_item = null;
+                        throw_item_num = -1;
                         confirmation_[0].SetActive(false);
                         yes_no_[0].transform.parent.gameObject.SetActive(false);
                         yes_no_[1].transform.parent.gameObject.SetActive(false);
@@ -504,7 +536,13 @@ public class ItemReady : MonoBehaviour {
         {
             if (Input.anyKeyDown)
             {
-                throw_item = null;
+                first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().GiveItem(first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[throw_item_num]);
+                first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
+                DisplayUpdate();
+                first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
+                pos_num_y = 0;
+                cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
+                throw_item_num = -1;
                 confirmation_[1].SetActive(false);
                 yes_no_[0].transform.parent.gameObject.SetActive(false);
                 yes_no_[1].transform.parent.gameObject.SetActive(false);
@@ -541,6 +579,7 @@ public class ItemReady : MonoBehaviour {
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[0]);
             ResetNum();
             UIChange();
+            ShosaiUpdate();
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -557,7 +596,6 @@ public class ItemReady : MonoBehaviour {
     void ResetNum()
     {
         unit_num = 0;
-        controll_num = 0;
         pos_num_x = 0;
         pos_num_y = 0;
     }
@@ -566,11 +604,10 @@ public class ItemReady : MonoBehaviour {
     {
         parent_canvas.GetComponent<ReadyManager>().SetUnit(first_unit);
         frame_left.GetComponent<UILeftStatus>().SetData(first_unit.GetComponent<Character>());
-        frame_left.GetComponent<UILeftStatus>()._faceimage.sprite = first_unit.GetComponent<Character>()._faceimage;
         frame_left.GetComponent<UIItemList>().SetData(first_unit.GetComponent<Character>(), first_item_list);
+        if (second_unit == null) return;
         parent_canvas.GetComponent<ReadyManager>().SetUnit(second_unit);
         UIs_parent[1].GetComponent<UILeftStatus>().SetData(second_unit.GetComponent<Character>());
-        UIs_parent[1].GetComponent<UILeftStatus>()._faceimage.sprite = second_unit.GetComponent<Character>()._faceimage;
         UIs_parent[1].GetComponent<UIItemList>().SetData(second_unit.GetComponent<Character>(), second_item_list);
         
     }
@@ -597,6 +634,11 @@ public class ItemReady : MonoBehaviour {
             if (mode_ == 0)
             {
                 if (i == mode_) UIs_parent[i].SetActive(true);
+                else UIs_parent[i].SetActive(false);
+            }
+            else if(mode_ == 5)
+            {
+                if (i == 1) UIs_parent[i].SetActive(true);
                 else UIs_parent[i].SetActive(false);
             }
             else
@@ -634,7 +676,6 @@ public class ItemReady : MonoBehaviour {
     {
         parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
         frame_left.GetComponent<UILeftStatus>().SetData(players_[unit_num].GetComponent<Character>());
-        frame_left.GetComponent<UILeftStatus>()._faceimage.sprite = players_[unit_num].GetComponent<Character>()._faceimage;
         frame_left.GetComponent<UIItemList>().SetData(players_[unit_num].GetComponent<Character>(),first_item_list);
     }
 
