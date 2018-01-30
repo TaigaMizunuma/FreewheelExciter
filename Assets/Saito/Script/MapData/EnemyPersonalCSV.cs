@@ -60,8 +60,10 @@ public class EnemyPersonalCSV : MonoBehaviour
         this.GetComponent<Character>()._level = e_level;
         e_weapon = c_enemyPerDatas[e_number + 1][5];
         e_weapontype = c_enemyPerDatas[e_number + 1][6];
-        this.GetComponent<Character>()._equipment = Resources.Load("Weapon/" + e_weapontype +"/" + e_weapon,typeof(GameObject)) as GameObject;
-
+        if (e_weapontype != null || e_weapon != null)
+        {
+            this.GetComponent<Character>()._equipment = Resources.Load("Weapon/" + e_weapontype + "/" + e_weapon, typeof(GameObject)) as GameObject;
+        }
         e_job = c_enemyPerDatas[e_number + 1][3];
         e_strength = c_enemyPerDatas[e_number + 1][4];
     }

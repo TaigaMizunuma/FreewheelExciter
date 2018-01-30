@@ -1,6 +1,6 @@
 ﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions
 1,0,ヒュー,みんな、準備はいいか,0,0,0,0,ON,OFF,OFF,OFF,0,Story1After,9,10,1,赤光、白熱,Story,Boss
-,1,キース,銃よし,0,0,0,2,SHADE,OFF,OFF,ON,0,,9,10,,,,
+,1,キース,銃よし,0,0,0,2,SHADE,OFF,OFF,ON,0,Story1Before,9,10,,,,
 ,2,ケン,拳よし！,0,0,3,2,SHADE,OFF,ON,SHADE,0,,9,10,,,,
 ,3,アイン,ぜーんぶよし！,0,1,3,2,SHADE,ON,SHADE,SHADE,0,,9,10,,,,
 ,4,ヒュー,よしみんな行くぞ！俺たちが戦えるってこと、思い知らせてやる！,0,1,3,2,ON,SHADE,SHADE,SHADE,0,,9,10,,,,

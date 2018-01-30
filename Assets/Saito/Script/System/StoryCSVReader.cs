@@ -268,7 +268,7 @@ public class StoryCSVReader : MonoBehaviour
             {
                 if (scenePattern == ScenePattern.Message)
                 {
-                    nextStory = storyCSVDatas[storyID + 1][13];
+                    nextStory = storyCSVDatas[1][13];
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
@@ -284,7 +284,7 @@ public class StoryCSVReader : MonoBehaviour
             {
                 if (scenePattern == ScenePattern.Message)
                 {
-                    nextStory = storyCSVDatas[storyID + 1][13];
+                    nextStory = storyCSVDatas[1][13];
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
@@ -344,15 +344,23 @@ public class StoryCSVReader : MonoBehaviour
         if (!GameObject.FindGameObjectWithTag("Enemy"))
         {
             {
-                nextStory = storyCSVDatas[storyID + 1][13];
+                nextStory = storyCSVDatas[1][13];
                 dataLoadName = nextStory;
                 readStartNumber = nextreadStartNumber;
                 readEndNumber = nextreadEndNumber;
             }
         }
-        if(Input.GetKeyDown(KeyCode.O))
+        else if (!GameObject.FindGameObjectWithTag("Player"))
         {
-            nextStory = storyCSVDatas[storyID + 1][13];
+            nextStory = storyCSVDatas[2][13];
+            dataLoadName = nextStory;
+            readStartNumber = 0;
+            readEndNumber = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            nextStory = storyCSVDatas[1][13];
             dataLoadName = nextStory;
             readStartNumber = nextreadStartNumber;
             readEndNumber = nextreadEndNumber;
