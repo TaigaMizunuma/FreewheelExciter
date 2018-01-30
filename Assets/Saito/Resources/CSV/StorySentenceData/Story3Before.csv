@@ -1,8 +1,8 @@
 ﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions
 3,0,フライヤー,パーシングがやられたらしい…,8,0,0,14,OFF,OFF,OFF,ON,0,Battle3,0,17,0,嵐の出撃,Stage3,Boss
-,1,ジャイロ,…マジかよ,8,0,0,14,ON,OFF,OFF,SHADE,0,,0,0,,,,
-,2,フライヤー,これで俺たちが最強ってわけか？,8,0,0,14,SHADE,OFF,OFF,ON,0,,0,0,,,,
-,3,ジャイロ,いや、倒したヤツらがいるだろ。その情報は？,8,0,0,14,ON,OFF,OFF,SHADE,0,,0,0,,,,
-,4,フライヤー,先遣隊のヤツらが見たらしいが、爺さん一人にガキどもばかりだと,8,0,0,14,SHADE,OFF,OFF,ON,0,,0,0,,,,
-,5,フライヤー,大したことはないだろ、俺らはファイアフライ、最強の航空艦隊だぜ,8,0,0,14,SHADE,OFF,OFF,ON,0,,0,0,,,,
-,6,ジャイロ,まあ、そうだが,8,0,0,14,ON,OFF,OFF,SHADE,1,,0,0,,,,
+3,1,ジャイロ,…マジかよ,8,0,0,14,ON,OFF,OFF,SHADE,0,,0,0,,嵐の出撃,,
+3,2,フライヤー,これで俺たちが最強ってわけか？,8,0,0,14,SHADE,OFF,OFF,ON,0,,0,0,,嵐の出撃,,
+3,3,ジャイロ,いや、倒したヤツらがいるだろ。その情報は？,8,0,0,14,ON,OFF,OFF,SHADE,0,,0,0,,嵐の出撃,,
+3,4,フライヤー,先遣隊のヤツらが見たらしいが、爺さん一人にガキどもばかりだと,8,0,0,14,SHADE,OFF,OFF,ON,0,,0,0,,嵐の出撃,,
+3,5,フライヤー,大したことはないだろ、俺らはファイアフライ、最強の航空艦隊だぜ,8,0,0,14,SHADE,OFF,OFF,ON,0,,0,0,,嵐の出撃,,
+3,6,ジャイロ,まあ、そうだが,8,0,0,14,ON,OFF,OFF,SHADE,1,,0,0,,嵐の出撃,,

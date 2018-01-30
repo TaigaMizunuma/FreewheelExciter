@@ -11,14 +11,14 @@ public class StoryCSVReader : MonoBehaviour
     static string nextStory;
 
     //章タイトル
-    string s_title;
+    static string s_title;
 
     //今表示してるID
     [SerializeField]
     int storyID;
 
     //章番号
-    int storyNumber;
+    static int storyNumber;
 
     //バトル中かストーリー画面かの判定(バトル中に他シーンに飛ばないようにするため)
     int sceneMode;
@@ -269,6 +269,7 @@ public class StoryCSVReader : MonoBehaviour
                 if (scenePattern == ScenePattern.Message)
                 {
                     nextStory = storyCSVDatas[1][13];
+                    
                     dataLoadName = nextStory;
                     readStartNumber = nextreadStartNumber;
                     readEndNumber = nextreadEndNumber;
@@ -345,6 +346,8 @@ public class StoryCSVReader : MonoBehaviour
         {
             {
                 nextStory = storyCSVDatas[1][13];
+                storyNumber = int.Parse(storyCSVDatas[2][0]);
+                s_title = storyCSVDatas[2][17];
                 dataLoadName = nextStory;
                 readStartNumber = nextreadStartNumber;
                 readEndNumber = nextreadEndNumber;
@@ -361,6 +364,8 @@ public class StoryCSVReader : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O))
         {
             nextStory = storyCSVDatas[1][13];
+            storyNumber = int.Parse(storyCSVDatas[2][0]);
+            s_title = storyCSVDatas[2][17];
             dataLoadName = nextStory;
             readStartNumber = nextreadStartNumber;
             readEndNumber = nextreadEndNumber;

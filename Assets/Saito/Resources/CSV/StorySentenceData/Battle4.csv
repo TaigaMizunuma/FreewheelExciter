@@ -1,6 +1,6 @@
 StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions
 4,0,キース,ここだぜ,1,2,0,15,ON,OFF,OFF,SHADE,0,Story4After,5,5,1,孤立の涙,Story,Boss
-,1,ヒュー,…早速偉そうなヤツが暴れてるな。あれがこの街のボスか？,0,2,0,15,ON,OFF,OFF,SHADE,0,Story4Before,5,5,,,,
+5,1,ヒュー,…早速偉そうなヤツが暴れてるな。あれがこの街のボスか？,0,2,0,15,ON,OFF,OFF,SHADE,0,Story4Before,5,5,,異端からの反撃,,
 ,2,キース,そうそう。…まさかあいつを倒す気か？やめといたほうが…,0,2,0,15,SHADE,OFF,OFF,SHADE,0,,5,5,,,,
 ,3,ヒュー,あれ倒せば、ハイランドも見えてくる…そんな気がする,0,2,0,15,ON,OFF,OFF,SHADE,0,,5,5,,,,
 ,4,キース,…ハァ　しゃーねー、故郷に凱旋といきますか,0,2,0,15,SHADE,OFF,OFF,SHADE,0,,5,5,,,,

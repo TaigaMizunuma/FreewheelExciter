@@ -1,6 +1,6 @@
 ﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions
 2,1,シングス,おい、「疾風」！,6,0,0,11,OFF,OFF,OFF,ON,0,Story2After,14,15,1,殺人機械,Story,Boss
-,2,イゴール,…なんすか、ボス,6,0,0,11,ON,OFF,OFF,SHADE,0,Story2Before,14,15,,,,
+3,2,イゴール,…なんすか、ボス,6,0,0,11,ON,OFF,OFF,SHADE,0,Story2Before,14,15,,嵐の出撃,,
 ,3,シングス,俺たちが何者かわかっているのか？バイクは友達じゃない、商売道具だ,6,0,0,11,SHADE,OFF,OFF,ON,0,,14,15,,,,
 ,4,イゴール,まあ、そうですねえ…,6,0,0,11,ON,OFF,OFF,SHADE,0,,14,15,,,,
 ,5,シングス,俺たちは略奪のためにバイクを使うんだ、それだけは覚えておけよ,6,0,0,11,SHADE,OFF,OFF,ON,0,,14,15,,,,
