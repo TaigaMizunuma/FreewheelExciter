@@ -298,9 +298,9 @@ public class EnemyAttack : MonoBehaviour
         FindObjectOfType<BattleFlowTest>().state_ = State_.enemy_attack_mode;
 
         Debug.Log("敵の攻撃！");
-        var effect = Instantiate(Resources.Load("Eff_Hit_6"), target.transform.position, Quaternion.identity);
-        FindObjectOfType<AudioManager>().PlaySe("GunShot");
-        Destroy(effect, 1.0f);
+        //var effect = Instantiate(Resources.Load("Eff_Hit_6"), target.transform.position, Quaternion.identity);
+        //FindObjectOfType<AudioManager>().PlaySe("GunShot");
+        //Destroy(effect, 1.0f);
 
         //キャラの向き変更
         transform.LookAt(target.transform);
@@ -347,9 +347,9 @@ public class EnemyAttack : MonoBehaviour
         if (target.GetComponent<Character>()._HpState != Character.HP_State.Dead)
         {
             Debug.Log("自キャラの反撃！");
-            var effect = Instantiate(Resources.Load("Eff_Hit_6"), enemy.transform.position, Quaternion.identity);
-            FindObjectOfType<AudioManager>().PlaySe("GunShot");
-            Destroy(effect, 1.0f);
+            //var effect = Instantiate(Resources.Load("Eff_Hit_6"), enemy.transform.position, Quaternion.identity);
+            //FindObjectOfType<AudioManager>().PlaySe("GunShot");
+            //Destroy(effect, 1.0f);
 
             //キャラの向き変更
             target.transform.LookAt(enemy.transform);

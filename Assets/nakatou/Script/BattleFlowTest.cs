@@ -338,6 +338,7 @@ public class BattleFlowTest : MonoBehaviour
                 g.GetComponent<Square_Info>().DecisionEnd();
             }
             c_moving = false;
+            _nowChooseChar.GetComponent<Animator>().CrossFade("NoneDamy", 0.0f);
             FindObjectOfType<RayBox>().SetMovePlayer(null);
             state_ = State_.simulation_mode;
         }
@@ -803,9 +804,9 @@ public class BattleFlowTest : MonoBehaviour
                     FindObjectOfType<RayBox>().move_ = false;
 
                     //とりあえずのエフェクト表示&SE
-                    var effect = Instantiate(Resources.Load("Eff_Hit_6"), hit.transform.position, Quaternion.identity);
-                    m_audio.PlaySe("GunShot");
-                    Destroy(effect, 1.0f);
+                    //var effect = Instantiate(Resources.Load("Eff_Hit_6"), hit.transform.position, Quaternion.identity);
+                    //m_audio.PlaySe("GunShot");
+                    //Destroy(effect, 1.0f);
 
                     int e_nowhp = hit.transform.GetComponent<Character>()._totalhp;
                     int p_nowhp = _nowChooseChar.GetComponent<Character>()._totalhp;
@@ -871,9 +872,9 @@ public class BattleFlowTest : MonoBehaviour
             {
                 Debug.Log("敵の反撃！");
                 //とりあえずの反撃エフェクト表示&SE
-                var effect = Instantiate(Resources.Load("Eff_Hit_6"), _nowAttackChara.transform.position, Quaternion.identity);
-                m_audio.PlaySe("GunShot");
-                Destroy(effect, 1.0f);
+                //var effect = Instantiate(Resources.Load("Eff_Hit_6"), _nowAttackChara.transform.position, Quaternion.identity);
+                //m_audio.PlaySe("GunShot");
+                //Destroy(effect, 1.0f);
 
                 //キャラの向き変更
                 _nowCounterChara.transform.LookAt(_nowAttackChara.transform);
