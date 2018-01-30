@@ -28,14 +28,18 @@ public class LogDisplay : MonoBehaviour
 
     void LogReceived(string text, string stackTrance, LogType type)
     {
-        //ログをQueueに追加
-        m_LogMessages.Enqueue(text);
-
-        //ログの個数が上限に達していたら、最古のものを削除する
-        while(m_LogMessages.Count > m_MaxLogCount)
+        if (type == LogType.Log)
         {
-            m_LogMessages.Dequeue();
+            //ログをQueueに追加
+            m_LogMessages.Enqueue(text);
+
+            //ログの個数が上限に達していたら、最古のものを削除する
+            while (m_LogMessages.Count > m_MaxLogCount)
+            {
+                m_LogMessages.Dequeue();
+            }
         }
+        
     }
 
     void OnGUI()

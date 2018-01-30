@@ -1159,6 +1159,9 @@ public class BattleFlowTest : MonoBehaviour
     /// </summary>
     void ExchangeMode()
     {
+        //対象
+        GameObject _chara = null;
+
         if (once == false)
         {
             Debug.Log("倉庫に送るアイテムを選択");
@@ -1167,6 +1170,7 @@ public class BattleFlowTest : MonoBehaviour
             {
                 if (chara.transform.FindChild("ItemList").GetComponent<ItemPrefabList>()._itemprefablist.Count > 5)
                 {
+                    _chara = chara;
                     items = chara.transform.FindChild("ItemList").GetComponent<ItemPrefabList>()._itemprefablist;
                 }
             }
@@ -1231,7 +1235,7 @@ public class BattleFlowTest : MonoBehaviour
 
             if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
             {
-                FindObjectOfType<RepositoryManager>().AddItem(items[count]);
+                FindObjectOfType<RepositoryManager>().AddItem(_chara,items[count]);
 
                 foreach (var obj in UIs)
                 {

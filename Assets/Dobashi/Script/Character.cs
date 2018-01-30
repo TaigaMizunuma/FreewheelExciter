@@ -145,6 +145,7 @@ public class Character : MonoBehaviour {
     public GameObject _skillprefablist;     //スキルの親オブジェクトの取得
     public SkillChecker _skillchecker;      //スキルチェッカースクリプト
     public StatusSave _statussave;
+    private LogDisplay _logDisplay;
 
     //キャラリスト読み込み
     Entity_CharaList charaList;
@@ -203,7 +204,8 @@ public class Character : MonoBehaviour {
         _skillchecker = GetComponent<SkillChecker>();
         _statussave = GetComponent<StatusSave>();
         Initialize();
-        
+        _logDisplay = FindObjectOfType<LogDisplay>();
+
     }
 	// Update is called once per frame
 	void Update () {
@@ -250,12 +252,12 @@ public class Character : MonoBehaviour {
 
         }
 
-        //if (Input.GetKeyDown("j") && transform.tag =="Player")
-        //{
-        //    Debug.Log("Characterデータロード");
-        //    _statussave.LoadStatus();
-        //    LoadData();
-        //}
+        if (Input.GetKeyDown("j") && transform.tag == "Player")
+        {
+            //Debug.Log("Characterデータロード");
+            //_statussave.LoadStatus();
+            //LoadData();
+        }
 
         //exp100でレベルアップ
         if (_exp >= 100)

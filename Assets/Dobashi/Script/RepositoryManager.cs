@@ -42,22 +42,29 @@ public class RepositoryManager : MonoBehaviour {
     /// <summary>
     /// アイテムを倉庫にしまう
     /// </summary>
+    /// <param name="chara">対象キャラ</param>
     /// <param name="obj">しまうアイテム</param>
-    public void AddItem(GameObject obj)
+    public void AddItem(GameObject chara,GameObject obj)
     {
-        //種類の選別
-        if (obj.GetComponent<Item>())
+        if (chara)
         {
-            var i = obj.GetComponent<Item>();
-            _itemrepository.AddItem(i._name,i._message,i._recovery,i._stock,i._type,i._effect.ToString());
-            Destroy(obj);
+            //種類の選別
+            if (obj.GetComponent<Item>())
+            {
+                var i = obj.GetComponent<Item>();
+                _itemrepository.AddItem(i._name, i._message, i._recovery, i._stock, i._type, i._effect.ToString());
+                Destroy(obj);
+                
+            }
+            else if (obj.GetComponent<Weapon>())
+            {
+                var i = obj.GetComponent<Weapon>();
+                _weaponrepository.AddItem(i._name, i._message, i._stock, i._maxstock, i._atk, i._weight, i._hit, i._critical, i._attackcount, i._min, i._max, i._weapontype.ToString(), i._weaponEffectType.ToString());
+                Destroy(obj);
+            }
+            chara.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
         }
-        else if (obj.GetComponent<Weapon>())
-        {
-            var i = obj.GetComponent<Weapon>();
-            _weaponrepository.AddItem(i._name,i._message,i._stock,i._maxstock,i._atk,i._weight,i._hit,i._critical,i._attackcount,i._min,i._max,i._weapontype.ToString(), i._weaponEffectType.ToString());
-            Destroy(obj);
-        }
+        
     }
 
     /// <summary>
@@ -94,7 +101,7 @@ public class RepositoryManager : MonoBehaviour {
     /// アイテム交換実行
     /// </summary>
     /// <param name="chara">交換するキャラクター</param>
-    /// <param name="item">差し出すアイテム</param>
+    /// <param name="item">プレイヤーがしまうアイテム</param>
     /// <param name="id">取り出すアイテムid</param>
     /// <param name="type">受け取るアイテムの種類("Item"or"Weapon")</param>
     public void ChangeItem(GameObject chara,GameObject item,int id,string type)
@@ -133,6 +140,7 @@ public class RepositoryManager : MonoBehaviour {
 
         //倉庫にしまったアイテムをプレイヤーのアイテムリストから削除
         Destroy(i);
+        chara.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
 
     }
 }
