@@ -23,36 +23,11 @@ public class UIRepository : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (_texts_[0].Count == 0)
+        if (_texts_[0].Count == 0 && _texts_[1].Count == 0)
         {
             i_repository_ = GameObject.Find("RepositoryManager").GetComponent<ItemRepository>();
             w_repository_ = GameObject.Find("RepositoryManager").GetComponent<WeaponRepository>();
-            for (int i = 0; i < i_repository_._itemrepository.Count; i++)
-            {
-                _n_text = Instantiate(_data);
-                _n_text.SetActive(true);
-                _n_text.transform.SetParent(i_parent.transform);
-                _n_text.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-                Vector3 pos = _n_text.GetComponent<RectTransform>().anchoredPosition;
-                pos.x = _data.GetComponent<RectTransform>().anchoredPosition.x;
-                pos.y = _data.GetComponent<RectTransform>().anchoredPosition.y - (25 * i);
-                _n_text.GetComponent<RectTransform>().anchoredPosition = pos;
-                _n_text.GetComponent<Text>().text = i_repository_._itemrepository[i]._name;
-                _texts_[0].Add(_n_text);
-            }
-            for(int i = 0; i < w_repository_._weaponrepository.Count; i++)
-            {
-                _n_text = Instantiate(_data);
-                _n_text.SetActive(true);
-                _n_text.transform.SetParent(w_parent.transform);
-                _n_text.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-                Vector3 pos = _n_text.GetComponent<RectTransform>().anchoredPosition;
-                pos.x = _data.GetComponent<RectTransform>().anchoredPosition.x;
-                pos.y = _data.GetComponent<RectTransform>().anchoredPosition.y - (25 * i);
-                _n_text.GetComponent<RectTransform>().anchoredPosition = pos;
-                _n_text.GetComponent<Text>().text = w_repository_._weaponrepository[i]._name;
-                _texts_[1].Add(_n_text);
-            }
+            RepositoryUpdate();
             w_parent.SetActive(false);
         }
 	}
@@ -73,6 +48,44 @@ public class UIRepository : MonoBehaviour {
         {
             i_parent.SetActive(true);
             w_parent.SetActive(false);
+        }
+    }
+
+    public void RepositoryUpdate()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < _texts_[i].Count; j++)
+            {
+                Destroy(_texts_[i][j]);
+            }
+            _texts_[i].Clear();
+        }
+        for (int i = 0; i < i_repository_._itemrepository.Count; i++)
+        {
+            _n_text = Instantiate(_data);
+            _n_text.SetActive(true);
+            _n_text.transform.SetParent(i_parent.transform);
+            _n_text.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            Vector3 pos = _n_text.GetComponent<RectTransform>().anchoredPosition;
+            pos.x = _data.GetComponent<RectTransform>().anchoredPosition.x;
+            pos.y = _data.GetComponent<RectTransform>().anchoredPosition.y - (26 * i);
+            _n_text.GetComponent<RectTransform>().anchoredPosition = pos;
+            _n_text.GetComponent<Text>().text = i_repository_._itemrepository[i]._name;
+            _texts_[0].Add(_n_text);
+        }
+        for (int i = 0; i < w_repository_._weaponrepository.Count; i++)
+        {
+            _n_text = Instantiate(_data);
+            _n_text.SetActive(true);
+            _n_text.transform.SetParent(w_parent.transform);
+            _n_text.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+            Vector3 pos = _n_text.GetComponent<RectTransform>().anchoredPosition;
+            pos.x = _data.GetComponent<RectTransform>().anchoredPosition.x;
+            pos.y = _data.GetComponent<RectTransform>().anchoredPosition.y - (26 * i);
+            _n_text.GetComponent<RectTransform>().anchoredPosition = pos;
+            _n_text.GetComponent<Text>().text = w_repository_._weaponrepository[i]._name;
+            _texts_[1].Add(_n_text);
         }
     }
 }
