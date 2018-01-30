@@ -71,6 +71,8 @@ public class ItemReady : MonoBehaviour {
     public GameObject frame_left;
     // プレイヤーを取得
     private GameObject[] players_;
+    // 渡すを選んだ状態か
+    private bool isGive = false;
 
     // Use this for initialization
     void Start () {
@@ -102,6 +104,9 @@ public class ItemReady : MonoBehaviour {
                 break;
             case 4:
                 Mode4();
+                break;
+            case 5:
+                Mode5();
                 break;
             default:
                 break;
@@ -175,16 +180,13 @@ public class ItemReady : MonoBehaviour {
             {
                 if (units_[unit_num] != first_unit)
                 {
+
                     second_unit = players_[unit_num];
-                    mode_ = 2;
+                    if (!isGive) mode_ = 2;
+                    else mode_ = 5;
                     UIChange();
                     ResetNum();
-                    parent_canvas.GetComponent<ReadyManager>().SetUnit(first_unit);
-                    frame_left.GetComponent<UILeftStatus>().SetData(first_unit.GetComponent<Character>());
-                    frame_left.GetComponent<UIItemList>().SetData(first_unit.GetComponent<Character>(), first_item_list);
-                    parent_canvas.GetComponent<ReadyManager>().SetUnit(second_unit);
-                    UIs_parent[1].GetComponent<UILeftStatus>().SetData(second_unit.GetComponent<Character>());
-                    UIs_parent[1].GetComponent<UIItemList>().SetData(second_unit.GetComponent<Character>(), second_item_list);
+                    DisplayUpdate();
                 }
             }
         }
@@ -199,6 +201,7 @@ public class ItemReady : MonoBehaviour {
             else
             {
                 mode_ = 1;
+                isGive = false;
                 controll_list_[0].transform.parent.gameObject.SetActive(true);
                 first_item_list.SetActive(false);
                 ResetNum();
@@ -237,13 +240,18 @@ public class ItemReady : MonoBehaviour {
                     mode_ = 0;
                     break;
                 case 1:
+                    cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[0]);
+                    mode_ = 0;
+                    isGive = true;
+                    break;
+                case 2:
                     mode_ = 3;
                     cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_controll[0]);
                     first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
                     warehouse_items[repository_num] = UIs_parent[2].GetComponent<UIRepository>().GetItemTexts(repository_num);
                     pos_num_y = 0;
                     break;
-                case 2:
+                case 3:
                     mode_ = 4;
                     confirmation_[0].SetActive(false);
                     confirmation_[1].SetActive(false);
@@ -329,12 +337,7 @@ public class ItemReady : MonoBehaviour {
 
                 first_unit_item = null;
                 second_unit_item = null;
-                parent_canvas.GetComponent<ReadyManager>().SetUnit(first_unit);
-                frame_left.GetComponent<UILeftStatus>().SetData(first_unit.GetComponent<Character>());
-                frame_left.GetComponent<UIItemList>().SetData(first_unit.GetComponent<Character>(), first_item_list);
-                parent_canvas.GetComponent<ReadyManager>().SetUnit(second_unit);
-                UIs_parent[1].GetComponent<UILeftStatus>().SetData(second_unit.GetComponent<Character>());
-                UIs_parent[1].GetComponent<UIItemList>().SetData(second_unit.GetComponent<Character>(), second_item_list);
+                DisplayUpdate();
                 first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
                 second_items = UIs_parent[1].GetComponent<UIItemList>().GetItemTexts();
                 pos_num_y = 0;
@@ -509,6 +512,47 @@ public class ItemReady : MonoBehaviour {
         }
     }
 
+    void Mode5()
+    {
+        if (first_items.Count == 0)
+        {
+            first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
+        }
+        if (second_items.Count == 0)
+        {
+            second_items = UIs_parent[1].GetComponent<UIItemList>().GetItemTexts();
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            pos_num_y++;
+            if (pos_num_y >= first_items.Count) pos_num_y = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            pos_num_y--;
+            if (pos_num_y < 0) pos_num_y = first_items.Count - 1;
+        }
+        cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            mode_ = 0;
+            second_unit = null;
+            cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[0]);
+            ResetNum();
+            UIChange();
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            GiveItem(second_unit, first_unit, first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[pos_num_y]);
+            DisplayUpdate();
+            first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
+            second_items = UIs_parent[1].GetComponent<UIItemList>().GetItemTexts();
+            pos_num_y = 0;
+            cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
+        }
+    }
+
     // 数値をまとめて０にする
     void ResetNum()
     {
@@ -516,6 +560,19 @@ public class ItemReady : MonoBehaviour {
         controll_num = 0;
         pos_num_x = 0;
         pos_num_y = 0;
+    }
+
+    void DisplayUpdate()
+    {
+        parent_canvas.GetComponent<ReadyManager>().SetUnit(first_unit);
+        frame_left.GetComponent<UILeftStatus>().SetData(first_unit.GetComponent<Character>());
+        frame_left.GetComponent<UILeftStatus>()._faceimage.sprite = first_unit.GetComponent<Character>()._faceimage;
+        frame_left.GetComponent<UIItemList>().SetData(first_unit.GetComponent<Character>(), first_item_list);
+        parent_canvas.GetComponent<ReadyManager>().SetUnit(second_unit);
+        UIs_parent[1].GetComponent<UILeftStatus>().SetData(second_unit.GetComponent<Character>());
+        UIs_parent[1].GetComponent<UILeftStatus>()._faceimage.sprite = second_unit.GetComponent<Character>()._faceimage;
+        UIs_parent[1].GetComponent<UIItemList>().SetData(second_unit.GetComponent<Character>(), second_item_list);
+        
     }
 
     // Canvasから見たAnchoredPositionを算出する
@@ -577,6 +634,7 @@ public class ItemReady : MonoBehaviour {
     {
         parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
         frame_left.GetComponent<UILeftStatus>().SetData(players_[unit_num].GetComponent<Character>());
+        frame_left.GetComponent<UILeftStatus>()._faceimage.sprite = players_[unit_num].GetComponent<Character>()._faceimage;
         frame_left.GetComponent<UIItemList>().SetData(players_[unit_num].GetComponent<Character>(),first_item_list);
     }
 
@@ -611,7 +669,7 @@ public class ItemReady : MonoBehaviour {
         var c2 = _getchara.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>();
 
         //アイテムに空きがあった場合実行
-        if (c1._itemprefablist.Count <= 5)
+        if (c1._itemprefablist.Count < 5)
         {
             c1.AddItem(_item);
             c2.GiveItem(_item);
