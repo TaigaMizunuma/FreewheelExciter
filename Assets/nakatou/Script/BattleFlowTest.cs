@@ -401,7 +401,9 @@ public class BattleFlowTest : MonoBehaviour
                         ui.transform.localPosition = new Vector3(0, 200 + count * -120, 0);
                         ui.transform.Find("Text").GetComponent<Text>().text = obj.GetComponent<Weapon>()._name;
                         ui.GetComponent<UIsText>()._name = obj.GetComponent<Weapon>()._name;
-                        ui.GetComponent<UIsText>()._message = obj.GetComponent<Weapon>()._message;
+                        ui.GetComponent<UIsText>()._message =
+                             "攻撃力：" + obj.GetComponent<Weapon>()._atk.ToString() +
+                             "\nストック：" + obj.GetComponent<Weapon>()._stock.ToString();
                         ui.GetComponent<Image>().color = new Color32(170, 170, 170, 170);
                         ChoiceObjs.Add(obj);
                         UIs.Add(ui);
