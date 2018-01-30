@@ -44,6 +44,7 @@ public class Hensei : MonoBehaviour
         if (units_ == null) return;
         cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
         parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
+        shosai_.GetComponent<ReadyShosai>().SetUnit();
     }
 
     // Update is called once per frame

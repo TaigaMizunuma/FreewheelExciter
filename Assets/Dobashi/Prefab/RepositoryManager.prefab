@@ -53,7 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3429a110d009ad45bba0d637acbe153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponprehub: {fileID: 0}
+  _weaponprehub: {fileID: 1865581415954084, guid: 36987a3909af3db488d04cf5ca3fff79,
+    type: 2}
 --- !u!114 &114570312208990660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,4 +82,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a07d33135bc20e4c9ffc7d6672404ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemprehub: {fileID: 0}
+  _itemprehub: {fileID: 1291792964748936, guid: 26cdfcfc53883f44ea36b78a02e50f91,
+    type: 2}

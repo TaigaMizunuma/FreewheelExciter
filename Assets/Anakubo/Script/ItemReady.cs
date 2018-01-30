@@ -394,16 +394,8 @@ public class ItemReady : MonoBehaviour {
                 warehouse_mode = pos_num_y + 1;
                 if (warehouse_mode == 1)
                 {
+                    if(first_items.Count>0)
                     cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[0]);
-                }
-                if (warehouse_mode == 2)
-                {
-                    if(warehouse_items[repository_num].Count > 0)
-                    cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_items[repository_num][0]);
-                    else
-                    {
-                        warehouse_mode = 0;
-                    }
                 }
                 
                 pos_num_y = 0;
@@ -412,6 +404,13 @@ public class ItemReady : MonoBehaviour {
         else {
             if (warehouse_mode == 1)
             {
+                if (first_items.Count <= 0)
+                {
+                    warehouse_mode = 0;
+                    pos_num_y = 0;
+                    cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_controll[0]);
+                    return;
+                }
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     pos_num_y++;
@@ -428,19 +427,54 @@ public class ItemReady : MonoBehaviour {
                     GameObject.Find("RepositoryManager").GetComponent<RepositoryManager>().AddItem(first_unit,first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[pos_num_y]);
                     first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
                     DisplayUpdate();
+                    UIs_parent[2].GetComponent<UIRepository>().RepositoryUpdate();
                     first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
                     pos_num_y = 0;
+                    if(first_items.Count > 0)
                     cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
                 }
             }
             if (warehouse_mode == 2)
             {
-                if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+                if (warehouse_items[repository_num].Count == 0)
                 {
                     if (repository_num == 0) repository_num = 1;
                     else repository_num = 0;
-
+                    warehouse_items[repository_num] = UIs_parent[2].GetComponent<UIRepository>().GetItemTexts(repository_num);
                     UIs_parent[2].GetComponent<UIRepository>().DisplayChange();
+                    if(warehouse_items[repository_num].Count == 0)
+                    {
+                        if(repository_num==1) UIs_parent[2].GetComponent<UIRepository>().DisplayChange();
+                        warehouse_mode = 0;
+                        repository_num = 0;
+                        pos_num_y = 0;
+                        cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_controll[0]);
+                        return;
+                    }
+                }
+                if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    if (repository_num == 0)
+                    {
+                        if (warehouse_items[1].Count > 0)
+                        {
+                            repository_num = 1;
+                            warehouse_items[repository_num] = UIs_parent[2].GetComponent<UIRepository>().GetItemTexts(repository_num);
+                            pos_num_y = 0;
+
+                            UIs_parent[2].GetComponent<UIRepository>().DisplayChange();
+                        }
+                    }
+                    else {
+                        if (warehouse_items[0].Count > 0)
+                        {
+                            repository_num = 0;
+                            warehouse_items[repository_num] = UIs_parent[2].GetComponent<UIRepository>().GetItemTexts(repository_num);
+                            pos_num_y = 0;
+
+                            UIs_parent[2].GetComponent<UIRepository>().DisplayChange();
+                        }
+                    }
                 }
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
@@ -453,10 +487,25 @@ public class ItemReady : MonoBehaviour {
                     if (pos_num_y < 0) pos_num_y = warehouse_items[repository_num].Count - 1;
                 }
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_items[repository_num][pos_num_y]);
+                if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    if(repository_num==0)
+                        GameObject.Find("RepositoryManager").GetComponent<RepositoryManager>().GetItem(first_unit, pos_num_y, "Item");
+                    else
+                        GameObject.Find("RepositoryManager").GetComponent<RepositoryManager>().GetItem(first_unit, pos_num_y, "Weapon");
+                    DisplayUpdate();
+                    UIs_parent[2].GetComponent<UIRepository>().RepositoryUpdate();
+                    first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
+                    warehouse_items[repository_num] = UIs_parent[2].GetComponent<UIRepository>().GetItemTexts(repository_num);
+                    pos_num_y = 0;
+                    if (warehouse_items[repository_num].Count > 0)
+                        cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_items[repository_num][pos_num_y]);
+                }
             }
             if (Input.GetKeyDown(KeyCode.X))
             {
                 warehouse_mode = 0;
+                repository_num = 0;
                 pos_num_y = 0;
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_controll[0]);
             }
