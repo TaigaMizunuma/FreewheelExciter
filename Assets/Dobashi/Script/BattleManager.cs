@@ -10,8 +10,6 @@ public class BattleManager : MonoBehaviour {
 
     public BattleFlowTest _BattleflowTest;
 
-    private LogDisplay _logDisplay;
-
     private bool _battleend = false;
     private GameObject _eff;
 
@@ -221,7 +219,6 @@ public class BattleManager : MonoBehaviour {
         Attack_manager _def = new Attack_manager();
 
         _battleend = false;
-        _logDisplay = FindObjectOfType<LogDisplay>();
 
         //初期化
         _attacker.Initialize();

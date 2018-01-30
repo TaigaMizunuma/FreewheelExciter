@@ -252,12 +252,12 @@ public class Character : MonoBehaviour {
 
         }
 
-        if (Input.GetKeyDown("j") && transform.tag == "Player")
-        {
-            //Debug.Log("Characterデータロード");
-            //_statussave.LoadStatus();
-            //LoadData();
-        }
+        //if (Input.GetKeyDown("j") && transform.tag == "Player")
+        //{
+        //    //Debug.Log("Characterデータロード");
+        //    //_statussave.LoadStatus();
+        //    //LoadData();
+        //}
 
         //exp100でレベルアップ
         if (_exp >= 100)

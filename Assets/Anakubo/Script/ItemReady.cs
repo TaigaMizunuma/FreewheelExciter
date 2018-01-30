@@ -425,7 +425,7 @@ public class ItemReady : MonoBehaviour {
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
                 if (Input.GetKeyDown(KeyCode.Z))
                 {
-                    GameObject.Find("RepositoryManager").GetComponent<RepositoryManager>().AddItem(first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[pos_num_y]);
+                    GameObject.Find("RepositoryManager").GetComponent<RepositoryManager>().AddItem(first_unit,first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[pos_num_y]);
                     first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
                     DisplayUpdate();
                     first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();

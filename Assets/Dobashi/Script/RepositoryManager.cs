@@ -48,19 +48,22 @@ public class RepositoryManager : MonoBehaviour {
     {
         if (chara)
         {
+            chara.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
             //種類の選別
             if (obj.GetComponent<Item>())
             {
                 var i = obj.GetComponent<Item>();
                 _itemrepository.AddItem(i._name, i._message, i._recovery, i._stock, i._type, i._effect.ToString());
-                Destroy(obj);
+                chara.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist.Remove(obj);
+                //Destroy(obj);
                 
             }
             else if (obj.GetComponent<Weapon>())
             {
                 var i = obj.GetComponent<Weapon>();
                 _weaponrepository.AddItem(i._name, i._message, i._stock, i._maxstock, i._atk, i._weight, i._hit, i._critical, i._attackcount, i._min, i._max, i._weapontype.ToString(), i._weaponEffectType.ToString());
-                Destroy(obj);
+                chara.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist.Remove(obj);
+                //Destroy(obj);
             }
             chara.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
         }
