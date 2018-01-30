@@ -11,6 +11,7 @@ public class BattleManager : MonoBehaviour {
     public BattleFlowTest _BattleflowTest;
 
     private bool _battleend = false;
+    private GameObject _eff;
 
     public struct Attack_manager
     {
@@ -199,6 +200,11 @@ public class BattleManager : MonoBehaviour {
 
     }
 
+    void Start()
+    {
+        _eff = Resources.Load("Eff_Hit_6") as GameObject;
+    }
+
     /// <summary>
     /// 戦闘準備
     /// お互いの与ダメージと
@@ -326,6 +332,7 @@ public class BattleManager : MonoBehaviour {
             //命中判定
             if (Random.Range(0, 100) <= _atkside._Totalhit)
             {
+                Instantiate(_eff, _defside._obj.transform.position, Quaternion.identity);
                 //命中
                 //無敵判定
                 if (_defside._fortress == true && Random.Range(0, 101) < _defside._chara._level)
