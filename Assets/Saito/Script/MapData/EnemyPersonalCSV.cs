@@ -30,7 +30,7 @@ public class EnemyPersonalCSV : MonoBehaviour
     string e_weapontype;
 
     [SerializeField]
-    GameObject test;
+    GameObject itemList;
 
     [SerializeField]
     int storyCount;
@@ -55,6 +55,9 @@ public class EnemyPersonalCSV : MonoBehaviour
 
     void Start()
     {
+        GameObject e_weapon_p;
+        GameObject e_equip_p;
+
         e_name = c_enemyPerDatas[e_number + 1][1];
         e_level = int.Parse(c_enemyPerDatas[e_number + 1][2]);
         this.GetComponent<Character>()._level = e_level;
@@ -62,7 +65,10 @@ public class EnemyPersonalCSV : MonoBehaviour
         e_weapontype = c_enemyPerDatas[e_number + 1][6];
         if (e_weapontype != null || e_weapon != null)
         {
-            this.GetComponent<Character>()._equipment = Resources.Load("Weapon/" + e_weapontype + "/" + e_weapon, typeof(GameObject)) as GameObject;
+            e_weapon_p = Resources.Load("Weapon/" + e_weapontype + "/" + e_weapon, typeof(GameObject)) as GameObject;
+            e_equip_p = Instantiate(e_weapon_p, this.transform.position, Quaternion.identity);
+            e_equip_p.transform.parent = itemList.transform;
+            this.GetComponent<Character>()._equipment = e_weapon_p;
         }
         e_job = c_enemyPerDatas[e_number + 1][3];
         e_strength = c_enemyPerDatas[e_number + 1][4];

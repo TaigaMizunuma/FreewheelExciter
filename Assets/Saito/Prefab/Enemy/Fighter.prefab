@@ -298,22 +298,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1187425146128318
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4067843444410670}
-  - component: {fileID: 114689130527411486}
-  m_Layer: 0
-  m_Name: ItemPrehab
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1188003702806178
 GameObject:
   m_ObjectHideFlags: 1
@@ -866,22 +850,6 @@ GameObject:
   - component: {fileID: 4653612959190886}
   m_Layer: 0
   m_Name: Bone19
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1632214800739382
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4496189918981402}
-  - component: {fileID: 114944433875224874}
-  m_Layer: 0
-  m_Name: WeaponPrehab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1470,19 +1438,6 @@ Transform:
   m_Father: {fileID: 4149859119555708}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -60.078526, y: -148.15956, z: 125.043724}
---- !u!4 &4067843444410670
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1187425146128318}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4561625820282672}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4075974259366956
 Transform:
   m_ObjectHideFlags: 1
@@ -2054,19 +2009,6 @@ Transform:
   m_Father: {fileID: 4256557137947978}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 1.5902776e-15, y: -1.3793464e-32, z: -4.969617e-16}
---- !u!4 &4496189918981402
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1632214800739382}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4561625820282672}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4540620633303058
 Transform:
   m_ObjectHideFlags: 1
@@ -2103,9 +2045,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 1.1, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4067843444410670}
-  - {fileID: 4496189918981402}
+  m_Children: []
   m_Father: {fileID: 4858636745969530}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2785,7 +2725,7 @@ MonoBehaviour:
   e_strength: 
   e_weapon: 
   e_weapontype: 
-  test: {fileID: 0}
+  itemList: {fileID: 1018806939774974}
   storyCount: 0
 --- !u!114 &114413777880778082
 MonoBehaviour:
@@ -2832,24 +2772,6 @@ MonoBehaviour:
   _activ: 0
   _addlist: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   _skill_list: 3
---- !u!114 &114689130527411486
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1187425146128318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c23f5acddd56a2a44a3622ab7448c52f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: 0
-  _name: "\u540D\u524D"
-  _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
-  _recovery: 0
-  _stock: 10
-  _type: Item
-  _effect: 0
 --- !u!114 &114696956168607562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2942,31 +2864,6 @@ MonoBehaviour:
   _Saving: 0
   _NewType: 0
   _Praying: 0
---- !u!114 &114944433875224874
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1632214800739382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b2aca32826e8d64daad10e2e3483122, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: 0
-  _name: "\u6B66\u5668\u306E\u540D\u524D"
-  _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
-  _stock: 40
-  _maxstock: 0
-  _atk: 1
-  _weight: 1
-  _hit: 100
-  _critical: 1
-  _attackcount: 1
-  _min: 1
-  _max: 1
-  _weapontype: 0
-  _weaponEffectType: 0
 --- !u!114 &114967167288356370
 MonoBehaviour:
   m_ObjectHideFlags: 1

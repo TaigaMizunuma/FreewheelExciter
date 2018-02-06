@@ -58,22 +58,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 34ed2c59a87684f4a86d65b6310f5406, type: 3}
   - {fileID: 21300000, guid: 4fad3071e68051140b115ead5f845a4e, type: 3}
   - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
-  - {fileID: 21300000, guid: 5ea0acd059a2aed4ca19f744bf5d7e77, type: 3}
-  - {fileID: 21300000, guid: 6d82b00fbacec49459d292c4f7967d4a, type: 3}
-  - {fileID: 21300000, guid: 057bba9d6571bae4ca7741d31fb07dcc, type: 3}
-  - {fileID: 21300000, guid: 248a0a2f239941d48bde6ce5342e2cc8, type: 3}
-  - {fileID: 21300000, guid: 964576c325aa15746aabc7b6ab1bcf09, type: 3}
-  - {fileID: 21300000, guid: 6e58d9ed0a294d746a65156461761a89, type: 3}
-  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
-  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
-  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
-  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
-  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
-  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
-  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
-  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
-  - {fileID: 21300000, guid: 5495af7cdd23ed2408fe80507841c078, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
+  - {fileID: 21300000, guid: b470eb538caae2b4c9f9ac46bbc2c1eb, type: 3}
   backGround:
+  - {fileID: 21300000, guid: b63447930a399d347bc7327c8ef91dbd, type: 3}
   - {fileID: 21300000, guid: 52d5009d5b284e049a058e1a5a95d161, type: 3}
   - {fileID: 21300000, guid: 9ce01b7640ce49c4190746af180a7447, type: 3}
   - {fileID: 21300000, guid: 5ec23787d27b2be4886e6c2ebfa0f0ea, type: 3}
@@ -93,18 +93,19 @@ MonoBehaviour:
   storyID: 0
   nextLoadScene: 
   endFlag: 0
-  dataLoadName: 
+  dataLoadName: Story1Before
   readStartNumber: 0
-  readEndNumber: 0
+  readEndNumber: 30
   storyText: {fileID: 0}
   nameText: {fileID: 0}
   LOneCharacterWindowImage: {fileID: 0}
   LTwoCharacterWindowImage: {fileID: 0}
   ROneCharacterWindowImage: {fileID: 0}
   RTwoCharacterWindowImage: {fileID: 0}
+  backGroundImage: {fileID: 0}
   nameImage: {fileID: 0}
-  LNameDisplayVector: {x: 125, y: 255}
-  RNameDisplayVector: {x: 1120, y: 255}
+  LNameDisplayVector: {x: 150, y: 295}
+  RNameDisplayVector: {x: 1130, y: 295}
   fade: {fileID: 0}
-  battleScenarioSwitch: 0
   messageWindow: {fileID: 0}
+  battleScenarioSwitch: 0

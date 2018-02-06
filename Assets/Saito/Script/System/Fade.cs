@@ -43,7 +43,6 @@ public class Fade : MonoBehaviour {
         sceneChangeSwitch = false;
 
         FadeTime();
-
     }
 
     void Update ()

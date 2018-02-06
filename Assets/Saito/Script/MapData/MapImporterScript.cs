@@ -37,7 +37,6 @@ public class MapImporterScript : MonoBehaviour
     [SerializeField]
     float AdjustmentPosZ;
 
-
     //名前用
     int mapBlockCount;
 
@@ -166,8 +165,6 @@ public class MapImporterScript : MonoBehaviour
                         mapInstance = (GameObject)Instantiate(start_Blocks[13], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
                         mapInstance.name = "block" + mapBlockCount;
                         break;
-
-
                 }
             }
         }

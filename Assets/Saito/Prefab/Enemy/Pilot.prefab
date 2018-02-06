@@ -177,22 +177,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1166638027061142
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4407015256832374}
-  - component: {fileID: 114645874313749972}
-  m_Layer: 0
-  m_Name: WeaponPrehab
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1173841354029982
 GameObject:
   m_ObjectHideFlags: 1
@@ -248,22 +232,6 @@ GameObject:
   - component: {fileID: 4989816195867116}
   m_Layer: 0
   m_Name: Bone40
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1227626044334428
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4287401925356678}
-  - component: {fileID: 114653994115605296}
-  m_Layer: 0
-  m_Name: ItemPrehab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1679,19 +1647,6 @@ Transform:
   m_Father: {fileID: 4570777680984632}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4287401925356678
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1227626044334428}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4312661018763856}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4304295032414980
 Transform:
   m_ObjectHideFlags: 1
@@ -1756,9 +1711,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 1.1, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4287401925356678}
-  - {fileID: 4407015256832374}
+  m_Children: []
   m_Father: {fileID: 4064233999402100}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1957,19 +1910,6 @@ Transform:
   m_Father: {fileID: 4212316209470168}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.42169192, y: 0.61821705, z: 24.450106}
---- !u!4 &4407015256832374
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1166638027061142}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4312661018763856}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4423069458582684
 Transform:
   m_ObjectHideFlags: 1
@@ -2870,51 +2810,8 @@ MonoBehaviour:
   e_strength: 
   e_weapon: 
   e_weapontype: 
-  test: {fileID: 0}
+  itemList: {fileID: 1755353797425190}
   storyCount: 0
---- !u!114 &114645874313749972
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1166638027061142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b2aca32826e8d64daad10e2e3483122, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: 0
-  _name: "\u6B66\u5668\u306E\u540D\u524D"
-  _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
-  _stock: 40
-  _maxstock: 0
-  _atk: 1
-  _weight: 1
-  _hit: 100
-  _critical: 1
-  _attackcount: 1
-  _min: 1
-  _max: 1
-  _weapontype: 0
-  _weaponEffectType: 0
---- !u!114 &114653994115605296
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1227626044334428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c23f5acddd56a2a44a3622ab7448c52f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: 0
-  _name: "\u540D\u524D"
-  _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
-  _recovery: 0
-  _stock: 10
-  _type: Item
-  _effect: 0
 --- !u!114 &114664490688752730
 MonoBehaviour:
   m_ObjectHideFlags: 1

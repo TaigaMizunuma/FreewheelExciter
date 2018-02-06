@@ -1,4 +1,4 @@
-﻿Number,Name,LV,Job,Strength,Weapon,WeaponType
-1,キース,1,Gunner,Weak,,Gun
-2,ガンナー,1,Gunner,Weak,,Gun
-3,ファイター,1,Fighter,Weak,,Knuckle
+﻿Number,Name,LV,Job,Strength,Weapon,WeaponType,DropFlag
+1,キース,1,Gunner,Weak,,Gun,0
+2,ガンナー,1,Gunner,Weak,,Gun,0
+3,ファイター,1,Fighter,Weak,,Knuckle,0
