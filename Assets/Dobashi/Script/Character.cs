@@ -412,43 +412,6 @@ public class Character : MonoBehaviour {
                 }
             }
         }
-        //エネミー初期化
-        else
-        {
-            //クラス(ジョブ)検索
-            for (var j = 0; j < class_def_list.param.Count; j++)
-            {
-                //一致したクラスの初期値を代入
-                if (class_def_list.param[j].name == _joblist.ToString())
-                {
-                    _hp = class_def_list.param[j].hp;
-                    _hprate = class_def_list.param[j].hp_r;
-                    _str = class_def_list.param[j].str;
-                    _strrate = class_def_list.param[j].str_r;
-                    _skl = class_def_list.param[j].skl;
-                    _sklrate = class_def_list.param[j].skl_r;
-                    _spd = class_def_list.param[j].spd;
-                    _spdrate = class_def_list.param[j].spd_r;
-                    _luk = class_def_list.param[j].luk;
-                    _lukrate = class_def_list.param[j].luk_r;
-                    _def = class_def_list.param[j].def;
-                    _defrate = class_def_list.param[j].def_r;
-                    _cur = class_def_list.param[j].cur;
-                    _currate = class_def_list.param[j].cur_r;
-                    _move = class_def_list.param[j].move;
-                    _moverate = class_def_list.param[j].move_r;
-                    var lv = _level;
-                    if (lv <= 0) lv = 1;
-                    _totalLevel += 1;
-                    //初期Level分レベルアップ
-                    for (var k = 1;k < lv;k++)
-                    {
-                        LevelUp();
-                        _level--;
-                    }
-                }
-            }
-        }
         _skillprefablist.GetComponent<SkillPrefabList>().CheckSkillLevel(_totalLevel);
         TotalStatus();
         RecoveryHP(100);
@@ -483,6 +446,52 @@ public class Character : MonoBehaviour {
             return true;
         }
         return false;
+    }
+
+    /// <summary>
+    /// エネミー用initialize
+    /// </summary>
+    public void Enemy_Init()
+    {
+        if (transform.tag == "Enemy")
+        {
+            //クラス(ジョブ)検索
+            for (var j = 0; j < class_def_list.param.Count; j++)
+            {
+                //一致したクラスの初期値を代入
+                if (class_def_list.param[j].name == _joblist.ToString())
+                {
+                    _hp = class_def_list.param[j].hp;
+                    _hprate = class_def_list.param[j].hp_r;
+                    _str = class_def_list.param[j].str;
+                    _strrate = class_def_list.param[j].str_r;
+                    _skl = class_def_list.param[j].skl;
+                    _sklrate = class_def_list.param[j].skl_r;
+                    _spd = class_def_list.param[j].spd;
+                    _spdrate = class_def_list.param[j].spd_r;
+                    _luk = class_def_list.param[j].luk;
+                    _lukrate = class_def_list.param[j].luk_r;
+                    _def = class_def_list.param[j].def;
+                    _defrate = class_def_list.param[j].def_r;
+                    _cur = class_def_list.param[j].cur;
+                    _currate = class_def_list.param[j].cur_r;
+                    _move = class_def_list.param[j].move;
+                    _moverate = class_def_list.param[j].move_r;
+                    var lv = _level;
+                    if (lv <= 0) lv = 1;
+                    _totalLevel += 1;
+                    //初期Level分レベルアップ
+                    for (var k = 1; k < lv; k++)
+                    {
+                        LevelUp();
+                        _level--;
+                    }
+                }
+            }
+            _skillprefablist.GetComponent<SkillPrefabList>().CheckSkillLevel(_totalLevel);
+            TotalStatus();
+            RecoveryHP(100);
+        }
     }
 
     /// <summary>

@@ -66,6 +66,8 @@ public class EnemyPersonalCSV : MonoBehaviour
         }
         e_job = c_enemyPerDatas[e_number + 1][3];
         e_strength = c_enemyPerDatas[e_number + 1][4];
+        GetComponent<Character>().Enemy_Init();
+        
     }
 
     public string GetEnemyName()
