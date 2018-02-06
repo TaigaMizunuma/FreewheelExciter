@@ -65,21 +65,26 @@ public class Move_System : MonoBehaviour
             {
                 if (hit.transform.tag == "Floor" && hit.transform.GetComponent<Square_Info>().move_cost < 100)
                 {
+                    Square_Info a = hit.transform.GetComponent<Square_Info>();
+                    if (a.IsDecision() == false)
+                    {
+                        return;
+                    }
+
+
                     FindObjectOfType<BattleFlowTest>().c_moving = true;
                     FindObjectOfType<RayBox>().move_ = false;
 
-                    Square_Info a = hit.transform.GetComponent<Square_Info>();
-                    if (a.IsDecision())
+
+                    Search(hit.transform.gameObject);
+                    GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");
+                    foreach (GameObject g in obj)
                     {
-                        Search(hit.transform.gameObject);
-                        GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");
-                        foreach (GameObject g in obj)
-                        {
-                            g.GetComponent<Square_Info>().DecisionEnd();
-                        }
+                        g.GetComponent<Square_Info>().DecisionEnd();
                     }
+
                 }
-                else if(hit.transform.gameObject == FindObjectOfType<BattleFlowTest>()._nowChooseChar)
+                else if (hit.transform.gameObject == FindObjectOfType<BattleFlowTest>()._nowChooseChar)
                 {
                     FindObjectOfType<RayBox>().move_ = false;
                     GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");
