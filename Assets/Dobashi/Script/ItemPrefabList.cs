@@ -42,6 +42,21 @@ public class ItemPrefabList : MonoBehaviour {
         }
     }
 
+    public void DeleteItem()
+    {
+        //子オブジェクト(アイテム)を配列に代入
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            _itemprefablist.Add(gameObject.transform.GetChild(i).gameObject);
+
+        }
+        for (int i = 0; i < _itemprefablist.Count; i++)
+        {
+            Destroy(_itemprefablist[i]);
+        }
+        _itemprefablist.Clear();
+    }
+
     /// <summary>
     /// アイテムを渡す
     /// </summary>

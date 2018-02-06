@@ -4171,8 +4171,6 @@ MonoBehaviour:
   r_stability: 0
   r_state: 0
   r_isDead: 0
-  r_itemobj: {fileID: 0}
-  r_skillobj: {fileID: 0}
 --- !u!114 &368170179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4705,8 +4703,6 @@ MonoBehaviour:
   r_stability: 0
   r_state: 0
   r_isDead: 0
-  r_itemobj: {fileID: 0}
-  r_skillobj: {fileID: 0}
 --- !u!114 &403712910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10160,6 +10156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 859806262}
   - component: {fileID: 859806263}
+  - component: {fileID: 859806264}
   m_Layer: 0
   m_Name: ItemList
   m_TagString: Untagged
@@ -10197,6 +10194,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemprefablist: []
+--- !u!114 &859806264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 859806261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224fe7987a864e44d8448c8a559b4eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &862821191
 GameObject:
   m_ObjectHideFlags: 0
@@ -18461,8 +18469,6 @@ MonoBehaviour:
   r_stability: 0
   r_state: 0
   r_isDead: 0
-  r_itemobj: {fileID: 0}
-  r_skillobj: {fileID: 0}
 --- !u!114 &1454604269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19866,8 +19872,6 @@ MonoBehaviour:
   r_stability: 0
   r_state: 0
   r_isDead: 0
-  r_itemobj: {fileID: 0}
-  r_skillobj: {fileID: 0}
 --- !u!114 &1551475917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21771,8 +21775,6 @@ MonoBehaviour:
   r_stability: 0
   r_state: 0
   r_isDead: 0
-  r_itemobj: {fileID: 0}
-  r_skillobj: {fileID: 0}
 --- !u!114 &1672333376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22539,8 +22541,6 @@ MonoBehaviour:
   r_stability: 0
   r_state: 0
   r_isDead: 0
-  r_itemobj: {fileID: 0}
-  r_skillobj: {fileID: 0}
 --- !u!114 &1702423935
 MonoBehaviour:
   m_ObjectHideFlags: 0

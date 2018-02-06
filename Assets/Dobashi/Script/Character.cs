@@ -347,7 +347,7 @@ public class Character : MonoBehaviour {
     /// </summary>
     public void LoadData()
     {
-        _statussave.LoadStatus();
+        //_statussave.LoadStatus();
         _id = _statussave.r_id;
         _joblist = (Joblist)Enum.ToObject(typeof(Joblist), _statussave.r_job);
         _name = _statussave.r_name;
@@ -370,7 +370,19 @@ public class Character : MonoBehaviour {
         _addbufflist = _statussave.r_addbuffstatus;
         _stability = _statussave.r_stability;
         _isDead = _statussave.r_isDead;
-        _NowState = (State)Enum.ToObject(typeof(State), _statussave.r_state);
+        //_NowState = (State)Enum.ToObject(typeof(State), _statussave.r_state);
+        //_itemprefablist.GetComponent<ItemPrefabList>().DeleteItem();
+        //for (var i = 0; i < _statussave.r_itemobj.Length; i++)
+        //{
+        //    if (_statussave.r_itemobj[i] != null)
+        //    {
+        //        var obj = Instantiate(_statussave.r_itemobj[i]);
+        //        _itemprefablist.GetComponent<ItemPrefabList>().AddItem(obj);
+        //    }
+        //}
+        //_statussave.r_itemobj.transform.parent = transform;
+        //_itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist = _statussave.r_skillobj.GetComponent<ItemPrefabList>()._itemprefablist;
+        //_skillprefablist = Instantiate(_statussave.r_skillobj);
     }
 
     /// <summary>
@@ -379,7 +391,6 @@ public class Character : MonoBehaviour {
     /// </summary>
     public void Initialize()
     {
-
         //プレイヤー初期化
         if (transform.tag == "Player")
         {
@@ -411,7 +422,18 @@ public class Character : MonoBehaviour {
 
                 }
             }
+            if (_statussave.LoadStatus())
+            {
+                LoadData();
+                Debug.Log("データロード" + transform.name);
+            }
+            else
+            {
+                Debug.Log("セーブデータなし");
+            }
         }
+        
+        
         _skillprefablist.GetComponent<SkillPrefabList>().CheckSkillLevel(_totalLevel);
         TotalStatus();
         RecoveryHP(100);

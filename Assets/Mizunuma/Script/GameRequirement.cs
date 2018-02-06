@@ -84,6 +84,14 @@ public class GameRequirement : MonoBehaviour
             SaveData.Save();
             /*セーブ用キー作成*/
             SaveData.SetString("GameSaveCheck", "SaveCheck");
+            //////////////////////////////////////////////////
+            /*キャラクターデータセーブ*/
+            var charas = GameObject.FindGameObjectsWithTag("Player");
+            for (var i = 0;i < charas.Length;i++)
+            {
+                charas[i].GetComponent<StatusSave>().CharactorDataSave(charas[i].GetComponent<Character>()._name);
+            }
+            //////////////////////////////////////////////////
             /*セーブカウント*/
             SaveOne = 1;
         }

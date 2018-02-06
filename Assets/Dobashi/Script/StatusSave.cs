@@ -34,8 +34,6 @@ public class StatusSave : MonoBehaviour {
     public bool r_stability;
     public int r_state;
     public bool r_isDead;
-    public GameObject r_itemobj;
-    public GameObject r_skillobj;
 
     [SerializeField]
     public class DataSave
@@ -64,8 +62,6 @@ public class StatusSave : MonoBehaviour {
         public bool _stability;     //コマンドスキルによる追撃可能かの判別
         public int _state;          //状態異常
         public bool _isDead;        //死亡済みか
-        public GameObject _itemobj;  //アイテムの親オブジェクト
-        public GameObject _skillobj; //スキルの親オブジェクト
 
         public DataSave()
         {
@@ -92,8 +88,6 @@ public class StatusSave : MonoBehaviour {
             _stability = false;
             _state = 0;
             _isDead = false;
-            _itemobj = null;
-            _skillobj = null;
         }
 
     }
@@ -124,48 +118,51 @@ public class StatusSave : MonoBehaviour {
     /// <summary>
     /// キャラクターステータスをセーブするときに呼ぶ
     /// </summary>
-    public void CharactorDataSave()
+    public void CharactorDataSave(string key)
     {
-        SaveStatus(NewData());
+        SaveStatus(NewData(),key);
     }
 
     /// <summary>
     /// ステータスをセーブ
     /// </summary>
-    public void SaveStatus(DataSave i)
+    public void SaveStatus(DataSave i,string key)
     {
-        SaveData.SetClass<DataSave>("state" + i._id, i);
+        SaveData.SetClass<DataSave>(key, i);
     }
     /// <summary>
     /// ステータスをロードし、渡すための変数に代入
     /// </summary>
-    public void LoadStatus()
+    public bool LoadStatus()
     {
-        DataSave gs = SaveData.GetClass("state" + GetComponent<Character>()._id, new DataSave());
-        r_id = gs._id;
-        r_job = gs._job;
-        r_name = gs._name;
-        r_pos = gs._pos;
-        r_hero = gs._hero;
-        r_lv = gs._lv;
-        r_totallv = gs._totallv;
-        r_hp = gs._hp;
-        r_totalhp = gs._totalhp;
-        r_str = gs._str;
-        r_skl = gs._skl;
-        r_spd = gs._spd;
-        r_luk = gs._luk;
-        r_def = gs._def;
-        r_cur = gs._cur;
-        r_move = gs._move;
-        r_exp = gs._exp;
-        r_addstatus = gs._addstatus;
-        r_addonestatus = gs._addonestatus;
-        r_addbuffstatus = gs._addbuffstatus;
-        r_state = gs._state;
-        r_isDead = gs._isDead;
-        r_itemobj = gs._itemobj;
-        r_skillobj = gs._skillobj;
+        if (SaveData.HasKey(GetComponent<Character>()._name) == true)
+        {
+            DataSave gs = SaveData.GetClass(GetComponent<Character>()._name, new DataSave());
+            r_id = gs._id;
+            r_job = gs._job;
+            r_name = gs._name;
+            r_pos = gs._pos;
+            r_hero = gs._hero;
+            r_lv = gs._lv;
+            r_totallv = gs._totallv;
+            r_hp = gs._hp;
+            r_totalhp = gs._totalhp;
+            r_str = gs._str;
+            r_skl = gs._skl;
+            r_spd = gs._spd;
+            r_luk = gs._luk;
+            r_def = gs._def;
+            r_cur = gs._cur;
+            r_move = gs._move;
+            r_exp = gs._exp;
+            r_addstatus = gs._addstatus;
+            r_addonestatus = gs._addonestatus;
+            r_addbuffstatus = gs._addbuffstatus;
+            r_state = gs._state;
+            r_isDead = gs._isDead;
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -196,8 +193,7 @@ public class StatusSave : MonoBehaviour {
         i._addbuffstatus = _chara._addbufflist;
         i._state = (int)_chara._NowState;
         i._isDead = _chara._isDead;
-        i._itemobj = _chara._itemprefablist;
-        i._skillobj = _chara._skillprefablist;
+        
         return i;
     }
 }

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4184576141156088}
   - component: {fileID: 114933245877518218}
   m_Layer: 0
-  m_Name: ItemPrehab 4
+  m_Name: herb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

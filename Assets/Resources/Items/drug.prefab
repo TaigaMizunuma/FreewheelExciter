@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4356977022163884}
   - component: {fileID: 114357802962971432}
   m_Layer: 0
-  m_Name: ItemPrehab
+  m_Name: drug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
