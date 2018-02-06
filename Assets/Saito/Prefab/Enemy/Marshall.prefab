@@ -1546,7 +1546,7 @@ MonoBehaviour:
   _position: {x: 0, y: 0, z: 0}
   _hero: 0
   _dropitem: 0
-  _level: 3
+  _level: 1
   _totalLevel: 0
   _totalMaxhp: 0
   _totalhp: 0
@@ -1636,6 +1636,9 @@ MonoBehaviour:
   e_level: 0
   e_job: 
   e_strength: 
+  e_weapon: 
+  e_weapontype: 
+  test: {fileID: 0}
   storyCount: 0
 --- !u!114 &114645874313749972
 MonoBehaviour:
