@@ -1960,11 +1960,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80043832e300da84a948e54b40417883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _faceimage: {fileID: 0}
   _data:
   - {fileID: 1462606520275466}
   - {fileID: 1562652628913562}
   - {fileID: 1621925781381674}
+  - {fileID: 1706375858286630}
 --- !u!114 &114887039748407680
 MonoBehaviour:
   m_ObjectHideFlags: 1
