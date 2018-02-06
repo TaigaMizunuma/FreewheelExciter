@@ -54,7 +54,7 @@ MonoBehaviour:
   _id: 0
   _name: "\u5E03"
   _message: "HP\u309220\u56DE\u5FA9\u3059\u308B"
-  _recovery: 10
+  _recovery: 20
   _stock: 3
   _type: Item
   _effect: 0

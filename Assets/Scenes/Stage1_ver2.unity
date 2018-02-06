@@ -4289,7 +4289,7 @@ MonoBehaviour:
   _statussave: {fileID: 0}
   _HpState: 0
   _NowState: 0
-  _joblist: 14
+  _joblist: 6
 --- !u!114 &368170182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4823,7 +4823,7 @@ MonoBehaviour:
   _statussave: {fileID: 0}
   _HpState: 0
   _NowState: 0
-  _joblist: 14
+  _joblist: 1
 --- !u!114 &403712913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18574,7 +18574,7 @@ MonoBehaviour:
   _statussave: {fileID: 0}
   _HpState: 0
   _NowState: 0
-  _joblist: 14
+  _joblist: 0
 --- !u!114 &1454604272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21884,7 +21884,7 @@ MonoBehaviour:
   _statussave: {fileID: 0}
   _HpState: 0
   _NowState: 0
-  _joblist: 14
+  _joblist: 4
 --- !u!114 &1672333379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22652,7 +22652,7 @@ MonoBehaviour:
   _statussave: {fileID: 0}
   _HpState: 0
   _NowState: 0
-  _joblist: 14
+  _joblist: 0
 --- !u!114 &1702423938
 MonoBehaviour:
   m_ObjectHideFlags: 0

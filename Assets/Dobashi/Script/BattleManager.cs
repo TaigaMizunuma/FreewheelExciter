@@ -559,7 +559,8 @@ public class BattleManager : MonoBehaviour {
 
                 //迎撃側の攻撃
                 def_exp += BattleSystem(_def,_attacker,_def._revenge,def_stock);
-                if(!_def._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
+                _BattleflowTest.AtkAnim(_attacker._obj);
+                if (!_def._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
                 if (_battleend) break;
             }
             _count_plus = 1;
@@ -575,7 +576,7 @@ public class BattleManager : MonoBehaviour {
             {
                 //攻撃側の攻撃
                 atk_exp += BattleSystem(_attacker, _def, 0,atk_stock);
-                _BattleflowTest.AtkAnim(_attacker._obj);
+                _BattleflowTest.AtkAnim(_def._obj);
                 if (!_attacker._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
                 if (_battleend) break;
             }
@@ -593,7 +594,7 @@ public class BattleManager : MonoBehaviour {
             {
                 //攻撃側の攻撃
                 atk_exp+= BattleSystem(_attacker, _def, 0,atk_stock);
-                _BattleflowTest.AtkAnim(_attacker._obj);
+                _BattleflowTest.AtkAnim(_def._obj);
                 if (!_attacker._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
                 if (_battleend) break;
             }
@@ -619,6 +620,7 @@ public class BattleManager : MonoBehaviour {
                     {
                         //迎撃側の攻撃
                         def_exp += BattleSystem(_def, _attacker, _def._revenge, def_stock);
+                        _BattleflowTest.AtkAnim(_attacker._obj);
                         if (!_def._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
                         if (_battleend) break;
                     }
@@ -645,7 +647,7 @@ public class BattleManager : MonoBehaviour {
                 {
                     //攻撃側の追撃
                     atk_exp += BattleSystem(_attacker, _def, 0, atk_stock);
-                    _BattleflowTest.AtkAnim(_attacker._obj);
+                    _BattleflowTest.AtkAnim(_def._obj);
                     if (!_attacker._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _attacker._chara._totalskl * 2)) atk_stock++;
                     if (_battleend) break;
                 }
@@ -665,6 +667,7 @@ public class BattleManager : MonoBehaviour {
                 {
                     //迎撃側の追撃
                     def_exp += BattleSystem(_def, _attacker, _def._revenge, def_stock);
+                    _BattleflowTest.AtkAnim(_attacker._obj);
                     if (!_def._chara.GetComponent<SkillChecker>()._Saving || (Random.Range(0, 101) > _def._chara._totalskl * 2)) def_stock++;
                     if (_battleend) break;
                 }

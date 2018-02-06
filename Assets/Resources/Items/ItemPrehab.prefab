@@ -53,8 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _name: "\u304D\u305A\u3050\u3059\u308A"
-  _message: "\u30E1\u30C3\u30BB\u30FC\u30B8"
+  _message: "HP\u309210\u56DE\u5FA9\u3059\u308B"
   _recovery: 10
-  _stock: 10
+  _stock: 5
   _type: Item
   _effect: 0

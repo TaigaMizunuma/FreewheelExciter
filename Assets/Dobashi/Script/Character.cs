@@ -415,7 +415,6 @@ public class Character : MonoBehaviour {
         _skillprefablist.GetComponent<SkillPrefabList>().CheckSkillLevel(_totalLevel);
         TotalStatus();
         RecoveryHP(100);
-
     }
 
     /// <summary>
@@ -639,7 +638,6 @@ public class Character : MonoBehaviour {
                 //回避率(速さ + 運 + 地形補正)
                 _avoidance = _totalspd + _totalluk + _addbufflist[8] + _addonetimestatuslist[9];
             }
-            
         }
         
         //必殺率(武器の必殺率 + 技/2)
