@@ -16629,6 +16629,11 @@ Prefab:
       propertyPath: HandPos
       value: 
       objectReference: {fileID: 203936111}
+    - target: {fileID: 114010186653563432, guid: 830e02da8c0f485449219768739c70ae,
+        type: 2}
+      propertyPath: _hero
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 830e02da8c0f485449219768739c70ae, type: 2}
   m_IsPrefabParent: 0

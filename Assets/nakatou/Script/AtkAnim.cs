@@ -8,14 +8,15 @@ public class AtkAnim : StateMachineBehaviour {
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     //
     //}
+    public GameObject equip;
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {       
-        if(stateInfo.normalizedTime >=1)
-        {
-            animator.CrossFade("NoneDamy", 0.0f);
-        }
+    {
+        //if(stateInfo.normalizedTime >=1)
+        //{
+        //    animator.CrossFade("NoneDamy", 0.0f);
+        //}
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
