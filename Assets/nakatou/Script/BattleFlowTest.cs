@@ -272,7 +272,7 @@ public class BattleFlowTest : MonoBehaviour
         //行動キャラ選択
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("O")) && !Shousai.activeInHierarchy)//○ボタン予定
         {
-            m_audio.PlaySe("choose");//se
+            //m_audio.PlaySe("choose");//se
 
             Ray ray = new Ray(FindObjectOfType<RayBox>().transform.gameObject.transform.position, -transform.up);
             RaycastHit hit = new RaycastHit();
@@ -1284,7 +1284,7 @@ public class BattleFlowTest : MonoBehaviour
     {
         if (state_ == State_.action_mode)
         {
-            m_audio.PlaySe("choose");
+            //m_audio.PlaySe("choose");
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();//サブメニュー非表示
             FindObjectOfType<MenuManager>().SetEventSystem(false);
 
@@ -1303,7 +1303,7 @@ public class BattleFlowTest : MonoBehaviour
     {
         if (state_ == State_.action_mode)
         {
-            m_audio.PlaySe("choose");
+            //m_audio.PlaySe("choose");
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();//サブメニュー非表示
             FindObjectOfType<MenuManager>().SetEventSystem(false);
 
@@ -1323,7 +1323,7 @@ public class BattleFlowTest : MonoBehaviour
     {
         if(state_ == State_.action_mode)
         {
-            m_audio.PlaySe("choose");
+            //m_audio.PlaySe("choose");
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();//サブメニュー非表示
             FindObjectOfType<MenuManager>().SetEventSystem(false);
 

@@ -32,25 +32,25 @@ public class RayBox : MonoBehaviour
             {
                 transform.Translate(1, 0, 0);
                 SetSelectSquare();
-                am.PlaySe("cursor");
+                //am.PlaySe("cursor");
             }
             else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetAxis("AxisX") == -1) && selectSquare.GetComponent<Square_Info>().ExistNextSquare(3))
             {
                 transform.Translate(-1, 0, 0);
                 SetSelectSquare();
-                am.PlaySe("cursor");
+                //am.PlaySe("cursor");
             }
             else if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetAxis("AxisY") == 1) && selectSquare.GetComponent<Square_Info>().ExistNextSquare(0))
             {
                 transform.Translate(0, 0, 1);
                 SetSelectSquare();
-                am.PlaySe("cursor");
+                //am.PlaySe("cursor");
             }
             else if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxis("AxisY") ==-1) && selectSquare.GetComponent<Square_Info>().ExistNextSquare(2))
             {
                 transform.Translate(0, 0, -1);
                 SetSelectSquare();
-                am.PlaySe("cursor");
+                //am.PlaySe("cursor");
             }
 
             if (Input.GetKeyDown(KeyCode.R)||Input.GetKeyDown(KeyCode.L))
@@ -69,18 +69,18 @@ public class RayBox : MonoBehaviour
                 Transform p_pos = players_[p_num].GetComponent<Move_System>().GetNowPos().transform;
                 transform.position = new Vector3(p_pos.position.x, transform.position.y, p_pos.position.z);
                 SetSelectSquare();
-                am.PlaySe("cursor");
+                //am.PlaySe("cursor");
             }
         }
         else
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                am.PlaySe("cursor");
+                //am.PlaySe("cursor");
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                am.PlaySe("cursor");
+                //am.PlaySe("cursor");
             }
         }
     }
