@@ -505,12 +505,6 @@ public class BattleFlowTest : MonoBehaviour
         }
     }
 
-    public void SerchRangeDesp()
-    {
-        var c = _nowChooseChar.GetComponent<Character>();
-        _nowChooseChar.GetComponent<PlayerAttack>();
-    }
-
     void SkillMode()
     {
         if (!once)

@@ -11,15 +11,12 @@ public class RayBox : MonoBehaviour
 
     private GameObject selectSquare;
 
-    AudioManager am;
-
     private int p_num = 0;
 
     private GameObject move_player;
 
     void Start()
     {
-        am = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
         SetSelectSquare();
     }
 
