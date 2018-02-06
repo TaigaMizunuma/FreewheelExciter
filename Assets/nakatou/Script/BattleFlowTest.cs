@@ -160,7 +160,6 @@ public class BattleFlowTest : MonoBehaviour
         {
             rayBox.GetComponent<RayBox>().move_ = false;
         }
-
         //遷移
         switch (state_)
         {
@@ -183,7 +182,6 @@ public class BattleFlowTest : MonoBehaviour
                 //移動後の行動選択
             case State_.action_mode:
                 ActionMode();
-                
                 break;
 
             //武器選択
@@ -450,7 +448,7 @@ public class BattleFlowTest : MonoBehaviour
                 count--;
                 _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
                 _nowChooseChar.GetComponent<Character>().TotalStatus();
-
+                _nowChooseChar.GetComponent<PlayerAttack>().RangeSerchDesp();
             }
             if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
             {
@@ -458,6 +456,7 @@ public class BattleFlowTest : MonoBehaviour
                 count++;
                 _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
                 _nowChooseChar.GetComponent<Character>().TotalStatus();
+                _nowChooseChar.GetComponent<PlayerAttack>().RangeSerchDesp();
 
             }
             if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
@@ -466,8 +465,7 @@ public class BattleFlowTest : MonoBehaviour
                 _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
                 _nowChooseChar.GetComponent<Character>().TotalStatus();
 
-                //var anim = _nowCounterChara.GetComponent<Animator>();
-                //anim.CrossFade("NoneDamy", 0.0f);
+                _nowChooseChar.GetComponent<PlayerAttack>().RangeSerchDespRelease();
             }
 
             //キャンセル
@@ -478,6 +476,7 @@ public class BattleFlowTest : MonoBehaviour
                     obj.SetActive(false);
                     Destroy(obj, 1.0f);
                 }
+                _nowChooseChar.GetComponent<PlayerAttack>().RangeSerchDespRelease();
                 Destroy(SetumeiWindow);
                 choose = false;
                 once = false;
@@ -504,6 +503,12 @@ public class BattleFlowTest : MonoBehaviour
             UIs.Clear();
             _nowChooseChar.GetComponent<PlayerAttack>().RangeSearch();
         }
+    }
+
+    public void SerchRangeDesp()
+    {
+        var c = _nowChooseChar.GetComponent<Character>();
+        _nowChooseChar.GetComponent<PlayerAttack>();
     }
 
     void SkillMode()

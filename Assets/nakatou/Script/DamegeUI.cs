@@ -3,14 +3,12 @@ using UnityEngine.UI;
 
 public class DamegeUI : MonoBehaviour
 {
-    Text _damegeTxt;
     public float _offset;//文字が動く範囲
     Vector3 _endPos;
 
     // Use this for initialization
     void Start()
     {
-        _damegeTxt = GetComponent<Text>();
         _endPos = transform.localPosition;
         _endPos.y += _offset;
         //Debug.Log(_endPos);

@@ -12,6 +12,18 @@ public class CharaAnimManager : MonoBehaviour
     void Start()
     {
         _animator = GetComponent(typeof(Animator)) as Animator;
+
+        if (gameObject.tag == "Enemy")
+        {
+            var childs = GetComponentsInChildren<Transform>();
+            foreach (Transform child in childs)
+            {
+                if (child.name == "R_HandIndex1")
+                {
+                    HandPos = child.gameObject;
+                }
+            }
+        }
     }
 
     // Update is called once per frame

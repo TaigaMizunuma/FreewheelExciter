@@ -123,6 +123,36 @@ public class PlayerAttack : MonoBehaviour
     }
 
     /// <summary>
+    /// 武器選択時の仮の攻撃範囲表示
+    /// </summary>
+    public void RangeSerchDesp()
+    {
+        RangeSerchDespRelease();
+        Character c = gameObject.GetComponent<Character>();
+        MinCost = c._range[0];
+        MaxCost = c._range[1];
+
+        Retrieval();
+        RetrievalRelease();
+
+        foreach(var rangemas in attack_range)
+        {
+            rangemas.GetComponent<Square_Info>().AttackRange();
+        }
+    }
+
+    /// <summary>
+    /// 武器選択時の仮の攻撃範囲表示 解除
+    /// </summary>
+    public void RangeSerchDespRelease()
+    {
+        foreach (GameObject atk in attack_range)
+        {
+            atk.GetComponent<Square_Info>().DecisionEnd();
+        }
+    }
+
+    /// <summary>
     /// プレイヤーの反撃時　反撃できるか判定
     /// </summary>
     /// <param name="target_enemy">攻撃してきたキャラ</param>
