@@ -65,7 +65,7 @@ public class MapReady : MonoBehaviour
                 menu_num--;
                 if (menu_num < 0) menu_num = menus_.Count - 1;
             }
-            cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(menus_[menu_num]) + new Vector2(-50, 0);
+            cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(menus_[menu_num]) + new Vector2(-50, -10);
             if (Input.GetKeyDown(KeyCode.X))
             {
                 transform.parent.GetComponent<ReadyManager>().ModeChange(0);

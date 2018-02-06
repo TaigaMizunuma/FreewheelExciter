@@ -115,7 +115,7 @@ public class Hensei : MonoBehaviour
             if (sortie_[unit_num])
             {
                 if (players_[unit_num].GetComponent<Character>()._hero) return;
-                units_[unit_num].GetComponent<Text>().color = new Color(0.2f, 0.2f, 0.2f, 1);
+                units_[unit_num].GetComponent<Text>().color = new Color(0.5f, 0.5f, 0.5f, 1);
                 sortie_[unit_num] = false;
                 sortie_num++;
                 players_[unit_num].SetActive(false);
@@ -181,10 +181,13 @@ public class Hensei : MonoBehaviour
             else
             {
                 sortie_[i] = false;
-                units_[i].GetComponent<Text>().color = new Color(0.2f, 0.2f, 0.2f, 1);
+                units_[i].GetComponent<Text>().color = new Color(0.5f, 0.5f, 0.5f, 1);
                 players_[i].SetActive(false);
             }
         }
         parent_canvas = transform.parent.gameObject;
+        cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
+        parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
+        shosai_.GetComponent<ReadyShosai>().SetUnit();
     }
 }
