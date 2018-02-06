@@ -1196,6 +1196,7 @@ GameObject:
   - component: {fileID: 1800027931}
   - component: {fileID: 1800027934}
   - component: {fileID: 1800027933}
+  - component: {fileID: 1800027932}
   m_Layer: 5
   m_Name: TitleBackGround01
   m_TagString: Untagged
@@ -1221,6 +1222,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1280, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!111 &1800027932
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1800027930}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ce1d56bca657b844b849cb7dd687d11d, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: ce1d56bca657b844b849cb7dd687d11d, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &1800027933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1233,14 +1249,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8716009, g: 0.86407876, b: 0.9632353, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b63447930a399d347bc7327c8ef91dbd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8098e63feee88544f8ee5d2c8640e03e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
