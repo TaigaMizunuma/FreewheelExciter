@@ -97,6 +97,7 @@ public class BattleFlowTest : MonoBehaviour
     {
         PlayerRedGage = GameObject.Find("playerDamageGage");
         EnemyRedGage = GameObject.Find("enemyDamageGage");
+        _TurnText = GameObject.Find("TurnText").GetComponent<Text>();
     }
     void Start()
     {
@@ -1407,8 +1408,9 @@ public class BattleFlowTest : MonoBehaviour
 
         foreach(var player in GameObject.FindGameObjectsWithTag("Player"))
         {
-            if(player.GetComponent<Character>()._hero)
+            if(player.GetComponent<Character>()._name == "ヒュー")
             {
+                player.GetComponent<Character>()._hero = true;
                 Hero = player;
             }
         }

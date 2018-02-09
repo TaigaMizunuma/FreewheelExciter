@@ -58,10 +58,11 @@ MonoBehaviour:
   _nowChooseChar: {fileID: 0}
   _TurnText: {fileID: 0}
   _ActionEnemy: {fileID: 0}
-  waitTime: 1
   PlayerRedGage: {fileID: 0}
   EnemyRedGage: {fileID: 0}
-  Shousai: {fileID: 0}
+  Shousai: {fileID: 1965038331118834, guid: 4b6505cb3a330624a8287669f4e3d1af, type: 2}
+  GameStart: 0
+  c_moving: 0
 --- !u!114 &114566192071154538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,6 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _AttackSide: {fileID: 0}
   _DefenseSide: {fileID: 0}
+  _BattleflowTest: {fileID: 0}
 --- !u!114 &114819982092994416
 MonoBehaviour:
   m_ObjectHideFlags: 1
