@@ -254,10 +254,26 @@ public class Character : MonoBehaviour {
 
         //if (Input.GetKeyDown("j") && transform.tag == "Player")
         //{
-        //    //Debug.Log("Characterデータロード");
-        //    //_statussave.LoadStatus();
-        //    //LoadData();
+        //    SaveStatus();
+        //    Debug.Log("Save" + _name);
+
         //}
+        //if (Input.GetKeyDown("k") && transform.tag == "Player" && _statussave.LoadStatus())
+        //{
+        //    LoadData();
+        //    _itemprefablist.GetComponent<ItemPrefabList>().DeleteItem();
+        //    _itemprefablist.GetComponent<ItemPrefabList>().LoadItem(_name);
+        //    _itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
+        //}
+
+        //if (transform.tag != "Enemy")
+        //{
+        //    if (_statussave.LoadStatus())
+        //    {
+        //        LoadData();
+        //    }
+        //}
+
 
         //exp100でレベルアップ
         if (_exp >= 100)
@@ -369,20 +385,19 @@ public class Character : MonoBehaviour {
         _addonetimestatuslist = _statussave.r_addonestatus;
         _addbufflist = _statussave.r_addbuffstatus;
         _stability = _statussave.r_stability;
-        _isDead = _statussave.r_isDead;
-        //_NowState = (State)Enum.ToObject(typeof(State), _statussave.r_state);
-        //_itemprefablist.GetComponent<ItemPrefabList>().DeleteItem();
-        //for (var i = 0; i < _statussave.r_itemobj.Length; i++)
-        //{
-        //    if (_statussave.r_itemobj[i] != null)
-        //    {
-        //        var obj = Instantiate(_statussave.r_itemobj[i]);
-        //        _itemprefablist.GetComponent<ItemPrefabList>().AddItem(obj);
-        //    }
-        //}
+        _isDead = _statussave.r_isDead;     
         //_statussave.r_itemobj.transform.parent = transform;
         //_itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist = _statussave.r_skillobj.GetComponent<ItemPrefabList>()._itemprefablist;
-        //_skillprefablist = Instantiate(_statussave.r_skillobj);
+    }
+
+
+    /// <summary>
+    /// キャラクターのデータをセーブ
+    /// </summary>
+    public void SaveStatus()
+    {
+        GetComponent<StatusSave>().CharactorDataSave(_name);
+        _itemprefablist.GetComponent<ItemPrefabList>().SaveItems(_name);
     }
 
     /// <summary>
@@ -422,15 +437,15 @@ public class Character : MonoBehaviour {
 
                 }
             }
-            if (_statussave.LoadStatus())
-            {
-                LoadData();
-                Debug.Log("データロード" + transform.name);
-            }
-            else
-            {
-                Debug.Log("セーブデータなし");
-            }
+            //if (_statussave.LoadStatus())
+            //{
+            //    LoadData();
+            //    Debug.Log("データロード" + transform.name);
+            //}
+            //else
+            //{
+            //    Debug.Log("セーブデータなし");
+            //}
         }
         
         

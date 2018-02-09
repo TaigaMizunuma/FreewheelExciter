@@ -34,6 +34,12 @@ public class StatusSave : MonoBehaviour {
     public bool r_stability;
     public int r_state;
     public bool r_isDead;
+    public List<GameObject> r_items = new List<GameObject>();
+
+    public List<Item> r_itemscript = new List<Item>();
+    public List<Weapon> r_weapon = new List<Weapon>();
+
+    public List<int> r_stock = new List<int>();
 
     [SerializeField]
     public class DataSave
@@ -89,7 +95,6 @@ public class StatusSave : MonoBehaviour {
             _state = 0;
             _isDead = false;
         }
-
     }
 
 
@@ -97,23 +102,6 @@ public class StatusSave : MonoBehaviour {
     void Start () {
         _chara = GetComponent<Character>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        //if (Input.GetKeyDown("h"))
-        //{
-        //    Debug.Log("Characterデータセーブ");
-        //    SaveStatus(NewData());
-        //}
-        //if (Input.GetKeyDown("f"))
-        //{
-        //    Debug.Log("オブジェクトロードテスト");
-        //    LoadStatus();
-        //    Instantiate(r_itemobj);
-        //    Instantiate(r_skillobj);
-        //}
-        
-    }
 
     /// <summary>
     /// キャラクターステータスをセーブするときに呼ぶ
@@ -136,7 +124,7 @@ public class StatusSave : MonoBehaviour {
     public bool LoadStatus()
     {
         if (SaveData.HasKey(GetComponent<Character>()._name) == true)
-        {
+        {       
             DataSave gs = SaveData.GetClass(GetComponent<Character>()._name, new DataSave());
             r_id = gs._id;
             r_job = gs._job;
@@ -171,7 +159,7 @@ public class StatusSave : MonoBehaviour {
     DataSave NewData()
     {
         var i = new DataSave();
-        i._id = 0;
+        i._id = _chara._id;
         i._job = (int)_chara._joblist;
         i._name = _chara._name;
         i._pos = _chara._position;
@@ -192,7 +180,7 @@ public class StatusSave : MonoBehaviour {
         i._addonestatus = _chara._addonetimestatuslist;
         i._addbuffstatus = _chara._addbufflist;
         i._state = (int)_chara._NowState;
-        i._isDead = _chara._isDead;
+        i._isDead = _chara._isDead; 
         
         return i;
     }
