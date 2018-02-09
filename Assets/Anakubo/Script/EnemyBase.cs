@@ -164,6 +164,7 @@ public class EnemyBase : MonoBehaviour {
             now_cost += route_[move_list_num + 1].GetComponent<Square_Info>().GetCost();
             now_pos.GetComponent<Square_Info>().ResetChara();
         }
+        MoveSumilate();
     }
 
     void SetPos(int num)
@@ -369,6 +370,26 @@ public class EnemyBase : MonoBehaviour {
         foreach (GameObject g in obj)
         {
             g.GetComponent<Square_Info>().DecisionEnd();
+        }
+    }
+
+    void MoveSumilate()
+    {
+        int now_cost2 = 0;
+        List<GameObject> route2 = new List<GameObject>();
+        for(int i = 1; i < route_.Count; i++)
+        {
+            if (now_cost2 + route_[i].GetComponent<Square_Info>().GetCost() <= first_cost)
+            {
+                now_cost2 += route_[i].GetComponent<Square_Info>().GetCost();
+                route2.Add(route_[i]);
+            }
+            else break;
+        }
+        while (route2[route2.Count - 1].GetComponent<Square_Info>().GetChara() != null)
+        {
+            now_cost += route2[route2.Count - 1].GetComponent<Square_Info>().GetCost();
+            route2.RemoveAt(route2.Count - 1);
         }
     }
 }
