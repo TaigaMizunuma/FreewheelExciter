@@ -843,6 +843,20 @@ Prefab:
       propertyPath: m_Colors.m_PressedColor.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114502003179952138, guid: 68d218521f60e8b40838dc852cb56a64,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4237925926347612, guid: 68d218521f60e8b40838dc852cb56a64, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224352440100261334, guid: 68d218521f60e8b40838dc852cb56a64,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 95880701542655574, guid: 68d218521f60e8b40838dc852cb56a64, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 68d218521f60e8b40838dc852cb56a64, type: 2}
