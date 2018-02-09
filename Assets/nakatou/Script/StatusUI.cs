@@ -14,6 +14,8 @@ public class StatusUI : MonoBehaviour
     Slider player_hpGage;
     Slider enemy_hpGage;
 
+    Text HP_2;
+
     void Awake()
     {
         unitName = transform.Find("NameText").GetComponent<Text>();
@@ -21,6 +23,8 @@ public class StatusUI : MonoBehaviour
         hpGage = transform.Find("HpGage").GetComponent<Slider>();
         player_hpGage = transform.Find("PlayerGage").GetComponent<Slider>();
         enemy_hpGage = transform.Find("EnemyGage").GetComponent<Slider>();
+
+        HP_2 = transform.Find("HPText_2").GetComponent<Text>();
     }
 
     void Start()
@@ -43,6 +47,7 @@ public class StatusUI : MonoBehaviour
     {
         hpGage.transform.gameObject.SetActive(true);
         HP.enabled = true;
+        HP_2.enabled = true;
         unitName.text = name;
         if (hp < 0) hp = 0;
         HP.text = hp.ToString()+ "/" + maxhp.ToString();
@@ -120,6 +125,7 @@ public class StatusUI : MonoBehaviour
         unitName.text = mapname;
         hpGage.transform.gameObject.SetActive(false);
         HP.enabled = false;
+        HP_2.enabled = false;
     }
 
     /// <summary>
