@@ -1198,11 +1198,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80043832e300da84a948e54b40417883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _faceimage: {fileID: 0}
   _data:
-  - {fileID: 1462606520275466, guid: 391be8752b688c8479431a5e81f5410e, type: 2}
-  - {fileID: 1562652628913562, guid: 391be8752b688c8479431a5e81f5410e, type: 2}
-  - {fileID: 1621925781381674, guid: 391be8752b688c8479431a5e81f5410e, type: 2}
-  - {fileID: 1706375858286630, guid: 391be8752b688c8479431a5e81f5410e, type: 2}
+  - {fileID: 1831543323902414}
+  - {fileID: 1301128587982972}
+  - {fileID: 1645997741690088}
 --- !u!114 &114509099204096238
 MonoBehaviour:
   m_ObjectHideFlags: 1
