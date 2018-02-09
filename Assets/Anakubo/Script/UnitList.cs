@@ -11,16 +11,10 @@ public class UnitList : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (n_unit_ == null)
-        {
-            players_ = GameObject.Find("ReadyCanvas").GetComponent<PosSort>().GetPlayers();
-            Init();
-        }
 	}
 
     public GameObject GetPlayerModel(int a)
@@ -38,8 +32,9 @@ public class UnitList : MonoBehaviour {
         return players_;
     }
 
-    void Init()
+    public void Init()
     {
+        players_ = GameObject.Find("ReadyCanvas").GetComponent<PosSort>().GetPlayers();
         unit_.GetComponent<Text>().text = players_[0].GetComponent<Character>()._name;
         unit_texts_.Add(unit_);
         for (int i = 1; i < players_.Length; i++)

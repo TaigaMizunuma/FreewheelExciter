@@ -18,6 +18,8 @@ public class ReadyManager : MonoBehaviour {
 
     public bool isDebug = false;
 
+    public UnitList u_list;
+
 	// Use this for initialization
 	void Start () {
         battle_flow = GameObject.Find("GameManager").GetComponent<BattleFlowTest>();
@@ -29,6 +31,7 @@ public class ReadyManager : MonoBehaviour {
 	void Update () {
         if (!init_)
         {
+            u_list.Init();
             ModeChange(0);
             init_ = true;
         }

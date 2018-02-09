@@ -30,7 +30,7 @@ public class PosSort : MonoBehaviour {
                 set_ = true;
             }
         }
-        if (set_) SetFirstPos();
+        //if (set_) SetFirstPos();
     }
 	
 	// Update is called once per frame
@@ -66,11 +66,34 @@ public class PosSort : MonoBehaviour {
     {
         if (first_pos == null) return;
         units_ = GameObject.FindGameObjectsWithTag("Player");
-        int min = Mathf.Min(units_.Length, first_pos.Count);
-        for (int i = 0; i < min; i++)
+        int num = 0;
+        for (int i = 0; i < first_pos.Count; i++)
         {
-            units_[i].transform.position = first_pos[i].transform.position + new Vector3(0, 1.0f, 0);
-            units_[i].GetComponent<Move_System>().SetNowPos();
+            if (i + num < players_.Count)
+            {
+                while (!players_[i + num].activeSelf)
+                {
+                    if (i + num == players_.Count-1)
+                    {
+                        //Debug.Log("aa");
+                        num++;
+                        break;
+                    }
+                    else
+                    {
+                        num++;
+                    }
+                }
+            }
+            if (i + num < players_.Count)
+            {
+                players_[i + num].transform.position = first_pos[i].transform.position + new Vector3(0, 1.0f, 0);
+                players_[i + num].GetComponent<Move_System>().SetNowPos();
+            }
+            else
+            {
+                first_pos[i].GetComponent<Square_Info>().ResetChara();
+            }
         }
     }
 

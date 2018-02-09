@@ -37,6 +37,7 @@ public class Hensei : MonoBehaviour
     void Start()
     {
         pos_sort = GameObject.Find("ReadyCanvas").GetComponent<PosSort>();
+        sortie_num = pos_sort.GetFirstPos().Length;
     }
 
     void OnEnable()
@@ -189,5 +190,6 @@ public class Hensei : MonoBehaviour
         cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
         parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
         shosai_.GetComponent<ReadyShosai>().SetUnit();
+        pos_sort.SetFirstPos();
     }
 }
