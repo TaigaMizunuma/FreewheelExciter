@@ -90,6 +90,8 @@ public class BattleFlowTest : MonoBehaviour
 
     public bool c_moving = false;
 
+    GameObject Hero;
+
 
     void Awake()
     {
@@ -105,24 +107,36 @@ public class BattleFlowTest : MonoBehaviour
     void Update()
     {
         if (!GameStart) return;
+
         //仮 勝敗判定
-        if (!GameObject.FindGameObjectWithTag("Enemy"))
+        if (!GameObject.FindGameObjectWithTag("Enemy") && !GameEnd)
         {
-            //_TurnText.text = "GameClear!!";
             GameEnd = true;
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
                 FindObjectOfType<GameRequirement>().GameClear();
             }));
         }
-        else if(!GameObject.FindGameObjectWithTag("Player"))
+        else if(!GameObject.FindGameObjectWithTag("Player") && !GameEnd)
         {
-            //_TurnText.text = "GameOver...";
             GameEnd = true;
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
                 FindObjectOfType<GameRequirement>().GameOver();
             }));
+        }
+
+        else if(!GameEnd)
+        {
+            if (Hero.GetComponent<Character>()._totalhp <= 0)
+            {
+                GameEnd = true;
+                Debug.Log("主人公が死にました...");
+                StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
+                {
+                    FindObjectOfType<GameRequirement>().GameOver();
+                }));
+            }
         }
 
         if (GameEnd) return;//ゲーム終了
@@ -1358,8 +1372,8 @@ public class BattleFlowTest : MonoBehaviour
                     continue;
                 }
                 //一番近いキャラ
-                if (Vector3.Distance(enemy.transform.position, minobj.transform.position) >
-                    Vector3.Distance(enemy.transform.position, player.transform.position))
+                if (Vector3.Distance(player.transform.position, minobj.transform.position) >
+                    Vector3.Distance(player.transform.position, enemy.transform.position))
                 {
                     //死んでなかったら登録
                     if (enemy.GetComponent<Character>()._HpState != Character.HP_State.Dead)
@@ -1383,12 +1397,21 @@ public class BattleFlowTest : MonoBehaviour
         FindObjectOfType<SubMenuRenderer>().GetSubControlFlag(true);
         rayBox = FindObjectOfType<RayBox>().gameObject;
         rayBox.GetComponent<RayBox>().move_ = false;
+
         m_audio = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
         Shousai = Instantiate(Resources.Load("Shosai"), GameObject.Find("Canvas").transform) as GameObject;
         Shousai.SetActive(false);
         SetActionEnemy();
 
         _TurnText.text = "第" + FindObjectOfType<StoryCSVReader>().GetStoryNumber() + "章 \n PlayerTurn";
+
+        foreach(var player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if(player.GetComponent<Character>()._hero)
+            {
+                Hero = player;
+            }
+        }
 
         //m_audio.PlayBgm("battle1");
 
@@ -1403,7 +1426,5 @@ public class BattleFlowTest : MonoBehaviour
         }));
 
         GameStart = true;
-    }
-
-    
+    }   
 }

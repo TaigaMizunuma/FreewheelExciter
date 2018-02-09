@@ -37,7 +37,7 @@ public class CharaAnimManager : MonoBehaviour
             if(GetComponent<Character>()._equipment.GetComponent<Weapon>()._weapontype == Weapon_Type.Axe)
             {
                 if (NowEquipment) Destroy(NowEquipment);
-                var weapon = Instantiate(Resources.Load("NewWeapon/Axe/Axe_"), HandPos.transform) as GameObject;
+                var weapon = Instantiate(Resources.Load("NewWeapon/Axe/NewAxe_"), HandPos.transform) as GameObject;
                 NowEquipment = weapon;
                 _WeaponType = Weapon_Type.Axe;
                 _animator.CrossFade("NoneDamy", 0.0f);
