@@ -30,7 +30,8 @@ public class RushEnemy : MonoBehaviour {
         {
             for(int j = 0; j < p_.Count - 1; j++)
             {
-                if(p_[j].GetComponent<Square_Info>().GetRushCost() > p_[j + 1].GetComponent<Square_Info>().GetRushCost())
+                if(p_[j].GetComponent<Move_System>().GetNowPos().GetComponent<Square_Info>().GetRushCost()
+                    > p_[j + 1].GetComponent<Move_System>().GetNowPos().GetComponent<Square_Info>().GetRushCost())
                 {
                     GameObject obj = p_[j];
                     p_[j] = p_[j + 1];
@@ -63,7 +64,7 @@ public class RushEnemy : MonoBehaviour {
         //}
         for(int i = 0; i < p_.Count; i++)
         {
-            foreach(GameObject t in p_[i].GetComponent<Square_Info>().GetNear())
+            foreach(GameObject t in p_[i].GetComponent<Move_System>().GetNowPos().GetComponent<Square_Info>().GetNear())
             {
                 if (t.GetComponent<Square_Info>().GetChara() != null || t.GetComponent<Square_Info>().GetCost() > GetComponent<EnemyBase>().first_cost) continue;
                 if (target_pos == null) target_pos = t;
