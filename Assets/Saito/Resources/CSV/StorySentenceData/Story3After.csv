@@ -1,14 +1,14 @@
-﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG
-4,0,ヒュー,ファイアフライ…厳しい戦いだった…,0,0,0,1,ON,OFF,OFF,OFF,0,Story4Before,0,12,0,孤立の涙,SaveData,Boss,3
-4,1,アイン,だが、これで3つも倒したことになるぜ,0,0,0,1,SHADE,OFF,OFF,ON,0,,0,0,,孤立の涙,,,
-4,2,ヒュー,そうだな。,0,0,0,1,ON,OFF,OFF,SHADE,0,,0,0,,孤立の涙,,,
-4,3,ヒュー,おいあんた、何かちょうどいい敵を知らないか,0,0,0,1,ON,OFF,OFF,SHADE,0,,0,0,,孤立の涙,,,
-4,4,ジャイロ,…っつてもなあ。このへんでやべえのなんか…あの街くらいのもんだろ,0,0,0,8,SHADE,OFF,OFF,ON,0,,0,0,,孤立の涙,,,
-4,5,キース,…あの街か。,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,
-4,6,ヒュー,なんだ？どの街だ？,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,孤立の涙,,,
-4,7,キース,…ローマニアで最もイカれた街。人はそれを吹き溜まりの街と呼ぶ…,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,
-4,8,キース,あそこにだけは行きたくなかったが…,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,
-4,9,ヒュー,なんで？,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,孤立の涙,,,
-4,10,キース,そこは俺が生まれ育った場所。行くってんなら案内するぜ,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,
-4,11,ヒュー,…他にあてもない。キース、頼む,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,孤立の涙,,,
-4,12,キース,任せな。あとこれ今日の報酬な,0,0,2,8,SHADE,OFF,ON,SHADE,1,,0,0,,孤立の涙,,,
+﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation
+4,0,ヒュー,ファイアフライ…厳しい戦いだった…,0,0,0,1,ON,OFF,OFF,OFF,0,Story4Before,0,12,0,孤立の涙,SaveData,Boss,3,2
+4,1,アイン,だが、これで3つも倒したことになるぜ,0,0,0,1,SHADE,OFF,OFF,ON,0,,0,0,,孤立の涙,,,,
+4,2,ヒュー,そうだな。,0,0,0,1,ON,OFF,OFF,SHADE,0,,0,0,,孤立の涙,,,,
+4,3,ヒュー,おいあんた、何かちょうどいい敵を知らないか,0,0,0,1,ON,OFF,OFF,SHADE,0,,0,0,,孤立の涙,,,,
+4,4,ジャイロ,…っつてもなあ。このへんでやべえのなんか…あの街くらいのもんだろ,0,0,0,8,SHADE,OFF,OFF,ON,0,,0,0,,孤立の涙,,,,
+4,5,キース,…あの街か。,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,,
+4,6,ヒュー,なんだ？どの街だ？,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,孤立の涙,,,,
+4,7,キース,…ローマニアで最もイカれた街。人はそれを吹き溜まりの街と呼ぶ…,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,,
+4,8,キース,あそこにだけは行きたくなかったが…,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,,
+4,9,ヒュー,なんで？,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,孤立の涙,,,,
+4,10,キース,そこは俺が生まれ育った場所。行くってんなら案内するぜ,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,,
+4,11,ヒュー,…他にあてもない。キース、頼む,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,孤立の涙,,,,
+4,12,キース,任せな。あとこれ今日の報酬な,0,0,2,8,SHADE,OFF,ON,SHADE,1,,0,0,,孤立の涙,,,,

@@ -1,10 +1,10 @@
 ﻿Number,Name,LV,Job,Strength,Weapon,WeaponType,DropFlag
 1,パイロット,7,Pilot,Weak,Javelin,Spear,0
-2,ソルジャー,10,Soldier,Weak,IronSpear,Spear,1
+2,ソルジャー,10,Soldier,Weak,IronSpear,Spear,0
 3,ライダー,7,Rider,Weak,SteelSpear,Spear,0
 4,ライダー,7,Rider,Weak,SteelSpear,Spear,0
 5,マーセナリー,7,Mercenary,Weak,SteelAxe,Axe,0
-6,フウスイ,5,Warrior,Strong,ThrowAxe,Axe,0
+6,フウスイ,5,Warrior,Strong,ThrowAxe,Axe,1
 7,マーセナリー,7,Mercenary,Weak,SteelAxe,Axe,0
 8,ライダー,7,Rider,Weak,Javelin,Spear,0
 9,マーセナリー,10,Mercenary,Weak,SteelAxe,Axe,0
@@ -15,8 +15,8 @@
 14,パイロット,7,Pilot,Weak,Javelin,Spear,0
 15,ファイター,7,Fighter,Weak,IronCraw,Knuckle,0
 16,ファイター,7,Fighter,Weak,IronCraw,Knuckle,0
-17,ファイター,7,Fighter,Weak,IronCraw,Knuckle,0
-18,ガンナー,5,Gunner,Weak,AK-47,Gun,0
+17,ファイター,7,Fighter,Weak,IronCraw,Knuckle,1
+18,ガンナー,5,Gunner,Weak,AK-47,Gun,1
 19,ガンナー,5,Gunner,Weak,M92F,Gun,0
 20,ガンナー,5,Gunner,Weak,M92F,Gun,0
 21,ファイター,7,Fighter,Weak,IronCraw,Knuckle,0
@@ -26,5 +26,5 @@
 25,マーセナリー,5,Mercenary,Weak,IronAxe,Axe,0
 26,ガンナー,5,Gunner,Weak,AK-47,Gun,0
 27,ファイター,5,Fighter,Weak,IronCraw,Knuckle,0
-28,ファイター,7,Fighter,Weak,SteelClaw,Knuckle,0
+28,ファイター,7,Fighter,Weak,SteelClaw,Knuckle,1
 29,ファイター,7,Fighter,Weak,SteelClaw,Knuckle,0

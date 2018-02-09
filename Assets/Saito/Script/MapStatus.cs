@@ -7,7 +7,6 @@ public class MapStatus : MonoBehaviour
 {
 
     //ID番号、ここに該当する数値を入れると残りの内容が反映される
-    //Excel依存なので数値を変えたい場合はExcelを変えてください
     [SerializeField]
     int mapID;
     //地形の名前
@@ -66,7 +65,7 @@ public class MapStatus : MonoBehaviour
 
     void CharacterGetRay()
     {
-        if (/*blcMaster.masterMapStatus ==*/ true && characterObj == null)
+        if (true && characterObj == null)
         {
             Ray map_ray = new Ray(transform.position, new Vector3(0, 1, 0));
             RaycastHit map_rayHit;

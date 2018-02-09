@@ -1,11 +1,11 @@
 ﻿Number,Name,LV,Job,Strength,Weapon,WeaponType,DropFlag
 1,パイロット,7,Pilot,Weak,Javelin,Spear,0
-2,パイロット,7,Pilot,Weak,Javelin,Spear,1
+2,パイロット,7,Pilot,Weak,Javelin,Spear,0
 3,パイロット,8,Pilot,Weak,LongLance,Spear,0
 4,パイロット,7,Pilot,Weak,SteelSpear,Spear,0
-5,ジャイロ,10,Pilot,Weak,KillerSpear,Spear,0
-6,フライヤー,15,Pilot,Weak,HellScraper,Spear,0
-7,パイロット,7,Pilot,Weak,SteelSpear,Spear,0
+5,ジャイロ,10,Pilot,Weak,KillerSpear,Spear,1
+6,フライヤー,15,Pilot,Weak,HellScraper,Spear,1
+7,パイロット,7,Pilot,Weak,SteelSpear,Spear,1
 8,パイロット,5,Pilot,Weak,IronSpear,Spear,0
 9,パイロット,5,Pilot,Weak,IronSpear,Spear,0
 10,パイロット,8,Pilot,Weak,LongLance,Spear,0
