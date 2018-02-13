@@ -20,14 +20,14 @@ public class PosSort : MonoBehaviour {
     void Start () {
         p_ = GameObject.FindGameObjectsWithTag("Player");
         //SetFirstPos();
-        bool set_ = false;
+        //bool set_ = false;
         floor_ = GameObject.FindGameObjectsWithTag("Floor");
         foreach(GameObject f in floor_)
         {
             if (f.GetComponent<MapStatus>().startPosition)
             {
                 first_pos.Add(f);
-                set_ = true;
+                //set_ = true;
             }
         }
         //if (set_) SetFirstPos();

@@ -59,9 +59,9 @@ public class Hensei : MonoBehaviour
             shosai_.GetComponent<ReadyShosai>().Hensei_Display();
         }
         // 下キーで１つ下に 下から２番目のときに押すとカーソルは動かずに表示されているユニットがずれる
-        if (Input.GetKeyDown(KeyCode.DownArrow) && (unit_num+1)/2 < row-1)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && unit_num/2 < row-1)
         {
-            if (pos_num_y == 2 && (unit_num + 1) / 2 < row-2)
+            if (pos_num_y == 2 && unit_num / 2 < row-2)
             {
                 Vector3 pos = unit_parent.GetComponent<RectTransform>().anchoredPosition;
                 pos.y += 90.0f;

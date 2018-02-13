@@ -72,6 +72,7 @@ GameObject:
   - component: {fileID: 224506108845567796}
   - component: {fileID: 222168656439422918}
   - component: {fileID: 114523601515592360}
+  - component: {fileID: 114590515572422520}
   m_Layer: 5
   m_Name: MiniMap
   m_TagString: Untagged
@@ -2416,6 +2417,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   unit_: {fileID: 1358727745930458}
 --- !u!114 &114106233419502600
 MonoBehaviour:
@@ -3989,7 +3996,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e429363fc89ed294da1defbfaa37064e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4224,10 +4231,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 57b3e1f3958e72a49bf7c0f22ee1c6c4, type: 3}
-    m_FontSize: 36
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -4389,6 +4396,23 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "\u30DA\u30FC\u30B8  1 / 3"
+--- !u!114 &114590515572422520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1017349741297830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a01b8159d16b740861d7bc5ba323fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mini_map:
+  - {fileID: 21300000, guid: 9334c2c7184f71c47acc12af5ab4fb7d, type: 3}
+  - {fileID: 21300000, guid: 719e2cd00b783974ebfa9e05a383de83, type: 3}
+  - {fileID: 21300000, guid: 4db5f2f3d47bf784d8c7573ef070443b, type: 3}
+  - {fileID: 21300000, guid: 97810590cb82be34f96faba37c680fc1, type: 3}
+  - {fileID: 21300000, guid: 40abe45221594a64d947cfbae427788b, type: 3}
 --- !u!114 &114594019914619240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4749,7 +4773,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 46
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -5548,7 +5572,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 46
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -6931,7 +6955,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -87, y: 79}
+  m_AnchoredPosition: {x: -95, y: 110}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224171145614758038
@@ -7118,7 +7142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: -10}
+  m_AnchoredPosition: {x: -80, y: -10}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224282622479427618
@@ -7715,7 +7739,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50, y: 40}
+  m_AnchoredPosition: {x: -80, y: 40}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!224 &224506108845567796

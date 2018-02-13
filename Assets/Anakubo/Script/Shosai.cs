@@ -75,4 +75,12 @@ public class Shosai : MonoBehaviour {
     {
         page_num = 0;
     }
+
+    public void SetChara(GameObject c)
+    {
+        _LeftUI.GetComponent<UILeftStatus>().SetData(c.GetComponent<Character>());
+        _UI1.GetComponent<UIStandardStatus>().SetData(c.GetComponent<Character>());
+        _UI2.GetComponent<UIBattleStatus>().SetData(c.GetComponent<Character>());
+        _UI3.GetComponent<UISkillList>().SetData(c.GetComponent<Character>());
+    }
 }

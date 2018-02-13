@@ -456,22 +456,20 @@ public class ItemReady : MonoBehaviour {
                 {
                     if (repository_num == 0)
                     {
+                        warehouse_items[1] = UIs_parent[2].GetComponent<UIRepository>().GetItemTexts(1);
                         if (warehouse_items[1].Count > 0)
                         {
                             repository_num = 1;
-                            warehouse_items[repository_num] = UIs_parent[2].GetComponent<UIRepository>().GetItemTexts(repository_num);
                             pos_num_y = 0;
-
                             UIs_parent[2].GetComponent<UIRepository>().DisplayChange();
                         }
                     }
                     else {
+                        warehouse_items[0] = UIs_parent[2].GetComponent<UIRepository>().GetItemTexts(0);
                         if (warehouse_items[0].Count > 0)
                         {
                             repository_num = 0;
-                            warehouse_items[repository_num] = UIs_parent[2].GetComponent<UIRepository>().GetItemTexts(repository_num);
                             pos_num_y = 0;
-
                             UIs_parent[2].GetComponent<UIRepository>().DisplayChange();
                         }
                     }
