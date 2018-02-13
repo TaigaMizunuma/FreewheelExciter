@@ -9,7 +9,7 @@ public class MapUI : MonoBehaviour {
     Text Map2;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         Map1 = transform.Find("MapText").GetComponent<Text>();
         Map2 = transform.Find("MapText2").GetComponent<Text>();
     }
@@ -25,7 +25,11 @@ public class MapUI : MonoBehaviour {
     /// <param name="mapstatus"></param>
     public void SetMapStatus(MapStatus mapstatus)
     {
-        Map1.text = mapstatus.GetMapName();
-        Map2.text = "回避:" + mapstatus.GetMapEvasionRate();
+        if (mapstatus)
+        {
+            Map1.text = mapstatus.GetMapName();
+            Map2.text = "回避:" + mapstatus.GetMapEvasionRate();
+        }
+        
     }
 }
