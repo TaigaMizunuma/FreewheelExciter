@@ -46,6 +46,7 @@ public class StatusUI : MonoBehaviour
     public void setUnitStatus(string name, int hp, int maxhp)
     {
         hpGage.transform.gameObject.SetActive(true);
+        GetComponent<Image>().enabled = true;
         HP.enabled = true;
         HP_2.enabled = true;
         unitName.text = name;
@@ -124,6 +125,18 @@ public class StatusUI : MonoBehaviour
     {
         unitName.text = mapstatus.GetMapName();
         hpGage.transform.gameObject.SetActive(false);
+        HP.enabled = false;
+        HP_2.enabled = false;
+    }
+
+    /// <summary>
+    /// ステータスUIの非表示
+    /// </summary>
+    public void EnabledStatusUI()
+    {
+        GetComponent<Image>().enabled = false;
+        hpGage.transform.gameObject.SetActive(false);
+        unitName.text = "";
         HP.enabled = false;
         HP_2.enabled = false;
     }

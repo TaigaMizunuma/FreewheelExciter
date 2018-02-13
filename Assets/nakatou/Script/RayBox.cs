@@ -107,8 +107,9 @@ public class RayBox : MonoBehaviour
                 var cost = hit.transform.GetComponent<Square_Info>().GetCost();
                 if (selectSquare.GetComponent<MapStatus>())
                 {
-                    FindObjectOfType<StatusUI>().setMapStatus(selectSquare.GetComponent<MapStatus>());
+                    FindObjectOfType<MapUI>().SetMapStatus(selectSquare.GetComponent<MapStatus>());
                 }
+                FindObjectOfType<StatusUI>().EnabledStatusUI();
                 if (move_player != null) move_player.GetComponent<Move_System>().LineRend(selectSquare);
             }
             //エネミ-
