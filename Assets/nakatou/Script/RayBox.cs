@@ -105,13 +105,9 @@ public class RayBox : MonoBehaviour
             {
                 selectSquare = hit.transform.gameObject;
                 var cost = hit.transform.GetComponent<Square_Info>().GetCost();
-                if (cost >= 999)
+                if (selectSquare.GetComponent<MapStatus>())
                 {
-                    FindObjectOfType<StatusUI>().setMapStatus("移動不可マップ");
-                }
-                else
-                {
-                    FindObjectOfType<StatusUI>().setMapStatus("移動可能マップ");
+                    FindObjectOfType<StatusUI>().setMapStatus(selectSquare.GetComponent<MapStatus>());
                 }
                 if (move_player != null) move_player.GetComponent<Move_System>().LineRend(selectSquare);
             }

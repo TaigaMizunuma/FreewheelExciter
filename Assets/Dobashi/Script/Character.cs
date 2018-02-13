@@ -265,7 +265,6 @@ public class Character : MonoBehaviour {
         //    _itemprefablist.GetComponent<ItemPrefabList>().LoadItem(_name);
         //    _itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
         //}
-
         //if (transform.tag != "Enemy")
         //{
         //    if (_statussave.LoadStatus())

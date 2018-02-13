@@ -102,7 +102,7 @@ public class WeaponRepository : MonoBehaviour {
         SaveData.SetList<WeaponData>("WeaponRepositoryList", _weaponrepository);
     }
     /// <summary>
-    /// 武器倉庫のリストをセーブ
+    /// 武器倉庫のリストをロード
     /// </summary>
     public void Load()
     {

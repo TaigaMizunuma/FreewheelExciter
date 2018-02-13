@@ -25,11 +25,11 @@ public class TargetLock : MonoBehaviour
                 var cost = hit.transform.GetComponent<Square_Info>().GetCost();
                 if(cost >= 999)
                 {
-                    FindObjectOfType<StatusUI>().setMapStatus("移動不可マップ");
+                    //FindObjectOfType<StatusUI>().setMapStatus("移動不可マップ");
                 }
                 else
                 {
-                    FindObjectOfType<StatusUI>().setMapStatus("移動可能マップ");
+                    //FindObjectOfType<StatusUI>().setMapStatus("移動可能マップ");
                 }
             }
             //エネミ-

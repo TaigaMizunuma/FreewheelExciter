@@ -120,9 +120,9 @@ public class StatusUI : MonoBehaviour
     /// 床の効果とか表示
     /// </summary>
     /// <param name="mapname">現在は名前のみ</param>
-    public void setMapStatus(string mapname)
+    public void setMapStatus(MapStatus mapstatus)
     {
-        unitName.text = mapname;
+        unitName.text = mapstatus.GetMapName();
         hpGage.transform.gameObject.SetActive(false);
         HP.enabled = false;
         HP_2.enabled = false;
