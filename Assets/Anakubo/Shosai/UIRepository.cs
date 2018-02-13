@@ -11,6 +11,7 @@ public class UIRepository : MonoBehaviour {
     private WeaponRepository w_repository_;
     public GameObject i_parent;
     public GameObject w_parent;
+    public GameObject repository_name;
 
     // Use this for initialization
     void Start () {
@@ -43,11 +44,13 @@ public class UIRepository : MonoBehaviour {
         {
             i_parent.SetActive(false);
             w_parent.SetActive(true);
+            repository_name.GetComponent<Text>().text = "武器倉庫";
         }
         else
         {
             i_parent.SetActive(true);
             w_parent.SetActive(false);
+            repository_name.GetComponent<Text>().text = "アイテム倉庫";
         }
     }
 
