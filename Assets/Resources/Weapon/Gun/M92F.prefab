@@ -59,7 +59,7 @@ MonoBehaviour:
   _atk: 3
   _weight: 2
   _hit: 100
-  _critical: 10
+  _critical: 0
   _attackcount: 1
   _min: 1
   _max: 2

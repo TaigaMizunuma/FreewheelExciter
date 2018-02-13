@@ -222,8 +222,8 @@ MonoBehaviour:
     move_max: 15
   - id: 9
     name: Mercenary
-    hp: 24
-    str: 8
+    hp: 20
+    str: 6
     skl: 3
     spd: 4
     luk: 0

@@ -56,7 +56,7 @@ MonoBehaviour:
   _message: "\u6295\u64F2\u7528\u306E\u69CD"
   _stock: 20
   _maxstock: 20
-  _atk: 5
+  _atk: 3
   _weight: 20
   _hit: 65
   _critical: 0

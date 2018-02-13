@@ -56,10 +56,10 @@ MonoBehaviour:
   _message: "\u92FC\u3067\u3067\u304D\u305F\u65A7"
   _stock: 30
   _maxstock: 30
-  _atk: 10
-  _weight: 15
+  _atk: 8
+  _weight: 12
   _hit: 60
-  _critical: 20
+  _critical: 0
   _attackcount: 1
   _min: 1
   _max: 1
