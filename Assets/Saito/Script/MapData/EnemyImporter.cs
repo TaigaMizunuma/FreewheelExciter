@@ -84,7 +84,6 @@ public class EnemyImporter : MonoBehaviour
                     //ガンナー
                     case "1":
                         var charaInstance = (GameObject)Instantiate(enemyObj[0], new Vector3(e_initPosX, AdjustmentPosY, e_initPosZ), new Quaternion(0, AdjustmentRotY, 0, 0));
-                        charaInstance.name = "Enemy" + eneCount;
                         charaInstance.GetComponent<EnemyPersonalCSV>().e_number = eneCount;
                         eneCount++;
                         break;

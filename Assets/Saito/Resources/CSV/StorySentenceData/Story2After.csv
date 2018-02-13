@@ -1,9 +1,9 @@
-﻿StoryNumber,ID,Name ,Story ,  LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation
-3,0,アイン,ヒュー！パーシングのヤツら、結構物持ちいいぞ！,0,0,0,1,OFF,OFF,OFF,ON,0,Story3Before,0,30,0,嵐の出撃,SaveData,Story,2,1
-3,1,サイモン,もともとひったくり集団みたいなもんだ。もらっときな,0,0,7,1,OFF,OFF,ON,SHADE,0,,,,,嵐の出撃,,,,
-3,2,ヒュー,…戦いに勝つと戦力と道具が手に入る、か,0,0,7,1,ON,OFF,OFF,OF,0,,,,,嵐の出撃,,,,
-3,3,ヒュー,便利なシステムだ,0,0,7,1,ON,OFF,OFF,SHADE,0,,,,,嵐の出撃,,,,
-3,4,アイン,んで、どうも南にこいつらの敵がいるらしい,0,0,7,1,SHADE,OFF,OFF,ON,0,,,,,嵐の出撃,,,,
-3,5,アイン,ファイアフライだってさ,0,0,7,1,SHADE,OFF,OFF,ON,0,,,,,嵐の出撃,,,,
-3,6,ジェーコブ,ファイアフライ…？あー、ヘリコプター集団だっけ…,0,6,7,0,SHADE,ON,OFF,ON,0,,,,,嵐の出撃,,,,
-3,7,ヒュー,よし、次はそいつらだな！行くぞ！,0,6,7,0,ON,SHADE,OFF,SHADE,1,,,,,嵐の出撃,,,,
+﻿StoryNumber,ID,Name ,Story ,  LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation,NalOnOff
+3,0,アイン,ヒュー！パーシングのヤツら、結構物持ちいいぞ！,0,0,0,1,OFF,OFF,OFF,ON,0,Story3Before,0,30,0,嵐の出撃,SaveData,Story,2,1,0
+3,1,サイモン,もともとひったくり集団みたいなもんだ。もらっときな,0,0,7,1,OFF,OFF,ON,SHADE,0,,,,,嵐の出撃,,,,,
+3,2,ヒュー,…戦いに勝つと戦力と道具が手に入る、か,0,0,7,1,ON,OFF,OFF,OF,0,,,,,嵐の出撃,,,,,
+3,3,ヒュー,便利なシステムだ,0,0,7,1,ON,OFF,OFF,SHADE,0,,,,,嵐の出撃,,,,,
+3,4,アイン,んで、どうも南にこいつらの敵がいるらしい,0,0,7,1,SHADE,OFF,OFF,ON,0,,,,,嵐の出撃,,,,,
+3,5,アイン,ファイアフライだってさ,0,0,7,1,SHADE,OFF,OFF,ON,0,,,,,嵐の出撃,,,,,
+3,6,ジェーコブ,ファイアフライ…？あー、ヘリコプター集団だっけ…,0,6,7,0,SHADE,ON,OFF,ON,0,,,,,嵐の出撃,,,,,
+3,7,ヒュー,よし、次はそいつらだな！行くぞ！,0,6,7,0,ON,SHADE,OFF,SHADE,1,,,,,嵐の出撃,,,,,

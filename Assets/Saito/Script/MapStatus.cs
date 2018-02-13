@@ -25,6 +25,7 @@ public class MapStatus : MonoBehaviour
     [SerializeField]
     float mapHeight;
 
+    //スタート位置
     public bool startPosition;
 
     //キャラクターのオブジェクト
@@ -34,10 +35,6 @@ public class MapStatus : MonoBehaviour
     Character s_character;
 
     BlockMasterScript blcMaster;
-
-    int b_i;
-    int b_j;
-
 
     void Start()
     {
@@ -85,7 +82,7 @@ public class MapStatus : MonoBehaviour
     /// <summary>
     /// マップ内の効果
     /// </summary>
-    public void MapStatusBuff()
+    void MapStatusBuff()
     {
         //    if (blcMaster.masterMapStatus == true && s_character != null)
         //    {

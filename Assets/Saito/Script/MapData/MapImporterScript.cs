@@ -9,7 +9,11 @@ public class MapImporterScript : MonoBehaviour
     //ブロックのプレハブをここに
     public GameObject[] blocks;
 
+    //スタート地点のブロック
     public GameObject[] start_Blocks;
+
+    //背景用のブロック
+    public GameObject[] dummy_Blocks;
 
     [Space(10)]
 
@@ -162,9 +166,60 @@ public class MapImporterScript : MonoBehaviour
                     //マンホール
                     case "S8":
                         mapBlockCount++;
-                        mapInstance = (GameObject)Instantiate(start_Blocks[13], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance = (GameObject)Instantiate(start_Blocks[7], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
                         mapInstance.name = "block" + mapBlockCount;
                         break;
+
+                    //土
+                    case "D1":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(dummy_Blocks[0], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //草
+                    case "D2":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(dummy_Blocks[1], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //水
+                    case "D3":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(dummy_Blocks[2], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //瓦礫
+                    case "D4":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(dummy_Blocks[3], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //瓦礫山
+                    case "D5":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(dummy_Blocks[4], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //土嚢
+                    case "D6":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(dummy_Blocks[5], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //森
+                    case "D7":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(dummy_Blocks[6], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+                    //マンホール
+                    case "D8":
+                        mapBlockCount++;
+                        mapInstance = (GameObject)Instantiate(dummy_Blocks[7], new Vector3(mapPosX, 0, mapPosZ), Quaternion.identity);
+                        mapInstance.name = "block" + mapBlockCount;
+                        break;
+
+
                 }
             }
         }

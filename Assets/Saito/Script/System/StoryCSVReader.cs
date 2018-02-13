@@ -21,11 +21,12 @@ public class StoryCSVReader : MonoBehaviour
     static int storyNumber;
 
     //バトル中かストーリー画面かの判定(バトル中に他シーンに飛ばないようにするため)
+    [SerializeField]
     int sceneMode;
 
     //次の始点と終点(勝手に入ります)
-    static int nextreadStartNumber;
-    static int nextreadEndNumber;
+    int nextreadStartNumber;
+    int nextreadEndNumber;
 
     //次にロードするシーンの名前
     [SerializeField]
@@ -42,6 +43,9 @@ public class StoryCSVReader : MonoBehaviour
     int LTwoCharacterImageNum;
     int ROneCharacterImageNum;
     int RTwoCharacterImageNum;
+
+    //背景グラフィックの番号
+    int backGroundImageNum;
 
     //キャラクターのグラの表示設定
     //ON...表示 OFF...非表示 SHADE...うす暗く
@@ -89,6 +93,10 @@ public class StoryCSVReader : MonoBehaviour
     [SerializeField]
     Image RTwoCharacterWindowImage;
 
+    //背景グラフィック
+    [SerializeField]
+    Image backGroundImage;
+
     //名前の表示枠
     [SerializeField]
     GameObject nameImage;
@@ -99,12 +107,13 @@ public class StoryCSVReader : MonoBehaviour
     [SerializeField]
     Vector2 RNameDisplayVector;
 
+    int nameImageLR;
+
     //CSVファイル(勝手に入ります)
     TextAsset storyCSVFile;
 
     //CSVデータ(勝手に入ります)
     List<string[]> storyCSVDatas = new List<string[]>();
-
     int storyCSVHeight = 0;
 
     int column;//縦
@@ -123,16 +132,30 @@ public class StoryCSVReader : MonoBehaviour
     float red, green, blue, alfa;
 
     //シーンごとの処理分けステート
+    [SerializeField]
     ScenePattern scenePattern;
 
-    public bool battleScenarioSwitch;
+    //ナレーションとストーリー部分の切り替え
+    NalationOrStory n_sState;
 
+    //メッセージウィンドウ
     [SerializeField]
     GameObject messageWindow;
 
+    //ナレーション番号
+    int st_nalationNum;
+
+    //ナレーションの有無
+    int st_nalOnOff;
+
+    //再開時ストーリーのどこからロードされるか
     int s_loadNumber;
 
     static bool loadGameFlag;
+
+    //デバッグ用スイッチ
+    public bool battleScenarioSwitch;
+
 
     enum ScenePattern
     {
@@ -176,9 +199,25 @@ public class StoryCSVReader : MonoBehaviour
         {
             for (row = 0; row < storyCSVDatas[column].Length; row++)
             {
+
                 storyNumber = int.Parse(storyCSVDatas[1][0]);
+                sceneMode = int.Parse(storyCSVDatas[1][16]);
+
+                if (sceneMode == 0)
+                {
+                    scenePattern = ScenePattern.Message;
+                }
+                else
+                {
+                    scenePattern = ScenePattern.Battle;
+                }
+                st_nalOnOff = int.Parse(storyCSVDatas[1][22]);
                 s_title = storyCSVDatas[storyID + 1][17];
                 storyID = readStartNumber;
+                if(st_nalOnOff != 0)
+                {
+                    st_nalationNum = int.Parse(storyCSVDatas[1][21]);
+                }
                 clearCondition = storyCSVDatas[storyID + 1][19];
                 storyCharacterName = storyCSVDatas[storyID + 1][2];
                 storySheetText = storyCSVDatas[storyID + 1][3];
@@ -191,6 +230,20 @@ public class StoryCSVReader : MonoBehaviour
                     nameImage.SetActive(false);
                     nameText.text = "";
                 }
+
+                if(backGroundImage != null)
+                {
+                    backGroundImageNum = int.Parse(storyCSVDatas[1][20]);
+                    if (backGroundImageNum == 7)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        backGroundImage.sprite = c_ImgManager.backGround[backGroundImageNum];
+                    }
+                }
+
                 LOneCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][4]);
                 LTwoCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][5]);
                 ROneCharacterImageNum = int.Parse(storyCSVDatas[storyID + 1][6]);
@@ -207,20 +260,6 @@ public class StoryCSVReader : MonoBehaviour
                 RTwoBlackOut = storyCSVDatas[storyID + 1][11];
 
                 endFlag = int.Parse(storyCSVDatas[storyID + 1][12]);
-                nextreadStartNumber = int.Parse(storyCSVDatas[storyID + 1][14]);
-                nextreadEndNumber = int.Parse(storyCSVDatas[storyID + 1][15]);
-                sceneMode = int.Parse(storyCSVDatas[storyID + 1][16]);
-
-                if (sceneMode == 0)
-                {
-                    scenePattern = ScenePattern.Message;
-                }
-                else
-                {
-                    scenePattern = ScenePattern.Battle;
-                }
-                readStartNumber = 0;
-                readEndNumber = int.Parse(storyCSVDatas[storyID + 1][15]);
 
                 FindObjectOfType<Fade>().SetScene(storyCSVDatas[storyID + 1][18]);
             }
@@ -244,70 +283,83 @@ public class StoryCSVReader : MonoBehaviour
     /// </summary>
     void TextDisplay()
     {
+
         if (fade.isFadeIn == false)
         {
-            if(scenePattern == ScenePattern.Message)
-            {
-                MessageStory();
-            }
-            if(scenePattern == ScenePattern.Battle)
-            {
-                BattleStory();
-            }
+                if (scenePattern == ScenePattern.Message)
+                {
+                    MessageStory();
+                }
+                if (scenePattern == ScenePattern.Battle)
+                {
+                    BattleStory();
+                }
         }
     }
 
     void MessageStory()
     {
-        if (endFlag == 0)
-        {
-            if (Input.GetKeyDown(KeyCode.U))
-            {
-                storyID += 1;
-                endFlag = int.Parse(storyCSVDatas[storyID + 1][12]);
-                storyCharacterName = storyCSVDatas[storyID + 1][2];
-                storySheetText = storyCSVDatas[storyID + 1][3];
-                storyText.text = storySheetText;
-                if (storyCharacterName != "")
-                {
-                    nameText.text = storyCharacterName;
-                    nameImage.SetActive(true);
-                }
-                else {
-                    nameText.text = "";
-                    nameImage.SetActive(false);
-                }
-                CharacterImageDisplay();
-            }
+        bool n_eFlag = FindObjectOfType<NalationScript>().GetNalationEndFlag();
 
-            if (Input.GetKeyDown(KeyCode.O))
+        if (n_eFlag == true)
+        {
+            n_sState = NalationOrStory.Story;
+        }
+        else
+        {
+            n_sState = NalationOrStory.Nalation;
+        }
+
+        if (n_sState == NalationOrStory.Story)
+        {
+            if (endFlag == 0)
             {
-                if (scenePattern == ScenePattern.Message)
+                if (Input.GetKeyDown(KeyCode.U))
                 {
-                    nextStory = storyCSVDatas[1][13];
-                    
-                    dataLoadName = nextStory;
-                    readStartNumber = nextreadStartNumber;
-                    readEndNumber = nextreadEndNumber;
-                    nextLoadScene = FindObjectOfType<Fade>().GetScene();
-                    FindObjectOfType<Fade>().SetOutFade(true);
-                    FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+                    storyID += 1;
+                    endFlag = int.Parse(storyCSVDatas[storyID + 1][12]);
+                    storyCharacterName = storyCSVDatas[storyID + 1][2];
+                    storySheetText = storyCSVDatas[storyID + 1][3];
+                    storyText.text = storySheetText;
+                    if (storyCharacterName != "")
+                    {
+                        nameText.text = storyCharacterName;
+                        nameImage.SetActive(true);
+                    }
+                    else {
+                        nameText.text = "";
+                        nameImage.SetActive(false);
+                    }
+                    CharacterImageDisplay();
+                }
+
+                if (Input.GetKeyDown(KeyCode.O))
+                {
+                    if (scenePattern == ScenePattern.Message)
+                    {
+                        nextStory = storyCSVDatas[1][13];
+
+                        dataLoadName = nextStory;
+                        nextLoadScene = FindObjectOfType<Fade>().GetScene();
+                        FindObjectOfType<Fade>().SetOutFade(true);
+                        FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+                    }
                 }
             }
-        }
-        if (endFlag == 1)
-        {
-            if (Input.GetKeyDown(KeyCode.U))
+            if (endFlag == 1)
             {
-                if (scenePattern == ScenePattern.Message)
+                if (Input.GetKeyDown(KeyCode.U))
                 {
-                    nextStory = storyCSVDatas[1][13];
-                    dataLoadName = nextStory;
-                    readStartNumber = nextreadStartNumber;
-                    readEndNumber = nextreadEndNumber;
-                    nextLoadScene = FindObjectOfType<Fade>().GetScene();
-                    FindObjectOfType<Fade>().SetOutFade(true);
-                    FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+                    if (scenePattern == ScenePattern.Message)
+                    {
+                        nextStory = storyCSVDatas[1][13];
+                        dataLoadName = nextStory;
+                        readStartNumber = 0;
+                        readEndNumber = 0;
+                        nextLoadScene = FindObjectOfType<Fade>().GetScene();
+                        FindObjectOfType<Fade>().SetOutFade(true);
+                        FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+                    }
                 }
             }
         }
@@ -324,8 +376,6 @@ public class StoryCSVReader : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.U))
                 {
-                    if (endFlag == 0)
-                    {
                         storyID += 1;
                         storyCharacterName = storyCSVDatas[storyID + 1][2];
                         storySheetText = storyCSVDatas[storyID + 1][3];
@@ -340,14 +390,11 @@ public class StoryCSVReader : MonoBehaviour
                             nameImage.SetActive(false);
                         }
                         CharacterImageDisplay();
-                        endFlag = int.Parse(storyCSVDatas[storyID + 1][12]);
-                    }
+
                     if (storyID + 1 > readEndNumber)
                     {
                         if (Input.GetKeyDown(KeyCode.U))
                         {
-                            nextreadStartNumber = int.Parse(storyCSVDatas[storyID + 1][14]);
-                            nextreadEndNumber = int.Parse(storyCSVDatas[storyID + 1][15]);
                             readStartNumber = nextreadStartNumber;
                             readEndNumber = nextreadEndNumber;
                             messageWindow.SetActive(false);
@@ -371,10 +418,10 @@ public class StoryCSVReader : MonoBehaviour
         }
         else if (!GameObject.FindGameObjectWithTag("Player"))
         {
-            nextStory = storyCSVDatas[2][13];
-            dataLoadName = nextStory;
-            readStartNumber = 0;
-            readEndNumber = 0;
+            nextStory = "Story1Before";
+            dataLoadName = "Story1Before";
+            readStartNumber = nextreadStartNumber;
+            readEndNumber = nextreadEndNumber;
         }
     }
 
@@ -406,6 +453,16 @@ public class StoryCSVReader : MonoBehaviour
     /// </summary>
     void BlackOut()
     {
+        if(nameImageLR == 0)
+        {
+            nameImage.transform.position = LNameDisplayVector;
+        }
+        else if (nameImageLR == 1)
+        {
+            nameImage.transform.position = RNameDisplayVector;
+        }
+        else { return; }
+
         switch (LOneBlackOut)
         {
             case "ON":
@@ -483,6 +540,11 @@ public class StoryCSVReader : MonoBehaviour
         return s_title;
     }
 
+    public int GetNalationNum()
+    {
+        return st_nalationNum;
+    }
+
     /// <summary>
     /// クリア条件
     /// </summary>
@@ -492,6 +554,11 @@ public class StoryCSVReader : MonoBehaviour
         return clearCondition;
     }
 
+    public int GetNalOnOFF()
+    {
+        return st_nalOnOff;
+    }
+
     /// <summary>
     /// この数値を参照してどのストーリーを呼ぶか決める
     /// </summary>
@@ -499,6 +566,16 @@ public class StoryCSVReader : MonoBehaviour
     public void SetLoadStoryNumber(int loadNum)
     {
         s_loadNumber = loadNum;
+    }
+
+    public void SetReadStartNum(int startNum)
+    {
+        nextreadStartNumber = startNum;
+    }
+
+    public void SetReadEndNum(int endNum)
+    {
+        nextreadEndNumber = endNum;
     }
 
     void LoadNumber()

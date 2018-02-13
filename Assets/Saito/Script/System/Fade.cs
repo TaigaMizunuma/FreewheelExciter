@@ -37,6 +37,7 @@ public class Fade : MonoBehaviour {
 
     void Start ()
     {
+
         isFadeIn = true;
         isFadeOut = false;
 

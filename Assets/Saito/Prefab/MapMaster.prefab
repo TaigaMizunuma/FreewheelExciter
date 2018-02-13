@@ -71,6 +71,15 @@ MonoBehaviour:
   - {fileID: 1025188022752370, guid: 93b37270281fde747b0b8fd278ebb379, type: 2}
   - {fileID: 1025188022752370, guid: 9c424b4ef33247048af8e6d64de452e8, type: 2}
   - {fileID: 1159494132121844, guid: 44901a04fbd522c4aab2ddeb602df147, type: 2}
+  dummy_Blocks:
+  - {fileID: 1447706069781276, guid: c30ba2c346e42e845821ad933185d69c, type: 2}
+  - {fileID: 1055318656718074, guid: de98fc5b60b7af64dba04c97b2bd71e6, type: 2}
+  - {fileID: 1265769600551596, guid: fc1d6718b5ec55d4e8348fd766ec9d44, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   MapCSV: Stage1_Map
   AdjustmentPosX: -8
   AdjustmentPosY: 0

@@ -1,2 +1,2 @@
-﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation
-5,0,ヒュー,倒した…あそこが出口か！？,0,0,0,0,ON,OFF,OFF,OFF,1,Ending,0,9,0,異端からの反撃,Story,Boss,5,4
+﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation,NalOnOff
+5,0,ヒュー,倒した…あそこが出口か！？,0,0,0,0,ON,OFF,OFF,OFF,1,Ending,0,9,0,異端からの反撃,Story,Boss,5,4,0

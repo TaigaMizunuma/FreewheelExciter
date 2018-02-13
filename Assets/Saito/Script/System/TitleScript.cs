@@ -92,6 +92,7 @@ public class TitleScript : MonoBehaviour {
             FindObjectOfType<Fade>().SetScene("SaveData");
             FindObjectOfType<Fade>().SetOutFade(true);
             FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+            buttonPressed = true;
         }
     }
 
