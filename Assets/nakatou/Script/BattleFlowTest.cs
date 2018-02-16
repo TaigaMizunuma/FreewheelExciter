@@ -798,7 +798,7 @@ public class BattleFlowTest : MonoBehaviour
             pos.y = rayBox.transform.position.y;
             rayBox.transform.position = pos;
 
-            _nowChooseChar.GetComponent<PlayerBattleStoryFlag>().SetEnemyName(range_enemy[count].GetComponent<Character>()._name);
+            _nowChooseChar.GetComponent<PlayerBattleStoryFlag>().SetEnemyName(range_enemy[count]);
 
             //キャンセル
             if (Input.GetKeyDown(KeyCode.X))
