@@ -799,8 +799,6 @@ public class BattleFlowTest : MonoBehaviour
             pos.y = rayBox.transform.position.y;
             rayBox.transform.position = pos;
 
-            _NowChooseChar.GetComponent<PlayerBattleStoryFlag>().SetEnemyName(range_enemy[count]);
-
             //キャンセル
             if (Input.GetKeyDown(KeyCode.X))
             {
@@ -832,16 +830,14 @@ public class BattleFlowTest : MonoBehaviour
                 //カーソルがエネミーをさしていたら
                 if (hit.transform.tag == "Enemy")
                 {
-                    if(s_flag == true)
+                    _NowChooseChar.GetComponent<PlayerBattleStoryFlag>().SetEnemyName(hit.transform.gameObject);
+
+                    if (FindObjectOfType<StoryCSVReader>().battleScenarioSwitch == true)
                     {
                         //攻撃されたキャラを一時的に保存
                         _NowCounterChara = hit.transform.gameObject;
                         attacking = true;
                         count = 0;
-                        StartCoroutine(DelayMethod.DelayMethodCall(5.0f, () =>
-                        {
-                            PlayerAttack(_NowCounterChara);
-                        }));
 
                         state_ = State_.stay_mode;
                         return;

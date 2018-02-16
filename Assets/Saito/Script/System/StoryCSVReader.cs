@@ -194,6 +194,24 @@ public class StoryCSVReader : MonoBehaviour
         while (reader.Peek() > -1)
         {
             string line = reader.ReadLine();
+
+            ///////////////////////////////////////////////////////////////////////////
+            Debug.Log(line);
+            var line2 = line.Split(',');
+            Debug.Log(line2[20]);
+
+            if(line2[24].ToString() != "")
+            {
+                foreach(var player in GameObject.FindGameObjectsWithTag("Player"))
+                {
+                    if(player.GetComponent<Character>()._name == line2[2].ToString())
+                    {
+                        FindObjectOfType<StoryFlag>().scnarioStartNum = int.Parse(line2[24]);
+                    }
+                }
+            }
+            ////////////////////////////////////////////////////////////////////////////////////
+
             storyCSVDatas.Add(line.Split(','));
             storyCSVHeight++;
         }
