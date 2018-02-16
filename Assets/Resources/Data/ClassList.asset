@@ -107,7 +107,7 @@ MonoBehaviour:
     luk: 0
     def: 2
     cur: 0
-    move: 1
+    move: 2
     gun: 0
     rifle: 0
     knife: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
     luk: 0
     def: 4
     cur: 2
-    move: 1
+    move: 0
     gun: 0
     rifle: 0
     knife: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
     luk: 0
     def: 0
     cur: 0
-    move: 0
+    move: 2
     gun: 0
     rifle: 0
     knife: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
     luk: 0
     def: 3
     cur: 0
-    move: 1
+    move: 3
     gun: 0
     rifle: 0
     knife: 0
@@ -226,7 +226,7 @@ MonoBehaviour:
     luk: 0
     def: 0
     cur: 0
-    move: 0
+    move: 2
     gun: 1
     rifle: 0
     knife: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
     luk: 0
     def: 0
     cur: 0
-    move: 0
+    move: 3
     gun: 1
     rifle: 0
     knife: 0
