@@ -13,16 +13,25 @@ public class StoryFlag : MonoBehaviour {
     bool clear;
 
     //開始場所
+    [SerializeField]
     int[] scnarioStartNum;
 
     //終了場所
+    [SerializeField]
     int[] scnarioEndNum;
     //ターンのカウント
     int s_turnCount;
 
+    public string[] bossNameList;
+    public string[] playerNameList;
+
+    [Space(10)]
+
     //バトル中に会話を始めるキャラの名前
-    //近接時に会話をするキャラの名前を入れる
+    //会話をするキャラの名前を入れる
+    [SerializeField]
     string s_bossName;
+    [SerializeField]
     string s_playerName;
 
     //ストーリーのCSVリーダー
@@ -35,8 +44,7 @@ public class StoryFlag : MonoBehaviour {
 	
 	void Update ()
     {
-        StoryNumCheck();
-        StoryTurn();
+        StoryCharacterCheck();
     }
 
     /// <summary>
@@ -53,7 +61,15 @@ public class StoryFlag : MonoBehaviour {
     /// </summary>
     void StoryCharacterCheck()
     {
-
+        //if (s_bossName == bossNameList[0] && s_playerName == playerNameList[0])
+        //{
+        //    s_reader.battleScenarioSwitch = true;
+        //    StoryNumCheck();
+        //}
+        //else if (s_bossName == null)
+        //{
+        //    return;
+        //}
     }
 
     void StoryTurn()

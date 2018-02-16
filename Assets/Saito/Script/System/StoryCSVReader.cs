@@ -151,9 +151,12 @@ public class StoryCSVReader : MonoBehaviour
     //再開時ストーリーのどこからロードされるか
     int s_loadNumber;
 
+    //戦闘中の会話フラグ(時止め用)
+    bool battleStoryFlag;
+
     static bool loadGameFlag;
 
-    //デバッグ用スイッチ
+    //会話用スイッチ
     public bool battleScenarioSwitch;
 
 
@@ -391,7 +394,7 @@ public class StoryCSVReader : MonoBehaviour
                         }
                         CharacterImageDisplay();
 
-                    if (storyID + 1 > readEndNumber)
+                    if (storyID > readEndNumber)
                     {
                         if (Input.GetKeyDown(KeyCode.U))
                         {
@@ -399,6 +402,7 @@ public class StoryCSVReader : MonoBehaviour
                             readEndNumber = nextreadEndNumber;
                             messageWindow.SetActive(false);
                             battleScenarioSwitch = false;
+                            FindObjectOfType<StoryFlag>().scenarioNum += 1; 
                         }
                     }
                 }

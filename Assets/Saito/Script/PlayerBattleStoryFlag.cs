@@ -13,42 +13,53 @@ public class PlayerBattleStoryFlag : MonoBehaviour {
     //自分(敵キャラ)の名前
     string playerName;
 
-    //接敵した敵の名前
+    //接敵した敵
     [SerializeField]
-    GameObject enemyName;
+    GameObject enemyObject;
+
+    //接敵した敵の名前
+    string enemyName;
+
+    bool eneFlag;
+
+    StoryFlag s_flag;
 
     void Start()
     {
-        playerName = this.gameObject.transform.name;
+        s_flag = FindObjectOfType<StoryFlag>();
+        playerName = this.gameObject.GetComponent<Character>()._name;
     }
 
     void Update()
     {
-
+        if(enemyObject != null)
+        {
+            EnemyCheck();
+        }
     }
 
     /// <summary>
     /// 接敵時バトル中の会話フラグ管理クラスに情報を送る
     /// </summary>
-    void SendStoryFlag()
+    void EnemyCheck()
     {
-        if (storyEnemy == true && nearEnemy == true)
+        if (enemyObject != null)
         {
-            FindObjectOfType<StoryFlag>().SetCharacterName(playerName, playerName);
+            eneFlag = enemyObject.GetComponent<EnemyPersonalCSV>().GetStoryFlag();
+
+            if (eneFlag == true)
+            {
+                enemyName = enemyObject.GetComponent<Character>()._name;
+                s_flag.SetCharacterName(enemyName, playerName);
+            }
         }
     }
-
-    void PlayerStoryPlay()
-    {
-
-    }
-
     /// <summary>
     /// ボスの名前を入れる
     /// </summary>
     /// <param name="enemy"></param>
     public void SetEnemyName(GameObject eneObj)
     {
-        enemyName = eneObj;
+        enemyObject = eneObj;
     }
 }

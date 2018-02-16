@@ -1,5 +1,5 @@
-﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation,NalOnOff
-2,0,ヒュー,北のバイク集団か,0,0,0,0,ON,OFF,OFF,OFF,0,Battle2,0,17,0,殺人機械,Stage2,Boss,2,1,1
-2,1,ジェーコブ,私は噂で聞いただけだが。北方で暴れまわる組織があると,0,0,0,5,SHADE,OFF,OFF,ON,0,,0,17,,殺人機械,,,,,
-2,2,ジェーコブ,ヤツらを倒せれば目的に近づけるのではないか？,0,0,0,5,SHADE,OFF,OFF,ON,0,,0,17,,殺人機械,,,,,
-2,3,ヒュー,…違いない,0,0,0,5,ON,OFF,OFF,SHADE,1,,0,17,,殺人機械,,,,,
+﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation,NalOnOff,NameLR
+2,0,ヒュー,北のバイク集団か,0,0,0,0,ON,OFF,OFF,OFF,0,Battle2,0,17,0,殺人機械,Stage2,Boss,2,1,1,0
+2,1,ジェーコブ,私は噂で聞いただけだが。北方で暴れまわる組織があると,0,0,0,5,SHADE,OFF,OFF,ON,0,,0,17,,殺人機械,,,,,,1
+2,2,ジェーコブ,ヤツらを倒せれば目的に近づけるのではないか？,0,0,0,5,SHADE,OFF,OFF,ON,0,,0,17,,殺人機械,,,,,,1
+2,3,ヒュー,…違いない,0,0,0,5,ON,OFF,OFF,SHADE,1,,0,17,,殺人機械,,,,,,0

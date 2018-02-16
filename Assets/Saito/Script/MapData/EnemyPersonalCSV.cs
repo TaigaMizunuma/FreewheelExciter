@@ -32,7 +32,6 @@ public class EnemyPersonalCSV : MonoBehaviour
     int e_drop;
     //ストーリーに関わる敵の判定
     int storyCount;
-
     //アイテムリスト、自分のものが入る
     [SerializeField]
     GameObject itemList;
@@ -103,6 +102,15 @@ public class EnemyPersonalCSV : MonoBehaviour
         }
 
         storyCount = int.Parse(c_enemyPerDatas[e_number + 1][8]);
+
+        if(storyCount == 0)
+        {
+            e_storyFlag = false;
+        }
+        else
+        {
+            e_storyFlag = true;
+        }
             
         s_character.Enemy_Init();
         
