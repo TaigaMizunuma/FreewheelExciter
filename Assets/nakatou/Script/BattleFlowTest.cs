@@ -37,7 +37,7 @@ public class BattleFlowTest : MonoBehaviour
     GameObject rayBox;
 
     //現在のカーソルの下にいるキャラ
-    public GameObject _nowChooseChar;
+    public GameObject _NowChooseChar;
 
     // どちらの陣営のターンか表示
     public Text _TurnText;
@@ -54,10 +54,9 @@ public class BattleFlowTest : MonoBehaviour
     //攻撃中か？
     bool attacking = false;
 
-    //攻撃中キャラ
-    GameObject _nowAttackChara;
-    //反撃するキャラ
-    GameObject _nowCounterChara;
+
+    //攻撃された敵キャラ一時保存
+    GameObject _NowCounterChara;
 
     //ダメージ表示用の変数
     int e_dm;
@@ -93,6 +92,8 @@ public class BattleFlowTest : MonoBehaviour
     public bool c_moving = false;
 
     GameObject Hero;
+
+    public bool s_flag = false; //仮ストーリーフラグ
 
     void Awake()
     {
@@ -320,14 +321,14 @@ public class BattleFlowTest : MonoBehaviour
                 {
                     //カーソル固定
                     FindObjectOfType<RayBox>().move_ = false;
-                    _nowChooseChar = hit.transform.gameObject;
-                    MoveStartPos = _nowChooseChar.transform.position;
+                    _NowChooseChar = hit.transform.gameObject;
+                    MoveStartPos = _NowChooseChar.transform.position;
 
                     //プログラム上の問題で遅延
                     StartCoroutine(DelayMethod.DelayMethodCall(0.1f, () =>
                     {                     
-                        _nowChooseChar.GetComponent<Move_System>().Retrieval();
-                        _nowChooseChar.GetComponent<Animator>().CrossFade("Run", 0.0f);
+                        _NowChooseChar.GetComponent<Move_System>().Retrieval();
+                        _NowChooseChar.GetComponent<Animator>().CrossFade("Run", 0.0f);
                         state_ = State_.move_mode;
                     }));
                 }
@@ -373,7 +374,7 @@ public class BattleFlowTest : MonoBehaviour
                 g.GetComponent<Square_Info>().DecisionEnd();
             }
             c_moving = false;
-            _nowChooseChar.GetComponent<Animator>().CrossFade("NoneDamy", 0.0f);
+            _NowChooseChar.GetComponent<Animator>().CrossFade("NoneDamy", 0.0f);
             FindObjectOfType<RayBox>().SetMovePlayer(null);
             state_ = State_.simulation_mode;
         }
@@ -387,18 +388,18 @@ public class BattleFlowTest : MonoBehaviour
         //キャンセル
         if (Input.GetKeyDown(KeyCode.X) && state_ == State_.action_mode)
         {
-            _nowChooseChar.GetComponent<Move_System>().GetNowPos().GetComponent<Square_Info>().ResetChara();
-            _nowChooseChar.transform.position = MoveStartPos;
-            _nowChooseChar.GetComponent<Move_System>().SetNowPos();
+            _NowChooseChar.GetComponent<Move_System>().GetNowPos().GetComponent<Square_Info>().ResetChara();
+            _NowChooseChar.transform.position = MoveStartPos;
+            _NowChooseChar.GetComponent<Move_System>().SetNowPos();
 
             FindObjectOfType<RayBox>().SetMovePlayer(null);
 
-            FindObjectOfType<RayBox>().SetCameraPosition(_nowChooseChar);
+            FindObjectOfType<RayBox>().SetCameraPosition(_NowChooseChar);
 
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();
             FindObjectOfType<MenuManager>().SetEventSystem(false);
 
-            _nowChooseChar = null;
+            _NowChooseChar = null;
             state_ = State_.simulation_mode;
         }
     }
@@ -414,7 +415,7 @@ public class BattleFlowTest : MonoBehaviour
             SetumeiWindow = Instantiate(Resources.Load("Waku"),
                         GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
             //アイテム所持情報取得
-            var items = _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist;
+            var items = _NowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist;
             count = 0;
             //なんもないとき
             if (items == null)
@@ -427,7 +428,7 @@ public class BattleFlowTest : MonoBehaviour
             {
                 if (obj.GetComponent<Weapon>())
                 {
-                    if (_nowChooseChar.GetComponent<Character>().Check_Equipment(obj))
+                    if (_NowChooseChar.GetComponent<Character>().Check_Equipment(obj))
                     {
                         GameObject ui = Instantiate(
                             Resources.Load("WeaponUI"),
@@ -482,26 +483,26 @@ public class BattleFlowTest : MonoBehaviour
             {
                 if (count == 0) return;
                 count--;
-                _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
-                _nowChooseChar.GetComponent<Character>().TotalStatus();
-                _nowChooseChar.GetComponent<PlayerAttack>().RangeSerchDesp();
+                _NowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
+                _NowChooseChar.GetComponent<Character>().TotalStatus();
+                _NowChooseChar.GetComponent<PlayerAttack>().RangeSerchDesp();
             }
             if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
             {
                 if (count == UIs.Count - 1) return;
                 count++;
-                _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
-                _nowChooseChar.GetComponent<Character>().TotalStatus();
-                _nowChooseChar.GetComponent<PlayerAttack>().RangeSerchDesp();
+                _NowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
+                _NowChooseChar.GetComponent<Character>().TotalStatus();
+                _NowChooseChar.GetComponent<PlayerAttack>().RangeSerchDesp();
 
             }
             if (Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space))
             {
                 choose = true;
-                _nowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
-                _nowChooseChar.GetComponent<Character>().TotalStatus();
+                _NowChooseChar.GetComponent<Character>().Equipment(ChoiceObjs[count]);
+                _NowChooseChar.GetComponent<Character>().TotalStatus();
 
-                _nowChooseChar.GetComponent<PlayerAttack>().RangeSerchDespRelease();
+                _NowChooseChar.GetComponent<PlayerAttack>().RangeSerchDespRelease();
             }
 
             //キャンセル
@@ -512,7 +513,7 @@ public class BattleFlowTest : MonoBehaviour
                     obj.SetActive(false);
                     Destroy(obj, 1.0f);
                 }
-                _nowChooseChar.GetComponent<PlayerAttack>().RangeSerchDespRelease();
+                _NowChooseChar.GetComponent<PlayerAttack>().RangeSerchDespRelease();
                 Destroy(SetumeiWindow);
                 choose = false;
                 once = false;
@@ -537,7 +538,7 @@ public class BattleFlowTest : MonoBehaviour
             count = 0;
             ChoiceObjs.Clear();
             UIs.Clear();
-            _nowChooseChar.GetComponent<PlayerAttack>().RangeSearch();
+            _NowChooseChar.GetComponent<PlayerAttack>().RangeSearch();
         }
     }
 
@@ -549,7 +550,7 @@ public class BattleFlowTest : MonoBehaviour
             SetumeiWindow = Instantiate(Resources.Load("Waku"),
                         GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
             //スキル情報取得
-            var skill = _nowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>()._skillprefablist;
+            var skill = _NowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>()._skillprefablist;
             count = 0;
             if (skill == null)
             {
@@ -646,7 +647,7 @@ public class BattleFlowTest : MonoBehaviour
                 Destroy(obj, 1.0f);
             }
             Destroy(SetumeiWindow);
-            _nowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>().SkillEffect(_nowChooseChar, ChoiceObjs[count]);
+            _NowChooseChar.GetComponent<Character>()._skillprefablist.GetComponent<SkillPrefabList>().SkillEffect(_NowChooseChar, ChoiceObjs[count]);
             choose = false;
             once = false;
             ChoiceObjs.Clear();
@@ -664,7 +665,7 @@ public class BattleFlowTest : MonoBehaviour
             SetumeiWindow = Instantiate(Resources.Load("Waku"),
                         GameObject.Find("Canvas1").transform.Find("Frame").transform) as GameObject;
 
-            var items = _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist;
+            var items = _NowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist;
             count = 0;
             foreach (var obj in items)
             {
@@ -753,7 +754,7 @@ public class BattleFlowTest : MonoBehaviour
                 Destroy(obj, 1.0f);
             }
             Destroy(SetumeiWindow);
-            _nowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().UseItem(_nowChooseChar, ChoiceObjs[count]);
+            _NowChooseChar.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().UseItem(_NowChooseChar, ChoiceObjs[count]);
             choose = false;
             once = false;
             ChoiceObjs.Clear();
@@ -769,7 +770,7 @@ public class BattleFlowTest : MonoBehaviour
         //仮実装 カーソルが敵に自動で照準
         if (!attacking)
         {
-            var range_enemy = _nowChooseChar.GetComponent<PlayerAttack>().GetInAttackRangeEnemy();
+            var range_enemy = _NowChooseChar.GetComponent<PlayerAttack>().GetInAttackRangeEnemy();
 
             if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1 || Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -798,20 +799,20 @@ public class BattleFlowTest : MonoBehaviour
             pos.y = rayBox.transform.position.y;
             rayBox.transform.position = pos;
 
-            _nowChooseChar.GetComponent<PlayerBattleStoryFlag>().SetEnemyName(range_enemy[count]);
+            _NowChooseChar.GetComponent<PlayerBattleStoryFlag>().SetEnemyName(range_enemy[count]);
 
             //キャンセル
             if (Input.GetKeyDown(KeyCode.X))
             {
                 count = 0;
                 //選択キャラの攻撃可能状態を解除
-                _nowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
+                _NowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
 
                 Destroy(battleui);//戦闘時UI削除
 
                 state_ = State_.action_mode;
                 FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-                FindObjectOfType<RayBox>().SetCameraPosition(_nowChooseChar);
+                FindObjectOfType<RayBox>().SetCameraPosition(_NowChooseChar);
             }
         }
 
@@ -822,68 +823,33 @@ public class BattleFlowTest : MonoBehaviour
         {
             if (hit.transform.tag == "Enemy")
             {
-                battleui = FindObjectOfType<StatusUI>().SetBattleStatus(_nowChooseChar, hit.transform.gameObject);
+                battleui = FindObjectOfType<StatusUI>().SetBattleStatus(_NowChooseChar, hit.transform.gameObject);
             }
 
-            //スペース(仮)が押されて && まだ攻撃してないなら
+            //スペースまたは○ボタンが押されて && まだ攻撃してないなら
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("O")) && !attacking)
             {
                 //カーソルがエネミーをさしていたら
                 if (hit.transform.tag == "Enemy")
                 {
+                    if(s_flag == true)
+                    {
+                        //攻撃されたキャラを一時的に保存
+                        _NowCounterChara = hit.transform.gameObject;
+                        attacking = true;
+                        count = 0;
+                        StartCoroutine(DelayMethod.DelayMethodCall(5.0f, () =>
+                        {
+                            PlayerAttack(_NowCounterChara);
+                        }));
+
+                        state_ = State_.stay_mode;
+                        return;
+                    }
 
                     attacking = true;
                     count = 0;
-                    //選択キャラの攻撃可能状態を解除
-                    _nowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
-
-                    //キャラの向き変更
-                    _nowChooseChar.transform.LookAt(hit.transform);
-
-                    Debug.Log("自キャラの攻撃！");
-                    FindObjectOfType<RayBox>().move_ = false;
-
-                    int e_nowhp = hit.transform.GetComponent<Character>()._totalhp;
-                    int p_nowhp = _nowChooseChar.GetComponent<Character>()._totalhp;
-
-                    //とりあえずゲージ表示
-                    FindObjectOfType<StatusUI>().setactive(true);
-
-                    FindObjectOfType<StatusUI>().setPlayerHpGage(
-                        _nowChooseChar.GetComponent<Character>()._totalMaxhp, p_nowhp);
-                    FindObjectOfType<StatusUI>().setEnemyHpGage(
-                        hit.transform.GetComponent<Character>()._totalMaxhp, e_nowhp);
-
-                    PlayerRedGage.GetComponent<DamageGage>().setdamageGage(
-                        _nowChooseChar.GetComponent<Character>()._totalMaxhp, p_nowhp);
-                    EnemyRedGage.GetComponent<DamageGage>().setdamageGage(
-                        hit.transform.GetComponent<Character>()._totalMaxhp, e_nowhp);
-
-                    //戦闘結果計算
-                    FindObjectOfType<BattleManager>().BattleSetup(_nowChooseChar, hit.transform.gameObject);
-
-                    e_dm = e_nowhp - hit.transform.GetComponent<Character>()._totalhp;//敵ダメージ算出(仮)
-                    p_dm = p_nowhp - _nowChooseChar.GetComponent<Character>()._totalhp;//プレイヤダメージ算出
-
-                    DamegeUI_Init(hit.transform.gameObject, e_dm);
-                    FindObjectOfType<StatusUI>().setEnemyDamage(e_dm);
-
-                    //攻撃キャラを一時的に保存
-                    _nowCounterChara = hit.collider.gameObject;
-                    _nowAttackChara = _nowChooseChar;
-
-                    //結果をUIに渡す
-                    FindObjectOfType<StatusUI>().setUnitStatus(
-                        hit.collider.GetComponent<Character>()._name,
-                        hit.collider.GetComponent<Character>()._totalhp,
-                        hit.collider.GetComponent<Character>()._totalMaxhp);
-
-
-                    //すぐ行動しないよう間をおいて敵の反撃へ
-                    StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () =>
-                    {
-                        state_ = State_.enemy_counter_mode;
-                    }));
+                    PlayerAttack(hit.transform.gameObject);
                 }
                 //プレイヤー
                 else if (hit.transform.tag == "Player")
@@ -899,30 +865,82 @@ public class BattleFlowTest : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 攻撃対象が選択されたとき実行
+    /// </summary>
+    public void PlayerAttack(GameObject hit)
+    {
+        //選択キャラの攻撃可能状態を解除
+        _NowChooseChar.GetComponent<PlayerAttack>().AttackRelease();
+
+        //キャラの向き変更
+        _NowChooseChar.transform.LookAt(hit.transform);
+
+        Debug.Log("自キャラの攻撃！");
+        FindObjectOfType<RayBox>().move_ = false;
+
+        int e_nowhp = hit.transform.GetComponent<Character>()._totalhp;
+        int p_nowhp = _NowChooseChar.GetComponent<Character>()._totalhp;
+
+        //とりあえずゲージ表示
+        FindObjectOfType<StatusUI>().setactive(true);
+
+        FindObjectOfType<StatusUI>().setPlayerHpGage(
+            _NowChooseChar.GetComponent<Character>()._totalMaxhp, p_nowhp);
+        FindObjectOfType<StatusUI>().setEnemyHpGage(
+            hit.transform.GetComponent<Character>()._totalMaxhp, e_nowhp);
+
+        PlayerRedGage.GetComponent<DamageGage>().setdamageGage(
+            _NowChooseChar.GetComponent<Character>()._totalMaxhp, p_nowhp);
+        EnemyRedGage.GetComponent<DamageGage>().setdamageGage(
+            hit.transform.GetComponent<Character>()._totalMaxhp, e_nowhp);
+
+        //戦闘結果計算
+        FindObjectOfType<BattleManager>().BattleSetup(_NowChooseChar, hit.transform.gameObject);
+
+        e_dm = e_nowhp - hit.transform.GetComponent<Character>()._totalhp;//敵ダメージ算出(仮)
+        p_dm = p_nowhp - _NowChooseChar.GetComponent<Character>()._totalhp;//プレイヤダメージ算出
+
+        DamegeUI_Init(hit.transform.gameObject, e_dm);
+        FindObjectOfType<StatusUI>().setEnemyDamage(e_dm);
+
+        //攻撃されたキャラを一時的に保存
+        _NowCounterChara = hit;
+
+        //結果をUIに渡す
+        FindObjectOfType<StatusUI>().setUnitStatus(
+            hit.GetComponent<Character>()._name,
+            hit.GetComponent<Character>()._totalhp,
+            hit.GetComponent<Character>()._totalMaxhp);
+
+
+        //すぐ行動しないよう間をおいて敵の反撃へ
+        StartCoroutine(DelayMethod.DelayMethodCall(waitTime, () =>
+        {
+            state_ = State_.enemy_counter_mode;
+        }));
+    }
+
     void EnemyCounterMode()
     {
         if (attacking)
         {
-            if (_nowCounterChara && _nowCounterChara.GetComponent<Character>()._HpState != Character.HP_State.Dead)
+            if (_NowCounterChara && _NowCounterChara.GetComponent<Character>()._HpState != Character.HP_State.Dead)
             {
                 Debug.Log("敵の反撃！");
-                //とりあえずの反撃エフェクト表示&SE
-                //var effect = Instantiate(Resources.Load("Eff_Hit_6"), _nowAttackChara.transform.position, Quaternion.identity);
-                //m_audio.PlaySe("GunShot");
-                //Destroy(effect, 1.0f);
 
                 //キャラの向き変更
-                _nowCounterChara.transform.LookAt(_nowAttackChara.transform);
+                _NowCounterChara.transform.LookAt(_NowChooseChar.transform);
 
-                DamegeUI_Init(_nowAttackChara, p_dm);
+                DamegeUI_Init(_NowChooseChar, p_dm);
 
                 FindObjectOfType<StatusUI>().setPlayerDamage(p_dm);
 
                 //結果をUIに渡す
                 FindObjectOfType<StatusUI>().setUnitStatus(
-                    _nowAttackChara.GetComponent<Character>()._name,
-                    _nowAttackChara.GetComponent<Character>()._totalhp,
-                    _nowAttackChara.GetComponent<Character>()._totalMaxhp);
+                    _NowChooseChar.GetComponent<Character>()._name,
+                    _NowChooseChar.GetComponent<Character>()._totalhp,
+                    _NowChooseChar.GetComponent<Character>()._totalMaxhp);
 
             }
 
@@ -954,7 +972,7 @@ public class BattleFlowTest : MonoBehaviour
     public void PlayerMoveEnd()
     {
         FindObjectOfType<SubMenuRenderer>().SubMenuStart();
-        _nowChooseChar.GetComponent<Animator>().CrossFade("NoneDamy", 0.0f);
+        _NowChooseChar.GetComponent<Animator>().CrossFade("NoneDamy", 0.0f);
         FindObjectOfType<RayBox>().move_ = false;
         c_moving = false;
         state_ = State_.action_mode;

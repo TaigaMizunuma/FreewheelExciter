@@ -56,7 +56,7 @@ public class Move_System : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Return)|| Input.GetButtonDown("O") || Input.GetKeyDown(KeyCode.Space)) && !moving_)
         {
             if (FindObjectOfType<BattleFlowTest>().state_ != State_.move_mode ||
-                FindObjectOfType<BattleFlowTest>()._nowChooseChar != gameObject) return;// 10/31 追加
+                FindObjectOfType<BattleFlowTest>()._NowChooseChar != gameObject) return;// 10/31 追加
 
 
             Ray ray = new Ray(rayBox.transform.position, -rayBox.transform.up);// 10/27 追加
@@ -84,7 +84,7 @@ public class Move_System : MonoBehaviour
                     }
 
                 }
-                else if (hit.transform.gameObject == FindObjectOfType<BattleFlowTest>()._nowChooseChar)
+                else if (hit.transform.gameObject == FindObjectOfType<BattleFlowTest>()._NowChooseChar)
                 {
                     FindObjectOfType<RayBox>().move_ = false;
                     GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");
