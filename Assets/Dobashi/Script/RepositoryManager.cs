@@ -88,11 +88,11 @@ public class RepositoryManager : MonoBehaviour {
         }
         if(j == null)
         {
-            Debug.Log("アイテムがありません");
+            //Debug.Log("アイテムがありません");
         }
         else
         {
-            Debug.Log(j.name + "を取り出しました");
+            //Debug.Log(j.name + "を取り出しました");
             GameObject k = GameObject.Find(chara.transform.name + "/ItemList");
             k.GetComponent<ItemPrefabList>().AddItem(j);
         }

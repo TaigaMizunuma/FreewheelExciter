@@ -568,6 +568,9 @@ public class ItemReady : MonoBehaviour {
                     {
                         confirmation_[0].SetActive(false);
                         confirmation_[1].SetActive(true);
+                        yes_no_[0].transform.parent.gameObject.SetActive(false);
+                        yes_no_[1].transform.parent.gameObject.SetActive(false);
+                        cursor_.SetActive(false);
                     }
                     else
                     {
@@ -588,11 +591,10 @@ public class ItemReady : MonoBehaviour {
                 DisplayUpdate();
                 first_items = frame_left.GetComponent<UIItemList>().GetItemTexts();
                 pos_num_y = 0;
+                cursor_.SetActive(true);
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
                 throw_item_num = -1;
                 confirmation_[1].SetActive(false);
-                yes_no_[0].transform.parent.gameObject.SetActive(false);
-                yes_no_[1].transform.parent.gameObject.SetActive(false);
             }
         }
     }
