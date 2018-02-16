@@ -14,12 +14,12 @@ public class PlayerBattleStoryFlag : MonoBehaviour {
     string playerName;
 
     //接敵した敵の名前
-    string enemyName;
+    [SerializeField]
+    GameObject enemyName;
 
     void Start()
     {
         playerName = this.gameObject.transform.name;
-        storyEnemy = this.GetComponent<EnemyPersonalCSV>().GetStoryFlag();
     }
 
     void Update()
@@ -47,8 +47,8 @@ public class PlayerBattleStoryFlag : MonoBehaviour {
     /// ボスの名前を入れる
     /// </summary>
     /// <param name="enemy"></param>
-    public void SetEnemyName(string enemy)
+    public void SetEnemyName(GameObject eneObj)
     {
-        enemyName = enemy;
+        enemyName = eneObj;
     }
 }
