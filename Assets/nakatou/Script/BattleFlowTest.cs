@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// 現在のステート
@@ -72,14 +71,17 @@ public class BattleFlowTest : MonoBehaviour
     List<GameObject> ChoiceObjs = new List<GameObject>();
     GameObject SetumeiWindow;
 
-    //hpui用
+    //HPUI用
     public GameObject PlayerRedGage;
     public GameObject EnemyRedGage;
 
     public GameObject Shousai;//詳細ステータス
 
-    bool GameEnd = false;//仮
+    //ゲーム進行フラグ
+    bool GameEnd = false;
     public bool GameStart = false;
+
+    public bool Pause;//ゲーム中に一時進行ストップ
 
     Vector3 MoveStartPos;//キャンセル用
     GameObject battleui;//戦闘時UI;
@@ -91,7 +93,6 @@ public class BattleFlowTest : MonoBehaviour
     public bool c_moving = false;
 
     GameObject Hero;
-
 
     void Awake()
     {
@@ -113,6 +114,7 @@ public class BattleFlowTest : MonoBehaviour
         if (!GameObject.FindGameObjectWithTag("Enemy") && !GameEnd)
         {
             GameEnd = true;
+
             StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
             {
                 FindObjectOfType<GameRequirement>().GameClear();
@@ -141,6 +143,26 @@ public class BattleFlowTest : MonoBehaviour
         }
 
         if (GameEnd) return;//ゲーム終了
+
+        //会話用ポーズ
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Pause = !Pause;
+            if(FindObjectOfType<EventSystem>().sendNavigationEvents == false)
+            {
+                FindObjectOfType<EventSystem>().sendNavigationEvents = true;
+            }
+        }
+        if (Pause)
+        {
+            FindObjectOfType<MenuManager>().SetMainControlFlag(true);
+            if(FindObjectOfType<SubMenuRenderer>().gameObject.activeInHierarchy)
+            {
+                FindObjectOfType<EventSystem>().sendNavigationEvents = false;
+            }
+            rayBox.GetComponent<RayBox>().move_ = false;
+            return;
+        }
 
         //カメラ追従
         if (state_ == State_.enemy_move_mode ||state_ == State_.enemy_attack_mode)
@@ -175,6 +197,7 @@ public class BattleFlowTest : MonoBehaviour
         {
             rayBox.GetComponent<RayBox>().move_ = false;
         }
+
         //遷移
         switch (state_)
         {
@@ -287,8 +310,6 @@ public class BattleFlowTest : MonoBehaviour
         //行動キャラ選択
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("O")) && !Shousai.activeInHierarchy)//○ボタン予定
         {
-            //m_audio.PlaySe("choose");//se
-
             Ray ray = new Ray(FindObjectOfType<RayBox>().transform.gameObject.transform.position, -transform.up);
             RaycastHit hit = new RaycastHit();
             //カーソルの場所になにがあるか
@@ -323,12 +344,13 @@ public class BattleFlowTest : MonoBehaviour
             {
                 if (hiton.transform.tag == "Player" || hiton.transform.tag == "Enemy")
                 {
+                    Shousai.GetComponent<Shosai>().SetChara(hiton.transform.gameObject);
                     Shousai.SetActive(!Shousai.activeInHierarchy);
                     FindObjectOfType<RayBox>().move_ = false;
                     GameObject.Find("MapCursor").GetComponent<Image>().enabled = false;
                     if (Shousai.activeInHierarchy)
                     {
-                        FindObjectOfType<Shosai>()._chara = hiton.transform.gameObject;
+                        //FindObjectOfType<Shosai>()._chara = hiton.transform.gameObject;
                     }
                     else
                     {
@@ -343,7 +365,7 @@ public class BattleFlowTest : MonoBehaviour
     void MoveMode()
     {
         //キャンセル
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && state_ == State_.move_mode)
         {
             GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");
             foreach (GameObject g in obj)
@@ -363,14 +385,13 @@ public class BattleFlowTest : MonoBehaviour
     void ActionMode()
     {
         //キャンセル
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && state_ == State_.action_mode)
         {
             _nowChooseChar.GetComponent<Move_System>().GetNowPos().GetComponent<Square_Info>().ResetChara();
             _nowChooseChar.transform.position = MoveStartPos;
             _nowChooseChar.GetComponent<Move_System>().SetNowPos();
 
             FindObjectOfType<RayBox>().SetMovePlayer(null);
-
 
             FindObjectOfType<RayBox>().SetCameraPosition(_nowChooseChar);
 
@@ -484,7 +505,7 @@ public class BattleFlowTest : MonoBehaviour
             }
 
             //キャンセル
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) && state_ == State_.weapon_mode)
             {
                 foreach (var obj in UIs)
                 {
@@ -600,7 +621,7 @@ public class BattleFlowTest : MonoBehaviour
             }
 
             //キャンセル
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) && state_ == State_.skill_mode)
             {
                 foreach (var obj in UIs)
                 {
@@ -707,7 +728,7 @@ public class BattleFlowTest : MonoBehaviour
             }
 
             //キャンセル
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) && state_ == State_.item_mode)
             {
                 foreach (var obj in UIs)
                 {
@@ -777,6 +798,8 @@ public class BattleFlowTest : MonoBehaviour
             pos.y = rayBox.transform.position.y;
             rayBox.transform.position = pos;
 
+            _nowChooseChar.GetComponent<PlayerBattleStoryFlag>().SetEnemyName(range_enemy[count].GetComponent<Character>()._name);
+
             //キャンセル
             if (Input.GetKeyDown(KeyCode.X))
             {
@@ -808,6 +831,7 @@ public class BattleFlowTest : MonoBehaviour
                 //カーソルがエネミーをさしていたら
                 if (hit.transform.tag == "Enemy")
                 {
+
                     attacking = true;
                     count = 0;
                     //選択キャラの攻撃可能状態を解除
@@ -818,11 +842,6 @@ public class BattleFlowTest : MonoBehaviour
 
                     Debug.Log("自キャラの攻撃！");
                     FindObjectOfType<RayBox>().move_ = false;
-
-                    //とりあえずのエフェクト表示&SE
-                    //var effect = Instantiate(Resources.Load("Eff_Hit_6"), hit.transform.position, Quaternion.identity);
-                    //m_audio.PlaySe("GunShot");
-                    //Destroy(effect, 1.0f);
 
                     int e_nowhp = hit.transform.GetComponent<Character>()._totalhp;
                     int p_nowhp = _nowChooseChar.GetComponent<Character>()._totalhp;
@@ -1296,6 +1315,7 @@ public class BattleFlowTest : MonoBehaviour
             //m_audio.PlaySe("choose");
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();//サブメニュー非表示
             FindObjectOfType<MenuManager>().SetEventSystem(false);
+            state_ = State_.stay_mode;
 
             //プログラムの問題で遅延
             StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
@@ -1315,6 +1335,7 @@ public class BattleFlowTest : MonoBehaviour
             //m_audio.PlaySe("choose");
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();//サブメニュー非表示
             FindObjectOfType<MenuManager>().SetEventSystem(false);
+            state_ = State_.stay_mode;
 
             //プログラムの問題で遅延
             StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
@@ -1335,6 +1356,7 @@ public class BattleFlowTest : MonoBehaviour
             //m_audio.PlaySe("choose");
             FindObjectOfType<SubMenuRenderer>().SubMenuStart();//サブメニュー非表示
             FindObjectOfType<MenuManager>().SetEventSystem(false);
+            state_ = State_.stay_mode;
 
             //プログラムの問題で遅延
             StartCoroutine(DelayMethod.DelayMethodCall(0.5f, () =>
