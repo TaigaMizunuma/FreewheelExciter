@@ -14,7 +14,7 @@ public class StoryFlag : MonoBehaviour {
 
     //開始場所
     [SerializeField]
-    public int scnarioStartNum;
+    int[] scnarioStartNum;
 
     //終了場所
     [SerializeField]
@@ -52,7 +52,7 @@ public class StoryFlag : MonoBehaviour {
     /// </summary>
     public void StoryNumCheck()
     {
-        s_reader.SetReadStartNum(scnarioStartNum);
+        s_reader.SetReadStartNum(scnarioStartNum[scenarioNum]);
         s_reader.SetReadEndNum(scnarioEndNum[scenarioNum]);
     }
 
@@ -61,15 +61,15 @@ public class StoryFlag : MonoBehaviour {
     /// </summary>
     void StoryCharacterCheck()
     {
-        if (s_bossName == bossNameList[0] && s_playerName == playerNameList[0])
-        {
-            s_reader.battleScenarioSwitch = true;
-            StoryNumCheck();
-        }
-        else if (s_bossName == null)
-        {
-            return;
-        }
+        //if (s_bossName == bossNameList[0] && s_playerName == playerNameList[0])
+        //{
+        //    s_reader.battleScenarioSwitch = true;
+        //    StoryNumCheck();
+        //}
+        //else if (s_bossName == null)
+        //{
+        //    return;
+        //}
     }
 
     void StoryTurn()
