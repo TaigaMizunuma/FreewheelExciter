@@ -17,12 +17,13 @@ public class StoryFlag : MonoBehaviour {
 
     //終了場所
     public int[] scnarioEndNum;
-    //ターンのカウント
-    int s_turnCount;
 
+    //ターンのカウント
+    [HideInInspector]
+    public int s_turnCount;
+
+    //どのシナリオを読み終えたか
     public int[] battleStoryCount;
-    public string[] bossNameList;
-    public string[] playerNameList;
 
     [Space(10)]
 
@@ -32,10 +33,13 @@ public class StoryFlag : MonoBehaviour {
 
     public string  s_playerName;
 
+    public GameObject g_enemyObj;
+
     //ストーリーのCSVリーダー
     StoryCSVReader s_reader;
 
     //上の配列に使用する数
+    [HideInInspector]
     public int i_storyNum;
 
     void Start ()
@@ -52,7 +56,7 @@ public class StoryFlag : MonoBehaviour {
         s_reader.SetReadEndNum(scnarioEndNum[i_storyNum]);
     }
 
-    void StoryTurn()
+    public void StoryTurn()
     {
         if (s_turnCount != FindObjectOfType<SituationTexts>().GetTurn())
         {
@@ -60,9 +64,10 @@ public class StoryFlag : MonoBehaviour {
         }
     }
 
-    public void SetCharacterName(string b_name, string p_name)
+    public void SetCharacter(string b_name, string p_name, GameObject eneObj)
     {
         s_bossName = b_name;
         s_playerName = p_name;
+        g_enemyObj = eneObj;
     }
 }

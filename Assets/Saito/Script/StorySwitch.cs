@@ -10,7 +10,6 @@ public class StorySwitch : MonoBehaviour
     StoryFlag s_flag;
 
     StoryCSVReader s_reader;
-
     void Start()
     {
         s_flag = GetComponent<StoryFlag>();
@@ -20,6 +19,7 @@ public class StorySwitch : MonoBehaviour
     void Update()
     {
         StoryCheck();
+        s_flag.StoryTurn();
     }
 
     void StoryCheck()
@@ -39,6 +39,26 @@ public class StorySwitch : MonoBehaviour
                         s_reader.battleScenarioSwitch = true;
                         s_flag.battleStoryCount[0] = 1;
                     }
+                }
+            }
+            if(s_flag.battleStoryCount[1] == 0)
+            {
+                if (s_flag.s_turnCount >= 4)
+                {
+                    s_flag.i_storyNum = 1;
+                    s_flag.StoryNumCheck();
+                    s_reader.battleScenarioSwitch = true;
+                    s_flag.battleStoryCount[1] = 1;
+                }
+            }
+            if(s_flag.battleStoryCount[2] == 0)
+            {
+                if (s_flag.g_enemyObj != null && s_flag.g_enemyObj.GetComponent<Character>()._totalhp == 0)
+                {
+                    s_flag.i_storyNum = 2;
+                    s_flag.StoryNumCheck();
+                    s_reader.battleScenarioSwitch = true;
+                    s_flag.battleStoryCount[2] = 1;
                 }
             }
         }

@@ -14,8 +14,7 @@ public class PlayerBattleStoryFlag : MonoBehaviour {
     string playerName;
 
     //接敵した敵
-    [SerializeField]
-    GameObject enemyObject;
+    public GameObject enemyObject;
 
     //接敵した敵の名前
     string enemyName;
@@ -23,8 +22,6 @@ public class PlayerBattleStoryFlag : MonoBehaviour {
     bool eneFlag;
 
     StoryFlag s_flag;
-
-
 
     void Start()
     {
@@ -52,7 +49,7 @@ public class PlayerBattleStoryFlag : MonoBehaviour {
             if (eneFlag == true)
             {
                 enemyName = enemyObject.GetComponent<Character>()._name;
-                s_flag.SetCharacterName(enemyName, playerName);
+                s_flag.SetCharacter(enemyName, playerName,enemyObject);
             }
         }
     }
