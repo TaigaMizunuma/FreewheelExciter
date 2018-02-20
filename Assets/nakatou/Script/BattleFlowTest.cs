@@ -95,7 +95,7 @@ public class BattleFlowTest : MonoBehaviour
     //キャラ移動管理フラグ
     public bool c_moving = false;
 
-    GameObject Boss;//ボスキャラ
+    public GameObject Boss;//ボスキャラ
 
     //主人公オブジェクト
     GameObject Hero;
@@ -124,10 +124,10 @@ public class BattleFlowTest : MonoBehaviour
             {
                 GameEnd = true;
 
-                StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
-                {
-                    FindObjectOfType<GameRequirement>().GameClear();
-                }));
+                //StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
+                //{
+                //    FindObjectOfType<GameRequirement>().GameClear();
+                //}));
             }
 
             else if (Hero.GetComponent<Character>()._totalhp <= 0)
@@ -145,7 +145,7 @@ public class BattleFlowTest : MonoBehaviour
 
         if (GameEnd) return;//ゲーム終了
 
-        /////////////////////////会話用ポーズ仮
+        /////////////////////////会話用ポーズ
         if (FindObjectOfType<StoryCSVReader>().battleScenarioSwitch && !FindObjectOfType<StoryCSVReader>().battleEvent)
         {
             Pause = true;
