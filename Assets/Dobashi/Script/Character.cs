@@ -33,8 +33,6 @@ public enum Joblist
     EarthDragon
 }
 
-
-
 public struct Buff
 {
     public int[] _datalist;

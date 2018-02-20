@@ -31,10 +31,14 @@ public class Item : MonoBehaviour {
     //効果の種類
     public Effect_Type _effect;
 
+    //回復Particle
+    private GameObject _par;
+
     // Use this for initialization
     void Start () {
         SetName();
-	}
+        _par = Resources.Load("Heel") as GameObject;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -116,22 +120,26 @@ public class Item : MonoBehaviour {
             //HP回復
             i.RecoveryHP(_recovery);
         }
+        Instantiate(_par, i.transform.position, Quaternion.identity);
         
         switch (_effect)
         {
             case Effect_Type.staterecovery:
                 //状態回復
                 i.ChangeState("Default");
+                Instantiate(_par, i.transform.position, Quaternion.identity);
                 break;
             case Effect_Type.healplus:
                 //回復量増加
                 i._yani = true;
                 i._yaniTurn = 5;
+                Instantiate(_par, i.transform.position, Quaternion.identity);
                 break;
             case Effect_Type.regeneration:
                 //リジェネ
                 i._healplus = true;
                 i._healplusturn = 3;
+                Instantiate(_par, i.transform.position, Quaternion.identity);
                 break;
             case Effect_Type.classchange:
                 //クラスチェンジ
