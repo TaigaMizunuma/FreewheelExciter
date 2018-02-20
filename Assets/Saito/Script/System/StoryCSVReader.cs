@@ -156,6 +156,8 @@ public class StoryCSVReader : MonoBehaviour
     //会話用スイッチ
     public bool battleScenarioSwitch;
 
+    //戦闘からの遷移の場合のフラグ
+    public bool battleEvent;
 
     enum ScenePattern
     {
@@ -414,6 +416,12 @@ public class StoryCSVReader : MonoBehaviour
                     {
                         messageWindow.SetActive(false);
                         battleScenarioSwitch = false;
+                        if(battleEvent == true)
+                        {
+                            FindObjectOfType<BattleFlowTest>().PlayerAttack(FindObjectOfType<BattleFlowTest>()._NowCounterChara);
+                            battleEvent = false;
+                        }
+                        
                     }
                 }
             }

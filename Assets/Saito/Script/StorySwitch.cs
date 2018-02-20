@@ -26,6 +26,13 @@ public class StorySwitch : MonoBehaviour
     {
         //こっから長いです...
 
+        //チュートリアル
+        if(s_flag.scenarioNum == 0)
+        {
+
+        }
+
+
         //STAGE1
         if (s_flag.scenarioNum == 1)
         {
@@ -36,6 +43,7 @@ public class StorySwitch : MonoBehaviour
                     {
                         s_flag.i_storyNum = 0;
                         s_flag.StoryNumCheck();
+                        s_reader.battleEvent = true;
                         s_reader.battleScenarioSwitch = true;
                         s_flag.battleStoryCount[0] = 1;
                     }
@@ -61,6 +69,30 @@ public class StorySwitch : MonoBehaviour
                     s_flag.battleStoryCount[2] = 1;
                 }
             }
+        }
+
+        //STAGE2
+        if(s_flag.scenarioNum == 2)
+        {
+
+        }
+
+        //STAGE3
+        if(s_flag.scenarioNum == 3)
+        {
+
+        }
+
+        //STAGE4
+        if(s_flag.scenarioNum == 4)
+        {
+
+        }
+
+        //STAGE5
+        if(s_flag.scenarioNum == 5)
+        {
+
         }
     }
 
