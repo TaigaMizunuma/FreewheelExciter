@@ -58,7 +58,7 @@ public class BattleFlowTest : MonoBehaviour
 
 
     //攻撃された敵キャラ一時保存
-    GameObject _NowCounterChara;
+    public GameObject _NowCounterChara;
 
     //ダメージ表示用の変数
     int e_dm;
@@ -94,6 +94,8 @@ public class BattleFlowTest : MonoBehaviour
     public bool c_moving = false;
 
     GameObject Hero;
+
+    GameObject ActionPlayer;
 
     void Awake()
     {
@@ -801,10 +803,8 @@ public class BattleFlowTest : MonoBehaviour
             pos.y = rayBox.transform.position.y;
             rayBox.transform.position = pos;
 
-            _NowChooseChar.GetComponent<PlayerBattleStoryFlag>().SetEnemyName(range_enemy[count]);
-
             //キャンセル
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) && !attacking)
             {
                 count = 0;
                 //選択キャラの攻撃可能状態を解除
@@ -834,26 +834,31 @@ public class BattleFlowTest : MonoBehaviour
                 //カーソルがエネミーをさしていたら
                 if (hit.transform.tag == "Enemy")
                 {
-                    if(FindObjectOfType<StoryCSVReader>().battleScenarioSwitch == true)
-                    {
-                        //攻撃されたキャラを一時的に保存
-                        _NowCounterChara = hit.transform.gameObject;
-                        attacking = true;
-                        count = 0;
-
-                        StartCoroutine(DelayMethod.DelayMethodCall(10.0f, () =>
-                        {
-                            PlayerAttack(_NowCounterChara);
-                        }));
-
-                        state_ = State_.stay_mode;
-                        return;
-                    }
+                    _NowChooseChar.GetComponent<PlayerBattleStoryFlag>().SetEnemyName(hit.transform.gameObject);
 
                     attacking = true;
                     count = 0;
-                    PlayerAttack(hit.transform.gameObject);
+
+                    StartCoroutine(DelayMethod.DelayMethodCall(0.1f, () =>
+                    {
+                        if (FindObjectOfType<StoryCSVReader>().battleScenarioSwitch == true)
+                        {
+                            Debug.Log("ok");
+                            //攻撃されたキャラを一時的に保存
+                            _NowCounterChara = hit.transform.gameObject;
+
+                            state_ = State_.stay_mode;
+
+                            return;
+                        }
+                        else
+                        {
+                            PlayerAttack(hit.transform.gameObject);
+                        }
+                    }));
+                    
                 }
+
                 //プレイヤー
                 else if (hit.transform.tag == "Player")
                 {
@@ -1023,49 +1028,6 @@ public class BattleFlowTest : MonoBehaviour
         }
         Destroy(ui, 5.0f);
 
-        //var i = 2;
-        //StartCoroutine(DelayMethod.DelayMethodCall(i, () =>
-        //{
-        //    //UI表示
-        //    GameObject text = Instantiate(
-        //         Resources.Load("DamageTxt"),
-        //         GameObject.Find("Canvas1").transform.Find("Frame")) as GameObject;
-        //    //ワールド座標をスクリーン座標に変換
-        //    var p = RectTransformUtility.WorldToScreenPoint(Camera.main, target.transform.position);
-        //    var retPosition = Vector2.zero;
-        //    RectTransformUtility.ScreenPointToLocalPointInRectangle(
-        //        GameObject.Find("Canvas1").GetComponent<RectTransform>(),
-        //        p,
-        //        Camera.main,
-        //        out retPosition
-        //    );
-        //    text.transform.localPosition = retPosition;
-        //    text.GetComponent<DamegeUI>().setDamegeTxt("LevelUp!");
-        //}));
-
-        //i++;
-
-        //foreach (var value in upvalue)
-        //{
-        //    StartCoroutine(DelayMethod.DelayMethodCall(i, () =>
-        //    {
-        //        GameObject text2 = Instantiate(
-        //        Resources.Load("DamageTxt"),
-        //        GameObject.Find("Canvas1").transform.Find("Frame")) as GameObject;
-        //        //ワールド座標をスクリーン座標に変換
-        //        var p2 = RectTransformUtility.WorldToScreenPoint(Camera.main, target.transform.position);
-        //        var retPosition2 = Vector2.zero;
-        //        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-        //            GameObject.Find("Canvas1").GetComponent<RectTransform>(),
-        //            p2,
-        //            Camera.main,
-        //            out retPosition2
-        //        );
-        //        text2.transform.localPosition = retPosition2;
-        //        text2.GetComponent<DamegeUI>().setDamegeTxt(value);
-        //    }));
-        //    i++;
-        //}
     }
 
     /// <summary>
@@ -1146,7 +1108,9 @@ public class BattleFlowTest : MonoBehaviour
             Turn_TextReset();
             FindObjectOfType<RayBox>().move_ = true;
             state_ = State_.simulation_mode;
-            FindObjectOfType<RayBox>().LookHero();
+
+            FindObjectOfType<RayBox>().SetCameraPosition(_NowChooseChar);
+            
             FindObjectOfType<SituationTexts>().TurnCountUp();
         }));
     }
