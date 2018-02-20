@@ -45,6 +45,7 @@ public class EnemyPersonalCSV : MonoBehaviour
     bool e_storyFlag;
 
     //ボスかどうか(倒したらクリアになるか)
+    [SerializeField]
     bool e_bossFlag;
 
 
@@ -94,6 +95,8 @@ public class EnemyPersonalCSV : MonoBehaviour
 
         e_job = c_enemyPerDatas[e_number + 1][3];
         e_strength = c_enemyPerDatas[e_number + 1][4];
+
+        bossCount = int.Parse(c_enemyPerDatas[e_number + 1][9]);
 
         e_drop = int.Parse(c_enemyPerDatas[e_number + 1][7]);
 
