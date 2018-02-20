@@ -13,15 +13,14 @@ public class StoryFlag : MonoBehaviour {
     bool clear;
 
     //開始場所
-    [SerializeField]
-    int[] scnarioStartNum;
+    public int[] scnarioBattleStartNum;
 
     //終了場所
-    [SerializeField]
-    int[] scnarioEndNum;
+    public int[] scnarioEndNum;
     //ターンのカウント
     int s_turnCount;
 
+    public int[] battleStoryCount;
     public string[] bossNameList;
     public string[] playerNameList;
 
@@ -29,47 +28,28 @@ public class StoryFlag : MonoBehaviour {
 
     //バトル中に会話を始めるキャラの名前
     //会話をするキャラの名前を入れる
-    [SerializeField]
-    string s_bossName;
-    [SerializeField]
-    string s_playerName;
+    public string s_bossName;
+
+    public string  s_playerName;
 
     //ストーリーのCSVリーダー
     StoryCSVReader s_reader;
 
-	void Start ()
+    //上の配列に使用する数
+    public int i_storyNum;
+
+    void Start ()
     {
-        s_reader = FindObjectOfType<StoryCSVReader>();
-	}
-	
-	void Update ()
-    {
-        StoryCharacterCheck();
-    }
+        s_reader = GetComponent<StoryCSVReader>();
+    }	
 
     /// <summary>
     /// ストーリーの最初と最後の番号を合わせる
     /// </summary>
     public void StoryNumCheck()
     {
-        s_reader.SetReadStartNum(scnarioStartNum[scenarioNum]);
-        s_reader.SetReadEndNum(scnarioEndNum[scenarioNum]);
-    }
-
-    /// <summary>
-    /// キャラクターの接近時会話判定
-    /// </summary>
-    void StoryCharacterCheck()
-    {
-        //if (s_bossName == bossNameList[0] && s_playerName == playerNameList[0])
-        //{
-        //    s_reader.battleScenarioSwitch = true;
-        //    StoryNumCheck();
-        //}
-        //else if (s_bossName == null)
-        //{
-        //    return;
-        //}
+        s_reader.SetReadStartNum(scnarioBattleStartNum[i_storyNum]);
+        s_reader.SetReadEndNum(scnarioEndNum[i_storyNum]);
     }
 
     void StoryTurn()

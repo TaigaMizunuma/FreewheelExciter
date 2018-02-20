@@ -800,6 +800,16 @@ Prefab:
       propertyPath: messageWindow
       value: 
       objectReference: {fileID: 661183704}
+    - target: {fileID: 114435155072594706, guid: f948a453f25f9e74f9cf97ab80dd273a,
+        type: 2}
+      propertyPath: readEndNumber
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114435155072594706, guid: f948a453f25f9e74f9cf97ab80dd273a,
+        type: 2}
+      propertyPath: readStartNumber
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f948a453f25f9e74f9cf97ab80dd273a, type: 2}
   m_IsPrefabParent: 0
@@ -850,13 +860,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dfdd0af8d11d8549af8fc05f7efdb9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenarioNum: 0
-  scnarioStartNum: 
-  scnarioEndNum: 
-  bossNameList: []
-  playerNameList: []
+  scenarioNum: 1
+  scnarioBattleStartNum: 10000000
+  scnarioEndNum: 10000000
+  battleStoryCount: 00000000
+  bossNameList:
+  - "\u30ED\u30FC\u30B7\u30FC\u30D5"
+  playerNameList:
+  - "\u30D2\u30E5\u30FC"
+  - "\u30A2\u30A4\u30F3"
+  - "\u30AD\u30FC\u30B9"
+  - "\u30B1\u30F3"
+  - "\u30B2\u30A4\u30EA\u30FC"
+  - "\u30B8\u30A7\u30FC\u30B3\u30D6"
   s_bossName: 
   s_playerName: 
+  i_storyNum: 0
+--- !u!114 &137716176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 137716169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6c36000e23f1b48bbf9a4133003008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &146435682
 GameObject:
   m_ObjectHideFlags: 0

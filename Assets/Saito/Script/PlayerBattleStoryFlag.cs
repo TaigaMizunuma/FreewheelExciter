@@ -24,6 +24,8 @@ public class PlayerBattleStoryFlag : MonoBehaviour {
 
     StoryFlag s_flag;
 
+
+
     void Start()
     {
         s_flag = FindObjectOfType<StoryFlag>();
@@ -54,10 +56,11 @@ public class PlayerBattleStoryFlag : MonoBehaviour {
             }
         }
     }
+
     /// <summary>
-    /// ボスの名前を入れる
+    /// ボスのオブジェクトを入れる
     /// </summary>
-    /// <param name="enemy"></param>
+    /// <param name="eneObj"></param>
     public void SetEnemyName(GameObject eneObj)
     {
         enemyObject = eneObj;

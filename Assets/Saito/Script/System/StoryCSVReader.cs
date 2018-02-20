@@ -151,9 +151,6 @@ public class StoryCSVReader : MonoBehaviour
     //再開時ストーリーのどこからロードされるか
     int s_loadNumber;
 
-    //戦闘中の会話フラグ(時止め用)
-    bool battleStoryFlag;
-
     static bool loadGameFlag;
 
     //会話用スイッチ
@@ -375,10 +372,26 @@ public class StoryCSVReader : MonoBehaviour
     {
         if (battleScenarioSwitch == true)
         {
-            messageWindow.SetActive(true);
+            storyCharacterName = storyCSVDatas[storyID + 1][2];
+            storySheetText = storyCSVDatas[storyID + 1][3];
+            storyText.text = storySheetText;
+            if (storyCharacterName != "")
             {
-                if (Input.GetKeyDown(KeyCode.U))
+                nameText.text = storyCharacterName;
+                nameImage.SetActive(true);
+            }
+            else {
+                nameText.text = "";
+                nameImage.SetActive(false);
+            }
+            CharacterImageDisplay();
+            messageWindow.SetActive(true);
+
+            {
+                if(storyID != readEndNumber)
                 {
+                    if (Input.GetKeyDown(KeyCode.U))
+                    {
                         storyID += 1;
                         storyCharacterName = storyCSVDatas[storyID + 1][2];
                         storySheetText = storyCSVDatas[storyID + 1][3];
@@ -393,17 +406,14 @@ public class StoryCSVReader : MonoBehaviour
                             nameImage.SetActive(false);
                         }
                         CharacterImageDisplay();
-
-                    if (storyID > readEndNumber)
+                    }
+                }
+                else if (storyID == readEndNumber)
+                {
+                    if (Input.GetKeyDown(KeyCode.U))
                     {
-                        if (Input.GetKeyDown(KeyCode.U))
-                        {
-                            readStartNumber = nextreadStartNumber;
-                            readEndNumber = nextreadEndNumber;
-                            messageWindow.SetActive(false);
-                            battleScenarioSwitch = false;
-                            FindObjectOfType<StoryFlag>().scenarioNum += 1; 
-                        }
+                        messageWindow.SetActive(false);
+                        battleScenarioSwitch = false;
                     }
                 }
             }
@@ -574,12 +584,12 @@ public class StoryCSVReader : MonoBehaviour
 
     public void SetReadStartNum(int startNum)
     {
-        nextreadStartNumber = startNum;
+        storyID = startNum;
     }
 
     public void SetReadEndNum(int endNum)
     {
-        nextreadEndNumber = endNum;
+        readEndNumber = endNum;
     }
 
     void LoadNumber()
