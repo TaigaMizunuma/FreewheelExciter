@@ -861,20 +861,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scenarioNum: 1
-  scnarioBattleStartNum: 10000000
-  scnarioEndNum: 10000000
-  battleStoryCount: 00000000
-  bossNameList:
-  - "\u30ED\u30FC\u30B7\u30FC\u30D5"
-  playerNameList:
-  - "\u30D2\u30E5\u30FC"
-  - "\u30A2\u30A4\u30F3"
-  - "\u30AD\u30FC\u30B9"
-  - "\u30B1\u30F3"
-  - "\u30B2\u30A4\u30EA\u30FC"
-  - "\u30B8\u30A7\u30FC\u30B3\u30D6"
+  scnarioBattleStartNum: 100000000900000011000000
+  scnarioEndNum: 100000000f00000011000000
+  s_turnCount: 0
+  battleStoryCount: 000000000000000000000000
   s_bossName: 
   s_playerName: 
+  g_enemyObj: {fileID: 0}
   i_storyNum: 0
 --- !u!114 &137716176
 MonoBehaviour:
