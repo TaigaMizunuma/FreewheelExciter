@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
+using System.IO;
+
 /// <summary>
 /// 現在のステート
 /// </summary>
@@ -93,8 +95,6 @@ public class BattleFlowTest : MonoBehaviour
 
     GameObject Hero;
 
-    public bool s_flag = false; //仮ストーリーフラグ
-
     void Awake()
     {
         PlayerRedGage = GameObject.Find("playerDamageGage");
@@ -145,7 +145,7 @@ public class BattleFlowTest : MonoBehaviour
 
         if (GameEnd) return;//ゲーム終了
 
-        //会話用ポーズ
+        ////////////////会話用ポーズ仮
         if (Input.GetKeyDown(KeyCode.D))
         {
             Pause = !Pause;
@@ -164,6 +164,8 @@ public class BattleFlowTest : MonoBehaviour
             rayBox.GetComponent<RayBox>().move_ = false;
             return;
         }
+        ///////////////////////////////////////end
+
 
         //カメラ追従
         if (state_ == State_.enemy_move_mode ||state_ == State_.enemy_attack_mode)
@@ -832,13 +834,14 @@ public class BattleFlowTest : MonoBehaviour
                 //カーソルがエネミーをさしていたら
                 if (hit.transform.tag == "Enemy")
                 {
-                    if(s_flag == true)
+                    if(FindObjectOfType<StoryCSVReader>().battleScenarioSwitch == true)
                     {
                         //攻撃されたキャラを一時的に保存
                         _NowCounterChara = hit.transform.gameObject;
                         attacking = true;
                         count = 0;
-                        StartCoroutine(DelayMethod.DelayMethodCall(5.0f, () =>
+
+                        StartCoroutine(DelayMethod.DelayMethodCall(10.0f, () =>
                         {
                             PlayerAttack(_NowCounterChara);
                         }));
@@ -1440,22 +1443,21 @@ public class BattleFlowTest : MonoBehaviour
         rayBox.GetComponent<RayBox>().move_ = false;
 
         m_audio = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
+
         Shousai = Instantiate(Resources.Load("Shosai"), GameObject.Find("Canvas").transform) as GameObject;
         Shousai.SetActive(false);
         SetActionEnemy();
 
         _TurnText.text = "第" + FindObjectOfType<StoryCSVReader>().GetStoryNumber() + "章 \n PlayerTurn";
 
-        foreach(var player in GameObject.FindGameObjectsWithTag("Player"))
+        foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
         {
-            if(player.GetComponent<Character>()._name == "ヒュー")
+            if (player.GetComponent<Character>()._name == "ヒュー")
             {
                 player.GetComponent<Character>()._hero = true;
                 Hero = player;
             }
         }
-
-        //m_audio.PlayBgm("battle1");
 
         StartCoroutine(DelayMethod.DelayMethodCall(1.0f, () =>
         {
@@ -1468,5 +1470,5 @@ public class BattleFlowTest : MonoBehaviour
         }));
 
         GameStart = true;
-    }   
+    }
 }

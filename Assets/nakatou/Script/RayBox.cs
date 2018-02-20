@@ -104,7 +104,7 @@ public class RayBox : MonoBehaviour
             if (hit.transform.tag == "Floor")
             {
                 selectSquare = hit.transform.gameObject;
-                var cost = hit.transform.GetComponent<Square_Info>().GetCost();
+                //var cost = hit.transform.GetComponent<Square_Info>().GetCost();
                 if (selectSquare.GetComponent<MapStatus>())
                 {
                     FindObjectOfType<MapUI>().SetMapStatus(selectSquare.GetComponent<MapStatus>());

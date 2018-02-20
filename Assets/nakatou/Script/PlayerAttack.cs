@@ -56,7 +56,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (atk.GetComponent<Square_Info>().GetChara().tag == "Enemy")
                 {
-                    Debug.Log("エネミーが攻撃範囲内");
+                    //Debug.Log("エネミーが攻撃範囲内");
                     InAttackRange_Enemy.Add(atk.GetComponent<Square_Info>().GetChara());
                     FindObjectOfType<BattleFlowTest>().state_ = State_.player_attack_mode;
                 }
