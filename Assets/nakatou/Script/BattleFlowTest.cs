@@ -89,13 +89,16 @@ public class BattleFlowTest : MonoBehaviour
 
     //アイテム交換モード用
     List<GameObject> items;
+
     bool PlayerTurn = false;
 
+    //キャラ移動管理フラグ
     public bool c_moving = false;
 
-    GameObject Hero;
+    GameObject Boss;//ボスキャラ
 
-    GameObject ActionPlayer;
+    //主人公オブジェクト
+    GameObject Hero;
 
     void Awake()
     {
@@ -113,30 +116,24 @@ public class BattleFlowTest : MonoBehaviour
     {
         if (!GameStart) return;
 
+
         //仮 勝敗判定
-        if (!GameObject.FindGameObjectWithTag("Enemy") && !GameEnd)
+        if (!GameEnd)
         {
-            GameEnd = true;
-
-            StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
-            {
-                FindObjectOfType<GameRequirement>().GameClear();
-            }));
-        }
-        else if(!GameObject.FindGameObjectWithTag("Player") && !GameEnd)
-        {
-            GameEnd = true;
-            StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
-            {
-                FindObjectOfType<GameRequirement>().GameOver();
-            }));
-        }
-
-        else if(!GameEnd)
-        {
-            if (Hero.GetComponent<Character>()._totalhp <= 0)
+            if (Boss.GetComponent<Character>()._totalhp <= 0)
             {
                 GameEnd = true;
+
+                StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
+                {
+                    FindObjectOfType<GameRequirement>().GameClear();
+                }));
+            }
+
+            else if (Hero.GetComponent<Character>()._totalhp <= 0)
+            {
+                GameEnd = true;
+
                 Debug.Log("主人公が死にました...");
                 StartCoroutine(DelayMethod.DelayMethodCall(3.0f, () =>
                 {
@@ -144,13 +141,13 @@ public class BattleFlowTest : MonoBehaviour
                 }));
             }
         }
+        
 
         if (GameEnd) return;//ゲーム終了
 
         /////////////////////////会話用ポーズ仮
         if (FindObjectOfType<StoryCSVReader>().battleScenarioSwitch && !FindObjectOfType<StoryCSVReader>().battleEvent)
         {
-            //Pause = !Pause;
             Pause = true;
         }
         else
@@ -169,7 +166,7 @@ public class BattleFlowTest : MonoBehaviour
 
         //FindObjectOfType<MenuManager>().SetMainControlFlag(false);
         //FindObjectOfType<EventSystem>().sendNavigationEvents = true;
-        //rayBox.GetComponent<RayBox>().move_ = true;
+        //FindObjectOfType<RayBox>().move_ = true;
 
         ///////////////////////////////////////end
 
@@ -302,15 +299,6 @@ public class BattleFlowTest : MonoBehaviour
         }
     }
 
-
-    /// <summary>
-    /// ゲームが終了したか?
-    /// </summary>
-    /// <returns></returns>
-    public bool GetGameEnd()
-    {
-        return GameEnd;
-    }
 
     /// <summary>
     /// キャラ選択モード
@@ -776,7 +764,7 @@ public class BattleFlowTest : MonoBehaviour
 
     void PlayerAttackMode()
     {
-        //仮実装 カーソルが敵に自動で照準
+        //カーソルが敵に自動で照準
         if (!attacking)
         {
             var range_enemy = _NowChooseChar.GetComponent<PlayerAttack>().GetInAttackRangeEnemy();
@@ -1419,12 +1407,19 @@ public class BattleFlowTest : MonoBehaviour
 
         _TurnText.text = "第" + FindObjectOfType<StoryCSVReader>().GetStoryNumber() + "章 \n PlayerTurn";
 
-        foreach (var player in GameObject.FindGameObjectsWithTag("Player"))
+        foreach (var player in FindObjectsOfType<Character>())
         {
-            if (player.GetComponent<Character>()._name == "ヒュー")
+            if (player._name == "ヒュー")
             {
-                player.GetComponent<Character>()._hero = true;
-                Hero = player;
+                player._hero = true;
+                Hero = player.gameObject;
+            }
+            if(player.gameObject.GetComponent<EnemyPersonalCSV>())
+            {
+                if (player.GetComponent<EnemyPersonalCSV>().GetBossFlag())
+                {
+                    Boss = player.gameObject;
+                }
             }
         }
 
