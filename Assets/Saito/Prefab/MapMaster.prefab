@@ -75,11 +75,11 @@ MonoBehaviour:
   - {fileID: 1447706069781276, guid: c30ba2c346e42e845821ad933185d69c, type: 2}
   - {fileID: 1055318656718074, guid: de98fc5b60b7af64dba04c97b2bd71e6, type: 2}
   - {fileID: 1265769600551596, guid: fc1d6718b5ec55d4e8348fd766ec9d44, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1842369222309254, guid: 7d4bdd2edd17f064d9e94aa2687820a1, type: 2}
+  - {fileID: 1306967804695840, guid: 7a3f8c6fad2c534428af11d33ae0d8b3, type: 2}
+  - {fileID: 1025188022752370, guid: fa0005fb5ce5e4c4dbd51754fe78f211, type: 2}
+  - {fileID: 1025188022752370, guid: 580e6a7963b4df1448a7b55b9ac7672a, type: 2}
+  - {fileID: 1159494132121844, guid: c2daa864f290f914d9e50bed0edecd5f, type: 2}
   MapCSV: Stage1_Map
   AdjustmentPosX: -8
   AdjustmentPosY: 0
