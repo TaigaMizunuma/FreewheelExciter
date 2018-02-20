@@ -41,47 +41,101 @@ public class StorySwitch : MonoBehaviour
                 if (s_flag.s_bossName == "ローシーフ")
                 {
                     {
-                        s_flag.i_storyNum = 0;
-                        s_flag.StoryNumCheck();
-                        s_reader.battleEvent = true;
-                        s_reader.battleScenarioSwitch = true;
-                        s_flag.battleStoryCount[0] = 1;
+                        StoryTransition(0, 0, true, true);
                     }
                 }
             }
-            if(s_flag.battleStoryCount[1] == 0)
+            if (s_flag.battleStoryCount[1] == 0)
             {
                 if (s_flag.s_turnCount >= 4)
                 {
-                    s_flag.i_storyNum = 1;
-                    s_flag.StoryNumCheck();
-                    s_reader.battleScenarioSwitch = true;
-                    s_flag.battleStoryCount[1] = 1;
+                    StoryTransition(1, 1, false, true);
                 }
             }
-            if(s_flag.battleStoryCount[2] == 0)
+            if (s_flag.battleStoryCount[2] == 0)
             {
                 if (s_flag.g_enemyObj != null && s_flag.g_enemyObj.GetComponent<Character>()._totalhp == 0)
                 {
-                    s_flag.i_storyNum = 2;
-                    s_flag.StoryNumCheck();
-                    s_reader.battleScenarioSwitch = true;
-                    s_flag.battleStoryCount[2] = 1;
+                    StoryTransition(2, 2, false, true);
                 }
             }
         }
 
         //STAGE2
-        if(s_flag.scenarioNum == 2)
+        if (s_flag.scenarioNum == 2)
         {
+            if (s_flag.battleStoryCount[0] == 0)
+            {
+                if (s_flag.s_bossName == "イゴール" && s_flag.s_playerName == "ヒュー")
+                {
+                    StoryTransition(0, 0, true, true);
+                }
+            }
+            if (s_flag.battleStoryCount[1] == 0)
+            {
+                if (s_flag.s_bossName == "サイモン" && s_flag.s_playerName == "イゴール")
+                {
+                    StoryTransition(1, 1, true, true);
+                }
+            }
+            if (s_flag.battleStoryCount[2] == 0)
+            {
+                if (s_flag.s_bossName == "シングス")
+                {
+                    if (s_flag.s_playerName == "イゴール")
+                    {
+                        StoryTransition(2, 2, true, true);
+                    }
+                    else if (s_flag.s_playerName == "サイモン")
+                    {
+                        StoryTransition(3, 2, true, true);
+                    }
+                    else
+                    {
+                        StoryTransition(5, 2, true, true);
+                    }
 
+                }
+            }
+            if (s_flag.battleStoryCount[3] == 0)
+            {
+                if (s_flag.g_enemyObj != null && s_flag.g_enemyObj.GetComponent<Character>()._name == "シングス" && s_flag.g_enemyObj.GetComponent<Character>()._totalhp == 0) 
+                {
+                    StoryTransition(4, 3, false, true);
+                }
+            }
         }
 
         //STAGE3
         if(s_flag.scenarioNum == 3)
         {
+            if(s_flag.battleStoryCount[0] == 0)
+            {
+                if (s_flag.s_bossName == "ジャイロ" && s_flag.s_playerName == "ジェーコブ")
+                {
+                    StoryTransition(0, 0, true, true);
+                }
+            }
+            if (s_flag.battleStoryCount[1] == 0)
+            {
+                if (s_flag.s_bossName == "フライヤー")
+                {
+                    if(s_flag.s_playerName == "ジャイロ")
+                    {
 
-        }
+                        StoryTransition(1, 1, false, true);
+                    }
+                    else
+                    {
+                        StoryTransition(2, 1, false, true);
+                    }
+                }
+            }
+            if(s_flag.battleStoryCount[2] == 0)
+            {
+
+            }
+        } 
 
         //STAGE4
         if(s_flag.scenarioNum == 4)
@@ -94,6 +148,15 @@ public class StorySwitch : MonoBehaviour
         {
 
         }
+    }
+
+    void StoryTransition(int num, int count_num ,bool b_event,bool b_switch)
+    {
+        s_flag.i_storyNum = num;
+        s_flag.StoryNumCheck();
+        s_reader.battleEvent = b_event;
+        s_reader.battleScenarioSwitch = b_switch;
+        s_flag.battleStoryCount[count_num] = 1;
     }
 
 }

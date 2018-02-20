@@ -79,7 +79,7 @@ public class BattleFlowTest : MonoBehaviour
     public GameObject Shousai;//詳細ステータス
 
     //ゲーム進行フラグ
-    bool GameEnd = false;
+    public bool GameEnd = false;
     public bool GameStart = false;
 
     public bool Pause;//ゲーム中に一時進行ストップ

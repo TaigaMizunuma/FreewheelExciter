@@ -421,21 +421,23 @@ public class StoryCSVReader : MonoBehaviour
                             FindObjectOfType<BattleFlowTest>().PlayerAttack(FindObjectOfType<BattleFlowTest>()._NowCounterChara);
                             battleEvent = false;
                         }
+                        if (FindObjectOfType<BattleFlowTest>().GameEnd == true)
+                        {
+                            FindObjectOfType<GameRequirement>().GameClear();
+                        }
                         
                     }
                 }
             }
         }
 
-        if (!GameObject.FindGameObjectWithTag("Enemy"))
+        if (FindObjectOfType<BattleFlowTest>().Boss != null && FindObjectOfType<BattleFlowTest>().Boss.GetComponent<Character>()._totalhp <= 0)
         {
             {
                 nextStory = storyCSVDatas[1][13];
                 storyNumber = int.Parse(storyCSVDatas[2][0]);
                 s_title = storyCSVDatas[2][17];
                 dataLoadName = nextStory;
-                readStartNumber = nextreadStartNumber;
-                readEndNumber = nextreadEndNumber;
             }
         }
         else if (!GameObject.FindGameObjectWithTag("Player"))
