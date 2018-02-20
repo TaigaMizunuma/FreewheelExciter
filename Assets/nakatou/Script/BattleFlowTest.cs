@@ -147,25 +147,30 @@ public class BattleFlowTest : MonoBehaviour
 
         if (GameEnd) return;//ゲーム終了
 
-        ////////////////会話用ポーズ仮
-        if (Input.GetKeyDown(KeyCode.D))
+        /////////////////////////会話用ポーズ仮
+        if (FindObjectOfType<StoryCSVReader>().battleScenarioSwitch && !FindObjectOfType<StoryCSVReader>().battleEvent)
         {
-            Pause = !Pause;
-            if(FindObjectOfType<EventSystem>().sendNavigationEvents == false)
-            {
-                FindObjectOfType<EventSystem>().sendNavigationEvents = true;
-            }
+            //Pause = !Pause;
+            Pause = true;
         }
+        else
+        {
+            Pause = false;
+        }
+
         if (Pause)
         {
             FindObjectOfType<MenuManager>().SetMainControlFlag(true);
-            if(FindObjectOfType<SubMenuRenderer>().gameObject.activeInHierarchy)
-            {
-                FindObjectOfType<EventSystem>().sendNavigationEvents = false;
-            }
+
             rayBox.GetComponent<RayBox>().move_ = false;
+
             return;
         }
+
+        //FindObjectOfType<MenuManager>().SetMainControlFlag(false);
+        //FindObjectOfType<EventSystem>().sendNavigationEvents = true;
+        //rayBox.GetComponent<RayBox>().move_ = true;
+
         ///////////////////////////////////////end
 
 
