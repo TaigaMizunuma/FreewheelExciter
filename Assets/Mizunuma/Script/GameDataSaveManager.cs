@@ -114,10 +114,17 @@ public class GameDataSaveManager : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             DataClear();
-        }   
+        }
+        if (SaveData.HasKey("GameSaveCheck") == false)
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                TitleCommand();
+            }
+        }
     }
     /// <summary>
     /// TextGetComponent
@@ -484,6 +491,13 @@ public class GameDataSaveManager : MonoBehaviour
             SaveDataDeleteFlag = false;
             m_Animation3.Stop();
         }
+    }
+
+    public void TitleCommand()
+    {
+        FindObjectOfType<Fade>().SetOutFade(true);
+        FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+        FindObjectOfType<Fade>().SetScene("Title");
     }
 }
 
