@@ -32,6 +32,8 @@ public class EnemyPersonalCSV : MonoBehaviour
     int e_drop;
     //ストーリーに関わる敵の判定
     int storyCount;
+    //ボス判定に関わる判定
+    int bossCount;
     //アイテムリスト、自分のものが入る
     [SerializeField]
     GameObject itemList;
@@ -41,6 +43,9 @@ public class EnemyPersonalCSV : MonoBehaviour
 
     //ストーリーに関わる敵の判定をbool化したもの
     bool e_storyFlag;
+
+    //ボスかどうか(倒したらクリアになるか)
+    bool e_bossFlag;
 
 
     void Awake()
@@ -111,33 +116,71 @@ public class EnemyPersonalCSV : MonoBehaviour
         {
             e_storyFlag = true;
         }
+
+        if (bossCount == 0)
+        {
+            e_bossFlag = false;
+        }
+        else
+        {
+            e_bossFlag = true;
+        }
             
         s_character.Enemy_Init();
         
     }
 
+    /// <summary>
+    /// 敵の名前の取得
+    /// </summary>
+    /// <returns></returns>
     public string GetName()
     {
         return e_name;
     }
 
+    /// <summary>
+    /// 敵のジョブの取得
+    /// </summary>
+    /// <returns></returns>
     public string GetJob()
     {
         return e_job;
     }
 
+    /// <summary>
+    /// 敵の強さ取得(使ってる?)
+    /// </summary>
+    /// <returns></returns>
     public string GetStrength()
     {
         return e_strength;
     }
 
+    /// <summary>
+    /// アイテムを敵が落とすかの取得
+    /// </summary>
+    /// <returns></returns>
     public bool GetDropFlag()
     {
         return e_dropFlag;
     }
 
+    /// <summary>
+    /// 敵がストーリーを再生するかどうかの取得
+    /// </summary>
+    /// <returns></returns>
     public bool GetStoryFlag()
     {
         return e_storyFlag;
+    }
+
+    /// <summary>
+    /// ボスのフラグ取得
+    /// </summary>
+    /// <returns></returns>
+    public bool GetBossFlag()
+    {
+        return e_bossFlag;
     }
 }
