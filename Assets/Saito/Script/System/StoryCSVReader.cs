@@ -316,7 +316,7 @@ public class StoryCSVReader : MonoBehaviour
         {
             if (endFlag == 0)
             {
-                if (Input.GetKeyDown(KeyCode.U))
+                if (Input.GetKeyDown(KeyCode.U) || Input.GetButtonDown("O")) 
                 {
                     storyID += 1;
                     endFlag = int.Parse(storyCSVDatas[storyID + 1][12]);
@@ -335,7 +335,7 @@ public class StoryCSVReader : MonoBehaviour
                     CharacterImageDisplay();
                 }
 
-                if (Input.GetKeyDown(KeyCode.O))
+                if (Input.GetKeyDown(KeyCode.O) || Input.GetButtonDown("□"))  
                 {
                     if (scenePattern == ScenePattern.Message)
                     {
@@ -350,7 +350,7 @@ public class StoryCSVReader : MonoBehaviour
             }
             if (endFlag == 1)
             {
-                if (Input.GetKeyDown(KeyCode.U))
+                if (Input.GetKeyDown(KeyCode.U) || Input.GetButtonDown("O"))
                 {
                     if (scenePattern == ScenePattern.Message)
                     {
@@ -392,7 +392,7 @@ public class StoryCSVReader : MonoBehaviour
             {
                 if(storyID != readEndNumber)
                 {
-                    if (Input.GetKeyDown(KeyCode.U))
+                    if (Input.GetKeyDown(KeyCode.U) || Input.GetButtonDown("O"))
                     {
                         storyID += 1;
                         storyCharacterName = storyCSVDatas[storyID + 1][2];
@@ -412,7 +412,7 @@ public class StoryCSVReader : MonoBehaviour
                 }
                 else if (storyID == readEndNumber)
                 {
-                    if (Input.GetKeyDown(KeyCode.U))
+                    if (Input.GetKeyDown(KeyCode.U) || Input.GetButtonDown("O"))
                     {
                         messageWindow.SetActive(false);
                         battleScenarioSwitch = false;

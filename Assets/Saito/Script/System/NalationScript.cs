@@ -164,7 +164,7 @@ public class NalationScript : MonoBehaviour {
     {
         if(s_fade.isFadeIn == false) 
         {
-            if (Input.GetKeyDown(KeyCode.U))
+            if (Input.GetKeyDown(KeyCode.U) || Input.GetButtonDown("O"))
             {
                 if(nalTitleFlag == false)
                 {

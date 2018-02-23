@@ -100,6 +100,8 @@ public class BattleFlowTest : MonoBehaviour
     //主人公オブジェクト
     GameObject Hero;
 
+    float InputTimer = 0;
+
     void Awake()
     {
         PlayerRedGage = GameObject.Find("playerDamageGage");
@@ -204,6 +206,8 @@ public class BattleFlowTest : MonoBehaviour
         {
             rayBox.GetComponent<RayBox>().move_ = false;
         }
+
+        InputTimer += Time.deltaTime;
 
         //遷移
         switch (state_)
@@ -485,7 +489,7 @@ public class BattleFlowTest : MonoBehaviour
                 _NowChooseChar.GetComponent<PlayerAttack>().RangeSerchDesp();
             }
 
-            if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
+            if (Input.GetAxis("AxisY") == -1)
             {
                 if (count == UIs.Count - 1) return;
                 count++;
@@ -604,12 +608,12 @@ public class BattleFlowTest : MonoBehaviour
             SetumeiWindow.transform.FindChild("Setumei").GetComponent<Text>().text =
                 UIs[count].GetComponent<UIsText>()._message;
 
-            if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
+            if (Input.GetAxis("AxisY") == 1)
             {
                 if (count == 0) return;
                 count--;
             }
-            if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
+            if (Input.GetAxis("AxisY") == -1)
             {
                 if (count == UIs.Count - 1) return;
                 count++;
@@ -711,12 +715,12 @@ public class BattleFlowTest : MonoBehaviour
             SetumeiWindow.transform.FindChild("Setumei").GetComponent<Text>().text =
                 UIs[count].GetComponent<UIsText>()._message;
 
-            if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1)
+            if (Input.GetAxis("AxisY") == 1)
             {
                 if (count == 0) return;
                 count--;
             }
-            if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
+            if (Input.GetAxis("AxisY") == -1)
             {
                 if (count == UIs.Count - 1) return;
                 count++;
@@ -770,8 +774,10 @@ public class BattleFlowTest : MonoBehaviour
         {
             var range_enemy = _NowChooseChar.GetComponent<PlayerAttack>().GetInAttackRangeEnemy();
 
-            if (Input.GetAxis("AxisY") == 1 || Input.GetAxis("Vertical") == 1 || Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetAxis("AxisY") == 1 || Input.GetKeyDown(KeyCode.UpArrow))
             {
+                if (InputTimer <= 0.5f) return;
+
                 if (count == 0)
                 {
                     count = range_enemy.Count - 1;
@@ -780,9 +786,12 @@ public class BattleFlowTest : MonoBehaviour
                 {
                     count--;
                 }
+                InputTimer = 0;
             }
-            if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1 || Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetAxis("AxisY") == -1 || Input.GetKeyDown(KeyCode.DownArrow))
             {
+                if (InputTimer <= 0.5f) return;
+
                 if (count == range_enemy.Count - 1)
                 {
                     count = 0;
@@ -791,6 +800,7 @@ public class BattleFlowTest : MonoBehaviour
                 {
                     count++;
                 }
+                InputTimer = 0;
             }
             
             var pos = range_enemy[count].transform.position;
