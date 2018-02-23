@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
@@ -17,7 +16,7 @@ public class AudioManager : MonoBehaviour
     private Dictionary<string, int> seIndexes = new Dictionary<string, int>();
     private Dictionary<string, int> bgmIndexes = new Dictionary<string, int>();
 
-    public float bgmvolume =0;
+    public float bgmvolume =1;
     public float sevolume =1;
 
     void Start()

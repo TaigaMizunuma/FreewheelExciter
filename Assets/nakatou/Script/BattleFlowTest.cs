@@ -363,7 +363,7 @@ public class BattleFlowTest : MonoBehaviour
     void MoveMode()
     {
         //キャンセル
-        if (Input.GetKeyDown(KeyCode.X) && state_ == State_.move_mode)
+        if ((Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("X")) && state_ == State_.move_mode) 
         {
             GameObject[] obj = GameObject.FindGameObjectsWithTag("Floor");
             foreach (GameObject g in obj)
@@ -383,7 +383,7 @@ public class BattleFlowTest : MonoBehaviour
     void ActionMode()
     {
         //キャンセル
-        if (Input.GetKeyDown(KeyCode.X) && state_ == State_.action_mode)
+        if ((Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("X")) && state_ == State_.action_mode)
         {
             _NowChooseChar.GetComponent<Move_System>().GetNowPos().GetComponent<Square_Info>().ResetChara();
             _NowChooseChar.transform.position = MoveStartPos;
@@ -503,7 +503,7 @@ public class BattleFlowTest : MonoBehaviour
             }
 
             //キャンセル
-            if (Input.GetKeyDown(KeyCode.X) && state_ == State_.weapon_mode)
+            if ((Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("X")) && state_ == State_.weapon_mode)
             {
                 foreach (var obj in UIs)
                 {
@@ -619,7 +619,7 @@ public class BattleFlowTest : MonoBehaviour
             }
 
             //キャンセル
-            if (Input.GetKeyDown(KeyCode.X) && state_ == State_.skill_mode)
+            if ((Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("X")) && state_ == State_.skill_mode)
             {
                 foreach (var obj in UIs)
                 {
@@ -726,7 +726,7 @@ public class BattleFlowTest : MonoBehaviour
             }
 
             //キャンセル
-            if (Input.GetKeyDown(KeyCode.X) && state_ == State_.item_mode)
+            if ((Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("X")) && state_ == State_.item_mode)
             {
                 foreach (var obj in UIs)
                 {
@@ -797,7 +797,7 @@ public class BattleFlowTest : MonoBehaviour
             rayBox.transform.position = pos;
 
             //キャンセル
-            if (Input.GetKeyDown(KeyCode.X) && !attacking)
+            if ((Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("X")) && !attacking)
             {
                 count = 0;
                 //選択キャラの攻撃可能状態を解除
