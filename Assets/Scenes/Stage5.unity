@@ -470,10 +470,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 137716169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eba688347dfee84d89fd92c8211e102, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a6c36000e23f1b48bbf9a4133003008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textTest: 0
+--- !u!114 &137716173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 137716169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dfdd0af8d11d8549af8fc05f7efdb9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scenarioNum: 5
+  scnarioBattleStartNum: 0c0000001b0000001a0000001e000000
+  scnarioEndNum: 190000001c0000001a0000001e000000
+  s_turnCount: 0
+  battleStoryCount: 000000000000000000000000
+  s_bossName: 
+  s_playerName: 
+  g_enemyObj: {fileID: 0}
+  i_storyNum: 0
 --- !u!1 &162826094
 GameObject:
   m_ObjectHideFlags: 0

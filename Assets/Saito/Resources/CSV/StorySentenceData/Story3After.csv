@@ -1,14 +1,14 @@
-StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation,NalOnOff
-4,0,�q���[,�t�@�C�A�t���C�c�������킢�������c,0,0,0,1,ON,OFF,OFF,OFF,0,Story4Before,0,12,0,�Ǘ��̗�,SaveData,Boss,3,2,0
-4,1,�A�C��,�����3�ڂ���,0,0,0,1,SHADE,OFF,OFF,ON,0,,0,0,,�Ǘ��̗�,,,,,
-4,2,�q���[,��������,0,0,0,1,ON,OFF,OFF,SHADE,0,,0,0,,�Ǘ��̗�,,,,,
-4,3,�q���[,���񂽁A�������傤�ǂ����G��m��Ȃ���,0,0,0,1,ON,OFF,OFF,SHADE,0,,0,0,,�Ǘ��̗�,,,,,
-4,4,�W���C��,�c���̊X�Ȃ�,0,0,0,8,SHADE,OFF,OFF,ON,0,,0,0,,�Ǘ��̗�,,,,,
-4,5,�L�[�X,�c���̊X��,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,�Ǘ��̗�,,,,,
-4,6,�q���[,�Ȃ񂾁H�ǂ̊X���H,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,�Ǘ��̗�,,,,,
-4,7,�L�[�X,�c���[�}�j�A�ōł��C�J�ꂽ�X,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,�Ǘ��̗�,,,,,
-4,8,�L�[�X,�������ɂ����͍s�������Ȃ��������c,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,�Ǘ��̗�,,,,,
-4,9,�q���[,�Ȃ�ŁH,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,�Ǘ��̗�,,,,,
-4,10,�L�[�X,�����͉������܂������ꏊ�B�s���Ȃ�ē����邺,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,�Ǘ��̗�,,,,,
-4,11,�q���[,�c���ɂ��Ă��Ȃ��B�L�[�X�A����,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,�Ǘ��̗�,,,,,
-4,12,�L�[�X,�C���ȁB���Ƃ���t�@�C�A�t���C�̃��c��,0,0,2,8,SHADE,OFF,ON,SHADE,1,,0,0,,�Ǘ��̗�,,,,,
+﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation,NalOnOff
+4,0,ヒュー,ファイアフライ…厳しい戦いだった…,0,0,0,1,ON,OFF,OFF,OFF,0,Story4Before,0,12,0,孤立の涙,SaveData,Boss,3,2,0
+4,1,アイン,これで3つ目だな,0,0,0,1,SHADE,OFF,OFF,ON,0,,0,0,,孤立の涙,,,,,
+4,2,ヒュー,そうだな,0,0,0,1,ON,OFF,OFF,SHADE,0,,0,0,,孤立の涙,,,,,
+4,3,ヒュー,あんた、何かちょうどいい敵を知らないか,0,0,0,1,ON,OFF,OFF,SHADE,0,,0,0,,孤立の涙,,,,,
+4,4,ジャイロ,…あの街なら,0,0,0,8,SHADE,OFF,OFF,ON,0,,0,0,,孤立の涙,,,,,
+4,5,キース,…あの街か,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,,,
+4,6,ヒュー,なんだ？どの街だ？,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,孤立の涙,,,,,
+4,7,キース,…ローマニアで最もイカれた街,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,,,
+4,8,キース,あそこにだけは行きたくなかったが…,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,,,
+4,9,ヒュー,なんで？,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,孤立の涙,,,,,
+4,10,キース,そこは俺が生まれ育った場所。行くなら案内するぜ,0,0,2,8,SHADE,OFF,ON,SHADE,0,,0,0,,孤立の涙,,,,,
+4,11,ヒュー,…他にあてもない。キース、頼む,0,0,2,8,ON,OFF,SHADE,SHADE,0,,0,0,,孤立の涙,,,,,
+4,12,キース,任せな。あとこれファイアフライのヤツな,0,0,2,8,SHADE,OFF,ON,SHADE,1,,0,0,,孤立の涙,,,,,

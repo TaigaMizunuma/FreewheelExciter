@@ -29,9 +29,21 @@ public class StorySwitch : MonoBehaviour
         //チュートリアル
         if(s_flag.scenarioNum == 0)
         {
-
+            if (s_flag.battleStoryCount[0] == 0)
+            {
+                if (s_flag.s_bossName == "キース")
+                {
+                    StoryTransition(0, 0, true, true);
+                }
+            }
+            if(s_flag.battleStoryCount[1] == 0)
+            {
+                if (s_flag.g_enemyObj != null && s_flag.g_enemyObj.GetComponent<Character>()._totalhp == 0)
+                {
+                    StoryTransition(1, 1, false, true);
+                }
+            }
         }
-
 
         //STAGE1
         if (s_flag.scenarioNum == 1)
@@ -94,7 +106,6 @@ public class StorySwitch : MonoBehaviour
                     {
                         StoryTransition(5, 2, true, true);
                     }
-
                 }
             }
             if (s_flag.battleStoryCount[3] == 0)
@@ -123,30 +134,84 @@ public class StorySwitch : MonoBehaviour
                     if(s_flag.s_playerName == "ジャイロ")
                     {
 
-                        StoryTransition(1, 1, false, true);
+                        StoryTransition(1, 1, true, true);
                     }
                     else
                     {
-                        StoryTransition(2, 1, false, true);
+                        StoryTransition(2, 1, true, true);
                     }
                 }
             }
             if(s_flag.battleStoryCount[2] == 0)
             {
-
+                if (s_flag.g_enemyObj != null && s_flag.g_enemyObj.GetComponent<Character>()._name == "フライヤー" && s_flag.g_enemyObj.GetComponent<Character>()._totalhp == 0)
+                {
+                    StoryTransition(3, 2, false, true);
+                }
             }
         } 
 
         //STAGE4
         if(s_flag.scenarioNum == 4)
         {
-
+            if(s_flag.battleStoryCount[0] == 0)
+            {
+                if (s_flag.s_bossName == "フウスイ")
+                {
+                    if(s_flag.s_playerName == "フィーナ")
+                    {
+                        StoryTransition(0, 0, true, true);
+                    }
+                    else if (s_flag.s_playerName == "ヴィック")
+                    {
+                        StoryTransition(1, 0, true, true);
+                    }
+                    else
+                    {
+                        StoryTransition(2, 0, true, true);
+                    }
+                }
+            }
+            if (s_flag.battleStoryCount[1] == 0)
+            {
+                if (s_flag.g_enemyObj != null && s_flag.g_enemyObj.GetComponent<Character>()._name == "フウスイ" && s_flag.g_enemyObj.GetComponent<Character>()._totalhp == 0)
+                {
+                    StoryTransition(3, 1, false, true);
+                }
+            }
         }
 
         //STAGE5
-        if(s_flag.scenarioNum == 5)
+        if (s_flag.scenarioNum == 5)
         {
-
+            if(s_flag.battleStoryCount[0] == 0)
+            {
+                if (s_flag.s_bossName == "レア" && s_flag.s_playerName == "ヒュー")
+                {
+                    StoryTransition(0, 0, true, true);
+                }
+            }
+            if(s_flag.battleStoryCount[1] == 0)
+            {
+                if (s_flag.s_bossName == "フウスイ")
+                {
+                    if (s_flag.s_playerName == "レア")
+                    {
+                        StoryTransition(1, 1, true, true);
+                    }
+                    else
+                    {
+                        StoryTransition(2, 1, true, true);
+                    }
+                }
+            }
+            if (s_flag.battleStoryCount[2] == 0)
+            {
+                if (s_flag.g_enemyObj != null && s_flag.g_enemyObj.GetComponent<Character>()._name == "ガードン" && s_flag.g_enemyObj.GetComponent<Character>()._totalhp == 0)
+                {
+                    StoryTransition(3, 2, false, true);
+                }
+            }
         }
     }
 

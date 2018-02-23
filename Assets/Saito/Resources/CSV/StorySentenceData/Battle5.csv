@@ -1,33 +1,33 @@
-StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation,NalOnOff,NameLR
-5,0,,�c�N���҂�����܂���,11,0,0,16,ON,OFF,OFF,OFF,0,Story5After,10,10,1,�ْ[����̔���,Story,Boss,5,4,0,0
-1,1,�K�[�h��,�E�ҕ������A�����̃o�J���c�ǂ���ɂ����炪��邱�Ƃ͈��,11,0,0,16,SHADE,OFF,OFF,ON,0,Story5Before,10,10,,�Ԍ��A���M,,,,,,1
-,2,�K�[�h��,�l�Y�~��C�A������ʂ��킯�ɂ͂������,11,0,0,16,SHADE,OFF,OFF,ON,0,,10,10,,,,,,,,1
-,3,�K�[�h��,�����̔z�u�͂ł��Ă��邩�H,11,0,0,16,SHADE,OFF,OFF,ON,0,,10,10,,,,,,,,1
-,4,,��肠��܂���B�����A�ŋߓ������ق��̃X�i�C�p�[�ł���,11,0,0,16,ON,OFF,OFF,SHADE,0,,10,10,,,,,,,,0
-,5,�K�[�h��,�����A�嗤��Ƃ����̂��邠�ꂩ�@���ꂪ�ǂ������̂�,11,0,0,16,OFF,OFF,OFF,ON,0,,10,10,,,,,,,,1
-,6,,���܂�d���ɂ��C���Ȃ��悤��,11,0,0,16,ON,OFF,OFF,SHADE,0,,10,10,,,,,,,,0
-,7,�K�[�h��,�c��������ł͎n������΂��������̘b���A�����s���I,11,0,0,16,SHADE,OFF,OFF,ON,0,,10,10,,,,,,,,1
-,8,�U�R,�͂�,11,0,0,16,ON,OFF,OFF,SHADE,0,,10,10,,,,,,,,0
-,9,�K�[�h��,�c���āA�v�X�̐킩,11,0,0,16,ON,OFF,OFF,OFF,0,,10,10,,,,,,,,0
-,10,���A,�Â��ăW���W���A����ȂƂ��œ����Ȃ�āc,0,0,0,17,OFF,OFF,OFF,ON,0,,12,12,,,,,,,,1
-,11,���A,�嗤��̖����������Ă�,0,0,0,17,OFF,OFF,OFF,ON,0,,12,12,,,,,,,,1
-,12,���A,���񂽂��N���ҁH,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
-,13,�q���[,�N�����O,0,0,0,17,ON,OFF,OFF,OFF,0,,26,26,,,,,,,,0
-,14,���A,���͑嗤��̈ÎE�ҁA���A�@�m��Ȃ��́H,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
-,15,�q���[,�c�m��˂��A���������嗤���ĂȂ�,0,0,0,17,ON,OFF,OFF,OFF,0,,26,26,,,,,,,,0
-,16,���A,�c�e�g���Ŏ���m��Ȃ����ă��O���H,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
-,17,���A,�܂������B���񂽁A�����ق��C�͂Ȃ��H,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
-,18,�q���[,�c��͂�������̂͊�������,0,0,0,17,ON,OFF,OFF,SHADE,0,,26,26,,,,,,,,0
-,19,���A,���񂽂����A�n�C�����h��ڎw����ł���,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
-,20,���A,�������[�Ȃ́@�ړI�������Ȃ狦�͂����ق�������,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
-,21,�q���[,�܂��B���Ȃ璅������A�e��������炦��Ǝv������,0,0,0,17,ON,OFF,OFF,SHADE,0,,26,26,,,,,,,,0
-,22,���A,�e���H,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
-,23,�q���[,���i�[�h�E�G���@���X�B�m���̂��H,0,0,0,17,ON,OFF,OFF,SHADE,0,,26,26,,,,,,,,0
-,24,���A,�����H���Ă��Ƃ͂��񂽂́c,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
-,25,���A,�I�[�P�[�A���Ⴀ�㕥���ŁB��낵�����ނ�,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
-,26,�K�[�h��,�����𔲂�����肩�H�@�Ȃ炱�̎���|���Ă݂�I,0,0,0,16,OFF,OFF,OFF,ON,0,,27,27,,,,,,,,1
-,27,�K�[�h��,�t���A��͂藠�؂������I���ꂾ����h���͐M�p�Ȃ��,17,0,0,16,SHADE,OFF,OFF,ON,0,,30,30,,,,,,,,1
-,28,���A,����[���Ȃ��Ƃ�����P�����āA����Ȃ�̒n�ʂŖ�������悤�Ȑl�Ԃ���Ȃ�����,17,0,0,16,ON,OFF,OFF,SHADE,0,,30,30,,,,,,,,1
-,29,���A,�嗤��̗́A�v���m�邪�ǂ��I,17,0,0,16,ON,OFF,OFF,SHADE,0,,30,30,,,,,,,,0
-,30,�K�[�h��,���b�c�����s��邩�c�����A���̒��x�ł͂��O�����́c�����Ɏ��ʁI�n���ő҂��Ă��邼�I,0,0,0,16,OFF,OFF,OFF,ON,1,,0,30,,,,,,,,0
+﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation,NalOnOff,NameLR
+5,0,,…侵入者が現れました,11,0,0,16,ON,OFF,OFF,OFF,0,Story5After,10,10,1,異端からの反撃,Story,Boss,5,4,0,0
+1,1,ガードン,勇者紛いか、ただのバカか…どちらにせよ我らがやることは一つ,11,0,0,16,SHADE,OFF,OFF,ON,0,Story5Before,10,10,,赤光、白熱,,,,,,1
+,2,ガードン,ネズミ一匹、ここを通すわけにはいかんな,11,0,0,16,SHADE,OFF,OFF,ON,0,,10,10,,,,,,,,1
+,3,ガードン,部下の配置はできているか？,11,0,0,16,SHADE,OFF,OFF,ON,0,,10,10,,,,,,,,1
+,4,,問題ありません。ただ、最近入った雇われのスナイパーですが,11,0,0,16,ON,OFF,OFF,SHADE,0,,10,10,,,,,,,,0
+,5,ガードン,ああ、大陸一とか自称するあれか　それがどうしたのだ,11,0,0,16,OFF,OFF,OFF,ON,0,,10,10,,,,,,,,1
+,6,,あまり仕事にやる気がないようで,11,0,0,16,ON,OFF,OFF,SHADE,0,,10,10,,,,,,,,0
+,7,ガードン,…働き次第では始末すればいいだけの話だ、もう行け！,11,0,0,16,SHADE,OFF,OFF,ON,0,,10,10,,,,,,,,1
+,8,ザコ,はっ,11,0,0,16,ON,OFF,OFF,SHADE,0,,10,10,,,,,,,,0
+,9,ガードン,…さて、久々の戦か,11,0,0,16,ON,OFF,OFF,OFF,0,,10,10,,,,,,,,0
+,10,レア,暗くてジメジメ、こんなとこで働くなんて…,0,0,0,17,OFF,OFF,OFF,ON,0,,12,12,,,,,,,,1
+,11,レア,大陸一の名が泣くってね,0,0,0,17,OFF,OFF,OFF,ON,0,,12,12,,,,,,,,1
+,12,レア,あんたが侵入者？,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
+,13,ヒュー,誰だお前,0,0,0,17,ON,OFF,OFF,OFF,0,,26,26,,,,,,,,0
+,14,レア,私は大陸一の暗殺者、レア　知らないの？,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
+,15,ヒュー,…知らねえ、そもそも大陸ってなんだ,0,0,0,17,ON,OFF,OFF,OFF,0,,26,26,,,,,,,,0
+,16,レア,…銃使いで私を知らないってモグリ？,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
+,17,レア,まあいい。あんた、私を雇う気はない？,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
+,18,ヒュー,…戦力が増えるのは嬉しいが,0,0,0,17,ON,OFF,OFF,SHADE,0,,26,26,,,,,,,,0
+,19,レア,あんたたち、ハイランドを目指すんでしょ,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
+,20,レア,私もそーなの　目的が同じなら協力したほうがいい,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
+,21,ヒュー,まあ。金なら着いた後、親父からもらえると思うけど,0,0,0,17,ON,OFF,OFF,SHADE,0,,26,26,,,,,,,,0
+,22,レア,親父？,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
+,23,ヒュー,レナード・エヴァンス。知らんのか？,0,0,0,17,ON,OFF,OFF,SHADE,0,,26,26,,,,,,,,0
+,24,レア,えっ？ってことはあんたは…,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
+,25,レア,オーケー、じゃあ後払いで。よろしく頼むわ,0,0,0,17,SHADE,OFF,OFF,ON,0,,26,26,,,,,,,,1
+,26,ガードン,ここを抜けるつもりか？　ならこの私を倒してみろ！,0,0,0,16,OFF,OFF,OFF,ON,0,,27,27,,,,,,,,1
+,27,ガードン,フン、やはり裏切ったか！これだから派遣は信用ならん,17,0,0,16,SHADE,OFF,OFF,ON,0,,30,30,,,,,,,,1
+,28,レア,しょーもないところに膠着して、それなりの地位で満足するような人間じゃないから,17,0,0,16,ON,OFF,OFF,SHADE,0,,30,30,,,,,,,,1
+,29,レア,大陸一の力、思い知るが良い！,17,0,0,16,ON,OFF,OFF,SHADE,0,,30,30,,,,,,,,0
+,30,ガードン,ぐッ…私が敗れるか…だが、その程度ではお前たちは…すぐに死ぬ！地獄で待っているぞ！,0,0,0,16,OFF,OFF,OFF,ON,1,,0,30,,,,,,,,0
 ,,,,,,,,,,,,,,,,,,,,,,,1

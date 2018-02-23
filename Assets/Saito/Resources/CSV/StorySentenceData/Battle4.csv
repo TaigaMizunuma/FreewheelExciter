@@ -1,43 +1,43 @@
-StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation,NalOnOff,NameLR
-4,0,�L�[�X,������,1,2,0,15,OFF,ON,OFF,SHADE,0,Story4After,5,5,1,�Ǘ��̗�,Story,Boss,4,3,0,0
-5,1,�q���[,�c�̂����Ȃ̂��\��Ă�ȁB���ꂪ���̊X�̃{�X���H,0,2,0,15,ON,OFF,OFF,SHADE,0,Story4Before,5,5,,�ْ[����̔���,,,,,,0
-,2,�L�[�X,�������B�c�܂���������|���C���H��߂Ƃ����ق����c,0,2,0,15,SHADE,ON,OFF,SHADE,0,,5,5,,,,,,,,0
-,3,�q���[,�����|���΁A�n�C�����h�������Ă���C������,0,2,0,15,ON,OFF,OFF,SHADE,0,,5,5,,,,,,,,0
-,4,�L�[�X,�c����[�ˁ[�A��邩,0,2,0,15,SHADE,ON,OFF,SHADE,0,,5,5,,,,,,,,0
-,5,,�c��H�Ȃ񂾂�����I�@�Ƃ肠�����t�E�X�C�l�ɓ`����[�I,0,0,0,11,OFF,OFF,OFF,ON,0,,7,7,,,,,,,,1
-,6,,���Ƒ����̗v���I,0,0,0,11,OFF,OFF,OFF,ON,0,,7,7,,,,,,,,1
-,7,,���B�b�N�I�G�����I���̕��Ńt�E�X�C�l�̂��߂ɐ킦�I,11,0,0,5,SHADE,OFF,OFF,ON,0,,19,19,,,,,,,,1
-,8,���B�b�N,�G�͂ǂ�ȃ��c��,11,0,0,10,ON,OFF,OFF,SHADE,0,,19,19,,,,,,,,0
-,9,,�m��񂪁c�O�o�b,11,0,0,10,ON,OFF,OFF,SHADE,0,,19,19,,,,,,,,0
-,10,���B�b�N,�c�����A������Ă񂾁H,11,9,0,10,SHADE,SHADE,OFF,ON,0,,19,19,,,,,,,,1
-,11,�t�B�[�i,������̓G���Ă��Ƃ́A�����������玄�����̖����ɂȂ��Ă����l��������,11,9,0,10,SHADE,ON,OFF,SHADE,0,,19,19,,,,,,,,0
-,13,���B�b�N,���[��c,11,9,0,10,SHADE,SHADE,OFF,ON,0,,19,19,,,,,,,,1
-,14,,����������e�����c�I�@���O�A�܂����I,11,9,0,10,ON,SHADE,OFF,SHADE,0,,19,19,,,,,,,,0
-,15,�t�B�[�i,�������Ȃ������̎x�z�͎󂯂Ȃ��c�t�E�X�C��|���ĊX���~���I,11,9,0,10,SHADE,ON,OFF,SHADE,0,,19,19,,,,,,,,1
-,16,,�Ȃ񂾂ƁI�@�����A�t�E�X�C�l�ɕ񍐂��I,11,9,0,10,ON,SHADE,OFF,SHADE,0,,19,19,,,,,,,,0
-,17,���B�b�N,��邵���˂����B,11,9,0,10,OFF,SHADE,OFF,ON,0,,19,19,,,,,,,,1
-,18,�t�B�[�i,�Ƃ肠�����A�������Ő���Ă�l�ƍ������悤�I,11,9,0,10,OFF,ON,OFF,SHADE,0,,19,19,,,,,,,,0
-,19,�t�B�[�i,���I,2,0,0,9,SHADE,OFF,OFF,ON,0,,28,28,,,,,,,,1
-,20,�L�[�X,�c�N�����O�@�����͂��삳�񂪗���Ƃ�����ˁ[��,2,0,0,9,ON,OFF,OFF,SHADE,0,,28,28,,,,,,,,0
-,21,�t�B�[�i,�L�[�X�ł���I�@�t�B�[�i��A�o���ĂȂ��́H,2,0,0,9,SHADE,OFF,OFF,ON,0,,28,28,,,,,,,,1
-,22,�L�[�X,�c�ŁA�Ȃ�ł��O���e���H�����E���C���H,2,0,0,9,ON,OFF,OFF,SHADE,0,,28,28,,,,,,,,0
-,23,�t�B�[�i,�Ⴄ��I�t�E�X�C��|�����߈ȊO�Ȃɂ�������Ă����́H,2,0,0,9,SHADE,OFF,OFF,ON,0,,28,28,,,,,,,,1
-,24,�L�[�X,���O�ɂ͖������B���ƂɉB��Ă�,2,0,0,9,ON,OFF,OFF,SHADE,0,,28,28,,,,,,,,0
-,25,�t�B�[�i,�����l��������������c,2,0,0,9,SHADE,OFF,OFF,ON,0,,28,28,,,,,,,,0
-,26,�L�[�X,�c�́H,2,0,0,9,ON,OFF,OFF,SHADE,0,,28,28,,,,,,,,1
-,27,�t�B�[�i,���v�I�@�L�[�X�����Ȃ��Ԃɋ����Ȃ�������I�@���ꂩ���낵���I,2,0,0,9,SHADE,OFF,OFF,ON,0,,28,28,,,,,,,,0
-,28,�L�[�X,�����Ă₪������,2,0,0,10,ON,OFF,OFF,SHADE,0,,36,36,,,,,,,,1
-,29,���B�b�N,���߂����ȁB���݂����^���������Ƃ�,2,0,0,10,SHADE,OFF,OFF,ON,0,,36,36,,,,,,,,0
-,30,�L�[�X,�c�ŁA��������ŕ��Ȃ񂩎����Ă�@�ǂ�������,2,0,0,10,ON,OFF,OFF,SHADE,0,,36,36,,,,,,,,1
-,31,���B�b�N,��̋G�߂������,2,0,0,10,SHADE,OFF,OFF,ON,0,,36,36,,,,,,,,0
-,32,�L�[�X,�A���Ȃ�Ĉ���Ă˂�����,2,0,0,10,ON,OFF,OFF,SHADE,0,,36,36,,,,,,,,0
-,33,���B�b�N,��Ă邽�߂Ɉ��̍���������킯��,2,0,0,10,SHADE,OFF,OFF,ON,0,,36,36,,,,,,,,1
-,34,�L�[�X,�Ȃ�قǂ�,2,0,0,10,ON,OFF,OFF,SHADE,0,,36,36,,,,,,,,0
-,35,���B�b�N,�܁A���ꂩ�����낵�����ނ�,2,0,0,10,SHADE,OFF,OFF,ON,0,,36,36,,,,,,,,1
-,36,�t�E�X�C,����Ă����ȏ�A�����Ă͋A���˂��ȁc,0,0,0,15,OFF,OFF,OFF,ON,0,,37,37,,,,,,,,1
-,37,�t�B�[�i,�t�E�X�C�A�o��I,9,0,0,15,ON,OFF,OFF,SHADE,0,,39,39,,,,,,,,0
-,38,�t�E�X�C,�Ă߁[�͂������́c����Șr�ŉ����ł���@�����{���̐킢�������Ă���,9,0,0,15,SHADE,OFF,OFF,ON,0,,39,39,,,,,,,,1
-,39,�t�E�X�C,���B�b�N�c���Ɏ����������B�o��͂ł��Ă񂾂낤��,10,0,0,15,ON,OFF,OFF,SHADE,0,,41,41,,,,,,,,0
-,40,���B�b�N,�ł��Ă�ł��Ă�,10,0,0,15,SHADE,OFF,OFF,ON,0,,41,41,,,,,,,,1
-,41,�t�E�X�C,����|�����Ƃ���Ő��E�͒n���̂܂܂����@�O�n�n�n�n�c,0,0,0,15,OFF,OFF,OFF,ON,1,,0,41,,,,,,,,1
+﻿StoryNumber,ID,Name ,Story , LeftOneImage,LeftTwoImage ,RightOneImage,RightTwoImage,LeftOne ,LeftTwo ,RightOne,RightTwo,EndFlag,NextStory,NextStartNumber,NextEndNumber,SceneMode,Title,LoadScene,ClearConditions,BG,Nalation,NalOnOff,NameLR
+4,0,キース,ここだ,1,2,0,15,OFF,ON,OFF,SHADE,0,Story4After,5,5,1,孤立の涙,Story,Boss,4,3,0,0
+5,1,ヒュー,…偉そうなのが暴れてるな。あれがこの街のボスか？,0,2,0,15,ON,OFF,OFF,SHADE,0,Story4Before,5,5,,異端からの反撃,,,,,,0
+,2,キース,そうだ。…まさかあいつを倒す気か？やめといたほうが…,0,2,0,15,SHADE,ON,OFF,SHADE,0,,5,5,,,,,,,,0
+,3,ヒュー,あれを倒せば、ハイランドも見えてくる気がする,0,2,0,15,ON,OFF,OFF,SHADE,0,,5,5,,,,,,,,0
+,4,キース,…しゃーねー、やるか,0,2,0,15,SHADE,ON,OFF,SHADE,0,,5,5,,,,,,,,0
+,5,,…ん？なんだあいつら！　とりあえずフウスイ様に伝えろー！,0,0,0,11,OFF,OFF,OFF,ON,0,,7,7,,,,,,,,1
+,6,,あと増援の要請！,0,0,0,11,OFF,OFF,OFF,ON,0,,7,7,,,,,,,,1
+,7,,ヴィック！敵だぞ！その斧でフウスイ様のために戦え！,11,0,0,5,SHADE,OFF,OFF,ON,0,,19,19,,,,,,,,1
+,8,ヴィック,敵はどんなヤツだ,11,0,0,10,ON,OFF,OFF,SHADE,0,,19,19,,,,,,,,0
+,9,,知らんが…グバッ,11,0,0,10,ON,OFF,OFF,SHADE,0,,19,19,,,,,,,,0
+,10,ヴィック,…おい、何やってんだ？,11,9,0,10,SHADE,SHADE,OFF,ON,0,,19,19,,,,,,,,1
+,11,フィーナ,こいつらの敵ってことは、もしかしたら私たちの味方になってくれる人たちかも,11,9,0,10,SHADE,ON,OFF,SHADE,0,,19,19,,,,,,,,0
+,13,ヴィック,うーん…,11,9,0,10,SHADE,SHADE,OFF,ON,0,,19,19,,,,,,,,1
+,14,,こっちから銃声が…！　お前、まさか！,11,9,0,10,ON,SHADE,OFF,SHADE,0,,19,19,,,,,,,,0
+,15,フィーナ,もうあなたたちの支配は受けない…フウスイを倒して街を救う！,11,9,0,10,SHADE,ON,OFF,SHADE,0,,19,19,,,,,,,,1
+,16,,なんだと！　くそ、フウスイ様に報告だ！,11,9,0,10,ON,SHADE,OFF,SHADE,0,,19,19,,,,,,,,0
+,17,ヴィック,やるしかねえか。,11,9,0,10,OFF,SHADE,OFF,ON,0,,19,19,,,,,,,,1
+,18,フィーナ,とりあえず、向こうで戦ってる人と合流しよう！,11,9,0,10,OFF,ON,OFF,SHADE,0,,19,19,,,,,,,,0
+,19,フィーナ,あ！,2,0,0,9,SHADE,OFF,OFF,ON,0,,28,28,,,,,,,,1
+,20,キース,…誰だお前　ここはお嬢さんが来るとこじゃねーぜ,2,0,0,9,ON,OFF,OFF,SHADE,0,,28,28,,,,,,,,0
+,21,フィーナ,キースでしょ！　フィーナよ、覚えてないの？,2,0,0,9,SHADE,OFF,OFF,ON,0,,28,28,,,,,,,,1
+,22,キース,…で、なんでお前が銃を？俺を殺す気か？,2,0,0,9,ON,OFF,OFF,SHADE,0,,28,28,,,,,,,,0
+,23,フィーナ,違うよ！フウスイを倒すため以外なにがあるっていうの？,2,0,0,9,SHADE,OFF,OFF,ON,0,,28,28,,,,,,,,1
+,24,キース,お前には無理だ。お家に隠れてな,2,0,0,9,ON,OFF,OFF,SHADE,0,,28,28,,,,,,,,0
+,25,フィーナ,もう人撃っちゃったし…,2,0,0,9,SHADE,OFF,OFF,ON,0,,28,28,,,,,,,,0
+,26,キース,…は？,2,0,0,9,ON,OFF,OFF,SHADE,0,,28,28,,,,,,,,1
+,27,フィーナ,大丈夫！　キースがいない間に強くなったから！　これからよろしく！,2,0,0,9,SHADE,OFF,OFF,ON,0,,28,28,,,,,,,,0
+,28,キース,生きてやがったか,2,0,0,10,ON,OFF,OFF,SHADE,0,,36,36,,,,,,,,1
+,29,ヴィック,おめえもな。お互い悪運が強いことだ,2,0,0,10,SHADE,OFF,OFF,ON,0,,36,36,,,,,,,,0
+,30,キース,…で、険しい顔で斧なんか持ってよ　どうしたんだ,2,0,0,10,ON,OFF,OFF,SHADE,0,,36,36,,,,,,,,1
+,31,ヴィック,稲刈の季節だからな,2,0,0,10,SHADE,OFF,OFF,ON,0,,36,36,,,,,,,,0
+,32,キース,植物なんて育ってねえだろ,2,0,0,10,ON,OFF,OFF,SHADE,0,,36,36,,,,,,,,0
+,33,ヴィック,育てるために悪の根源を刈るわけだ,2,0,0,10,SHADE,OFF,OFF,ON,0,,36,36,,,,,,,,1
+,34,キース,なるほどな,2,0,0,10,ON,OFF,OFF,SHADE,0,,36,36,,,,,,,,0
+,35,ヴィック,ま、これからもよろしく頼むぜ,2,0,0,10,SHADE,OFF,OFF,ON,0,,36,36,,,,,,,,1
+,36,フウスイ,やってきた以上、生きては帰せねえな…,0,0,0,15,OFF,OFF,OFF,ON,0,,37,37,,,,,,,,1
+,37,フィーナ,フウスイ、覚悟！,9,0,0,15,ON,OFF,OFF,SHADE,0,,39,39,,,,,,,,0
+,38,フウスイ,てめーはさっきの…そんな腕で何ができる　俺が本当の戦いを教えてやるよ,9,0,0,15,SHADE,OFF,OFF,ON,0,,39,39,,,,,,,,1
+,39,フウスイ,ヴィック…俺に歯向かうか。覚悟はできてんだろうな,10,0,0,15,ON,OFF,OFF,SHADE,0,,41,41,,,,,,,,0
+,40,ヴィック,できてるできてる,10,0,0,15,SHADE,OFF,OFF,ON,0,,41,41,,,,,,,,1
+,41,フウスイ,俺を倒したところで世界は地獄のままだぜ　グハハハハ…,0,0,0,15,OFF,OFF,OFF,ON,1,,0,41,,,,,,,,1
 ,42,,,,,,,,,,,,,,,,,,,,,,
