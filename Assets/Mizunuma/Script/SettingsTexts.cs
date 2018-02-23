@@ -69,19 +69,19 @@ public class SettingsTexts : MonoBehaviour
 
         if (BGMFlag == true && SEFlag == false)
         {
-            Debug.Log("BGM:" + Mathf.CeilToInt(BGMScrollbar.value * 100) + " E決定");
+            //Debug.Log("BGM:" + Mathf.CeilToInt(BGMScrollbar.value * 100) + " E決定");
             eventSystem.sendNavigationEvents = false;
             /*右が押されたら＋方向へ変動*/
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("AxisX") == 1)
             {
                 BGMScrollbar.value += 0.05f;
             }
             /*左が押されたら-方向へ変動*/
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("AxisX") == -1)
             {
                 BGMScrollbar.value -= 0.05f;
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("X"))
             {
                 FindObjectOfType<AudioManager>().SetBGMVolum(BGMScrollbar.value);
                 eventSystem.sendNavigationEvents = true;
@@ -91,19 +91,19 @@ public class SettingsTexts : MonoBehaviour
         }
         if (SEFlag == true && BGMFlag == false)
         {
-            Debug.Log("SE:" + Mathf.CeilToInt(SEScrollbar.value * 100) + " E決定");
+            //Debug.Log("SE:" + Mathf.CeilToInt(SEScrollbar.value * 100) + " E決定");
             eventSystem.sendNavigationEvents = false;
             /*右が押されたら＋方向へ変動*/
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("AxisX") == 1)
             {
                 SEScrollbar.value += 0.05f;
             }
             /*左が押されたら-方向へ変動*/
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("AxisX") == -1)
             {
                 SEScrollbar.value -= 0.05f;
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("X"))
             {
                 FindObjectOfType<AudioManager>().SetSeVolum(SEScrollbar.value);
                 eventSystem.sendNavigationEvents = true;
@@ -149,13 +149,13 @@ public class SettingsTexts : MonoBehaviour
     {
         BGMFlag = true;
         SEFlag = false;
-        Debug.Log("BGM設定ボタン押されました Eで戻れます");
+        //Debug.Log("BGM設定ボタン押されました Eで戻れます");
     }
     public void SEVolumeSettings()
     {
         SEFlag = true;
         BGMFlag = false;
-        Debug.Log("SE設定ボタン押されました　Eで戻れます");
+        //Debug.Log("SE設定ボタン押されました　Eで戻れます");
     }
 
     public void GetBGMVolumeValue(float bgmvalue)

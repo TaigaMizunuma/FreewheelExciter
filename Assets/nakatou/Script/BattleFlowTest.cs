@@ -484,6 +484,7 @@ public class BattleFlowTest : MonoBehaviour
                 _NowChooseChar.GetComponent<Character>().TotalStatus();
                 _NowChooseChar.GetComponent<PlayerAttack>().RangeSerchDesp();
             }
+
             if (Input.GetAxis("AxisY") == -1 || Input.GetAxis("Vertical") == -1)
             {
                 if (count == UIs.Count - 1) return;

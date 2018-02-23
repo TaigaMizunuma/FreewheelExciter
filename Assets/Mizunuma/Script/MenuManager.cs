@@ -43,7 +43,7 @@ public class MenuManager : MonoBehaviour
     }
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.M) && MenuControlFlag == false)
+        if ((Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("△"))&& MenuControlFlag == false)
         {
             eventSystem.sendNavigationEvents = true;
             IniMainMenu();
