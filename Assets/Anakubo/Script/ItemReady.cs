@@ -11,6 +11,7 @@ public class ItemReady : MonoBehaviour {
     public GameObject cursor_;
     private int pos_num_x = 0;
     private int pos_num_y = 0;
+    private int row;
     // 一番上のcanvasを登録しておく
     public GameObject parent_canvas;
 
@@ -72,6 +73,15 @@ public class ItemReady : MonoBehaviour {
     // 渡すを選んだ状態か
     private bool isGive = false;
 
+    // 上下左右キーの押しっぱなしに対応
+    private float up_timer = 50.0f;
+    private float down_timer = 50.0f;
+    private float right_timer = 50.0f;
+    private float left_timer = 50.0f;
+    private float key_interval = 1.0f;
+    bool[] key_flg_ = { false, false, false, false };
+    bool[] interval_flg_ = { false, false, false, false };
+
     // Use this for initialization
     void Start () {
     }
@@ -86,6 +96,7 @@ public class ItemReady : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (players_ == null) return;
+        ControllerAxis();
         switch (mode_)
         {
             case 0:
@@ -115,9 +126,9 @@ public class ItemReady : MonoBehaviour {
     void Mode0()
     {
         // 下キーで１つ下に 下から２番目のときに押すとカーソルは動かずに表示されているユニットがずれる
-        if (Input.GetKeyDown(KeyCode.DownArrow) && unit_num < units_.Count - 2)
+        if (key_flg_[3] && unit_num < units_.Count - 2 && unit_num/2<row-1)
         {
-            if (pos_num_y == 2 && unit_num < units_.Count - 4)
+            if (pos_num_y == 2 && unit_num / 2 <row - 2)
             {
                 Vector3 pos = units_parent.GetComponent<RectTransform>().anchoredPosition;
                 pos.y += 90.0f;
@@ -127,12 +138,13 @@ public class ItemReady : MonoBehaviour {
             {
                 pos_num_y++;
             }
-            cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y*2 + pos_num_x]);
             unit_num += 2;
+            cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[unit_num]);
             ShosaiUpdate();
+            key_flg_[3] = false;
         }
         // 上キーで１つ上に 上から２番目のときに押すとカーソルは動かずに表示されているユニットがずれる
-        if (Input.GetKeyDown(KeyCode.UpArrow) && unit_num > 1)
+        if (key_flg_[2] && unit_num > 1)
         {
             if (pos_num_y == 1 && unit_num > 3)
             {
@@ -147,24 +159,27 @@ public class ItemReady : MonoBehaviour {
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num -= 2;
             ShosaiUpdate();
+            key_flg_[2] = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) && pos_num_x == 0)
+        if (key_flg_[0] && pos_num_x == 0)
         {
             pos_num_x++;
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num++;
             ShosaiUpdate();
+            key_flg_[0] = false;
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && pos_num_x == 1)
+        if (key_flg_[1] && pos_num_x == 1)
         {
             pos_num_x--;
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[pos_num_y * 2 + pos_num_x]);
             unit_num--;
             ShosaiUpdate();
+            key_flg_[1] = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetButtonDown("O"))
         {
             if (first_unit == null)
             {
@@ -189,7 +204,7 @@ public class ItemReady : MonoBehaviour {
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetButtonDown("X"))
         {
             if (first_unit == null)
             {
@@ -215,18 +230,20 @@ public class ItemReady : MonoBehaviour {
     // 操作を選択するモード
     void Mode1()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (key_flg_[3])
         {
             pos_num_y++;
             if (pos_num_y >= controll_list_.Length) pos_num_y = 0;
+            key_flg_[3] = false;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (key_flg_[2])
         {
             pos_num_y--;
             if (pos_num_y < 0) pos_num_y = controll_list_.Length - 1;
+            key_flg_[2] = false;
         }
         cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(controll_list_[pos_num_y]);
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetButtonDown("X"))
         {
             controll_list_[0].transform.parent.gameObject.SetActive(false);
             first_item_list.SetActive(true);
@@ -236,7 +253,7 @@ public class ItemReady : MonoBehaviour {
             ShosaiUpdate();
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[0]);
         }
-        if (Input.GetKeyDown(KeyCode.Z)){
+        if (Input.GetButtonDown("O")){
             switch (pos_num_y)
             {
                 case 0:
@@ -297,18 +314,20 @@ public class ItemReady : MonoBehaviour {
 
         if (first_unit_item == null)
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (key_flg_[3])
             {
                 pos_num_y++;
                 if (pos_num_y >= first_items.Count) pos_num_y = 0;
+                key_flg_[3] = false;
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (key_flg_[2])
             {
                 pos_num_y--;
                 if (pos_num_y < 0) pos_num_y = first_items.Count - 1;
+                key_flg_[2] = false;
             }
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetButtonDown("X"))
             {
                 mode_ = 0;
                 second_unit = null;
@@ -317,7 +336,7 @@ public class ItemReady : MonoBehaviour {
                 UIChange();
                 ShosaiUpdate();
             }
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetButtonDown("O"))
             {
                 first_unit_item = first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[pos_num_y];
                 pos_num_y = 0;
@@ -326,22 +345,24 @@ public class ItemReady : MonoBehaviour {
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetButtonDown("X"))
             {
                 first_unit_item = null;
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (key_flg_[3])
             {
                 pos_num_y++;
                 if (pos_num_y >= second_items.Count) pos_num_y = 0;
+                key_flg_[3] = false;
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (key_flg_[2])
             {
                 pos_num_y--;
                 if (pos_num_y < 0) pos_num_y = second_items.Count - 1;
+                key_flg_[2] = false;
             }
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(second_items[pos_num_y]);
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetButtonDown("O"))
             {
                 second_unit_item = second_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[pos_num_y];
 
@@ -364,18 +385,20 @@ public class ItemReady : MonoBehaviour {
     {
         if (warehouse_mode == 0)
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (key_flg_[3])
             {
                 pos_num_y++;
                 if (pos_num_y >= warehouse_controll.Length) pos_num_y = 0;
+                key_flg_[3] = false;
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (key_flg_[2])
             {
                 pos_num_y--;
                 if (pos_num_y < 0) pos_num_y = warehouse_controll.Length - 1;
+                key_flg_[2] = false;
             }
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_controll[pos_num_y]);
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetButtonDown("X"))
             {
                 mode_ = 1;
                 controll_list_[0].transform.parent.gameObject.SetActive(true);
@@ -389,7 +412,7 @@ public class ItemReady : MonoBehaviour {
                 ShosaiUpdate();
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(controll_list_[0]);
             }
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetButtonDown("O"))
             {
                 warehouse_mode = pos_num_y + 1;
                 if (warehouse_mode == 1)
@@ -411,18 +434,20 @@ public class ItemReady : MonoBehaviour {
                     cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_controll[0]);
                     return;
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (key_flg_[3])
                 {
                     pos_num_y++;
                     if (pos_num_y >= first_items.Count) pos_num_y = 0;
+                    key_flg_[3] = false;
                 }
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (key_flg_[2])
                 {
                     pos_num_y--;
                     if (pos_num_y < 0) pos_num_y = first_items.Count - 1;
+                    key_flg_[2] = false;
                 }
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (Input.GetButtonDown("O"))
                 {
                     GameObject.Find("RepositoryManager").GetComponent<RepositoryManager>().AddItem(first_unit,first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[pos_num_y]);
                     first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>().RemoveItem();
@@ -452,7 +477,7 @@ public class ItemReady : MonoBehaviour {
                         return;
                     }
                 }
-                if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+                if(key_flg_[0] || key_flg_[1])
                 {
                     if (repository_num == 0)
                     {
@@ -473,19 +498,23 @@ public class ItemReady : MonoBehaviour {
                             UIs_parent[2].GetComponent<UIRepository>().DisplayChange();
                         }
                     }
+                    key_flg_[0] = false;
+                    key_flg_[1] = false;
                 }
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (key_flg_[3])
                 {
                     pos_num_y++;
                     if (pos_num_y >= warehouse_items[repository_num].Count) pos_num_y = 0;
+                    key_flg_[3] = false;
                 }
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (key_flg_[2])
                 {
                     pos_num_y--;
                     if (pos_num_y < 0) pos_num_y = warehouse_items[repository_num].Count - 1;
+                    key_flg_[2] = false;
                 }
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_items[repository_num][pos_num_y]);
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (Input.GetButtonDown("O"))
                 {
                     if(repository_num==0)
                         GameObject.Find("RepositoryManager").GetComponent<RepositoryManager>().GetItem(first_unit, pos_num_y, "Item");
@@ -500,7 +529,7 @@ public class ItemReady : MonoBehaviour {
                         cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(warehouse_items[repository_num][pos_num_y]);
                 }
             }
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetButtonDown("X"))
             {
                 warehouse_mode = 0;
                 repository_num = 0;
@@ -517,18 +546,20 @@ public class ItemReady : MonoBehaviour {
         {
             if (throw_item_num < 0)
             {
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (key_flg_[3])
                 {
                     pos_num_y++;
                     if (pos_num_y >= first_items.Count) pos_num_y = 0;
+                    key_flg_[3] = false;
                 }
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (key_flg_[2])
                 {
                     pos_num_y--;
                     if (pos_num_y < 0) pos_num_y = first_items.Count - 1;
+                    key_flg_[2] = false;
                 }
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (Input.GetButtonDown("O"))
                 {
                     throw_item_num = pos_num_y;
                     confirmation_[0].SetActive(true);
@@ -536,7 +567,7 @@ public class ItemReady : MonoBehaviour {
                     yes_no_[1].transform.parent.gameObject.SetActive(true);
                     pos_num_x = 1;
                 }
-                if (Input.GetKeyDown(KeyCode.X))
+                if (Input.GetButtonDown("X"))
                 {
                     mode_ = 1;
                     controll_list_[0].transform.parent.gameObject.SetActive(true);
@@ -553,16 +584,18 @@ public class ItemReady : MonoBehaviour {
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.RightArrow) && pos_num_x == 0)
+                if (key_flg_[0] && pos_num_x == 0)
                 {
                     pos_num_x++;
+                    key_flg_[0] = false;
                 }
-                if (Input.GetKeyDown(KeyCode.LeftArrow) && pos_num_x == 1)
+                if (key_flg_[1] && pos_num_x == 1)
                 {
                     pos_num_x--;
+                    key_flg_[1] = false;
                 }
                 cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(yes_no_[pos_num_x]);
-                if (Input.GetKeyDown(KeyCode.Z))
+                if (Input.GetButtonDown("O"))
                 {
                     if (pos_num_x == 0)
                     {
@@ -610,18 +643,20 @@ public class ItemReady : MonoBehaviour {
             second_items = UIs_parent[1].GetComponent<UIItemList>().GetItemTexts();
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (key_flg_[3])
         {
             pos_num_y++;
             if (pos_num_y >= first_items.Count) pos_num_y = 0;
+            key_flg_[3] = false;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (key_flg_[2])
         {
             pos_num_y--;
             if (pos_num_y < 0) pos_num_y = first_items.Count - 1;
+            key_flg_[2] = false;
         }
         cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(first_items[pos_num_y]);
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetButtonDown("X"))
         {
             mode_ = 0;
             second_unit = null;
@@ -630,7 +665,7 @@ public class ItemReady : MonoBehaviour {
             UIChange();
             ShosaiUpdate();
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetButtonDown("O"))
         {
             GiveItem(second_unit, first_unit, first_unit.GetComponent<Character>()._itemprefablist.GetComponent<ItemPrefabList>()._itemprefablist[pos_num_y]);
             DisplayUpdate();
@@ -719,6 +754,7 @@ public class ItemReady : MonoBehaviour {
         players_ = units_parent.GetComponent<Item_UnitList>().GetPlayers();
         parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
         ShosaiUpdate();
+        row = (units_.Count + 1) / 2;
     }
 
     void ShosaiUpdate()
@@ -774,5 +810,106 @@ public class ItemReady : MonoBehaviour {
 
         
 
+    }
+
+    void ControllerAxis()
+    {
+
+        if (Input.GetAxis("AxisX") == 1)
+        {
+            right_timer += Time.deltaTime;
+            if (right_timer > key_interval)
+            {
+                if (right_timer < 10)
+                {
+                    interval_flg_[0] = true;
+                }
+                right_timer = 0;
+                key_flg_[0] = true;
+            }
+            else if (right_timer > key_interval / 5.0f && interval_flg_[0])
+            {
+                right_timer = 0;
+                key_flg_[0] = true;
+            }
+        }
+        else
+        {
+            right_timer = 50;
+            interval_flg_[0] = false;
+            key_flg_[0] = false;
+        }
+        if (Input.GetAxis("AxisX") == -1)
+        {
+            left_timer += Time.deltaTime;
+            if (left_timer > key_interval)
+            {
+                if (left_timer < 10)
+                {
+                    interval_flg_[1] = true;
+                }
+                left_timer = 0;
+                key_flg_[1] = true;
+            }
+            else if (left_timer > key_interval / 5.0f && interval_flg_[1])
+            {
+                left_timer = 0;
+                key_flg_[1] = true;
+            }
+        }
+        else
+        {
+            left_timer = 50;
+            interval_flg_[1] = false;
+            key_flg_[1] = false;
+        }
+        if (Input.GetAxis("AxisY") == 1)
+        {
+            up_timer += Time.deltaTime;
+            if (up_timer > key_interval)
+            {
+                if (up_timer < 10)
+                {
+                    interval_flg_[2] = true;
+                }
+                up_timer = 0;
+                key_flg_[2] = true;
+            }
+            else if (up_timer > key_interval / 5.0f && interval_flg_[2])
+            {
+                up_timer = 0;
+                key_flg_[2] = true;
+            }
+        }
+        else
+        {
+            up_timer = 50;
+            interval_flg_[2] = false;
+            key_flg_[2] = false;
+        }
+        if (Input.GetAxis("AxisY") == -1)
+        {
+            down_timer += Time.deltaTime;
+            if (down_timer > key_interval)
+            {
+                if (down_timer < 10)
+                {
+                    interval_flg_[3] = true;
+                }
+                down_timer = 0;
+                key_flg_[3] = true;
+            }
+            if (down_timer > key_interval / 5.0f && interval_flg_[3])
+            {
+                down_timer = 0;
+                key_flg_[3] = true;
+            }
+        }
+        else
+        {
+            down_timer = 50.0f;
+            interval_flg_[3] = false;
+            key_flg_[3] = false;
+        }
     }
 }

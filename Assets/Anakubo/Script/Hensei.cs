@@ -29,6 +29,16 @@ public class Hensei : MonoBehaviour
     // Shosaiを取得
     public GameObject shosai_;
 
+    // 上下左右キーの押しっぱなしに対応
+    private float up_timer = 50.0f;
+    private float down_timer = 50.0f;
+    private float right_timer = 50.0f;
+    private float left_timer = 50.0f;
+    private float key_interval = 1.0f;
+    // 右 左 上 下
+    bool[] key_flg_ = { false, false, false, false };
+    bool[] interval_flg_ = { false, false, false, false };
+
     /////////////////////////////////////
 
     ////////////////////////////////////
@@ -58,8 +68,9 @@ public class Hensei : MonoBehaviour
             shosai_.SetActive(true);
             shosai_.GetComponent<ReadyShosai>().Hensei_Display();
         }
+        ControllerAxis();
         // 下キーで１つ下に 下から２番目のときに押すとカーソルは動かずに表示されているユニットがずれる
-        if (Input.GetKeyDown(KeyCode.DownArrow) && unit_num/2 < row-1 && unit_num < units_.Count - 2)
+        if (key_flg_[3] && unit_num/2 < row-1 && unit_num < units_.Count - 2)
         {
             if (pos_num_y == 2 && unit_num / 2 < row-2)
             {
@@ -75,9 +86,10 @@ public class Hensei : MonoBehaviour
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[unit_num]);
             parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
             shosai_.GetComponent<ReadyShosai>().SetUnit();
+            key_flg_[3] = false;
         }
         // 上キーで１つ上に 上から２番目のときに押すとカーソルは動かずに表示されているユニットがずれる
-        if (Input.GetKeyDown(KeyCode.UpArrow) && unit_num > 1)
+        if (key_flg_[2]&& unit_num > 1)
         {
             if (pos_num_y == 1 && unit_num > 3)
             {
@@ -93,26 +105,29 @@ public class Hensei : MonoBehaviour
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[unit_num]);
             parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
             shosai_.GetComponent<ReadyShosai>().SetUnit();
+            key_flg_[2] = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) && pos_num_x == 0 && unit_num < units_.Count - 1)
+        if (key_flg_[0] && pos_num_x == 0 && unit_num < units_.Count - 1)
         {
             pos_num_x++;
             unit_num++;
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[unit_num]);
             parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
             shosai_.GetComponent<ReadyShosai>().SetUnit();
+            key_flg_[0] = false;
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && pos_num_x == 1)
+        if (key_flg_[1] && pos_num_x == 1)
         {
             pos_num_x--;
             unit_num--;
             cursor_.GetComponent<RectTransform>().anchoredPosition = CanvasAnchoredPosition(units_[unit_num]);
             parent_canvas.GetComponent<ReadyManager>().SetUnit(players_[unit_num]);
             shosai_.GetComponent<ReadyShosai>().SetUnit();
+            key_flg_[1] = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetButtonDown("O"))
         {
             if (sortie_[unit_num])
             {
@@ -132,11 +147,11 @@ public class Hensei : MonoBehaviour
                 pos_sort.SetFirstPos();
             }
         }
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetButtonDown("X"))
         {
             transform.parent.GetComponent<ReadyManager>().ModeChange(0);
         }
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetButtonDown("△"))
         {
             shosai_.GetComponent<ReadyShosai>().Hensei_Display_End();
             transform.parent.GetComponent<ReadyManager>().ModeChange(6);
@@ -193,5 +208,105 @@ public class Hensei : MonoBehaviour
         shosai_.GetComponent<ReadyShosai>().SetUnit();
         pos_sort.SetFirstPos();
         row = (units_.Count+1) / 2;
+    }
+
+    void ControllerAxis()
+    {
+        
+        if(Input.GetAxis("AxisX") == 1)
+        {
+            right_timer += Time.deltaTime;
+            if (right_timer > key_interval)
+            {
+                if (right_timer < 10) {
+                    interval_flg_[0] = true;
+                }
+                right_timer = 0;
+                key_flg_[0] = true;
+            }
+            else if(right_timer>key_interval / 5.0f && interval_flg_[0])
+            {
+                right_timer = 0;
+                key_flg_[0] = true;
+            }
+        }
+        else
+        {
+            right_timer = 50;
+            interval_flg_[0] = false;
+            key_flg_[0] = false;
+        }
+        if (Input.GetAxis("AxisX") == -1)
+        {
+            left_timer += Time.deltaTime;
+            if (left_timer > key_interval)
+            {
+                if (left_timer < 10)
+                {
+                    interval_flg_[1] = true;
+                }
+                left_timer = 0;
+                key_flg_[1] = true;
+            }
+            else if (left_timer > key_interval / 5.0f && interval_flg_[1])
+            {
+                left_timer = 0;
+                key_flg_[1] = true;
+            }
+        }
+        else
+        {
+            left_timer = 50;
+            interval_flg_[1] = false;
+            key_flg_[1] = false;
+        }
+        if (Input.GetAxis("AxisY") == 1)
+        {
+            up_timer += Time.deltaTime;
+            if (up_timer > key_interval)
+            {
+                if (up_timer < 10)
+                {
+                    interval_flg_[2] = true;
+                }
+                up_timer = 0;
+                key_flg_[2] = true;
+            }
+            else if (up_timer > key_interval / 5.0f && interval_flg_[2])
+            {
+                up_timer = 0;
+                key_flg_[2] = true;
+            }
+        }
+        else
+        {
+            up_timer = 50;
+            interval_flg_[2] = false;
+            key_flg_[2] = false;
+        }
+        if (Input.GetAxis("AxisY") == -1)
+        {
+            down_timer += Time.deltaTime;
+            if (down_timer > key_interval)
+            {
+                if (down_timer < 10)
+                {
+                    interval_flg_[3] = true;
+                }
+                down_timer = 0;
+                key_flg_[3] = true;
+            }
+            if (down_timer > key_interval / 5.0f && interval_flg_[3])
+            {
+                down_timer = 0;
+                key_flg_[3] = true;
+            }
+        }
+        else
+        {
+            down_timer = 50.0f;
+            interval_flg_[3] = false;
+            key_flg_[3] = false;
+        }
     }
 }
