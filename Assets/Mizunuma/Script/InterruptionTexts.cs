@@ -73,7 +73,9 @@ public class InterruptionTexts : MonoBehaviour
 
     public void YesButtonPushed()
     {
-        Debug.Log("セーブしました");
+        FindObjectOfType<Fade>().SetOutFade(true);
+        FindObjectOfType<Fade>().SetSceneChangeSwitch(true);
+        FindObjectOfType<Fade>().SetScene("Title");
 
     }
     public void NoButtonPushed()

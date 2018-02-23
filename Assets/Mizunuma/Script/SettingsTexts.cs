@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Audio;
 
 public class SettingsTexts : MonoBehaviour
 {
@@ -82,6 +83,7 @@ public class SettingsTexts : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
+                FindObjectOfType<AudioManager>().SetBGMVolum(BGMScrollbar.value);
                 eventSystem.sendNavigationEvents = true;
                 BGMNumber = BGMScrollbar.value;
                 BGMFlag = false;
@@ -103,6 +105,7 @@ public class SettingsTexts : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
+                FindObjectOfType<AudioManager>().SetSeVolum(SEScrollbar.value);
                 eventSystem.sendNavigationEvents = true;
                 SENumber = SEScrollbar.value;
                 
