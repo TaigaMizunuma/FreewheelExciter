@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b2cec72fdb6895478eba37bda2c1b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgmvolume: 1
+  sevolume: 1
 --- !u!4 &91001439
 Transform:
   m_ObjectHideFlags: 0
@@ -2873,7 +2875,7 @@ Prefab:
     - target: {fileID: 114497342842723724, guid: bfe1b8393775c4d4594589283e104ee8,
         type: 2}
       propertyPath: GameStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114269823659654606, guid: bfe1b8393775c4d4594589283e104ee8, type: 2}
@@ -3515,7 +3517,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1180679385}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7, y: 3.46, z: -2.5}
+  m_LocalPosition: {x: 2, y: 3.46, z: -11.5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1706420775}

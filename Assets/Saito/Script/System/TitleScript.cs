@@ -97,7 +97,6 @@ public class TitleScript : MonoBehaviour {
     }
 
     //NewGame選択時
-    //強制で特定シーンに飛ぶ(会話シーン)
     public void NewGame()
     {
         if (buttonPressed == false && fadeIn == false && fadeOut == false)

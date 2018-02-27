@@ -442,10 +442,10 @@ public class StoryCSVReader : MonoBehaviour
         }
         else if (!GameObject.FindGameObjectWithTag("Player"))
         {
-            nextStory = "Story1Before";
-            dataLoadName = "Story1Before";
-            readStartNumber = nextreadStartNumber;
-            readEndNumber = nextreadEndNumber;
+            nextStory = storyCSVDatas[2][13];
+            dataLoadName = nextStory;
+            readStartNumber = 0;
+            readEndNumber = 0;
         }
     }
 
