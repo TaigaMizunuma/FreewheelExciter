@@ -278,6 +278,10 @@ public class Character : MonoBehaviour {
             //_exp = 0;
             LevelUp();
         }
+        else if(_exp < 0)
+        {
+            _exp = 0;
+        }
 
         //TotalStatus();
     }
