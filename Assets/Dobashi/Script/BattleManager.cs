@@ -250,14 +250,14 @@ public class BattleManager : MonoBehaviour {
 
     /// <summary>
     /// 戦闘詳細表示用
-    /// 戻り値[A:HP,A:威力,A:命中,A:必殺率,D:HP,D:威力,D:命中,D:必殺率]
+    /// 戻り値[A:HP,A:威力,A:命中,A:必殺率,A:攻撃回数,D:HP,D:威力,D:命中,D:必殺率,D:攻撃回数]
     /// </summary>
     /// <param name="_attack">攻撃側のオブジェクト</param>
     /// <param name="_interceptor">迎撃側のオブジェクト</param>
     /// <returns>表示用配列</returns>
     public int[] GetBattleState(GameObject _attack, GameObject _interceptor)
     {
-        int[] i = { 0, 0, 0, 0, 0, 0, 0, 0 };
+        int[] i = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         Attack_manager _attacker = new Attack_manager();
         Attack_manager _def = new Attack_manager();
 
@@ -287,15 +287,44 @@ public class BattleManager : MonoBehaviour {
         _attacker.set_critical(_def._chara._totalluk);
         _def.set_critical(_attacker._chara._totalluk);
 
+        var i1 = 1;
+        var i2 = 1;
+
+        if (_attacker._chara._attack_speed > _def._chara._attack_speed + 3)
+        {
+            i1 = 2;
+        }
+        else if (_def._chara._attack_speed > _attacker._chara._attack_speed + 3)
+        {
+            i2 = 2;
+        }
+
+        if (_def._obj.tag == "Player")
+        {
+            if(!_def._obj.GetComponent<PlayerAttack>().CounterRangeSearch(_attacker._obj))
+            {
+                i2 = 0;
+            }
+        }
+        else if (_def._obj.tag == "Enemy")
+        {
+            if (!_def._obj.GetComponent<EnemyAttack>().CounterRangeSearch(_attacker._obj))
+            {
+                i2 = 0;
+            }
+        }
+
         i[0] = _attacker._chara._totalhp;
         i[1] = _attacker._atk;
         i[2] = (int)_attacker._Totalhit;
         i[3] = (int)_attacker._critical;
+        i[4] = _attacker._chara._attack_count * i1;
 
-        i[4] = _def._chara._totalhp;
-        i[5] = _def._atk;
-        i[6] = (int)_def._Totalhit;
-        i[7] = (int)_def._critical;
+        i[5] = _def._chara._totalhp;
+        i[6] = _def._atk;
+        i[7] = (int)_def._Totalhit;
+        i[8] = (int)_def._critical;
+        i[9] = _def._chara._attack_count * i2;
 
         return i;
     }
@@ -635,7 +664,7 @@ public class BattleManager : MonoBehaviour {
         if (!_attacker._chara._stability && !_def._chara._stability)
         {
             //追撃判定
-            if ((_attacker._chara._attack_speed > _def._chara._attack_speed + 3) && (_attacker._chara._totalskl > _def._chara._totalskl + 3) && _battleend == false)
+            if ((_attacker._chara._attack_speed > _def._chara._attack_speed + 3)/* && (_attacker._chara._totalskl > _def._chara._totalskl + 3) */&& _battleend == false)
             {
                 //攻撃回数2倍
                 if (_attacker._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _attacker._chara._totalstr))
@@ -655,7 +684,7 @@ public class BattleManager : MonoBehaviour {
             }
             //反撃無効時は追撃もしない
             else if (_Counter && (_attacker._chara._attack_speed + 3 < _def._chara._attack_speed) &&
-                (_attacker._chara._totalskl + 3 < _def._chara._totalskl) && _battleend == false && !_Cancel)
+                /*(_attacker._chara._totalskl + 3 < _def._chara._totalskl) &&*/ _battleend == false && !_Cancel)
             {
                 //攻撃回数2倍
                 if (_def._chara.GetComponent<SkillChecker>()._Raid && (Random.Range(0, 101) < _def._chara._totalstr))

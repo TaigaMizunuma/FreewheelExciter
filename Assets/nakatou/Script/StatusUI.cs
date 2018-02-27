@@ -89,19 +89,58 @@ public class StatusUI : MonoBehaviour
 
         chara1status.Add(status1._name);
         chara1status.Add("HP:" + bs[0] + "/" + status1._totalMaxhp);
-        chara1status.Add("攻撃力:" + bs[1]);
-        //chara1status.Add("攻撃回数:" + status1._attack_count);
-        chara1status.Add("命中率:" + bs[2]);
-        //chara1status.Add("回避率:" + status1._avoidance);
-        chara1status.Add("必殺率:" + bs[3]);
+        if (bs[4] > 0)
+        {
+            if (bs[4] == 1)
+            {
+                chara1status.Add("威力:" + bs[1]);
+            }
+            else
+            {
+                chara1status.Add("威力:" + bs[1] + "×" + bs[4]);
+            }
+            //chara1status.Add("威力:" + bs[1]);
+            //chara1status.Add("攻撃回数:" + status1._attack_count);
+            chara1status.Add("命中:" + bs[2]);
+            //chara1status.Add("回避率:" + status1._avoidance);
+            chara1status.Add("必殺:" + bs[3]);
+        }
+        else
+        {
+            chara1status.Add("威力:--");
+            //chara1status.Add("攻撃回数:" + status1._attack_count);
+            chara1status.Add("命中:--");
+            //chara1status.Add("回避率:" + status1._avoidance);
+            chara1status.Add("必殺:--");
+        }
+        
 
         chara2status.Add(status2._name);
-        chara2status.Add("HP:" + bs[4] + "/" + status2._totalMaxhp);
-        chara2status.Add("攻撃力:" + bs[5]);
-        //chara2status.Add("攻撃回数:" + status2._attack_count);
-        chara2status.Add("命中率:" + bs[6]);
-        //chara2status.Add("回避率:" + status2._avoidance);
-        chara2status.Add("必殺率:" + bs[7]);
+        chara2status.Add("HP:" + bs[5] + "/" + status2._totalMaxhp);
+        if (bs[9] > 0)
+        {
+            if (bs[9] == 1)
+            {
+                chara2status.Add("威力:" + bs[6]);
+            }
+            else
+            {
+                chara2status.Add("威力:" + bs[6] + "×" + bs[9]);
+            }
+            //chara2status.Add("威力:" + bs[6]);
+            //chara2status.Add("攻撃回数:" + status2._attack_count);
+            chara2status.Add("命中:" + bs[7]);
+            //chara2status.Add("回避率:" + status2._avoidance);
+            chara2status.Add("必殺:" + bs[8]);
+        }
+        else
+        {
+            chara2status.Add("威力:--");
+            //chara2status.Add("攻撃回数:" + status2._attack_count);
+            chara2status.Add("命中:--");
+            //chara2status.Add("回避率:" + status2._avoidance);
+            chara2status.Add("必殺:--");
+        }
 
         atkText.text = "";
         defText.text = "";
