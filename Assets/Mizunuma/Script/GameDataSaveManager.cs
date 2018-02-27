@@ -90,9 +90,19 @@ public class GameDataSaveManager : MonoBehaviour
     private bool SaveDataDeleteFlag = false;
     private int D_Count;
 
+    private int InitCount = 0;
+
     // Use this for initialization
     void Start()
     {
+        if (InitCount == 0 && SaveData.HasKey("InitCount") == false)
+        {
+            SaveData.Clear();
+            InitCount = 1;
+            SaveData.SetInt("InitCount", InitCount);
+            Debug.Log("データ初期化");
+        }
+        else if(SaveData.HasKey("InitCount") == true)
         FindObjectOfType<Fade>().SetInFade(true);
         SavaDataGetTexts();
         SetSaveSlot1();

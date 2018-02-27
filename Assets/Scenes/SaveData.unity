@@ -692,6 +692,11 @@ Prefab:
       propertyPath: m_Name
       value: SaveCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 114780038169585842, guid: 68d218521f60e8b40838dc852cb56a64,
+        type: 2}
+      propertyPath: m_Text
+      value: Delete
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68d218521f60e8b40838dc852cb56a64, type: 2}
   m_IsPrefabParent: 0
